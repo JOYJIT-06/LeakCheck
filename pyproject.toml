@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emi"
+version = "1.0.0"
+description = "LeakCheck: reproducible EEG validation and data leakage benchmarking"
+requires-python = ">=3.10"
+dependencies = [
+    "mne>=1.7,<1.14",
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "pandas",
+    "matplotlib",
+    "joblib"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

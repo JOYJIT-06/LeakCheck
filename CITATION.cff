@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use LeakCheck, please cite this software."
+title: "LeakCheck: An EEG Validation and Data Leakage Benchmark"
+type: software
+version: 1.0.0
+authors:
+  - family-names: Das
+    given-names: Joyjit
+    orcid: "https://orcid.org/0009-0008-0529-4104"
+repository-code: "https://github.com/JOYJIT-06/LeakCheck"
+license: Apache-2.0
