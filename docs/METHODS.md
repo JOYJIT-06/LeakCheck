@@ -1,96 +1,76 @@
-# Methods
+# LeakCheck Scientific Methodology and Validation Protocols
 
-## Dataset and participants
+## 1. Core Principles: Participant as the Unit of Analysis
 
-The V1 empirical benchmark used the PhysioNet EEG Motor Movement/Imagery
-Database (EEGMMIDB). The selected motor-imagery runs were runs 4, 8, and
-12. Event annotations T1 and T2 were mapped to the left- and right-hand
-imagery classes according to the dataset event mapping used by the code.
+In electroencephalography (EEG) and brain-computer interface (BCI) machine learning, pooling trials across participants creates severe pseudo-replication and ecological fallacies. In LeakCheck:
+1. Every statistical summary, cross-validation split, and feature-transformation is evaluated **per participant**.
+2. Group-level inference is computed across participant estimates ($N = 105$), using non-parametric paired estimators robust to outliers and skewed distributions.
 
-The benchmark requested 106 participant IDs. Data processing and
-benchmark evaluation completed for 105. Participant 86 was excluded
-because only 24 eligible trials remained, below the configured minimum
-of 30.
+---
 
-## Preprocessing
+## 2. Validation Designs Taxonomy (D1–D6)
 
-The implementation applies the following participant-level operations:
+| Design ID | Formal Name | Description | Grouping Constraint |
+|---|---|---|---|
+| **D1** | `D1_shuffled_kfold` | Unstratified random $k$-fold cross-validation ($k=5$). | None (trials shuffled across all runs). |
+| **D2** | `D2_stratified_kfold` | Stratified random $k$-fold cross-validation ($k=5$). | Stratified by class labels; runs ignored. |
+| **D1m** | `D1m_matched_k` | Stratified random $k$-fold where $k = \text{number of runs}$ (e.g., $k=3$). | Class stratified; $k$ matches LORO fold count. |
+| **D1s** | `D1s_size_matched` | Size- and class-matched random split. | Exact trial counts and class balances match LORO folds, but trials are drawn randomly across runs. |
+| **D3** | `D3_loro` | Clean Leave-One-Run-Out cross-validation. | Strict group holdout: no trial from held-out run enters training fold. |
+| **D4** | `D4_chrono` | Chronological holdout (first $2/3$ train, final $1/3$ test). | Strict chronological order preserved. |
+| **D4b** | `D4b_forward_chain` | Expanding-window forward chaining (walk-forward CV). | Test fold always occurs strictly after training fold in time. |
+| **D5** | `D5_gap2` / `D5_gap4` | Chronological holdout with buffer gap ($g=2$ or $g=4$ trials discarded). | Evaluates temporal auto-correlation decay across adjacent trials. |
+| **D6** | `D6_loso_session` | Leave-One-Session-Out cross-validation. | Across separate multi-day recording sessions. |
 
-1. Band-pass filtering from 1 to 40 Hz.
-2. Bad-channel detection using robust variance and correlation criteria.
-3. Interpolation of detected bad channels when channel positions permit.
-4. Average EEG reference.
-5. ICA artifact correction. The component count is capped at 20 and
-   constrained by the available rank. Frontal EEG channels Fp1/Fp2 are
-   used as EOG proxies; at most two detected components are excluded.
-6. Epoching from −1 to +4 seconds around the event.
-7. Label-blind trial rejection using the configured adaptive artifact
-   statistic and threshold rule.
-8. Decoding-band filtering from 8 to 30 Hz and cropping to 1–3 seconds
-   after the cue.
+---
 
-The cache retains a 0–4-second decoding-band interval so the analysis
-can select windows within it. The V1 benchmark used the 1–3-second
-window.
+## 3. Data Leakage Taxonomy (P1–P7)
 
-### Preprocessing limitation
+| Leakage ID | Mechanism | Correct Comparator | Leaky Pipeline Failure Mode |
+|---|---|---|---|
+| **P1** | Global Spatial Filtering | `D3_loro` | Fitting Common Spatial Patterns (CSP) across all runs before cross-validation. Spatial filters learn test labels. |
+| **P2** | Global Artifact Removal | Clean fold-nested ICA | Fitting ICA or continuous temporal filters across test epochs. |
+| **P3** | Global Channel Scaling | `P3_scale_inside` | Normalizing channels using mean/variance computed across all trials. |
+| **P4** | Global Channel Selection | `P4_select_inside` | Selecting $K$ most informative channels using mutual information / ANOVA on all trials before CV. |
+| **P5** | Test-Fold Hyperparameter Tuning | `P5_tune_nested` | Choosing optimal time window or regularizer by inspecting test-fold accuracy. |
+| **P6** | Overlapping Window Splitting | `P6_overlap_loro` | Generating overlapping sub-windows from continuous trials and randomly partitioning them into train and test. |
+| **P7** | Pre-Split Data Augmentation | `P7_aug_train_only` | Augmenting trials (jitter, noise injection) before partitioning, allowing augmented pairs into both train and test. |
 
-Filtering, bad-channel handling, average reference, ICA fitting, and
-trial-rejection threshold estimation are performed before cross-validation
-and use all runs for that participant. These operations are label-blind,
-but they are not fitted independently inside each training fold.
-Consequently, V1 does not claim fully nested preprocessing. The
-cross-validation split protects the classifier evaluation, but does not
-make these preceding transformations independent of the held-out run.
+---
 
-## Decoder
+## 4. Statistical Estimation and Hypothesis Testing
 
-The evaluated decoder was Common Spatial Patterns (CSP) followed by
-Linear Discriminant Analysis (LDA). The benchmark used the MNE CSP
-implementation with OAS regularisation and four CSP components.
+### 4.1 Paired Inflation Metric ($\Delta$)
+For participant $i$, given leaky design $L$ and reference design $R$:
+$$\Delta_i = \text{Accuracy}_i(L) - \text{Accuracy}_i(R) \quad (\text{expressed in percentage points})$$
 
-## Validation designs
+### 4.2 Hodges-Lehmann Median Difference
+Rather than assuming normality, the central location of $\Delta$ is estimated via the Hodges-Lehmann pseudo-median:
+$$\widehat{\Delta}_{\text{HL}} = \text{median}\left\{ \frac{\Delta_i + \Delta_j}{2} \;\middle|\; 1 \le i \le j \le N \right\}$$
 
-### D3: leave-one-run-out
+### 4.3 Bias-Corrected and Accelerated (BCa) Bootstrap Confidence Interval
+Confidence intervals ($95\%$) for $\widehat{\Delta}_{\text{HL}}$ are computed via $B = 2,000$ BCa bootstrap resamples, correcting for both distribution asymmetry and acceleration.
 
-Each run is held out in turn. The remaining runs are used for training.
-This is the run-held-out reference design in V1.
+### 4.4 Non-Parametric Significance
+- **Wilcoxon Signed-Rank Test**: Tests null hypothesis $H_0: \Delta = 0$.
+- **Family-Wise Error Rate Control**: Holm-Bonferroni step-down correction applied within each decoder family.
+- **Cohen's $d_z$ Effect Size**:
+  $$d_z = \frac{\overline{\Delta}}{s_{\Delta}}$$
 
-### D1m: k-matched stratified random folds
+### 4.5 Two One-Sided Tests (TOST) for Equivalence
+To test whether an injected leakage or validation variation is negligible, TOST tests against equivalence bounds $[-\delta, +\delta]$ with default margin $\delta = 2.0$ pp:
+$$H_0^-: \Delta \le -2.0 \quad \text{vs} \quad H_1^-: \Delta > -2.0$$
+$$H_0^+: \Delta \ge +2.0 \quad \text{vs} \quad H_1^+: \Delta < +2.0$$
+Equivalence is declared only when both one-sided null hypotheses are rejected ($p < 0.05$).
 
-The number of folds is set to the number of unique runs. For this
-dataset, that is three folds. The split is stratified by class and
-repeated according to the benchmark configuration. This design is
-k-matched; it is not the separately implemented size-matched design D1s.
+---
 
-### P1: global-CSP positive control
+## 5. Negative Control Null Framework
 
-CSP is fitted using all trials and labels before the classifier is
-evaluated using leave-one-run-out splits. This deliberately allows
-information from held-out labels to influence the spatial feature
-transformation and serves as an injected-leakage positive control.
+Every decoding pipeline must be evaluated under label permutations:
+1. **Within-Run Permutation (`perm`)**: Labels are permuted independently within each run, preserving per-run class ratios while breaking brain-behavior relationships.
+2. **Circular Shift (`shift`)**: Labels are shifted circularly within each run, preserving autocorrelation and sequence transitions while misaligning trials.
 
-## Null models and statistics
-
-The benchmark used two null procedures:
-
-- `perm`: labels are permuted within runs.
-- `shift`: labels are circularly shifted within runs.
-
-There were 199 repetitions for each null type, with seed 42. The
-benchmark configuration also recorded five ordinary repeats and
-20 matched-design repeats.
-
-Paired design differences, confidence intervals, Wilcoxon tests,
-Holm-adjusted p-values, and effect sizes are provided in the generated
-result tables. Null results must be interpreted relative to the
-corresponding design and null procedure. A null accuracy need not equal
-50% in every design.
-
-## Software and reproducibility
-
-The benchmark summary records `emi` 0.1.0, NumPy 2.5.4, SciPy 1.18.1,
-scikit-learn 1.9.1, and MNE 1.13.2. The public software release is
-`emi` 1.0.0; the benchmark results were generated with the earlier
-recorded package version. Benchmark settings and summary files are
-included in `benchmark_results/physionet_v1/`.
+A methodologically sound negative control must satisfy:
+- Mean null accuracy: $50.0\% \pm \epsilon$.
+- False positive rate (FPR) at nominal $\alpha = 0.05$: $\le 5\%$.

@@ -6,6 +6,7 @@ pytest.importorskip("mne")
 
 from emi.config import Config  # noqa: E402
 from emi.decode import evaluate  # noqa: E402
+from emi.decoders import DECODERS, get_csp_factory  # noqa: E402
 
 
 def _synthetic(n_trials=60, n_ch=8, n_times=160, informative=True, seed=0):
@@ -29,3 +30,13 @@ def test_noise_is_not_decoded():
     X, y = _synthetic(informative=False, seed=1)
     res = evaluate(X, y, Config(n_perm=20))
     assert 0.3 < res["mean_acc"] < 0.7
+
+
+def test_riemannian_ts_lr_decoding():
+    X, y = _synthetic(informative=True, n_trials=40, n_ch=6, n_times=100)
+    spec = DECODERS["ts_lr"]
+    pipe = spec.build(get_csp_factory("numpy"))
+    pipe.fit(X[:30], y[:30])
+    preds = pipe.predict(X[30:])
+    acc = float(np.mean(preds == y[30:]))
+    assert acc >= 0.7

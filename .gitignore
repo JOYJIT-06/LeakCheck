@@ -26,3 +26,9 @@ results/
 *.backup
 *.pre_csp_backup
 *.validation_backup
+
+# Temporary patches, zips, and handoff notes
+*.patch
+*.zip
+CLAUDE_HANDOFF_*.txt
+benchmark_results/openbmi_v2_smoke/

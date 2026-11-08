@@ -69,8 +69,14 @@ def clean_raw(raw: mne.io.BaseRaw, cfg: Config):
 
 def _reject(data_v, times, cfg: Config, window):
     """Label-blind trial rejection. Returns (keep mask, threshold in microvolts)."""
-    win = window if cfg.reject_window != "full" else (times[0], times[-1] + 1e-9)
-    mask = (times >= win[0] - 1e-9) & (times < win[1] - 1e-9)
+    if cfg.reject_window == "full":
+        # Include every sample in the full epoch.
+        mask = np.ones(times.shape, dtype=bool)
+    else:
+        win = window
+        # Preserve the existing analysis-window behaviour.
+        mask = (times >= win[0] - 1e-9) & (times < win[1] - 1e-9)
+
     if cfg.reject_mode == "fixed":
         bad = ptp_reject_indices(data_v[:, :, mask], cfg.reject_uv)
         keep = np.ones(len(data_v), bool)

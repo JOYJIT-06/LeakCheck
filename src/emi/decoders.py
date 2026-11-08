@@ -22,7 +22,9 @@ N_KEEP_CHANNELS = 16
 def mne_csp_factory(reg=None):
     """Factory for MNE's CSP (imported lazily, so the package works without MNE)."""
     def make(n_components):
+        import mne
         from mne.decoding import CSP
+        mne.set_log_level("ERROR")
         return CSP(n_components=n_components, reg=reg, log=True, norm_trace=False)
     return make
 
@@ -79,6 +81,58 @@ class ChannelScaler(BaseEstimator, TransformerMixin):
         return X / self.scale_[None, :, None]
 
 
+class CovarianceTransformer(BaseEstimator, TransformerMixin):
+    """Compute normalized sample covariance matrices per trial for Riemannian geometry decoding."""
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        covs = []
+        for trial in X:
+            t_centered = trial - trial.mean(axis=1, keepdims=True)
+            c = np.cov(t_centered)
+            tr = np.trace(c)
+            if tr > 0:
+                c = c / tr
+            c += 1e-5 * np.eye(c.shape[0])
+            covs.append(c)
+        return np.stack(covs, axis=0)
+
+
+class TangentSpaceTransformer(BaseEstimator, TransformerMixin):
+    """Project SPD covariance matrices onto the tangent space of their log-Euclidean Frechet mean."""
+
+    def fit(self, X, y=None):
+        eigvals, eigvecs = np.linalg.eigh(X)
+        eigvals = np.maximum(eigvals, 1e-7)
+        log_covs = [v @ np.diag(np.log(val)) @ v.T for v, val in zip(eigvecs, eigvals)]
+        mean_log = np.mean(log_covs, axis=0)
+        evals_m, evecs_m = np.linalg.eigh(mean_log)
+        self.ref_ = evecs_m @ np.diag(np.exp(evals_m)) @ evecs_m.T
+        evals_r, evecs_r = np.linalg.eigh(self.ref_)
+        evals_r = np.maximum(evals_r, 1e-7)
+        self.ref_inv_sqrt_ = evecs_r @ np.diag(1.0 / np.sqrt(evals_r)) @ evecs_r.T
+        return self
+
+    def transform(self, X):
+        n_trials, n_ch, _ = X.shape
+        idx = np.triu_indices(n_ch)
+        sqrt2 = np.sqrt(2.0)
+        features = []
+        for C in X:
+            S = self.ref_inv_sqrt_ @ C @ self.ref_inv_sqrt_
+            evals, evecs = np.linalg.eigh(S)
+            evals = np.maximum(evals, 1e-7)
+            log_S = evecs @ np.diag(np.log(evals)) @ evecs.T
+            diag_mask = np.eye(n_ch, dtype=bool)
+            vec = log_S[idx].copy()
+            off_mask = ~diag_mask[idx]
+            vec[off_mask] *= sqrt2
+            features.append(vec)
+        return np.stack(features, axis=0)
+
+
 def add_noise_channels(X, n_noise, seed=0):
     """Append `n_noise` pure-noise channels (same typical amplitude). Used to magnify selection leaks."""
     if n_noise <= 0:
@@ -103,9 +157,9 @@ class DecoderSpec:
             try:
                 from pyriemann.estimation import Covariances
                 from pyriemann.tangentspace import TangentSpace
-            except ImportError as exc:
-                raise ImportError("The ts_lr decoder needs pyriemann: pip install pyriemann") from exc
-            return [("cov", Covariances(estimator="oas")), ("ts", TangentSpace(metric="riemann"))]
+                return [("cov", Covariances(estimator="oas")), ("ts", TangentSpace(metric="riemann"))]
+            except ImportError:
+                return [("cov", CovarianceTransformer()), ("ts", TangentSpaceTransformer())]
         raise ValueError(f"Unknown decoder {self.name}")
 
     def head(self, **params):

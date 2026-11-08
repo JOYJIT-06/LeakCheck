@@ -3,4 +3,4 @@
 Importing this package does not import MNE, so the numpy-only helpers
 (signal_utils, summary) can be used and tested without it.
 """
-__version__ = "1.0.0"
+__version__ = "1.1.0"

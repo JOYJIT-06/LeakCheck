@@ -451,14 +451,15 @@ def main():
             100 * (agree > 0.8).mean(),
         )
 
-    for (dec, nt), g in nul.groupby(
-        ["decoder", "null_type"]
-    ):
-        plot_leakcheck_null(
-            g,
-            run_out / f"null_fpr_{dec}_{nt}.png",
-            title=f"{a.dataset} | {dec} | null: {nt}",
-        )
+    if not nul.empty and "decoder" in nul.columns:
+        for (dec, nt), g in nul.groupby(
+            ["decoder", "null_type"]
+        ):
+            plot_leakcheck_null(
+                g,
+                run_out / f"null_fpr_{dec}_{nt}.png",
+                title=f"{a.dataset} | {dec} | null: {nt}",
+            )
 
     for dec, g in by.groupby("decoder"):
 
@@ -511,24 +512,25 @@ def main():
         30,
     )
 
-    print(
-        "\n=== Null labels "
-        "(negative control: accuracy near 0.5 and "
-        "false positives near 5%) ==="
-    )
+    if not nul.empty and "decoder" in nul.columns:
+        print(
+            "\n=== Null labels "
+            "(negative control: accuracy near 0.5 and "
+            "false positives near 5%) ==="
+        )
 
-    print(
-        nul[
-            [
-                "decoder",
-                "null_type",
-                "design",
-                "n_subjects",
-                "null_mean_acc",
-                "false_positive_rate",
-            ]
-        ].round(3).to_string(index=False)
-    )
+        print(
+            nul[
+                [
+                    "decoder",
+                    "null_type",
+                    "design",
+                    "n_subjects",
+                    "null_mean_acc",
+                    "false_positive_rate",
+                ]
+            ].round(3).to_string(index=False)
+        )
 
     print(
         "\n=== Real labels: inflation in percentage points "
