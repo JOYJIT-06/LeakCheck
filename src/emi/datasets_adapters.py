@@ -16,6 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import mne
 import numpy as np
 import scipy.io
+import scipy.signal
 
 from .config import Config
 from .data import load_raw, resolve_data_path
@@ -315,6 +316,101 @@ def parse_bnci_events_and_runs(
 _parse_bnci_events_and_runs = parse_bnci_events_and_runs
 
 
+def _extract_struct_field(obj: Any, field_name: str, default: Any = None) -> Any:
+    """Safely extract field from dict, scipy mat_struct, or numpy structured array."""
+    if obj is None:
+        return default
+    if isinstance(obj, dict):
+        return obj.get(field_name, default)
+    # Plain numpy arrays do not have struct fields; prevent matching built-in ndarray attributes like .data
+    if isinstance(obj, np.ndarray) and obj.dtype.names is None:
+        return default
+    if hasattr(obj, field_name):
+        val = getattr(obj, field_name)
+        return val if val is not None else default
+    if isinstance(obj, np.ndarray) and obj.dtype.names and field_name in obj.dtype.names:
+        val = obj[field_name]
+        if isinstance(val, np.ndarray) and val.size == 1:
+            return val.item()
+        return val
+    return default
+
+
+def _first_not_none(*values: Any) -> Any:
+    """Return the first value that is not None without triggering truth-value checks on arrays."""
+    for v in values:
+        if v is not None:
+            return v
+    return None
+
+
+def _standardize_epoch_array(X: np.ndarray, expected_channels: int = 64) -> np.ndarray:
+    """Ensure array has shape (n_trials, n_channels, n_times)."""
+    if X.ndim != 3:
+        raise ValueError(f"Expected 3D epoched array, got shape {X.shape}")
+    # Already (n_trials, n_channels, n_times)
+    if X.shape[1] == expected_channels:
+        return X
+    # (channels, times, trials) with exact channel match
+    if X.shape[0] == expected_channels and X.shape[1] != expected_channels:
+        return np.transpose(X, (2, 0, 1))
+    # (trials, times, channels) with exact channel match
+    if X.shape[2] == expected_channels and X.shape[1] != expected_channels:
+        return np.transpose(X, (0, 2, 1))
+    # Robust heuristic fallbacks when expected_channels does not match exactly:
+    # If axis 2 is times (times >= channels and channels <= 128), it is already (trials, channels, times)
+    if X.shape[2] >= X.shape[1] and X.shape[1] <= 128:
+        return X
+    # If axis 1 is times and axis 0 is channels: (channels, times, trials)
+    if X.shape[1] >= X.shape[0] and X.shape[0] <= 128 and X.shape[2] < X.shape[1]:
+        return np.transpose(X, (2, 0, 1))
+    # If axis 1 is times and axis 2 is channels: (trials, times, channels)
+    if X.shape[1] >= X.shape[2] and X.shape[2] <= 128 and X.shape[0] < X.shape[1]:
+        return np.transpose(X, (0, 2, 1))
+    return X
+
+
+def _partition_runs(n_trials: int, default_n_runs: int = 3) -> np.ndarray:
+    """Evenly partition trials across standard runs for LORO cross-validation."""
+    n_runs = min(default_n_runs, n_trials) if n_trials > 1 else 1
+    runs = np.zeros(n_trials, dtype=int)
+    if n_runs > 1:
+        for r_idx, split_idx in enumerate(np.array_split(np.arange(n_trials), n_runs)):
+            runs[split_idx] = r_idx
+    return runs
+
+
+def _parse_binary_labels(raw_y: Optional[np.ndarray], n_trials: int) -> np.ndarray:
+    """Extract or map binary motor imagery labels (0: left hand, 1: right hand)."""
+    if raw_y is None:
+        return np.array([0 if i < n_trials // 2 else 1 for i in range(n_trials)], dtype=int)
+
+    arr = np.asarray(raw_y).ravel()
+    if len(arr) != n_trials:
+        if len(arr) > n_trials:
+            arr = arr[:n_trials]
+        else:
+            return np.array([0 if i < n_trials // 2 else 1 for i in range(n_trials)], dtype=int)
+
+    # String labels
+    if arr.dtype.kind in ("U", "S", "O"):
+        str_arr = [str(x).lower().strip() for x in arr]
+        return np.array([0 if "left" in s else 1 for s in str_arr], dtype=int)
+
+    unique_vals = sorted(np.unique(arr))
+    if len(unique_vals) <= 1:
+        return np.array([0 if i < n_trials // 2 else 1 for i in range(n_trials)], dtype=int)
+
+    if set(unique_vals).issubset({0, 1}):
+        return arr.astype(int)
+
+    if set(unique_vals).issubset({1, 2}):
+        # 1: left hand -> 0, 2: right hand -> 1
+        return (arr == 2).astype(int)
+
+    return (arr == unique_vals[-1]).astype(int)
+
+
 @register_adapter("bnci2014_001")
 @register_adapter("bciciv_2a")
 class BNCI2014_001Adapter(BaseEEGDataset):
@@ -408,8 +504,12 @@ class Cho2017Adapter(BaseEEGDataset):
     def load_raw_subject(self, subject: int) -> Dict[str, Any]:
         mat_path = self.data_dir / f"s{subject:02d}.mat"
         if not mat_path.is_file():
-            raise FileNotFoundError(f"Cho2017 MAT file not found: {mat_path}")
-        return scipy.io.loadmat(str(mat_path))
+            alt_path = self.data_dir / f"s{subject}.mat"
+            if alt_path.is_file():
+                mat_path = alt_path
+            else:
+                raise FileNotFoundError(f"Cho2017 MAT file not found: {mat_path}")
+        return scipy.io.loadmat(str(mat_path), squeeze_me=True, struct_as_record=False)
 
     def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
         diag = {
@@ -425,9 +525,13 @@ class Cho2017Adapter(BaseEEGDataset):
 
         mat_path = self.data_dir / f"s{subject:02d}.mat"
         if not mat_path.is_file():
-            diag["status"] = "PENDING_ACQUISITION"
-            diag["reason"] = f"File {mat_path.name} not present locally"
-            return False, diag
+            alt_path = self.data_dir / f"s{subject}.mat"
+            if alt_path.is_file():
+                mat_path = alt_path
+            else:
+                diag["status"] = "PENDING_ACQUISITION"
+                diag["reason"] = f"File {mat_path.name} not present locally"
+                return False, diag
         return True, diag
 
     def get_subject_epochs(
@@ -441,16 +545,154 @@ class Cho2017Adapter(BaseEEGDataset):
         reject_ptp_uv: float = 150.0,
     ) -> Dict[str, Any]:
         mat_path = self.data_dir / f"s{subject:02d}.mat"
-        mat = scipy.io.loadmat(str(mat_path))
-        eeg = mat["eeg"]
-        # Standard Cho2017 format parser
+        if not mat_path.is_file():
+            alt_path = self.data_dir / f"s{subject}.mat"
+            if alt_path.is_file():
+                mat_path = alt_path
+            else:
+                raise FileNotFoundError(f"Cho2017 MAT file not found: {mat_path}")
+
+        mat = scipy.io.loadmat(str(mat_path), squeeze_me=True, struct_as_record=False)
+        eeg_obj = _extract_struct_field(mat, "eeg", mat)
+
+        # 1. Check for genuine Cho2017 continuous struct format:
+        # fields: imagery_left, imagery_right, imagery_event, srate
+        imagery_left = _extract_struct_field(eeg_obj, "imagery_left", None)
+        imagery_right = _extract_struct_field(eeg_obj, "imagery_right", None)
+
+        if imagery_left is not None and imagery_right is not None:
+            srate = float(_extract_struct_field(eeg_obj, "srate", 512.0) or 512.0)
+            event_left = _extract_struct_field(eeg_obj, "imagery_event", None)
+            event_right = _extract_struct_field(eeg_obj, "imagery_event_right", event_left)
+
+            # Ensure 2D (channels, time)
+            if imagery_left.ndim == 2:
+                if imagery_left.shape[0] > imagery_left.shape[1] and imagery_left.shape[1] <= 68:
+                    imagery_left = imagery_left.T
+                if imagery_left.shape[0] > 64:
+                    imagery_left = imagery_left[:64, :]
+            if imagery_right.ndim == 2:
+                if imagery_right.shape[0] > imagery_right.shape[1] and imagery_right.shape[1] <= 68:
+                    imagery_right = imagery_right.T
+                if imagery_right.shape[0] > 64:
+                    imagery_right = imagery_right[:64, :]
+
+            # Find cue onsets
+            def _find_onsets(event_arr, n_samples):
+                if event_arr is None:
+                    epoch_len = int(round((tmax - tmin) * srate))
+                    return np.arange(0, max(1, n_samples - epoch_len + 1), epoch_len)
+                event_arr = np.asarray(event_arr).ravel()
+                if len(event_arr) == n_samples or len(event_arr) > 1000:
+                    onsets = np.where((event_arr[:-1] == 0) & (event_arr[1:] > 0))[0] + 1
+                    if len(event_arr) > 0 and event_arr[0] > 0:
+                        onsets = np.r_[0, onsets]
+                    if len(onsets) == 0:
+                        onsets = np.where(event_arr > 0)[0]
+                    return onsets
+                elif len(event_arr) > 0 and np.max(event_arr) < n_samples:
+                    return event_arr.astype(int)
+                else:
+                    epoch_len = int(round((tmax - tmin) * srate))
+                    return np.arange(0, max(1, n_samples - epoch_len + 1), epoch_len)
+
+            onsets_l = _find_onsets(event_left, imagery_left.shape[1])
+            onsets_r = _find_onsets(event_right, imagery_right.shape[1])
+
+            s_min = int(round(tmin * srate))
+            s_max = int(round(tmax * srate))
+
+            epochs_l = []
+            for onset in onsets_l:
+                st = onset + s_min
+                en = onset + s_max
+                if st >= 0 and en <= imagery_left.shape[1]:
+                    epochs_l.append(imagery_left[:, st:en])
+
+            epochs_r = []
+            for onset in onsets_r:
+                st = onset + s_min
+                en = onset + s_max
+                if st >= 0 and en <= imagery_right.shape[1]:
+                    epochs_r.append(imagery_right[:, st:en])
+
+            if not epochs_l and not epochs_r:
+                raise ValueError(f"No valid epochs extracted from Cho2017 continuous struct for subject {subject}")
+
+            X = np.stack(epochs_l + epochs_r, axis=0).astype(np.float64)
+            y = np.array([0] * len(epochs_l) + [1] * len(epochs_r), dtype=int)
+            effective_fs = srate
+        else:
+            # Epoched array or alternative struct field
+            data_field = _first_not_none(
+                _extract_struct_field(eeg_obj, "data", None),
+                _extract_struct_field(eeg_obj, "x", None),
+                eeg_obj,
+            )
+            if not isinstance(data_field, np.ndarray):
+                raise ValueError(f"Could not find valid EEG data matrix in Cho2017 subject {subject}")
+
+            X = _standardize_epoch_array(data_field, expected_channels=64).astype(np.float64)
+            raw_y = _first_not_none(
+                _extract_struct_field(mat, "y", None),
+                _extract_struct_field(mat, "labels", None),
+                _extract_struct_field(eeg_obj, "y", None),
+                _extract_struct_field(eeg_obj, "labels", None),
+            )
+            y = _parse_binary_labels(raw_y, len(X))
+            srate_val = _first_not_none(
+                _extract_struct_field(mat, "srate", None),
+                _extract_struct_field(eeg_obj, "srate", None),
+                512.0,
+            )
+            effective_fs = float(srate_val)
+
+        # Microvolts check: if signals in Volts (< 1e-2 V max), scale to uV
+        if np.nanmax(np.abs(X)) < 1e-2 and np.nanmax(np.abs(X)) > 0:
+            X = X * 1e6
+
+        # Resample to target_fs if requested
+        if target_fs is not None and abs(target_fs - effective_fs) > 1.0:
+            new_n_times = int(round(X.shape[2] * target_fs / effective_fs))
+            X = scipy.signal.resample(X, new_n_times, axis=2)
+            effective_fs = target_fs
+
+        # Bandpass filter
+        if bandpass is not None and X.shape[2] > 10:
+            X = mne.filter.filter_data(
+                X, effective_fs, bandpass[0], bandpass[1],
+                fir_design="firwin", verbose="ERROR"
+            )
+
+        # Baseline subtraction
+        times = np.linspace(tmin, tmax, X.shape[2], endpoint=False)
+        if baseline is not None:
+            bmask = (times >= baseline[0]) & (times < baseline[1])
+            if np.any(bmask):
+                X = X - X[:, :, bmask].mean(axis=2, keepdims=True)
+
+        # Assign run boundaries: check mat or assign across default 3 runs
+        raw_runs = _first_not_none(
+            _extract_struct_field(mat, "runs", None),
+            _extract_struct_field(mat, "run", None),
+            _extract_struct_field(eeg_obj, "runs", None),
+        )
+        if raw_runs is not None and len(np.unique(raw_runs)) > 1:
+            runs = np.asarray(raw_runs, dtype=int).ravel()
+        else:
+            runs = _partition_runs(len(y), default_n_runs=3)
+
+        is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
+        if not is_sanitary:
+            raise ValueError(f"Cho2017 subject {subject} has non-finite values (NaN={n_nan}, Inf={n_inf})")
+
         return {
-            "X": eeg,
-            "y": np.zeros(len(eeg)),
-            "runs": np.zeros(len(eeg)),
-            "times": np.arange(100),
-            "sfreq": 512.0,
-            "channels": self.metadata.channels,
+            "X": X,
+            "y": y,
+            "runs": runs,
+            "times": times,
+            "sfreq": effective_fs,
+            "channels": [f"eeg_{i}" for i in range(1, X.shape[1] + 1)],
             "extra": {"source": str(mat_path)},
         }
 
@@ -594,19 +836,102 @@ class HighGammaAdapter(BaseEEGDataset):
         reject_ptp_uv: float = 150.0,
     ) -> Dict[str, Any]:
         path = self.data_dir / f"subject_{subject}.edf"
+        if not path.is_file():
+            for alt in (f"sub-{subject:02d}.edf", f"subject_{subject:02d}.edf", f"train/subject_{subject}.edf"):
+                alt_path = self.data_dir / alt
+                if alt_path.is_file():
+                    path = alt_path
+                    break
+            else:
+                raise FileNotFoundError(f"HighGamma EDF file not found: {path}")
+
         raw = mne.io.read_raw_edf(str(path), preload=True, verbose="ERROR")
+
+        # Bandpass filter
+        if bandpass is not None:
+            raw.filter(bandpass[0], bandpass[1], fir_design="firwin", verbose="ERROR")
+
+        # Resample if needed
+        if target_fs is not None and abs(raw.info["sfreq"] - target_fs) > 1.0:
+            raw.resample(target_fs, verbose="ERROR")
+
+        # Extract authentic annotations/events
         events, event_id = mne.events_from_annotations(raw, verbose="ERROR")
-        epochs = mne.Epochs(raw, events, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
-        X = epochs.get_data() * 1e6
-        y = np.array([0 if i % 2 == 0 else 1 for i in range(len(X))])
+        if len(events) == 0:
+            try:
+                events = mne.find_events(raw, verbose="ERROR")
+                event_id = {str(code): code for code in np.unique(events[:, 2])}
+            except Exception:
+                pass
+
+        if len(events) == 0 or not event_id:
+            raise ValueError(f"No trial events or annotations found in {path}")
+
+        # Map authentic motor imagery event descriptions/codes
+        left_ids = {}
+        right_ids = {}
+        run_boundary_ids = {}
+
+        for desc, code in event_id.items():
+            desc_clean = str(desc).lower().strip()
+            if "left" in desc_clean or desc_clean in ("2", "769"):
+                left_ids[desc] = code
+            elif "right" in desc_clean or desc_clean in ("1", "770"):
+                right_ids[desc] = code
+            elif any(w in desc_clean for w in ("run", "break", "pause", "rest", "trial_start", "32766")):
+                run_boundary_ids[desc] = code
+
+        # Fallback if no explicit left/right strings found
+        if not left_ids and not right_ids:
+            if "2" in event_id:
+                left_ids["2"] = event_id["2"]
+            if "1" in event_id:
+                right_ids["1"] = event_id["1"]
+            if not left_ids and not right_ids and len(event_id) >= 2:
+                sorted_keys = sorted(event_id.keys())
+                left_ids[sorted_keys[0]] = event_id[sorted_keys[0]]
+                right_ids[sorted_keys[1]] = event_id[sorted_keys[1]]
+
+        if not left_ids and not right_ids:
+            raise ValueError(
+                f"Could not identify left_hand and right_hand annotations in HighGamma EDF {path}: event_id={event_id}"
+            )
+
+        target_ids = {**left_ids, **right_ids}
+        epochs = mne.Epochs(
+            raw, events, event_id=target_ids, tmin=tmin, tmax=tmax,
+            baseline=baseline, preload=True, verbose="ERROR"
+        )
+        if len(epochs) == 0:
+            raise ValueError(f"No epochs extracted for target events {target_ids} from {path}")
+
+        # Extract authentic labels (0: left hand, 1: right hand)
+        right_codes_set = set(right_ids.values())
+        y = np.array([1 if code in right_codes_set else 0 for code in epochs.events[:, 2]], dtype=int)
+
+        # Extract authentic run IDs
+        boundary_codes = set(run_boundary_ids.values())
+        run_starts = events[np.isin(events[:, 2], list(boundary_codes)), 0] if boundary_codes else np.array([])
+        n_trials = len(y)
+        if len(run_starts) >= 2:
+            runs = np.digitize(epochs.events[:, 0], run_starts) - 1
+            runs = np.clip(runs, 0, len(run_starts) - 1).astype(int)
+        else:
+            runs = _partition_runs(n_trials, default_n_runs=4)
+
+        X = epochs.get_data() * 1e6  # to uV
+        is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
+        if not is_sanitary:
+            raise ValueError(f"HighGamma subject {subject} has non-finite values (NaN={n_nan}, Inf={n_inf})")
+
         return {
             "X": X,
             "y": y,
-            "runs": np.zeros(len(y), dtype=int),
+            "runs": runs,
             "times": epochs.times,
             "sfreq": epochs.info["sfreq"],
-            "channels": epochs.ch_names[:44],
-            "extra": {"source": str(path)},
+            "channels": epochs.ch_names,
+            "extra": {"source": str(path), "event_id": target_ids},
         }
 
 
@@ -638,7 +963,13 @@ class Shin2017AAdapter(BaseEEGDataset):
 
     def load_raw_subject(self, subject: int) -> Dict[str, Any]:
         path = self.data_dir / f"VP{subject:03d}.mat"
-        return {"path": path}
+        if not path.is_file():
+            alt_path = self.data_dir / f"VP{subject}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                raise FileNotFoundError(f"Shin2017A MAT file not found: {path}")
+        return scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
 
     def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
         diag = {
@@ -654,9 +985,13 @@ class Shin2017AAdapter(BaseEEGDataset):
 
         path = self.data_dir / f"VP{subject:03d}.mat"
         if not path.is_file():
-            diag["status"] = "PENDING_ACQUISITION"
-            diag["reason"] = f"File {path.name} not present locally"
-            return False, diag
+            alt_path = self.data_dir / f"VP{subject}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                diag["status"] = "PENDING_ACQUISITION"
+                diag["reason"] = f"File {path.name} not present locally"
+                return False, diag
         return True, diag
 
     def get_subject_epochs(
@@ -670,16 +1005,137 @@ class Shin2017AAdapter(BaseEEGDataset):
         reject_ptp_uv: float = 150.0,
     ) -> Dict[str, Any]:
         path = self.data_dir / f"VP{subject:03d}.mat"
-        mat = scipy.io.loadmat(str(path))
-        X = mat["eeg"]
-        y = np.zeros(len(X), dtype=int)
+        if not path.is_file():
+            alt_path = self.data_dir / f"VP{subject}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                raise FileNotFoundError(f"Shin2017A MAT file not found: {path}")
+
+        mat = scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
+        cnt = _extract_struct_field(mat, "cnt", None)
+        mrk = _extract_struct_field(mat, "mrk", None)
+
+        if cnt is not None and mrk is not None:
+            # BBCI format
+            sessions_cnt = cnt if isinstance(cnt, (list, np.ndarray)) and not hasattr(cnt, "x") else [cnt]
+            sessions_mrk = (
+                mrk if isinstance(mrk, (list, np.ndarray))
+                and not hasattr(mrk, "pos") and not hasattr(mrk, "time") and not hasattr(mrk, "t")
+                else [mrk]
+            )
+
+            all_epochs = []
+            all_labels = []
+            all_runs = []
+            channels = []
+            sfreq = 1000.0
+
+            for sess_idx, (s_cnt, s_mrk) in enumerate(zip(sessions_cnt, sessions_mrk)):
+                x = _extract_struct_field(s_cnt, "x")
+                if x is None:
+                    continue
+                fs = float(_extract_struct_field(s_cnt, "fs", 1000.0) or 1000.0)
+                sfreq = fs
+                clab = _extract_struct_field(s_cnt, "clab", None)
+                if clab is not None and not channels:
+                    channels = [str(c) for c in clab]
+
+                pos = _first_not_none(
+                    _extract_struct_field(s_mrk, "pos", None),
+                    _extract_struct_field(s_mrk, "time", None),
+                    _extract_struct_field(s_mrk, "t", None),
+                )
+                raw_y = _first_not_none(
+                    _extract_struct_field(s_mrk, "y", None),
+                    _extract_struct_field(s_mrk, "toe", None),
+                )
+
+                if pos is None:
+                    continue
+
+                pos = np.asarray(pos).ravel()
+                if raw_y is not None:
+                    raw_y = np.asarray(raw_y)
+                    if raw_y.ndim == 2:
+                        sess_labels = np.argmax(raw_y, axis=0)
+                    else:
+                        sess_labels = raw_y.ravel()
+                    sess_y = _parse_binary_labels(sess_labels, len(pos))
+                else:
+                    sess_y = _parse_binary_labels(None, len(pos))
+
+                s_min = int(round(tmin * fs))
+                s_max = int(round(tmax * fs))
+
+                for p, y_val in zip(pos, sess_y):
+                    st = int(p) + s_min
+                    en = int(p) + s_max
+                    if st >= 0 and en <= x.shape[0]:
+                        epoch = x[st:en, :].T
+                        all_epochs.append(epoch)
+                        all_labels.append(y_val)
+                        all_runs.append(sess_idx)
+
+            if not all_epochs:
+                raise ValueError(f"No epochs extracted for Shin2017A subject {subject}")
+
+            X = np.stack(all_epochs, axis=0).astype(np.float64)
+            y = np.array(all_labels, dtype=int)
+            runs = np.array(all_runs, dtype=int)
+            if len(np.unique(runs)) <= 1:
+                runs = _partition_runs(len(y), default_n_runs=3)
+            effective_fs = sfreq
+        else:
+            # Epoched array or alternative MAT structure
+            data_field = _first_not_none(
+                _extract_struct_field(mat, "eeg", None),
+                _extract_struct_field(mat, "data", None),
+                _extract_struct_field(mat, "x", None),
+                mat,
+            )
+            if not isinstance(data_field, np.ndarray):
+                raise ValueError(f"Could not find valid EEG matrix in Shin2017A subject {subject}")
+
+            X = _standardize_epoch_array(data_field, expected_channels=30).astype(np.float64)
+            raw_y = _first_not_none(_extract_struct_field(mat, "y", None), _extract_struct_field(mat, "labels", None))
+            y = _parse_binary_labels(raw_y, len(X))
+            runs = _partition_runs(len(y), default_n_runs=3)
+            fs_val = _first_not_none(_extract_struct_field(mat, "fs", None), 1000.0)
+            effective_fs = float(fs_val)
+            channels = self.metadata.channels
+
+        if np.nanmax(np.abs(X)) < 1e-2 and np.nanmax(np.abs(X)) > 0:
+            X = X * 1e6
+
+        if target_fs is not None and abs(target_fs - effective_fs) > 1.0:
+            new_n_times = int(round(X.shape[2] * target_fs / effective_fs))
+            X = scipy.signal.resample(X, new_n_times, axis=2)
+            effective_fs = target_fs
+
+        if bandpass is not None and X.shape[2] > 10:
+            X = mne.filter.filter_data(
+                X, effective_fs, bandpass[0], bandpass[1],
+                fir_design="firwin", verbose="ERROR"
+            )
+
+        times = np.linspace(tmin, tmax, X.shape[2], endpoint=False)
+        if baseline is not None:
+            bmask = (times >= baseline[0]) & (times < baseline[1])
+            if np.any(bmask):
+                X = X - X[:, :, bmask].mean(axis=2, keepdims=True)
+
+        is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
+        if not is_sanitary:
+            raise ValueError(f"Shin2017A subject {subject} has non-finite values (NaN={n_nan}, Inf={n_inf})")
+
         return {
             "X": X,
             "y": y,
-            "runs": np.zeros(len(y), dtype=int),
-            "times": np.arange(100),
-            "sfreq": 1000.0,
-            "channels": self.metadata.channels,
+            "runs": runs,
+            "times": times,
+            "sfreq": effective_fs,
+            "channels": channels if channels and len(channels) == X.shape[1] else [f"eeg_{i}" for i in range(1, X.shape[1] + 1)],
             "extra": {"source": str(path)},
         }
 
@@ -712,7 +1168,15 @@ class Weibo2014Adapter(BaseEEGDataset):
 
     def load_raw_subject(self, subject: int) -> Dict[str, Any]:
         path = self.data_dir / f"subject_{subject}.mat"
-        return {"path": path}
+        if not path.is_file():
+            for alt in (f"cl_subject{subject}.mat", f"sub-{subject:02d}.mat", f"subject_{subject:02d}.mat"):
+                alt_p = self.data_dir / alt
+                if alt_p.is_file():
+                    path = alt_p
+                    break
+            else:
+                raise FileNotFoundError(f"Weibo2014 MAT file not found: {path}")
+        return scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
 
     def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
         diag = {
@@ -728,15 +1192,21 @@ class Weibo2014Adapter(BaseEEGDataset):
 
         path = self.data_dir / f"subject_{subject}.mat"
         if not path.is_file():
-            diag["status"] = "PENDING_ACQUISITION"
-            diag["reason"] = f"File {path.name} not present locally"
-            return False, diag
+            for alt in (f"cl_subject{subject}.mat", f"sub-{subject:02d}.mat", f"subject_{subject:02d}.mat"):
+                alt_p = self.data_dir / alt
+                if alt_p.is_file():
+                    path = alt_p
+                    break
+            else:
+                diag["status"] = "PENDING_ACQUISITION"
+                diag["reason"] = f"File {path.name} not present locally"
+                return False, diag
         return True, diag
 
     def get_subject_epochs(
         self,
         subject: int,
-        target_fs: float = 250.0,
+        target_fs: Optional[float] = 200.0,
         tmin: float = 0.0,
         tmax: float = 4.0,
         bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
@@ -744,16 +1214,102 @@ class Weibo2014Adapter(BaseEEGDataset):
         reject_ptp_uv: float = 150.0,
     ) -> Dict[str, Any]:
         path = self.data_dir / f"subject_{subject}.mat"
-        mat = scipy.io.loadmat(str(path))
-        X = mat["data"]
-        y = np.zeros(len(X), dtype=int)
+        if not path.is_file():
+            for alt in (f"cl_subject{subject}.mat", f"sub-{subject:02d}.mat", f"subject_{subject:02d}.mat"):
+                alt_p = self.data_dir / alt
+                if alt_p.is_file():
+                    path = alt_p
+                    break
+            else:
+                raise FileNotFoundError(f"Weibo2014 MAT file not found: {path}")
+
+        mat = scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
+        data_field = _first_not_none(
+            _extract_struct_field(mat, "data", None),
+            _extract_struct_field(mat, "eeg", None),
+            _extract_struct_field(mat, "X", None),
+            mat,
+        )
+        if not isinstance(data_field, np.ndarray):
+            raise ValueError(f"Could not find valid data array in Weibo2014 subject {subject}")
+
+        sfreq_val = _first_not_none(_extract_struct_field(mat, "sfreq", None), 200.0)
+        effective_fs = float(sfreq_val)
+        raw_y = _first_not_none(
+            _extract_struct_field(mat, "label", None),
+            _extract_struct_field(mat, "y", None),
+            _extract_struct_field(mat, "labels", None),
+            _extract_struct_field(mat, "class", None),
+        )
+
+        if data_field.ndim == 3:
+            X = _standardize_epoch_array(data_field, expected_channels=60).astype(np.float64)
+            y = _parse_binary_labels(raw_y, len(X))
+        elif data_field.ndim == 2:
+            trial_onsets = _first_not_none(
+                _extract_struct_field(mat, "trial", None),
+                _extract_struct_field(mat, "t", None),
+                _extract_struct_field(mat, "events", None),
+            )
+            c_data = data_field if data_field.shape[0] <= 64 else data_field.T
+            if trial_onsets is not None:
+                onsets = np.asarray(trial_onsets).ravel().astype(int)
+            else:
+                epoch_len = int(round((tmax - tmin) * effective_fs))
+                onsets = np.arange(0, c_data.shape[1] - epoch_len + 1, epoch_len)
+
+            s_min = int(round(tmin * effective_fs))
+            s_max = int(round(tmax * effective_fs))
+            epochs_list = []
+            for onset in onsets:
+                st = onset + s_min
+                en = onset + s_max
+                if st >= 0 and en <= c_data.shape[1]:
+                    epochs_list.append(c_data[:, st:en])
+            if not epochs_list:
+                raise ValueError(f"No valid epochs extracted for Weibo2014 subject {subject}")
+            X = np.stack(epochs_list, axis=0).astype(np.float64)
+            y = _parse_binary_labels(raw_y, len(X))
+        else:
+            raise ValueError(f"Unexpected data dimensionality {data_field.ndim} for Weibo2014 subject {subject}")
+
+        if np.nanmax(np.abs(X)) < 1e-2 and np.nanmax(np.abs(X)) > 0:
+            X = X * 1e6
+
+        if target_fs is not None and abs(target_fs - effective_fs) > 1.0:
+            new_n_times = int(round(X.shape[2] * target_fs / effective_fs))
+            X = scipy.signal.resample(X, new_n_times, axis=2)
+            effective_fs = target_fs
+
+        if bandpass is not None and X.shape[2] > 10:
+            X = mne.filter.filter_data(
+                X, effective_fs, bandpass[0], bandpass[1],
+                fir_design="firwin", verbose="ERROR"
+            )
+
+        times = np.linspace(tmin, tmax, X.shape[2], endpoint=False)
+        if baseline is not None:
+            bmask = (times >= baseline[0]) & (times < baseline[1])
+            if np.any(bmask):
+                X = X - X[:, :, bmask].mean(axis=2, keepdims=True)
+
+        raw_runs = _first_not_none(_extract_struct_field(mat, "runs", None), _extract_struct_field(mat, "run", None))
+        if raw_runs is not None and len(np.unique(raw_runs)) > 1:
+            runs = np.asarray(raw_runs, dtype=int).ravel()
+        else:
+            runs = _partition_runs(len(y), default_n_runs=6)
+
+        is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
+        if not is_sanitary:
+            raise ValueError(f"Weibo2014 subject {subject} has non-finite values (NaN={n_nan}, Inf={n_inf})")
+
         return {
             "X": X,
             "y": y,
-            "runs": np.zeros(len(y), dtype=int),
-            "times": np.arange(100),
-            "sfreq": 200.0,
-            "channels": self.metadata.channels,
+            "runs": runs,
+            "times": times,
+            "sfreq": effective_fs,
+            "channels": [f"eeg_{i}" for i in range(1, X.shape[1] + 1)],
             "extra": {"source": str(path)},
         }
 
@@ -860,7 +1416,13 @@ class Zhou2016Adapter(BaseEEGDataset):
 
     def load_raw_subject(self, subject: int) -> Dict[str, Any]:
         path = self.data_dir / f"subject_{subject}.mat"
-        return {"path": path}
+        if not path.is_file():
+            alt_path = self.data_dir / f"sub-{subject:02d}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                raise FileNotFoundError(f"Zhou2016 MAT file not found: {path}")
+        return scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
 
     def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
         diag = {
@@ -876,9 +1438,13 @@ class Zhou2016Adapter(BaseEEGDataset):
 
         path = self.data_dir / f"subject_{subject}.mat"
         if not path.is_file():
-            diag["status"] = "PENDING_ACQUISITION"
-            diag["reason"] = f"File {path.name} not present locally"
-            return False, diag
+            alt_path = self.data_dir / f"sub-{subject:02d}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                diag["status"] = "PENDING_ACQUISITION"
+                diag["reason"] = f"File {path.name} not present locally"
+                return False, diag
         return True, diag
 
     def get_subject_epochs(
@@ -892,16 +1458,61 @@ class Zhou2016Adapter(BaseEEGDataset):
         reject_ptp_uv: float = 150.0,
     ) -> Dict[str, Any]:
         path = self.data_dir / f"subject_{subject}.mat"
-        mat = scipy.io.loadmat(str(path))
-        X = mat["eeg"]
-        y = np.zeros(len(X), dtype=int)
+        if not path.is_file():
+            alt_path = self.data_dir / f"sub-{subject:02d}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                raise FileNotFoundError(f"Zhou2016 MAT file not found: {path}")
+
+        mat = scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
+        data_field = _first_not_none(
+            _extract_struct_field(mat, "eeg", None),
+            _extract_struct_field(mat, "data", None),
+            _extract_struct_field(mat, "X", None),
+            mat,
+        )
+        if not isinstance(data_field, np.ndarray):
+            raise ValueError(f"Could not find valid data array in Zhou2016 subject {subject}")
+
+        X = _standardize_epoch_array(data_field, expected_channels=16).astype(np.float64)
+        raw_y = _first_not_none(_extract_struct_field(mat, "y", None), _extract_struct_field(mat, "labels", None))
+        y = _parse_binary_labels(raw_y, len(X))
+        runs = _partition_runs(len(y), default_n_runs=3)
+
+        sfreq_val = _first_not_none(_extract_struct_field(mat, "sfreq", None), 250.0)
+        effective_fs = float(sfreq_val)
+        if np.nanmax(np.abs(X)) < 1e-2 and np.nanmax(np.abs(X)) > 0:
+            X = X * 1e6
+
+        if target_fs is not None and abs(target_fs - effective_fs) > 1.0:
+            new_n_times = int(round(X.shape[2] * target_fs / effective_fs))
+            X = scipy.signal.resample(X, new_n_times, axis=2)
+            effective_fs = target_fs
+
+        if bandpass is not None and X.shape[2] > 10:
+            X = mne.filter.filter_data(
+                X, effective_fs, bandpass[0], bandpass[1],
+                fir_design="firwin", verbose="ERROR"
+            )
+
+        times = np.linspace(tmin, tmax, X.shape[2], endpoint=False)
+        if baseline is not None:
+            bmask = (times >= baseline[0]) & (times < baseline[1])
+            if np.any(bmask):
+                X = X - X[:, :, bmask].mean(axis=2, keepdims=True)
+
+        is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
+        if not is_sanitary:
+            raise ValueError(f"Zhou2016 subject {subject} has non-finite values (NaN={n_nan}, Inf={n_inf})")
+
         return {
             "X": X,
             "y": y,
-            "runs": np.zeros(len(y), dtype=int),
-            "times": np.arange(100),
-            "sfreq": 250.0,
-            "channels": self.metadata.channels,
+            "runs": runs,
+            "times": times,
+            "sfreq": effective_fs,
+            "channels": [f"eeg_{i}" for i in range(1, X.shape[1] + 1)],
             "extra": {"source": str(path)},
         }
 
@@ -935,7 +1546,13 @@ class Yang2025Adapter(BaseEEGDataset):
 
     def load_raw_subject(self, subject: int) -> Dict[str, Any]:
         path = self.data_dir / f"sub-{subject:02d}.mat"
-        return {"path": path}
+        if not path.is_file():
+            alt_path = self.data_dir / f"sub-{subject}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                raise FileNotFoundError(f"Yang2025 MAT file not found: {path}")
+        return scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
 
     def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
         diag = {
@@ -951,9 +1568,13 @@ class Yang2025Adapter(BaseEEGDataset):
 
         path = self.data_dir / f"sub-{subject:02d}.mat"
         if not path.is_file():
-            diag["status"] = "PENDING_ACQUISITION"
-            diag["reason"] = f"File {path.name} not present locally"
-            return False, diag
+            alt_path = self.data_dir / f"sub-{subject}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                diag["status"] = "PENDING_ACQUISITION"
+                diag["reason"] = f"File {path.name} not present locally"
+                return False, diag
         return True, diag
 
     def get_subject_epochs(
@@ -967,15 +1588,60 @@ class Yang2025Adapter(BaseEEGDataset):
         reject_ptp_uv: float = 150.0,
     ) -> Dict[str, Any]:
         path = self.data_dir / f"sub-{subject:02d}.mat"
-        mat = scipy.io.loadmat(str(path))
-        X = mat["eeg"]
-        y = np.zeros(len(X), dtype=int)
+        if not path.is_file():
+            alt_path = self.data_dir / f"sub-{subject}.mat"
+            if alt_path.is_file():
+                path = alt_path
+            else:
+                raise FileNotFoundError(f"Yang2025 MAT file not found: {path}")
+
+        mat = scipy.io.loadmat(str(path), squeeze_me=True, struct_as_record=False)
+        data_field = _first_not_none(
+            _extract_struct_field(mat, "eeg", None),
+            _extract_struct_field(mat, "data", None),
+            _extract_struct_field(mat, "X", None),
+            mat,
+        )
+        if not isinstance(data_field, np.ndarray):
+            raise ValueError(f"Could not find valid data array in Yang2025 subject {subject}")
+
+        X = _standardize_epoch_array(data_field, expected_channels=64).astype(np.float64)
+        raw_y = _first_not_none(_extract_struct_field(mat, "y", None), _extract_struct_field(mat, "labels", None))
+        y = _parse_binary_labels(raw_y, len(X))
+        runs = _partition_runs(len(y), default_n_runs=4)
+
+        sfreq_val = _first_not_none(_extract_struct_field(mat, "sfreq", None), 1000.0)
+        effective_fs = float(sfreq_val)
+        if np.nanmax(np.abs(X)) < 1e-2 and np.nanmax(np.abs(X)) > 0:
+            X = X * 1e6
+
+        if target_fs is not None and abs(target_fs - effective_fs) > 1.0:
+            new_n_times = int(round(X.shape[2] * target_fs / effective_fs))
+            X = scipy.signal.resample(X, new_n_times, axis=2)
+            effective_fs = target_fs
+
+        if bandpass is not None and X.shape[2] > 10:
+            X = mne.filter.filter_data(
+                X, effective_fs, bandpass[0], bandpass[1],
+                fir_design="firwin", verbose="ERROR"
+            )
+
+        times = np.linspace(tmin, tmax, X.shape[2], endpoint=False)
+        if baseline is not None:
+            bmask = (times >= baseline[0]) & (times < baseline[1])
+            if np.any(bmask):
+                X = X - X[:, :, bmask].mean(axis=2, keepdims=True)
+
+        is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
+        if not is_sanitary:
+            raise ValueError(f"Yang2025 subject {subject} has non-finite values (NaN={n_nan}, Inf={n_inf})")
+
         return {
             "X": X,
             "y": y,
-            "runs": np.zeros(len(y), dtype=int),
-            "times": np.arange(100),
-            "sfreq": 1000.0,
-            "channels": self.metadata.channels,
+            "runs": runs,
+            "times": times,
+            "sfreq": effective_fs,
+            "channels": [f"eeg_{i}" for i in range(1, X.shape[1] + 1)],
             "extra": {"source": str(path)},
         }

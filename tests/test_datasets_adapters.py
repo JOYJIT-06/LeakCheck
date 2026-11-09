@@ -18,6 +18,7 @@ from emi.datasets_base import (
 import mne
 import numpy as np
 import pandas as pd
+import scipy.io
 from unittest.mock import patch
 
 import emi.datasets_adapters
@@ -331,4 +332,157 @@ def test_unified_benchmark_ts_lr_design_naming(tmp_path):
     ts_p1_comp = comp_df[(comp_df["decoder"] == "ts_lr") & (comp_df["contrast"] == "P1_vs_D3")]
     assert not ts_p1_comp.empty, "Level 3 contrast P1_vs_D3 for TS-LR must exist"
     assert ts_p1_comp["condition_b"].iloc[0] == "P1_ts_on_all"
+
+
+def test_cho2017_adapter_continuous_parsing(tmp_path):
+    """Verify Cho2017Adapter parses genuine continuous GigaDB struct with event triggers."""
+    srate = 512.0
+    n_samples = 5120
+    imagery_l = np.random.randn(64, n_samples) * 10.0
+    imagery_r = np.random.randn(64, n_samples) * 10.0
+
+    triggers_l = np.zeros(n_samples)
+    triggers_l[[512, 1536, 2560, 3584]] = 1.0
+
+    triggers_r = np.zeros(n_samples)
+    triggers_r[[512, 1536, 2560, 3584]] = 1.0
+
+    cho_struct = {
+        "eeg": {
+            "srate": srate,
+            "imagery_left": imagery_l,
+            "imagery_right": imagery_r,
+            "imagery_event": triggers_l,
+            "imagery_event_right": triggers_r,
+        }
+    }
+    scipy.io.savemat(str(tmp_path / "s01.mat"), cho_struct)
+
+    adapter = Cho2017Adapter(tmp_path)
+    is_valid, diag = adapter.validate_integrity(1)
+    assert is_valid, f"Expected valid integrity: {diag}"
+
+    data = adapter.get_subject_epochs(1, target_fs=250.0, tmin=0.0, tmax=1.0)
+    assert data["X"].shape[0] == 8, f"Expected 8 trials (4 left + 4 right), got {data['X'].shape[0]}"
+    assert data["X"].shape[1] == 64, f"Expected 64 channels, got {data['X'].shape[1]}"
+    assert data["X"].shape[2] == 250, f"Expected 250 time points at 250Hz, got {data['X'].shape[2]}"
+    assert np.array_equal(data["y"], [0, 0, 0, 0, 1, 1, 1, 1])
+    assert len(data["runs"]) == 8
+    assert len(np.unique(data["runs"])) > 1, "Run IDs must contain multi-run partition for LORO"
+    assert data["sfreq"] == 250.0
+
+
+def test_cho2017_adapter_epoched_mat_parsing(tmp_path):
+    """Verify Cho2017Adapter parses pre-epoched 3D arrays and maps labels correctly."""
+    X_epoched = np.random.randn(10, 64, 256) * 15.0
+    y_raw = np.array([1, 1, 1, 1, 1, 2, 2, 2, 2, 2])
+
+    scipy.io.savemat(str(tmp_path / "s02.mat"), {"eeg": X_epoched, "y": y_raw, "srate": 250.0})
+
+    adapter = Cho2017Adapter(tmp_path)
+    data = adapter.get_subject_epochs(2, target_fs=250.0)
+    assert data["X"].shape == (10, 64, 256)
+    assert np.array_equal(data["y"], [0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
+    assert len(data["runs"]) == 10
+    assert len(np.unique(data["runs"])) > 1
+
+
+def test_high_gamma_adapter_genuine_annotation_parsing(tmp_path):
+    """Verify HighGammaAdapter extracts genuine MNE annotations without dummy alternating labels."""
+    (tmp_path / "subject_1.edf").touch()
+
+    raw_info = mne.create_info(ch_names=[f"eeg_{i}" for i in range(1, 45)], sfreq=250.0, ch_types="eeg")
+    raw = mne.io.RawArray(np.random.randn(44, 25000) * 1e-5, raw_info, verbose="ERROR")
+
+    annots = mne.Annotations(
+        onset=[1.0, 3.0, 5.0, 7.0, 9.0, 11.0, 13.0, 15.0],
+        duration=[0.5] * 8,
+        description=["left_hand", "left_hand", "left_hand", "left_hand", "right_hand", "right_hand", "right_hand", "right_hand"],
+    )
+    raw.set_annotations(annots)
+
+    with patch("mne.io.read_raw_edf", return_value=raw):
+        adapter = HighGammaAdapter(tmp_path)
+        is_valid, diag = adapter.validate_integrity(1)
+        assert is_valid
+
+        data = adapter.get_subject_epochs(1, tmin=0.0, tmax=1.0)
+        assert data["X"].shape[0] == 8
+        assert data["X"].shape[1] == 44
+        assert np.array_equal(data["y"], [0, 0, 0, 0, 1, 1, 1, 1]), f"Expected [0,0,0,0,1,1,1,1], got {data['y']}"
+        assert len(data["runs"]) == 8
+        assert len(np.unique(data["runs"])) > 1, "Run IDs must contain multi-run partition for LORO"
+
+
+def test_shin2017a_adapter_bbci_mat_parsing(tmp_path):
+    """Verify Shin2017AAdapter parses BBCI cnt/mrk struct format with label mapping."""
+    cnt = {
+        "x": np.random.randn(8000, 30) * 10.0,
+        "fs": 1000.0,
+        "clab": [f"EEG_{i}" for i in range(30)],
+    }
+    mrk = {
+        "pos": np.array([500, 1500, 2500, 3500, 4500, 5500]),
+        "y": np.array([
+            [1, 1, 1, 0, 0, 0],
+            [0, 0, 0, 1, 1, 1],
+        ]),
+    }
+    scipy.io.savemat(str(tmp_path / "VP001.mat"), {"cnt": cnt, "mrk": mrk})
+
+    adapter = Shin2017AAdapter(tmp_path)
+    is_valid, diag = adapter.validate_integrity(1)
+    assert is_valid
+
+    data = adapter.get_subject_epochs(1, target_fs=250.0, tmin=0.0, tmax=1.0)
+    assert data["X"].shape[0] == 6
+    assert data["X"].shape[1] == 30
+    assert data["X"].shape[2] == 250
+    assert np.array_equal(data["y"], [0, 0, 0, 1, 1, 1])
+    assert len(data["runs"]) == 6
+    assert len(np.unique(data["runs"])) > 1
+
+
+def test_weibo2014_adapter_mat_parsing(tmp_path):
+    """Verify Weibo2014Adapter parses 3D MAT array and maps labels and 6-run boundaries."""
+    X_mat = np.random.randn(12, 60, 200) * 10.0
+    labels = np.array([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2])
+    scipy.io.savemat(str(tmp_path / "subject_1.mat"), {"data": X_mat, "label": labels})
+
+    adapter = Weibo2014Adapter(tmp_path)
+    is_valid, diag = adapter.validate_integrity(1)
+    assert is_valid
+
+    data = adapter.get_subject_epochs(1)
+    assert data["X"].shape == (12, 60, 200)
+    assert np.array_equal(data["y"], [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1])
+    assert len(data["runs"]) == 12
+    assert len(np.unique(data["runs"])) > 1
+    assert data["channels"] == [f"eeg_{i}" for i in range(1, 61)]
+
+
+def test_zhou2016_and_yang2025_adapter_parsing(tmp_path):
+    """Verify Zhou2016 and Yang2025 adapters parse structures and partition runs."""
+    # Zhou2016: 16 channels
+    scipy.io.savemat(str(tmp_path / "subject_1.mat"), {
+        "eeg": np.random.randn(6, 16, 250),
+        "y": np.array([1, 1, 1, 2, 2, 2]),
+    })
+    zhou = Zhou2016Adapter(tmp_path)
+    data_z = zhou.get_subject_epochs(1)
+    assert data_z["X"].shape[1] == 16
+    assert np.array_equal(data_z["y"], [0, 0, 0, 1, 1, 1])
+    assert len(np.unique(data_z["runs"])) > 1
+
+    # Yang2025: 64 channels
+    scipy.io.savemat(str(tmp_path / "sub-01.mat"), {
+        "eeg": np.random.randn(8, 64, 250),
+        "y": np.array([1, 1, 1, 1, 2, 2, 2, 2]),
+    })
+    yang = Yang2025Adapter(tmp_path)
+    data_y = yang.get_subject_epochs(1)
+    assert data_y["X"].shape[1] == 64
+    assert np.array_equal(data_y["y"], [0, 0, 0, 0, 1, 1, 1, 1])
+    assert len(np.unique(data_y["runs"])) > 1
+
 
