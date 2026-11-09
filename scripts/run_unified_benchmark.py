@@ -765,13 +765,18 @@ def compute_design_contrasts(
                 "rank_biserial": np.nan,
             }
 
-            if n >= 3:
+            if n >= 1:
                 row["hodges_lehmann_delta"] = float(hodges_lehmann(d))
+            if n >= 3:
                 ci_lo, ci_hi, ci_meth = bca_ci(d, n_resamples=2000, seed=seed, return_method=True)
                 row["bca_ci_lower"] = float(ci_lo) if np.isfinite(ci_lo) else np.nan
                 row["bca_ci_upper"] = float(ci_hi) if np.isfinite(ci_hi) else np.nan
                 row["hl_ci_method"] = ci_meth
+            elif n > 0:
+                _, _, ci_meth = bca_ci(d, n_resamples=2000, seed=seed, return_method=True)
+                row["hl_ci_method"] = ci_meth
 
+            if n >= 2:
                 if np.allclose(d, 0):
                     p_val = 1.0
                     w_stat = 0.0
@@ -1031,6 +1036,7 @@ def main():
             "numpy": np.__version__,
             "pandas": pd.__version__,
         },
+        "n_jobs": args.n_jobs,
         "total_requested_subjects": len(subjects),
         "eligible_subjects_count": len(eligible_subjects),
         "synthetic": args.synthetic,
@@ -1038,6 +1044,7 @@ def main():
         "decoders": decoders,
         "designs": designs,
         "sha256_metrics": {
+            "participant_eligibility": hashlib.sha256(open(outdir / "participant_eligibility.csv", "rb").read()).hexdigest(),
             "fold_metrics": hashlib.sha256(open(outdir / "fold_metrics.csv", "rb").read()).hexdigest(),
             "participant_metrics": hashlib.sha256(open(outdir / "participant_metrics.csv", "rb").read()).hexdigest(),
             "design_comparisons": hashlib.sha256(open(outdir / "design_comparisons.csv", "rb").read()).hexdigest(),

@@ -67,7 +67,10 @@ class PhysioNetAdapter(BaseEEGDataset):
 
     def __init__(self, data_dir: Path | str, cfg: Optional[Config] = None):
         super().__init__(data_dir=data_dir, metadata=PHYSIONET_METADATA)
-        self.cfg = cfg or Config(data_path=str(data_dir), runs=(4, 8, 12))
+        cfg_path = str(data_dir)
+        if str(data_dir).rstrip("/\\") in ("data", ".", "") and not (Path(data_dir) / "MNE-eegbci-data").is_dir():
+            cfg_path = None
+        self.cfg = cfg or Config(data_path=cfg_path, runs=(4, 8, 12))
 
     def load_raw_subject(self, subject: int) -> mne.io.BaseRaw:
         return load_raw(subject, self.cfg)
@@ -86,7 +89,17 @@ class PhysioNetAdapter(BaseEEGDataset):
             return False, diag
 
         sub_str = f"S{subject:03d}"
-        local_files = list(Path(self.data_dir).glob(f"*{sub_str}*")) if Path(self.data_dir).exists() else []
+        data_p = Path(self.data_dir)
+        local_files = []
+        if data_p.exists():
+            local_files = list(data_p.glob(f"*{sub_str}*"))
+            if not local_files:
+                local_files = list(data_p.glob(f"**/*{sub_str}*"))
+        if not local_files and str(self.data_dir).rstrip("/\\") in ("data", ".", ""):
+            mne_root = Path(mne.get_config("MNE_DATASETS_EEGBCI_PATH") or mne.get_config("MNE_DATA") or (Path.home() / "mne_data"))
+            mne_eegbci = mne_root / "MNE-eegbci-data" / "files" / "eegmmidb" / "1.0.0"
+            if mne_eegbci.exists():
+                local_files = list(mne_eegbci.glob(f"*{sub_str}*"))
         if not local_files:
             diag["status"] = "PENDING_ACQUISITION"
             diag["reason"] = f"No local files found for subject {subject} in {self.data_dir}"
@@ -165,9 +178,21 @@ class OpenBMIAdapter(BaseEEGDataset):
     def __init__(self, data_dir: Path | str):
         super().__init__(data_dir=data_dir, metadata=OPENBMI_METADATA)
 
+    def _resolve_mat_path(self, subject: int) -> Path:
+        base = Path(self.data_dir)
+        p = base / "sourcedata" / "session1" / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
+        if not p.is_file():
+            alt1 = base / "OpenBMI" / "sourcedata" / "session1" / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
+            if alt1.is_file():
+                return alt1
+            alt2 = Path(r"D:\my lab\LeakCheck\data\OpenBMI\sourcedata\session1") / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
+            if alt2.is_file():
+                return alt2
+        return p
+
     def load_raw_subject(self, subject: int) -> Dict[str, Any]:
         # Loads continuous MATLAB v7 structure
-        mat_path = self.data_dir / "sourcedata" / "session1" / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
+        mat_path = self._resolve_mat_path(subject)
         if not mat_path.is_file():
             raise FileNotFoundError(f"OpenBMI MAT file not found: {mat_path}")
         return scipy.io.loadmat(str(mat_path))
@@ -184,7 +209,7 @@ class OpenBMIAdapter(BaseEEGDataset):
             diag["reason"] = "Known incomplete or corrupted download"
             return False, diag
 
-        mat_path = self.data_dir / "sourcedata" / "session1" / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
+        mat_path = self._resolve_mat_path(subject)
         if not mat_path.is_file():
             diag["status"] = "EXCLUDED"
             diag["reason"] = "MAT file not present on disk"
