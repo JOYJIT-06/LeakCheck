@@ -299,10 +299,15 @@ def parse_bnci_events_and_runs(
     run_starts = events[np.isin(events[:, 2], run_start_codes), 0] if run_start_codes else np.array([])
 
     n_trials = len(y)
+    runs = None
     if len(run_starts) >= 2:
-        runs = np.digitize(epochs.events[:, 0], run_starts) - 1
-        runs = np.clip(runs, 0, len(run_starts) - 1).astype(int)
-    else:
+        run_starts = np.sort(run_starts)
+        digitized = np.digitize(epochs.events[:, 0], run_starts) - 1
+        candidate_runs = np.clip(digitized, 0, len(run_starts) - 1).astype(int)
+        if len(np.unique(candidate_runs)) > 1:
+            runs = candidate_runs
+
+    if runs is None or len(runs) != n_trials:
         # Partition trials evenly across standard runs so LORO cross-validation can execute
         n_runs = min(default_n_runs, n_trials) if n_trials > 1 else 1
         runs = np.zeros(n_trials, dtype=int)
@@ -344,6 +349,11 @@ def _first_not_none(*values: Any) -> Any:
     return None
 
 
+KNOWN_EEG_CHANNEL_COUNTS = {
+    8, 14, 16, 18, 19, 20, 22, 24, 28, 30, 32, 40, 60, 62, 64, 128, 256
+}
+
+
 def _standardize_epoch_array(X: np.ndarray, expected_channels: int = 64) -> np.ndarray:
     """Ensure array has shape (n_trials, n_channels, n_times)."""
     if X.ndim != 3:
@@ -351,22 +361,57 @@ def _standardize_epoch_array(X: np.ndarray, expected_channels: int = 64) -> np.n
     # Already (n_trials, n_channels, n_times)
     if X.shape[1] == expected_channels:
         return X
-    # (channels, times, trials) with exact channel match
+
+    # (channels, times, trials) or (channels, trials, times) with exact channel match
     if X.shape[0] == expected_channels and X.shape[1] != expected_channels:
-        return np.transpose(X, (2, 0, 1))
-    # (trials, times, channels) with exact channel match
+        if X.shape[1] > X.shape[2]:
+            return np.transpose(X, (2, 0, 1))
+        else:
+            return np.transpose(X, (1, 0, 2))
+
+    # (trials, times, channels) or (times, trials, channels) with exact channel match
     if X.shape[2] == expected_channels and X.shape[1] != expected_channels:
-        return np.transpose(X, (0, 2, 1))
+        if X.shape[1] >= X.shape[0]:
+            return np.transpose(X, (0, 2, 1))
+        else:
+            return np.transpose(X, (1, 2, 0))
+
     # Robust heuristic fallbacks when expected_channels does not match exactly:
-    # If axis 2 is times (times >= channels and channels <= 128), it is already (trials, channels, times)
-    if X.shape[2] >= X.shape[1] and X.shape[1] <= 128:
+    # Case 4A: Axis 1 is already in known channel counts and axis 2 is time
+    if X.shape[1] in KNOWN_EEG_CHANNEL_COUNTS and X.shape[2] >= X.shape[1] and X.shape[0] not in KNOWN_EEG_CHANNEL_COUNTS:
         return X
-    # If axis 1 is times and axis 0 is channels: (channels, times, trials)
-    if X.shape[1] >= X.shape[0] and X.shape[0] <= 128 and X.shape[2] < X.shape[1]:
+
+    # Case 4B: Axis 1 is time (shape[1] >= shape[0] and shape[1] >= shape[2])
+    # Remaining axes are axis 0 and axis 2: one is channels, one is trials
+    if X.shape[1] >= X.shape[0] and X.shape[1] >= X.shape[2]:
+        if X.shape[2] in KNOWN_EEG_CHANNEL_COUNTS and X.shape[0] not in KNOWN_EEG_CHANNEL_COUNTS:
+            # (trials, times, channels) -> (trials, channels, times)
+            return np.transpose(X, (0, 2, 1))
+        if X.shape[0] in KNOWN_EEG_CHANNEL_COUNTS and X.shape[2] not in KNOWN_EEG_CHANNEL_COUNTS:
+            # (channels, times, trials) -> (trials, channels, times)
+            return np.transpose(X, (2, 0, 1))
+        # Magnitude heuristic when both or neither in KNOWN_EEG_CHANNEL_COUNTS
+        if X.shape[2] <= 128 and X.shape[2] > X.shape[0]:
+            return np.transpose(X, (0, 2, 1))
+        if X.shape[0] <= 128 and X.shape[0] > X.shape[2]:
+            return np.transpose(X, (2, 0, 1))
+        if X.shape[2] <= 128:
+            return np.transpose(X, (0, 2, 1))
         return np.transpose(X, (2, 0, 1))
-    # If axis 1 is times and axis 2 is channels: (trials, times, channels)
-    if X.shape[1] >= X.shape[2] and X.shape[2] <= 128 and X.shape[0] < X.shape[1]:
-        return np.transpose(X, (0, 2, 1))
+
+    # Case 4C: Axis 2 is time (shape[2] >= shape[0] and shape[2] >= shape[1])
+    # Remaining axes are axis 0 and axis 1: one is channels, one is trials
+    if X.shape[2] >= X.shape[0] and X.shape[2] >= X.shape[1]:
+        if X.shape[0] in KNOWN_EEG_CHANNEL_COUNTS and X.shape[1] not in KNOWN_EEG_CHANNEL_COUNTS:
+            # (channels, trials, times) -> (trials, channels, times)
+            return np.transpose(X, (1, 0, 2))
+        if X.shape[1] in KNOWN_EEG_CHANNEL_COUNTS and X.shape[0] not in KNOWN_EEG_CHANNEL_COUNTS:
+            return X
+        if X.shape[1] <= 128:
+            return X
+        if X.shape[0] <= 128:
+            return np.transpose(X, (1, 0, 2))
+
     return X
 
 
@@ -407,6 +452,23 @@ def _parse_binary_labels(raw_y: Optional[np.ndarray], n_trials: int) -> np.ndarr
     if set(unique_vals).issubset({1, 2}):
         # 1: left hand -> 0, 2: right hand -> 1
         return (arr == 2).astype(int)
+
+    # Multi-class MI datasets with 1=left, 2=right (e.g. Weibo2014, BCI IV-2a: {1, 2, 3} or {1, 2, 3, 4})
+    if 1 in unique_vals and 2 in unique_vals:
+        # Strictly discriminate left hand (1 -> 0) from right hand (2 -> 1)
+        y = np.zeros_like(arr, dtype=int)
+        y[arr == 2] = 1
+        return y
+
+    # Standard BCI GDF event codes (769: left, 770: right)
+    if 769 in unique_vals and 770 in unique_vals:
+        y = np.zeros_like(arr, dtype=int)
+        y[arr == 770] = 1
+        return y
+
+    # Exactly 2 arbitrary classes (e.g. trigger codes {16, 32} or {-1, 1})
+    if len(unique_vals) == 2:
+        return (arr == unique_vals[1]).astype(int)
 
     return (arr == unique_vals[-1]).astype(int)
 
@@ -618,6 +680,11 @@ class Cho2017Adapter(BaseEEGDataset):
 
             if not epochs_l and not epochs_r:
                 raise ValueError(f"No valid epochs extracted from Cho2017 continuous struct for subject {subject}")
+            if not epochs_l or not epochs_r:
+                raise ValueError(
+                    f"Could not extract both left and right motor imagery classes for Cho2017 subject {subject}: "
+                    f"extracted {len(epochs_l)} left trials and {len(epochs_r)} right trials"
+                )
 
             X = np.stack(epochs_l + epochs_r, axis=0).astype(np.float64)
             y = np.array([0] * len(epochs_l) + [1] * len(epochs_r), dtype=int)
@@ -671,15 +738,32 @@ class Cho2017Adapter(BaseEEGDataset):
             if np.any(bmask):
                 X = X - X[:, :, bmask].mean(axis=2, keepdims=True)
 
+        if len(np.unique(y)) < 2:
+            raise ValueError(
+                f"Cho2017 subject {subject} yielded single-class labels ({np.unique(y)}); "
+                f"binary motor imagery requires both classes."
+            )
+
         # Assign run boundaries: check mat or assign across default 3 runs
         raw_runs = _first_not_none(
             _extract_struct_field(mat, "runs", None),
             _extract_struct_field(mat, "run", None),
             _extract_struct_field(eeg_obj, "runs", None),
         )
-        if raw_runs is not None and len(np.unique(raw_runs)) > 1:
-            runs = np.asarray(raw_runs, dtype=int).ravel()
-        else:
+        runs = None
+        if raw_runs is not None:
+            try:
+                candidate_runs = np.asarray(raw_runs).ravel()
+                if candidate_runs.dtype.kind in ("U", "S", "O"):
+                    _, candidate_runs = np.unique(candidate_runs, return_inverse=True)
+                else:
+                    candidate_runs = candidate_runs.astype(int)
+                if len(candidate_runs) == len(y) and len(np.unique(candidate_runs)) > 1:
+                    runs = candidate_runs
+            except Exception:
+                runs = None
+
+        if runs is None:
             runs = _partition_runs(len(y), default_n_runs=3)
 
         is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
@@ -892,9 +976,10 @@ class HighGammaAdapter(BaseEEGDataset):
                 left_ids[sorted_keys[0]] = event_id[sorted_keys[0]]
                 right_ids[sorted_keys[1]] = event_id[sorted_keys[1]]
 
-        if not left_ids and not right_ids:
+        if not left_ids or not right_ids:
             raise ValueError(
-                f"Could not identify left_hand and right_hand annotations in HighGamma EDF {path}: event_id={event_id}"
+                f"Could not identify both left_hand and right_hand annotations in HighGamma EDF {path}: "
+                f"left_ids={left_ids}, right_ids={right_ids}, event_id={event_id}"
             )
 
         target_ids = {**left_ids, **right_ids}
@@ -909,14 +994,25 @@ class HighGammaAdapter(BaseEEGDataset):
         right_codes_set = set(right_ids.values())
         y = np.array([1 if code in right_codes_set else 0 for code in epochs.events[:, 2]], dtype=int)
 
+        if len(np.unique(y)) < 2:
+            raise ValueError(
+                f"HighGamma subject {subject} yielded single-class labels ({np.unique(y)}); "
+                f"binary motor imagery requires both classes."
+            )
+
         # Extract authentic run IDs
         boundary_codes = set(run_boundary_ids.values())
         run_starts = events[np.isin(events[:, 2], list(boundary_codes)), 0] if boundary_codes else np.array([])
         n_trials = len(y)
+        runs = None
         if len(run_starts) >= 2:
-            runs = np.digitize(epochs.events[:, 0], run_starts) - 1
-            runs = np.clip(runs, 0, len(run_starts) - 1).astype(int)
-        else:
+            run_starts = np.sort(run_starts)
+            digitized = np.digitize(epochs.events[:, 0], run_starts) - 1
+            candidate_runs = np.clip(digitized, 0, len(run_starts) - 1).astype(int)
+            if len(np.unique(candidate_runs)) > 1:
+                runs = candidate_runs
+
+        if runs is None or len(runs) != n_trials:
             runs = _partition_runs(n_trials, default_n_runs=4)
 
         X = epochs.get_data() * 1e6  # to uV
@@ -1035,6 +1131,9 @@ class Shin2017AAdapter(BaseEEGDataset):
                 x = _extract_struct_field(s_cnt, "x")
                 if x is None:
                     continue
+                x = np.asarray(x)
+                if x.ndim == 2 and x.shape[0] <= 64 and x.shape[1] > x.shape[0]:
+                    x = x.T
                 fs = float(_extract_struct_field(s_cnt, "fs", 1000.0) or 1000.0)
                 sfreq = fs
                 clab = _extract_struct_field(s_cnt, "clab", None)
@@ -1055,15 +1154,31 @@ class Shin2017AAdapter(BaseEEGDataset):
                     continue
 
                 pos = np.asarray(pos).ravel()
+                n_pos = len(pos)
                 if raw_y is not None:
                     raw_y = np.asarray(raw_y)
-                    if raw_y.ndim == 2:
-                        sess_labels = np.argmax(raw_y, axis=0)
+                    sq_y = raw_y.squeeze()
+                    if sq_y.ndim <= 1:
+                        sess_labels = sq_y.ravel()
+                    elif sq_y.ndim == 2:
+                        if sq_y.shape[0] == n_pos and sq_y.shape[1] != n_pos:
+                            sess_labels = np.argmax(sq_y, axis=1)
+                        elif sq_y.shape[1] == n_pos and sq_y.shape[0] != n_pos:
+                            sess_labels = np.argmax(sq_y, axis=0)
+                        elif sq_y.shape[1] <= 8 and sq_y.shape[0] > sq_y.shape[1]:
+                            sess_labels = np.argmax(sq_y, axis=1)
+                        elif sq_y.shape[0] <= 8 and sq_y.shape[1] > sq_y.shape[0]:
+                            sess_labels = np.argmax(sq_y, axis=0)
+                        else:
+                            if np.all(sq_y.sum(axis=1) == 1):
+                                sess_labels = np.argmax(sq_y, axis=1)
+                            else:
+                                sess_labels = np.argmax(sq_y, axis=0)
                     else:
                         sess_labels = raw_y.ravel()
-                    sess_y = _parse_binary_labels(sess_labels, len(pos))
+                    sess_y = _parse_binary_labels(sess_labels, n_pos)
                 else:
-                    sess_y = _parse_binary_labels(None, len(pos))
+                    sess_y = _parse_binary_labels(None, n_pos)
 
                 s_min = int(round(tmin * fs))
                 s_max = int(round(tmax * fs))
@@ -1242,9 +1357,22 @@ class Weibo2014Adapter(BaseEEGDataset):
             _extract_struct_field(mat, "class", None),
         )
 
+        raw_runs = _first_not_none(
+            _extract_struct_field(mat, "runs", None),
+            _extract_struct_field(mat, "run", None),
+        )
+
         if data_field.ndim == 3:
             X = _standardize_epoch_array(data_field, expected_channels=60).astype(np.float64)
             y = _parse_binary_labels(raw_y, len(X))
+            if raw_runs is not None:
+                r_arr = np.asarray(raw_runs, dtype=int).ravel()
+                if len(r_arr) == len(X) and len(np.unique(r_arr)) > 1:
+                    runs = r_arr
+                else:
+                    runs = _partition_runs(len(y), default_n_runs=6)
+            else:
+                runs = _partition_runs(len(y), default_n_runs=6)
         elif data_field.ndim == 2:
             trial_onsets = _first_not_none(
                 _extract_struct_field(mat, "trial", None),
@@ -1261,15 +1389,41 @@ class Weibo2014Adapter(BaseEEGDataset):
             s_min = int(round(tmin * effective_fs))
             s_max = int(round(tmax * effective_fs))
             epochs_list = []
-            for onset in onsets:
+            kept_indices = []
+            for idx, onset in enumerate(onsets):
                 st = onset + s_min
                 en = onset + s_max
                 if st >= 0 and en <= c_data.shape[1]:
                     epochs_list.append(c_data[:, st:en])
+                    kept_indices.append(idx)
             if not epochs_list:
                 raise ValueError(f"No valid epochs extracted for Weibo2014 subject {subject}")
             X = np.stack(epochs_list, axis=0).astype(np.float64)
-            y = _parse_binary_labels(raw_y, len(X))
+
+            # Synchronize raw_y with retained onsets
+            if raw_y is not None:
+                raw_y_arr = np.asarray(raw_y).ravel()
+                if len(raw_y_arr) == len(onsets):
+                    raw_y_filtered = raw_y_arr[kept_indices]
+                else:
+                    raw_y_filtered = raw_y_arr[:len(X)]
+                y = _parse_binary_labels(raw_y_filtered, len(X))
+            else:
+                y = _parse_binary_labels(None, len(X))
+
+            # Synchronize raw_runs with retained onsets
+            if raw_runs is not None:
+                raw_runs_arr = np.asarray(raw_runs, dtype=int).ravel()
+                if len(raw_runs_arr) == len(onsets):
+                    raw_runs_filtered = raw_runs_arr[kept_indices]
+                else:
+                    raw_runs_filtered = raw_runs_arr[:len(X)] if len(raw_runs_arr) >= len(X) else None
+                if raw_runs_filtered is not None and len(np.unique(raw_runs_filtered)) > 1:
+                    runs = raw_runs_filtered
+                else:
+                    runs = _partition_runs(len(y), default_n_runs=6)
+            else:
+                runs = _partition_runs(len(y), default_n_runs=6)
         else:
             raise ValueError(f"Unexpected data dimensionality {data_field.ndim} for Weibo2014 subject {subject}")
 
@@ -1292,12 +1446,6 @@ class Weibo2014Adapter(BaseEEGDataset):
             bmask = (times >= baseline[0]) & (times < baseline[1])
             if np.any(bmask):
                 X = X - X[:, :, bmask].mean(axis=2, keepdims=True)
-
-        raw_runs = _first_not_none(_extract_struct_field(mat, "runs", None), _extract_struct_field(mat, "run", None))
-        if raw_runs is not None and len(np.unique(raw_runs)) > 1:
-            runs = np.asarray(raw_runs, dtype=int).ravel()
-        else:
-            runs = _partition_runs(len(y), default_n_runs=6)
 
         is_sanitary, n_nan, n_inf = self.check_array_sanitary(X)
         if not is_sanitary:
