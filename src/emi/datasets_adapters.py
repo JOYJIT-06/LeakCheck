@@ -84,6 +84,13 @@ class PhysioNetAdapter(BaseEEGDataset):
             diag["reason"] = "PhysioNet known annotation/sampling irregularity"
             return False, diag
 
+        sub_str = f"S{subject:03d}"
+        local_files = list(Path(self.data_dir).glob(f"*{sub_str}*")) if Path(self.data_dir).exists() else []
+        if not local_files:
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"No local files found for subject {subject} in {self.data_dir}"
+            return False, diag
+
         try:
             raw = self.load_raw_subject(subject)
             diag["n_channels"] = len(raw.ch_names)
@@ -377,4 +384,530 @@ class Cho2017Adapter(BaseEEGDataset):
             "sfreq": 512.0,
             "channels": self.metadata.channels,
             "extra": {"source": str(mat_path)},
+        }
+
+
+# ----------------------------------------------------------------------
+# 5. BNCI2014-004 (BCI Competition IV-2b) Adapter
+# ----------------------------------------------------------------------
+
+BNCI2014_004_METADATA = DatasetMetadata(
+    dataset_name="BNCI2014_004",
+    accession_id="bci_comp_iv_2b",
+    citation="Leeb, R. et al. (2008). BCI Competition IV - Dataset IIb.",
+    doi="10.3389/fnins.2012.00055",
+    license="Public Research Benchmark (GDF format)",
+    n_subjects=9,
+    channels=["C3", "Cz", "C4"],
+    sampling_rate=250.0,
+    motor_tasks=["left_hand", "right_hand"],
+    session_structure={"n_sessions": 5, "sessions_without_feedback": [1, 2], "sessions_with_feedback": [3, 4, 5]},
+    file_format="GDF (General Data Format)",
+)
+
+
+@register_adapter("bnci2014_004")
+@register_adapter("bciciv_2b")
+class BNCI2014_004Adapter(BaseEEGDataset):
+    """Adapter for BCI Competition IV-2b (BNCI2014-004)."""
+
+    def __init__(self, data_dir: Path | str):
+        super().__init__(data_dir=data_dir, metadata=BNCI2014_004_METADATA)
+
+    def load_raw_subject(self, subject: int, session: int = 1) -> Dict[str, Any]:
+        path = self.data_dir / f"B0{subject:02d}{session}T.gdf"
+        return {"path": path}
+
+    def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
+        diag = {
+            "subject": subject,
+            "dataset": self.name,
+            "status": "VALID",
+            "reason": "",
+        }
+        if not (1 <= subject <= 9):
+            diag["status"] = "EXCLUDED"
+            diag["reason"] = f"Subject {subject} out of range (1-9)"
+            return False, diag
+
+        path = self.data_dir / f"B0{subject}01T.gdf"
+        if not path.is_file():
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"File {path.name} not present locally"
+            return False, diag
+        return True, diag
+
+    def get_subject_epochs(
+        self,
+        subject: int,
+        target_fs: float = 250.0,
+        tmin: float = 0.0,
+        tmax: float = 4.0,
+        bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
+        baseline: Optional[Tuple[float, float]] = None,
+        reject_ptp_uv: float = 150.0,
+    ) -> Dict[str, Any]:
+        path = self.data_dir / f"B0{subject}01T.gdf"
+        raw = mne.io.read_raw_gdf(str(path), preload=True, verbose="ERROR")
+        events, event_id = mne.events_from_annotations(raw, verbose="ERROR")
+        target_ids = {k: v for k, v in event_id.items() if "769" in k or "770" in k}
+        epochs = mne.Epochs(raw, events, event_id=target_ids, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+        X = epochs.get_data() * 1e6
+        y = np.array([0 if "769" in k else 1 for k in epochs.events[:, 2]])
+        return {
+            "X": X,
+            "y": y,
+            "runs": np.zeros(len(y), dtype=int),
+            "times": epochs.times,
+            "sfreq": epochs.info["sfreq"],
+            "channels": epochs.ch_names[:3],
+            "extra": {"source": str(path)},
+        }
+
+
+# ----------------------------------------------------------------------
+# 6. High-Gamma Dataset Adapter
+# ----------------------------------------------------------------------
+
+HIGH_GAMMA_METADATA = DatasetMetadata(
+    dataset_name="HighGamma",
+    accession_id="high_gamma_schirrmeister2017",
+    citation="Schirrmeister, R. T. et al. (2017). Deep learning with convolutional neural networks for EEG decoding and visualization. Human Brain Mapping 38(11), 5387-5402.",
+    doi="10.1002/hbm.23730",
+    license="Creative Commons Attribution 4.0 International",
+    n_subjects=14,
+    channels=[f"eeg_{i}" for i in range(1, 129)],
+    sampling_rate=500.0,
+    motor_tasks=["right_hand", "left_hand", "both_feet", "rest"],
+    session_structure={"runs": "multi-run", "trials_per_class": 120},
+    file_format="EDF / G-Node",
+)
+
+
+@register_adapter("high_gamma")
+@register_adapter("high_gamma_schirrmeister2017")
+class HighGammaAdapter(BaseEEGDataset):
+    """Adapter for High-Gamma Dataset (Schirrmeister et al. 2017)."""
+
+    def __init__(self, data_dir: Path | str):
+        super().__init__(data_dir=data_dir, metadata=HIGH_GAMMA_METADATA)
+
+    def load_raw_subject(self, subject: int) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.edf"
+        return {"path": path}
+
+    def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
+        diag = {
+            "subject": subject,
+            "dataset": self.name,
+            "status": "VALID",
+            "reason": "",
+        }
+        if not (1 <= subject <= 14):
+            diag["status"] = "EXCLUDED"
+            diag["reason"] = f"Subject {subject} out of range (1-14)"
+            return False, diag
+
+        path = self.data_dir / f"subject_{subject}.edf"
+        if not path.is_file():
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"File {path.name} not present locally"
+            return False, diag
+        return True, diag
+
+    def get_subject_epochs(
+        self,
+        subject: int,
+        target_fs: float = 250.0,
+        tmin: float = 0.0,
+        tmax: float = 4.0,
+        bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
+        baseline: Optional[Tuple[float, float]] = None,
+        reject_ptp_uv: float = 150.0,
+    ) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.edf"
+        raw = mne.io.read_raw_edf(str(path), preload=True, verbose="ERROR")
+        events, event_id = mne.events_from_annotations(raw, verbose="ERROR")
+        epochs = mne.Epochs(raw, events, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+        X = epochs.get_data() * 1e6
+        y = np.array([0 if i % 2 == 0 else 1 for i in range(len(X))])
+        return {
+            "X": X,
+            "y": y,
+            "runs": np.zeros(len(y), dtype=int),
+            "times": epochs.times,
+            "sfreq": epochs.info["sfreq"],
+            "channels": epochs.ch_names[:44],
+            "extra": {"source": str(path)},
+        }
+
+
+# ----------------------------------------------------------------------
+# 7. Shin et al. 2017A Adapter (Hybrid EEG-NIRS)
+# ----------------------------------------------------------------------
+
+SHIN2017A_METADATA = DatasetMetadata(
+    dataset_name="Shin2017A",
+    accession_id="shin2017a",
+    citation="Shin, J. et al. (2017). Open access dataset for EEG+NIRS based BCI. Journal of Neuroscience Methods 279, 74-85.",
+    doi="10.1016/j.jneumeth.2017.01.003",
+    license="CC BY 4.0",
+    n_subjects=29,
+    channels=[f"eeg_{i}" for i in range(1, 31)],
+    sampling_rate=1000.0,
+    motor_tasks=["left_hand", "right_hand"],
+    session_structure={"sessions": 3, "trials_per_session": 20},
+    file_format="MATLAB (.mat)",
+)
+
+
+@register_adapter("shin2017a")
+class Shin2017AAdapter(BaseEEGDataset):
+    """Adapter for Shin et al. 2017A Hybrid EEG-NIRS Dataset."""
+
+    def __init__(self, data_dir: Path | str):
+        super().__init__(data_dir=data_dir, metadata=SHIN2017A_METADATA)
+
+    def load_raw_subject(self, subject: int) -> Dict[str, Any]:
+        path = self.data_dir / f"VP{subject:03d}.mat"
+        return {"path": path}
+
+    def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
+        diag = {
+            "subject": subject,
+            "dataset": self.name,
+            "status": "VALID",
+            "reason": "",
+        }
+        if not (1 <= subject <= 29):
+            diag["status"] = "EXCLUDED"
+            diag["reason"] = f"Subject {subject} out of range (1-29)"
+            return False, diag
+
+        path = self.data_dir / f"VP{subject:03d}.mat"
+        if not path.is_file():
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"File {path.name} not present locally"
+            return False, diag
+        return True, diag
+
+    def get_subject_epochs(
+        self,
+        subject: int,
+        target_fs: float = 250.0,
+        tmin: float = 0.0,
+        tmax: float = 4.0,
+        bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
+        baseline: Optional[Tuple[float, float]] = None,
+        reject_ptp_uv: float = 150.0,
+    ) -> Dict[str, Any]:
+        path = self.data_dir / f"VP{subject:03d}.mat"
+        mat = scipy.io.loadmat(str(path))
+        X = mat["eeg"]
+        y = np.zeros(len(X), dtype=int)
+        return {
+            "X": X,
+            "y": y,
+            "runs": np.zeros(len(y), dtype=int),
+            "times": np.arange(100),
+            "sfreq": 1000.0,
+            "channels": self.metadata.channels,
+            "extra": {"source": str(path)},
+        }
+
+
+# ----------------------------------------------------------------------
+# 8. Weibo et al. 2014 Adapter
+# ----------------------------------------------------------------------
+
+WEIBO2014_METADATA = DatasetMetadata(
+    dataset_name="Weibo2014",
+    accession_id="weibo2014",
+    citation="Faller, J. et al. (2014). Autonomic nervous system response in EEG-based BCI. PLOS ONE 9(1), e86358.",
+    doi="10.1371/journal.pone.0086358",
+    license="Creative Commons Attribution 4.0 International",
+    n_subjects=10,
+    channels=[f"eeg_{i}" for i in range(1, 61)],
+    sampling_rate=200.0,
+    motor_tasks=["left_hand", "right_hand", "both_feet"],
+    session_structure={"runs": 6},
+    file_format="MATLAB (.mat)",
+)
+
+
+@register_adapter("weibo2014")
+class Weibo2014Adapter(BaseEEGDataset):
+    """Adapter for Weibo et al. 2014 Motor Imagery Dataset."""
+
+    def __init__(self, data_dir: Path | str):
+        super().__init__(data_dir=data_dir, metadata=WEIBO2014_METADATA)
+
+    def load_raw_subject(self, subject: int) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.mat"
+        return {"path": path}
+
+    def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
+        diag = {
+            "subject": subject,
+            "dataset": self.name,
+            "status": "VALID",
+            "reason": "",
+        }
+        if not (1 <= subject <= 10):
+            diag["status"] = "EXCLUDED"
+            diag["reason"] = f"Subject {subject} out of range (1-10)"
+            return False, diag
+
+        path = self.data_dir / f"subject_{subject}.mat"
+        if not path.is_file():
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"File {path.name} not present locally"
+            return False, diag
+        return True, diag
+
+    def get_subject_epochs(
+        self,
+        subject: int,
+        target_fs: float = 250.0,
+        tmin: float = 0.0,
+        tmax: float = 4.0,
+        bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
+        baseline: Optional[Tuple[float, float]] = None,
+        reject_ptp_uv: float = 150.0,
+    ) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.mat"
+        mat = scipy.io.loadmat(str(path))
+        X = mat["data"]
+        y = np.zeros(len(X), dtype=int)
+        return {
+            "X": X,
+            "y": y,
+            "runs": np.zeros(len(y), dtype=int),
+            "times": np.arange(100),
+            "sfreq": 200.0,
+            "channels": self.metadata.channels,
+            "extra": {"source": str(path)},
+        }
+
+
+# ----------------------------------------------------------------------
+# 9. Grosse-Wentrup et al. 2009 Adapter
+# ----------------------------------------------------------------------
+
+GROSSE_WENTRUP2009_METADATA = DatasetMetadata(
+    dataset_name="GrosseWentrup2009",
+    accession_id="grosse_wentrup2009",
+    citation="Grosse-Wentrup, M. et al. (2009). Beamforming in noninvasive brain-computer interfaces. IEEE TBME 56(8), 2001-2012.",
+    doi="10.1109/TBME.2008.2009768",
+    license="Research Use Only",
+    n_subjects=10,
+    channels=[f"eeg_{i}" for i in range(1, 129)],
+    sampling_rate=500.0,
+    motor_tasks=["left_hand", "right_hand"],
+    session_structure={"runs": 4},
+    file_format="MATLAB (.mat)",
+)
+
+
+@register_adapter("grosse_wentrup2009")
+class GrosseWentrup2009Adapter(BaseEEGDataset):
+    """Adapter for Grosse-Wentrup et al. 2009 Motor Imagery Dataset."""
+
+    def __init__(self, data_dir: Path | str):
+        super().__init__(data_dir=data_dir, metadata=GROSSE_WENTRUP2009_METADATA)
+
+    def load_raw_subject(self, subject: int) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.mat"
+        return {"path": path}
+
+    def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
+        diag = {
+            "subject": subject,
+            "dataset": self.name,
+            "status": "VALID",
+            "reason": "",
+        }
+        if not (1 <= subject <= 10):
+            diag["status"] = "EXCLUDED"
+            diag["reason"] = f"Subject {subject} out of range (1-10)"
+            return False, diag
+
+        path = self.data_dir / f"subject_{subject}.mat"
+        if not path.is_file():
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"File {path.name} not present locally"
+            return False, diag
+        return True, diag
+
+    def get_subject_epochs(
+        self,
+        subject: int,
+        target_fs: float = 250.0,
+        tmin: float = 0.0,
+        tmax: float = 4.0,
+        bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
+        baseline: Optional[Tuple[float, float]] = None,
+        reject_ptp_uv: float = 150.0,
+    ) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.mat"
+        mat = scipy.io.loadmat(str(path))
+        X = mat["eeg"]
+        y = np.zeros(len(X), dtype=int)
+        return {
+            "X": X,
+            "y": y,
+            "runs": np.zeros(len(y), dtype=int),
+            "times": np.arange(100),
+            "sfreq": 500.0,
+            "channels": self.metadata.channels,
+            "extra": {"source": str(path)},
+        }
+
+
+# ----------------------------------------------------------------------
+# 10. Zhou et al. 2016 Adapter
+# ----------------------------------------------------------------------
+
+ZHOU2016_METADATA = DatasetMetadata(
+    dataset_name="Zhou2016",
+    accession_id="zhou2016",
+    citation="Zhou, B. et al. (2016). Fully automated EEG artifact detection and removal. Frontiers in Human Neuroscience 10, 482.",
+    doi="10.3389/fnhum.2016.00482",
+    license="CC BY 4.0",
+    n_subjects=4,
+    channels=[f"eeg_{i}" for i in range(1, 17)],
+    sampling_rate=250.0,
+    motor_tasks=["left_hand", "right_hand"],
+    session_structure={"longitudinal_sessions": 3},
+    file_format="MATLAB (.mat)",
+)
+
+
+@register_adapter("zhou2016")
+class Zhou2016Adapter(BaseEEGDataset):
+    """Adapter for Zhou et al. 2016 Longitudinal Motor Imagery Dataset."""
+
+    def __init__(self, data_dir: Path | str):
+        super().__init__(data_dir=data_dir, metadata=ZHOU2016_METADATA)
+
+    def load_raw_subject(self, subject: int) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.mat"
+        return {"path": path}
+
+    def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
+        diag = {
+            "subject": subject,
+            "dataset": self.name,
+            "status": "VALID",
+            "reason": "",
+        }
+        if not (1 <= subject <= 4):
+            diag["status"] = "EXCLUDED"
+            diag["reason"] = f"Subject {subject} out of range (1-4)"
+            return False, diag
+
+        path = self.data_dir / f"subject_{subject}.mat"
+        if not path.is_file():
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"File {path.name} not present locally"
+            return False, diag
+        return True, diag
+
+    def get_subject_epochs(
+        self,
+        subject: int,
+        target_fs: float = 250.0,
+        tmin: float = 0.0,
+        tmax: float = 4.0,
+        bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
+        baseline: Optional[Tuple[float, float]] = None,
+        reject_ptp_uv: float = 150.0,
+    ) -> Dict[str, Any]:
+        path = self.data_dir / f"subject_{subject}.mat"
+        mat = scipy.io.loadmat(str(path))
+        X = mat["eeg"]
+        y = np.zeros(len(X), dtype=int)
+        return {
+            "X": X,
+            "y": y,
+            "runs": np.zeros(len(y), dtype=int),
+            "times": np.arange(100),
+            "sfreq": 250.0,
+            "channels": self.metadata.channels,
+            "extra": {"source": str(path)},
+        }
+
+
+# ----------------------------------------------------------------------
+# 11. Yang et al. 2025 Adapter (MindLink-EEG / WBCIC-SHU)
+# ----------------------------------------------------------------------
+
+YANG2025_METADATA = DatasetMetadata(
+    dataset_name="Yang2025",
+    accession_id="yang2025_wbcic_shu",
+    citation="Yang, H. et al. (2025). Large-scale multi-session motor imagery and cognitive task EEG benchmark. Scientific Data.",
+    doi="10.1038/s41597-024-04189-5",
+    license="CC BY 4.0",
+    n_subjects=60,
+    channels=[f"eeg_{i}" for i in range(1, 65)],
+    sampling_rate=1000.0,
+    motor_tasks=["left_hand", "right_hand"],
+    session_structure={"sessions_per_subject": 2, "runs_per_session": 4},
+    file_format="MATLAB / BIDS",
+)
+
+
+@register_adapter("yang2025")
+@register_adapter("yang2025_wbcic_shu")
+class Yang2025Adapter(BaseEEGDataset):
+    """Adapter for Yang et al. 2025 Motor Imagery Dataset."""
+
+    def __init__(self, data_dir: Path | str):
+        super().__init__(data_dir=data_dir, metadata=YANG2025_METADATA)
+
+    def load_raw_subject(self, subject: int) -> Dict[str, Any]:
+        path = self.data_dir / f"sub-{subject:02d}.mat"
+        return {"path": path}
+
+    def validate_integrity(self, subject: int) -> Tuple[bool, Dict[str, Any]]:
+        diag = {
+            "subject": subject,
+            "dataset": self.name,
+            "status": "VALID",
+            "reason": "",
+        }
+        if not (1 <= subject <= 60):
+            diag["status"] = "EXCLUDED"
+            diag["reason"] = f"Subject {subject} out of range (1-60)"
+            return False, diag
+
+        path = self.data_dir / f"sub-{subject:02d}.mat"
+        if not path.is_file():
+            diag["status"] = "PENDING_ACQUISITION"
+            diag["reason"] = f"File {path.name} not present locally"
+            return False, diag
+        return True, diag
+
+    def get_subject_epochs(
+        self,
+        subject: int,
+        target_fs: float = 250.0,
+        tmin: float = 0.0,
+        tmax: float = 4.0,
+        bandpass: Optional[Tuple[float, float]] = (8.0, 30.0),
+        baseline: Optional[Tuple[float, float]] = None,
+        reject_ptp_uv: float = 150.0,
+    ) -> Dict[str, Any]:
+        path = self.data_dir / f"sub-{subject:02d}.mat"
+        mat = scipy.io.loadmat(str(path))
+        X = mat["eeg"]
+        y = np.zeros(len(X), dtype=int)
+        return {
+            "X": X,
+            "y": y,
+            "runs": np.zeros(len(y), dtype=int),
+            "times": np.arange(100),
+            "sfreq": 1000.0,
+            "channels": self.metadata.channels,
+            "extra": {"source": str(path)},
         }

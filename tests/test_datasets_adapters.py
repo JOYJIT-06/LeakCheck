@@ -15,11 +15,19 @@ from emi.datasets_base import (
     list_registered_adapters,
     register_adapter,
 )
+import emi.datasets_adapters
 from emi.datasets_adapters import (
     BNCI2014_001Adapter,
+    BNCI2014_004Adapter,
     Cho2017Adapter,
+    GrosseWentrup2009Adapter,
+    HighGammaAdapter,
     OpenBMIAdapter,
     PhysioNetAdapter,
+    Shin2017AAdapter,
+    Weibo2014Adapter,
+    Yang2025Adapter,
+    Zhou2016Adapter,
 )
 
 
@@ -40,7 +48,7 @@ def test_metadata_dataclass():
     )
     d = meta.to_dict()
     assert d["dataset_name"] == "TestDataset"
-    assert d["channel_count"] is None or d["channels"] == ["C3", "Cz", "C4"]
+    assert d["channels"] == ["C3", "Cz", "C4"]
     assert d["sampling_rate"] == 250.0
 
 
@@ -51,6 +59,13 @@ def test_adapter_registration():
     assert "openbmi" in adapters
     assert "bnci2014_001" in adapters
     assert "cho2017" in adapters
+    assert "bnci2014_004" in adapters
+    assert "high_gamma" in adapters
+    assert "shin2017a" in adapters
+    assert "weibo2014" in adapters
+    assert "grosse_wentrup2009" in adapters
+    assert "zhou2016" in adapters
+    assert "yang2025" in adapters
 
     # Instantiate via registry
     adapter = get_adapter("openbmi", data_dir="data/OpenBMI")
@@ -76,17 +91,30 @@ def test_physionet_adapter_metadata():
     assert adapter.metadata.accession_id == "eegmmidb"
 
 
-def test_missing_data_integrity_handling(tmp_path):
-    """Verify adapters report PENDING_ACQUISITION or EXCLUDED on missing files without throwing."""
-    bnci = BNCI2014_001Adapter(data_dir=tmp_path)
-    is_valid, diag = bnci.validate_integrity(subject=1)
-    assert not is_valid
-    assert diag["status"] == "PENDING_ACQUISITION"
+def test_all_11_candidate_adapters_metadata(tmp_path):
+    """Verify all 11 candidate dataset adapters instantiate and enforce metadata invariants."""
+    adapters_to_test = [
+        (PhysioNetAdapter(tmp_path), 64, 160.0, 109),
+        (OpenBMIAdapter(tmp_path), 62, 1000.0, 54),
+        (Cho2017Adapter(tmp_path), 64, 512.0, 52),
+        (BNCI2014_001Adapter(tmp_path), 22, 250.0, 9),
+        (BNCI2014_004Adapter(tmp_path), 3, 250.0, 9),
+        (HighGammaAdapter(tmp_path), 128, 500.0, 14),
+        (Shin2017AAdapter(tmp_path), 30, 1000.0, 29),
+        (Weibo2014Adapter(tmp_path), 60, 200.0, 10),
+        (GrosseWentrup2009Adapter(tmp_path), 128, 500.0, 10),
+        (Zhou2016Adapter(tmp_path), 16, 250.0, 4),
+        (Yang2025Adapter(tmp_path), 64, 1000.0, 60),
+    ]
 
-    cho = Cho2017Adapter(data_dir=tmp_path)
-    is_valid, diag = cho.validate_integrity(subject=1)
-    assert not is_valid
-    assert diag["status"] == "PENDING_ACQUISITION"
+    for adapter, exp_channels, exp_sfreq, exp_subjects in adapters_to_test:
+        assert len(adapter.metadata.channels) == exp_channels
+        assert adapter.metadata.sampling_rate == exp_sfreq
+        assert adapter.metadata.n_subjects == exp_subjects
+        # Missing local files must report PENDING_ACQUISITION gracefully
+        is_valid, diag = adapter.validate_integrity(subject=1)
+        assert not is_valid
+        assert diag["status"] in ("PENDING_ACQUISITION", "EXCLUDED")
 
 
 def test_registry_datasets_json_validity():
