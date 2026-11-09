@@ -333,56 +333,42 @@ class TestEdgeCasesAndBoundaries:
     """Stress-test edge cases: K=1 single-run, 2 trials per run, zero-trial runs, and extreme class imbalance."""
 
     def test_k1_single_run_interleaved_classes_behavior(self):
-        """Verify K=1 single run with interleaved classes triggers chronological half-split fallback."""
+        """Verify K=1 single run with interleaved classes raises ValueError under hardened runner."""
         n_trials = 40
         data = make_synthetic_multirun_data({0: n_trials}, seed=601)
         # Interleave classes so both halves have both classes
         data["y"] = np.array([0, 1] * (n_trials // 2), dtype=int)
         runs, y = data["runs"], data["y"]
 
-        # 1. get_loro_folds on K=1
-        folds = get_loro_folds(runs, y)
-        assert len(folds) == 2
-        assert folds[0][0] == "half0_to_half1"
-        assert folds[1][0] == "half1_to_half0"
-        assert len(folds[0][1]) == 20  # train
-        assert len(folds[0][2]) == 20  # test
+        # 1. get_loro_folds on K=1 raises explicit ValueError
+        with pytest.raises(ValueError, match="requires at least 2 distinct acquisition runs"):
+            get_loro_folds(runs, y)
 
-        # 2. run_d3_loro on K=1 with interleaved classes
+        # 2. run_d3_loro on K=1 gracefully marks subject ineligible and returns empty
         rec_d3, splits_d3 = run_d3_loro("k1_ds", 1, data, decoders=["csp_lda"], n_csp=4)
-        assert len(rec_d3) == 2
-        assert all(r["accuracy"] >= 0.0 for r in rec_d3)
+        assert rec_d3 == []
+        assert splits_d3 == {}
 
-        # 3. run_d1s_size_matched on K=1
-        rec_d1s, splits_d1s = run_d1s_size_matched("k1_ds", 1, data, decoders=["csp_lda"], n_csp=4, n_repeats=3)
-        assert len(rec_d1s) == 3 * 2  # 3 repeats * 2 folds
-
-        # 4. In contrast, splitters.loro_splits directly with K=1 is detected by validate_splits
+        # 3. In contrast, splitters.loro_splits directly with K=1 is detected by validate_splits
         raw_repeats = loro_splits(runs)
         with pytest.raises(ValueError):
             validate_splits(raw_repeats, y)
 
     def test_k1_single_run_block_design_unhandled_crash(self):
-        """Document and verify vulnerability: K=1 unstratified half-split produces single-class training fold.
-        When a single-run cohort has block-ordered trials (all class 0 followed by all class 1),
-        get_loro_folds blindly splits indices in half without class stratification.
-        This produces a training set with only one class (0), causing all 5 decoders to crash
-        with uncaught LinAlgError or ValueError instead of raising a clean informative exception.
-        """
+        """Verify K=1 block design raises explicit ValueError rather than unstratified single-class crash."""
         n_trials = 40
         data = make_synthetic_multirun_data({0: n_trials}, seed=601)
         # Block-ordered classes: first 20 trials class 0, next 20 trials class 1
         data["y"] = np.array([0] * 20 + [1] * 20, dtype=int)
         runs, y = data["runs"], data["y"]
 
-        folds = get_loro_folds(runs, y)
-        train_idx, test_idx = folds[0][1], folds[0][2]
-        # Invariant check: training fold contains ONLY ONE class
-        assert len(np.unique(y[train_idx])) == 1, "Expected single-class training fold"
+        with pytest.raises(ValueError, match="requires at least 2 distinct acquisition runs"):
+            get_loro_folds(runs, y)
 
-        # Verify that run_d3_loro crashes on this unstratified split
-        with pytest.raises((np.linalg.LinAlgError, ValueError)):
-            run_d3_loro("k1_block_ds", 1, data, decoders=["csp_lda"], n_csp=4)
+        # run_d3_loro safely handles it returning empty records
+        rec, splits = run_d3_loro("k1_block_ds", 1, data, decoders=["csp_lda"], n_csp=4)
+        assert rec == []
+        assert splits == {}
 
     def test_two_trials_per_run_minimal_viable_cohort(self):
         """Verify all 5 decoders survive a minimal cohort of K=3 runs with only 2 trials per run (total 6 trials)."""
@@ -456,9 +442,9 @@ class TestEdgeCasesAndBoundaries:
         assert 0.0 <= rec_d3[0]["accuracy"] <= 1.0
 
     def test_empty_trials_benchmark_crashes_with_linalgerror(self):
-        """Document and verify vulnerability: empty dataset (0 trials) crashes with LinAlgError.
-        Neither run_d3_loro nor run_d1s_size_matched guards against empty input (len(y) == 0),
-        raising unhandled LinAlgError: 0-dimensional array given.
+        """Document and verify empty dataset handling:
+        run_d3_loro detects K < 2 and returns empty records cleanly,
+        while run_d1s_size_matched raises LinAlgError or ValueError on 0 trials.
         """
         empty_data = {
             "X": np.empty((0, 8, 100)),
@@ -466,10 +452,11 @@ class TestEdgeCasesAndBoundaries:
             "runs": np.array([], dtype=int),
             "sfreq": 250.0,
         }
-        with pytest.raises(np.linalg.LinAlgError):
-            run_d3_loro("empty_ds", 1, empty_data, decoders=["csp_lda"])
+        recs, splits = run_d3_loro("empty_ds", 1, empty_data, decoders=["csp_lda"])
+        assert recs == []
+        assert splits == {}
 
-        with pytest.raises(np.linalg.LinAlgError):
+        with pytest.raises((np.linalg.LinAlgError, ValueError)):
             run_d1s_size_matched("empty_ds", 1, empty_data, decoders=["csp_lda"])
 
 
