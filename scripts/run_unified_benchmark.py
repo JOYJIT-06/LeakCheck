@@ -334,7 +334,7 @@ def run_p1_csp_on_all(
             records.append({
                 "subject": subject,
                 "decoder": "ts_lr",
-                "design": "P1_csp_on_all",
+                "design": "P1_ts_on_all",
                 "repeat": 0,
                 "fold": fold_idx,
                 "fold_label": fold_label,
@@ -351,15 +351,17 @@ def run_p1_csp_on_all(
 def compute_design_contrasts(participant_df: pd.DataFrame, seed: int = 42) -> pd.DataFrame:
     """Compute Level 3 dataset contrasts: Hodges-Lehmann difference, BCa CI, Wilcoxon p, Holm correction."""
     results: List[Dict[str, Any]] = []
-    contrast_defs = [
-        ("D1s_vs_D3", "D1s_size_matched", "D3_loro", "Pooled Random Partitioning Effect"),
-        ("P1_vs_D3", "P1_csp_on_all", "D3_loro", "Supervised Spatial Contamination Effect"),
-    ]
-
     for dec in participant_df["decoder"].unique():
         sub_df = participant_df[participant_df["decoder"] == dec]
         contrast_rows: List[Dict[str, Any]] = []
         raw_pvals: List[float] = []
+
+        p1_cond = "P1_ts_on_all" if "P1_ts_on_all" in sub_df["design"].values else "P1_csp_on_all"
+        p1_desc = "Supervised Tangent Space Contamination Effect" if p1_cond == "P1_ts_on_all" else "Supervised Spatial Contamination Effect"
+        contrast_defs = [
+            ("D1s_vs_D3", "D1s_size_matched", "D3_loro", "Pooled Random Partitioning Effect"),
+            ("P1_vs_D3", p1_cond, "D3_loro", p1_desc),
+        ]
 
         for contrast_name, cond_b, cond_a, desc in contrast_defs:
             df_b = sub_df[sub_df["design"] == cond_b].set_index("subject")["mean_accuracy"]

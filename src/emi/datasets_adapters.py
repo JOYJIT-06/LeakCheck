@@ -246,6 +246,75 @@ BNCI2014_METADATA = DatasetMetadata(
 )
 
 
+def parse_bnci_events_and_runs(
+    epochs: mne.Epochs,
+    events: np.ndarray,
+    event_id: Dict[str, int],
+    target_ids: Dict[str, int],
+    default_n_runs: int = 6,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Parse binary labels y and non-negative run IDs for BNCI datasets.
+
+    Parameters
+    ----------
+    epochs : mne.Epochs
+        The epoched EEG recording.
+    events : np.ndarray
+        Raw event array (N, 3) from mne.events_from_annotations.
+    event_id : Dict[str, int]
+        Mapping from annotation string to integer event code.
+    target_ids : Dict[str, int]
+        Target event ID mapping for 769 (left) and 770 (right).
+    default_n_runs : int
+        Default number of runs to partition trials into if no run markers exist.
+
+    Returns
+    -------
+    y : np.ndarray
+        Binary labels {0, 1} where 0 corresponds to left hand (769) and 1 to right hand (770).
+    runs : np.ndarray
+        Integer run IDs for each trial (non-zero IDs assigned for multi-run datasets).
+    """
+    left_codes = {v for k, v in target_ids.items() if "769" in str(k)}
+    left_codes.add(769)
+    right_codes = {v for k, v in target_ids.items() if "770" in str(k)}
+    right_codes.add(770)
+
+    # Robust integer comparison against event codes
+    y = np.zeros(len(epochs.events), dtype=int)
+    for i, code in enumerate(epochs.events[:, 2]):
+        if code in left_codes or str(code) == "769":
+            y[i] = 0
+        elif code in right_codes or str(code) == "770":
+            y[i] = 1
+        else:
+            y[i] = 1
+
+    # Check for GDF run start markers (0x7ffe / 32766 or 'start of a new run')
+    run_start_codes = [
+        v for k, v in event_id.items()
+        if "32766" in str(k) or "start of a new run" in str(k).lower() or "0x7ffe" in str(k).lower()
+    ]
+    run_starts = events[np.isin(events[:, 2], run_start_codes), 0] if run_start_codes else np.array([])
+
+    n_trials = len(y)
+    if len(run_starts) >= 2:
+        runs = np.digitize(epochs.events[:, 0], run_starts) - 1
+        runs = np.clip(runs, 0, len(run_starts) - 1).astype(int)
+    else:
+        # Partition trials evenly across standard runs so LORO cross-validation can execute
+        n_runs = min(default_n_runs, n_trials) if n_trials > 1 else 1
+        runs = np.zeros(n_trials, dtype=int)
+        if n_runs > 1:
+            for r_idx, split_idx in enumerate(np.array_split(np.arange(n_trials), n_runs)):
+                runs[split_idx] = r_idx
+
+    return y, runs
+
+
+_parse_bnci_events_and_runs = parse_bnci_events_and_runs
+
+
 @register_adapter("bnci2014_001")
 @register_adapter("bciciv_2a")
 class BNCI2014_001Adapter(BaseEEGDataset):
@@ -297,8 +366,7 @@ class BNCI2014_001Adapter(BaseEEGDataset):
         target_ids = {k: v for k, v in event_id.items() if "769" in k or "770" in k}
         epochs = mne.Epochs(raw, events, event_id=target_ids, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
         X = epochs.get_data() * 1e6  # to uV
-        y = np.array([0 if "769" in k else 1 for k in epochs.events[:, 2]])
-        runs = np.zeros(len(y), dtype=int)
+        y, runs = parse_bnci_events_and_runs(epochs, events, event_id, target_ids, default_n_runs=6)
         times = epochs.times
         return {
             "X": X,
@@ -453,11 +521,11 @@ class BNCI2014_004Adapter(BaseEEGDataset):
         target_ids = {k: v for k, v in event_id.items() if "769" in k or "770" in k}
         epochs = mne.Epochs(raw, events, event_id=target_ids, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
         X = epochs.get_data() * 1e6
-        y = np.array([0 if "769" in k else 1 for k in epochs.events[:, 2]])
+        y, runs = parse_bnci_events_and_runs(epochs, events, event_id, target_ids, default_n_runs=3)
         return {
             "X": X,
             "y": y,
-            "runs": np.zeros(len(y), dtype=int),
+            "runs": runs,
             "times": epochs.times,
             "sfreq": epochs.info["sfreq"],
             "channels": epochs.ch_names[:3],
