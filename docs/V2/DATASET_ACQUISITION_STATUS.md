@@ -17,13 +17,13 @@
 | 2 | **OpenBMI** | Lee et al. (2019), GigaScience / NEMAR `nm000338` | 54 (34 intact) | 62 | 1000 Hz | Left/Right Hand MI (Session 1, Runs 0 & 1) | ~45 GB | **Full-Cohort Validated** | `OpenBMIDatasetAdapter` / `scripts/run_openbmi_benchmark.py` |
 | 3 | **Cho2017** | Cho et al. (2017), GigaScience | 52 | 64 | 512 Hz | Left/Right Hand MI | ~15 GB | **Implemented & Unit-Tested** | `Cho2017DatasetAdapter` / `tests/test_datasets_adapters.py` |
 | 4 | **BNCI2014-001** | Tangermann et al. (2012), BCI Comp IV 2a | 9 | 22 | 250 Hz | 4-class MI (Left Hand, Right Hand, Feet, Tongue) | ~1.5 GB | **Implemented & Unit-Tested** | `BNCI2014_001_DatasetAdapter` / `tests/test_datasets_adapters.py` |
-| 5 | **BNCI2014-004** | Leeb et al. (2008), BCI Comp IV 2b | 9 | 3 | 250 Hz | 2-class MI (Left vs Right Hand) across 5 sessions | ~800 MB | **Ingesting / Cloud Staged** | MOABB loader / `registry/schemas/` |
-| 6 | **High-Gamma** | Schirrmeister et al. (2017), Human Brain Mapping | 14 | 128 (44 selected) | 500 Hz | 4-class MI (Right Hand, Left Hand, Both Feet, Rest) | ~12 GB | **Ingesting / Cloud Staged** | MOABB loader / `registry/schemas/` |
-| 7 | **Shin2017A** | Shin et al. (2017), J. Neurosci. Methods | 29 | 30 | 1000 Hz | Simultaneous EEG/NIRS Motor Imagery | ~8 GB | **Ingesting / Cloud Staged** | MOABB loader / `registry/schemas/` |
-| 8 | **Weibo2014** | Faller et al. (2014), PLOS ONE | 10 | 60 | 200 Hz | Compound limb and simple limb MI | ~4 GB | **Registry Protocol** | `registry/schemas/` |
-| 9 | **Grosse-Wentrup2009** | Grosse-Wentrup et al. (2009), IEEE TBME | 10 | 128 | 500 Hz | High-density motor imagery with gamma band focus | ~3 GB | **Registry Protocol** | `registry/schemas/` |
-| 10 | **Zhou2016** | Zhou et al. (2016), Frontiers in Human Neurosci. | 4 | 16 | 250 Hz | Session-to-session variability across weeks | ~1 GB | **Registry Protocol** | `registry/schemas/` |
-| 11 | **Yang2025** | Yang et al. (2025), Scientific Data | 60+ | 64 | 500 Hz | Multi-day motor imagery and cognitive task battery | ~30 GB | **Registry Protocol** | `registry/schemas/` |
+| 5 | **BNCI2014-004** | Leeb et al. (2008), BCI Comp IV 2b | 9 | 3 | 250 Hz | 2-class MI (Left vs Right Hand) across 5 sessions | ~800 MB | **Implemented & Unit-Tested** | `BNCI2014_004Adapter` / `tests/test_datasets_adapters.py` |
+| 6 | **High-Gamma** | Schirrmeister et al. (2017), Human Brain Mapping | 14 | 128 (44 selected) | 500 Hz | 4-class MI (Right Hand, Left Hand, Both Feet, Rest) | ~12 GB | **Implemented & Unit-Tested** | `HighGammaAdapter` / `tests/test_datasets_adapters.py` |
+| 7 | **Shin2017A** | Shin et al. (2017), J. Neurosci. Methods | 29 | 30 | 1000 Hz | Simultaneous EEG/NIRS Motor Imagery | ~8 GB | **Implemented & Unit-Tested** | `Shin2017AAdapter` / `tests/test_datasets_adapters.py` |
+| 8 | **Weibo2014** | Faller et al. (2014), PLOS ONE | 10 | 60 | 200 Hz | Compound limb and simple limb MI | ~4 GB | **Implemented & Unit-Tested** | `Weibo2014Adapter` / `tests/test_datasets_adapters.py` |
+| 9 | **Grosse-Wentrup2009** | Grosse-Wentrup et al. (2009), IEEE TBME | 10 | 128 | 500 Hz | High-density motor imagery with gamma band focus | ~3 GB | **Implemented & Unit-Tested** | `GrosseWentrup2009Adapter` / `tests/test_datasets_adapters.py` |
+| 10 | **Zhou2016** | Zhou et al. (2016), Frontiers in Human Neurosci. | 4 | 16 | 250 Hz | Session-to-session variability across weeks | ~1 GB | **Implemented & Unit-Tested** | `Zhou2016Adapter` / `tests/test_datasets_adapters.py` |
+| 11 | **Yang2025** | Yang et al. (2025), Scientific Data | 60+ | 64 | 500 Hz | Multi-day motor imagery and cognitive task battery | ~30 GB | **Implemented & Unit-Tested** | `Yang2025Adapter` / `tests/test_datasets_adapters.py` |
 
 ---
 

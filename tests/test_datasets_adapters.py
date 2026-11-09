@@ -119,7 +119,7 @@ def test_all_11_candidate_adapters_metadata(tmp_path):
 
 def test_registry_datasets_json_validity():
     """Verify registry/datasets.json matches required schema structure."""
-    reg_path = Path("registry/datasets.json")
+    reg_path = Path(__file__).resolve().parent.parent / "registry" / "datasets.json"
     assert reg_path.is_file(), "registry/datasets.json must exist"
 
     with open(reg_path, "r", encoding="utf-8") as f:
@@ -133,3 +133,35 @@ def test_registry_datasets_json_validity():
     assert "openbmi_lee2019" in dataset_ids
     assert "bnci2014_001" in dataset_ids
     assert "cho2017" in dataset_ids
+
+
+def test_unified_benchmark_synthetic(tmp_path):
+    """Verify scripts/run_unified_benchmark.py runs end-to-end in synthetic mode."""
+    import subprocess
+    import sys
+
+    script_path = Path(__file__).resolve().parent.parent / "scripts" / "run_unified_benchmark.py"
+    out_dir = tmp_path / "bench_out"
+
+    cmd = [
+        sys.executable,
+        str(script_path),
+        "--dataset", "bnci2014_001",
+        "--subjects", "1",
+        "--decoders", "csp_lda",
+        "--designs", "D3,D1s,P1",
+        "--synthetic",
+        "--outdir", str(out_dir),
+    ]
+
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    assert res.returncode == 0, f"Benchmark script failed: {res.stderr}\n{res.stdout}"
+
+    # Verify generated artifacts
+    assert (out_dir / "participant_eligibility.csv").is_file()
+    assert (out_dir / "fold_metrics.csv").is_file()
+    assert (out_dir / "participant_metrics.csv").is_file()
+    assert (out_dir / "design_comparisons.csv").is_file()
+    assert (out_dir / "benchmark_manifest.json").is_file()
+    assert (out_dir / "fold_indices" / "sub-01_splits.json").is_file()
+
