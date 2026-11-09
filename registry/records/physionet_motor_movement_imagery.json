@@ -1,0 +1,15 @@
+{
+  "$schema": "../schemas/dataset.schema.json",
+  "dataset_id": "physionet_eegmmidb",
+  "name": "PhysioNet EEG Motor Movement/Imagery Database",
+  "description": "64-channel EEG recordings from 109 volunteers performing motor execution and imagery tasks (runs 4, 8, 12: left vs. right fist opening/closing).",
+  "doi": "10.13026/C28G6P",
+  "license": "ODC Public Domain Dedication and Licence (PDDL)",
+  "sampling_rate_hz": 160.0,
+  "channel_count": 64,
+  "montage": "standard_1020",
+  "tasks": ["left_hand_mi", "right_hand_mi"],
+  "participant_count": 109,
+  "sessions_per_participant": 1,
+  "runs_per_session": 14
+}
