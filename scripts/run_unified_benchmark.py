@@ -830,6 +830,7 @@ def main():
     parser.add_argument("--n-csp", type=int, default=6, help="Number of CSP filters")
     parser.add_argument("--n-repeats-d1s", type=int, default=20, help="Number of repeats for D1s")
     parser.add_argument("--n-repeats-d1m", type=int, default=10, help="Number of repeats for D1m")
+    parser.add_argument("--n-jobs", "--n_jobs", type=int, default=4, help="Number of worker jobs (for concurrency compatibility)")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
     args = parser.parse_args()
 

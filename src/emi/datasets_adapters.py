@@ -158,6 +158,7 @@ OPENBMI_METADATA = DatasetMetadata(
 
 @register_adapter("openbmi")
 @register_adapter("lee2019")
+@register_adapter("openbmi_lee2019")
 class OpenBMIAdapter(BaseEEGDataset):
     """Adapter for OpenBMI Motor Imagery Dataset (Lee et al. 2019)."""
 
