@@ -47,6 +47,11 @@ from emi.splitters import (
     size_matched_random_repeats,
     validate_splits,
 )
+from scripts.run_unified_benchmark import (
+    compute_design_contrasts,
+    get_loro_folds,
+    run_d3_loro,
+)
 
 
 # -----------------------------------------------------------------------------
@@ -360,3 +365,59 @@ def test_unified_benchmark_cli_all_decoders_and_designs(tmp_path):
         manifest = json.load(f)
     assert "sha256_metrics" in manifest
     assert "fold_metrics" in manifest["sha256_metrics"]
+
+
+# -----------------------------------------------------------------------------
+# LORO Single-Run Hardening & Contrast Labeling Tests
+# -----------------------------------------------------------------------------
+def test_get_loro_folds_k1_raises_explicit_value_error():
+    """Verify that calling get_loro_folds(runs) with K=1 raises explicit ValueError."""
+    # Single-run cohort with 40 trials
+    runs_k1 = np.zeros(40, dtype=int)
+
+    with pytest.raises(
+        ValueError,
+        match="Leave-One-Run-Out \\(D3 LORO\\) requires at least 2 distinct acquisition runs; single-run cohorts cannot be evaluated under D3 without manufacturing artificial run boundaries\\.",
+    ):
+        get_loro_folds(runs_k1)
+
+    # Verify when both runs and y are passed
+    y = np.array([0, 1] * 20)
+    with pytest.raises(
+        ValueError,
+        match="Leave-One-Run-Out \\(D3 LORO\\) requires at least 2 distinct acquisition runs",
+    ):
+        get_loro_folds(runs_k1, y)
+
+
+def test_compute_design_contrasts_ts_lr_p1_corrected_label():
+    """Verify that compute_design_contrasts outputs corrected label for ts_lr under P1."""
+    rows = [
+        {"dataset": "test_ds", "subject_id": s, "decoder": "ts_lr", "design": "D3_loro", "mean_accuracy": 0.60 + 0.01 * s}
+        for s in range(1, 5)
+    ] + [
+        {"dataset": "test_ds", "subject_id": s, "decoder": "ts_lr", "design": "P1_ts_on_all", "mean_accuracy": 0.70 + 0.01 * s}
+        for s in range(1, 5)
+    ]
+    df_part = pd.DataFrame(rows)
+    df_contrasts = compute_design_contrasts(df_part, dataset_name="test_ds", seed=42)
+
+    assert not df_contrasts.empty
+    row = df_contrasts[(df_contrasts["contrast"] == "P1_vs_D3") & (df_contrasts["decoder"] == "ts_lr")].iloc[0]
+    assert row["condition_b"] == "P1_ts_on_all"
+    assert row["description"] == "Global Riemannian Tangent Space Reference Contamination"
+    assert row["hodges_lehmann_delta"] > 0.0
+
+
+def test_run_d3_loro_graceful_single_run_handling():
+    """Verify that run_d3_loro gracefully handles single-run subjects without crashing."""
+    data = {
+        "X": np.random.randn(20, 8, 100),
+        "y": np.array([0, 1] * 10),
+        "runs": np.zeros(20, dtype=int),
+        "sfreq": 250.0,
+    }
+    records, splits = run_d3_loro("k1_cohort", 1, data, decoders=["csp_lda", "ts_lr"])
+    assert records == []
+    assert splits == {}
+

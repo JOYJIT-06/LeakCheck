@@ -130,14 +130,14 @@ def evaluate_fold(
     return acc, bal_acc, auroc, f1, tr_acc, train_time_s, test_time_s
 
 
-def get_loro_folds(runs: np.ndarray, y: np.ndarray) -> List[Tuple[str, np.ndarray, np.ndarray]]:
+def get_loro_folds(runs: np.ndarray, y: Optional[np.ndarray] = None) -> List[Tuple[str, np.ndarray, np.ndarray]]:
     """Generate Leave-One-Run-Out folds for arbitrary K >= 2 runs."""
     unique_runs = np.unique(runs)
     if len(unique_runs) < 2:
-        n_half = len(y) // 2
-        train_idx = np.arange(n_half)
-        test_idx = np.arange(n_half, len(y))
-        return [("half0_to_half1", train_idx, test_idx), ("half1_to_half0", test_idx, train_idx)]
+        raise ValueError(
+            "Leave-One-Run-Out (D3 LORO) requires at least 2 distinct acquisition runs; "
+            "single-run cohorts cannot be evaluated under D3 without manufacturing artificial run boundaries."
+        )
 
     loro_reps = loro_splits(runs)
     folds = []
@@ -201,7 +201,11 @@ def run_d3_loro(
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """Run D3: Operational Leave-One-Run-Out partition for arbitrary K >= 2 runs."""
     X, y, runs = data["X"], data["y"], data["runs"]
-    folds = get_loro_folds(runs, y)
+    try:
+        folds = get_loro_folds(runs, y)
+    except ValueError as exc:
+        log.warning("Subject %s ineligible for D3 (LORO): %s", subject, exc)
+        return [], {}
 
     records: List[Dict[str, Any]] = []
     splits_manifest: Dict[str, Any] = {}
@@ -383,7 +387,11 @@ def run_p1_csp_on_all(
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """Run P1: Supervised Spatial Filter Contamination under LORO partition across all decoders."""
     X, y, runs = data["X"], data["y"], data["runs"]
-    folds = get_loro_folds(runs, y)
+    try:
+        folds = get_loro_folds(runs, y)
+    except ValueError as exc:
+        log.warning("Subject %s ineligible for P1 (LORO): %s", subject, exc)
+        return [], {}
 
     records: List[Dict[str, Any]] = []
     splits_manifest: Dict[str, Any] = {}
@@ -504,6 +512,12 @@ def run_p2_ica_on_all(
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """Run P2: Global ICA unmixing contamination under LORO partition."""
     X, y, runs = data["X"], data["y"], data["runs"]
+    try:
+        folds = get_loro_folds(runs, y)
+    except ValueError as exc:
+        log.warning("Subject %s ineligible for P2 (LORO): %s", subject, exc)
+        return [], {}
+
     n_trials, n_ch, n_times = X.shape
     n_comp = min(n_components, n_ch - 1)
     if n_comp < 2:
@@ -516,7 +530,6 @@ def run_p2_ica_on_all(
     X_clean_2d = ica.inverse_transform(S)
     X_leaky = X_clean_2d.T.reshape(n_ch, n_trials, n_times).transpose(1, 0, 2)
 
-    folds = get_loro_folds(runs, y)
     records: List[Dict[str, Any]] = []
     splits_manifest: Dict[str, Any] = {}
 
@@ -569,10 +582,15 @@ def run_p5_scale_on_all(
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """Run P5: Global Feature Normalization / Scaling across all trials."""
     X, y, runs = data["X"], data["y"], data["runs"]
+    try:
+        folds = get_loro_folds(runs, y)
+    except ValueError as exc:
+        log.warning("Subject %s ineligible for P5 (LORO): %s", subject, exc)
+        return [], {}
+
     scaler = ChannelScaler()
     X_scaled = scaler.fit(X).transform(X)
 
-    folds = get_loro_folds(runs, y)
     records: List[Dict[str, Any]] = []
     splits_manifest: Dict[str, Any] = {}
 
@@ -626,12 +644,17 @@ def run_p7_select_on_all(
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
     """Run P7: Global Channel / Feature Selection across all trials."""
     X, y, runs = data["X"], data["y"], data["runs"]
+    try:
+        folds = get_loro_folds(runs, y)
+    except ValueError as exc:
+        log.warning("Subject %s ineligible for P7 (LORO): %s", subject, exc)
+        return [], {}
+
     n_ch = X.shape[1]
     keep = min(n_keep, max(4, n_ch // 2))
     selector = ChannelSelector(n_keep=keep)
     X_selected = selector.fit(X, y).transform(X)
 
-    folds = get_loro_folds(runs, y)
     records: List[Dict[str, Any]] = []
     splits_manifest: Dict[str, Any] = {}
 
@@ -705,7 +728,7 @@ def compute_design_contrasts(
             if contrast_name == "P1_vs_D3":
                 if "P1_ts_on_all" in available_designs:
                     actual_cond_b = "P1_ts_on_all"
-                    actual_desc = "Supervised Tangent Space Contamination Effect"
+                    actual_desc = "Global Riemannian Tangent Space Reference Contamination"
 
             if actual_cond_b not in available_designs or cond_a not in available_designs:
                 continue
@@ -884,6 +907,17 @@ def main():
 
         eligible_subjects.append(sub)
         sub_manifest: Dict[str, Any] = {}
+
+        n_runs = len(np.unique(data["runs"]))
+        row["n_runs"] = n_runs
+        row["d3_eligible"] = bool(n_runs >= 2)
+        if n_runs < 2:
+            row["d3_ineligibility_reason"] = (
+                f"Subject {sub} has {n_runs} acquisition run(s); D3 LORO requires K >= 2 distinct runs."
+            )
+            log.warning("Subject %d has %d run(s) (< 2); ineligible for D3 LORO partitions.", sub, n_runs)
+        else:
+            row["d3_ineligibility_reason"] = ""
 
         # 1. D3
         if "D3" in designs:
