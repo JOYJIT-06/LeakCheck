@@ -550,5 +550,5 @@ class TestLevel3ContrastComputation:
         assert not df_contrasts.empty
         row = df_contrasts[df_contrasts["contrast"] == "P1_vs_D3"].iloc[0]
         assert row["condition_b"] == "T1_ts_reference_on_all"
-        assert row["description"] == "Global Riemannian Tangent Space Reference Contamination"
+        assert row["description"] == "Global tangent-space reference and global scaling control"
         assert row["hodges_lehmann_delta"] > 0.0

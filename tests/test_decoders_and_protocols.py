@@ -336,7 +336,7 @@ def test_unified_benchmark_cli_all_decoders_and_designs(tmp_path):
 
     assert set(fold_df["decoder"].unique()) == {"csp_lda", "csp_svm", "csp_lr", "ts_lr", "fbcsp"}
     assert "P1_csp_on_all" in set(fold_df["design"].unique())
-    assert "P1_ts_on_all" in set(fold_df["design"].unique())
+    assert "T1_ts_reference_on_all" in set(fold_df["design"].unique())
 
     # 2. Level 2 Participant Metrics
     part_file = out_dir / "participant_metrics.csv"
@@ -396,15 +396,15 @@ def test_compute_design_contrasts_ts_lr_p1_corrected_label():
         {"dataset": "test_ds", "subject_id": s, "decoder": "ts_lr", "design": "D3_loro", "mean_accuracy": 0.60 + 0.01 * s}
         for s in range(1, 5)
     ] + [
-        {"dataset": "test_ds", "subject_id": s, "decoder": "ts_lr", "design": "P1_ts_on_all", "mean_accuracy": 0.70 + 0.01 * s}
+        {"dataset": "test_ds", "subject_id": s, "decoder": "ts_lr", "design": "T1_ts_reference_on_all", "mean_accuracy": 0.70 + 0.01 * s}
         for s in range(1, 5)
     ]
     df_part = pd.DataFrame(rows)
     df_contrasts = compute_design_contrasts(df_part, dataset_name="test_ds", seed=42)
 
     assert not df_contrasts.empty
-    row = df_contrasts[(df_contrasts["contrast"] == "P1_vs_D3") & (df_contrasts["decoder"] == "ts_lr")].iloc[0]
-    assert row["condition_b"] == "P1_ts_on_all"
+    row = df_contrasts[(df_contrasts["contrast"] == "T1_ts_reference_vs_D3") & (df_contrasts["decoder"] == "ts_lr")].iloc[0]
+    assert row["condition_b"] == "T1_ts_reference_on_all"
     assert row["description"] == "Global Riemannian Tangent Space Reference Contamination"
     assert row["hodges_lehmann_delta"] > 0.0
 

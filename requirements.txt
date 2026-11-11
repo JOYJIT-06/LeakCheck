@@ -1,8 +1,0 @@
-mne>=1.7,<1.14
-numpy
-scipy
-scikit-learn
-pandas
-joblib
-matplotlib
-pytest

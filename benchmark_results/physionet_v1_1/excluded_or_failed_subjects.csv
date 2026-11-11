@@ -1,5 +1,0 @@
-dataset,subject,reason
-physionet,44,no cache file D:\my lab\LeakCheck_Cache\physionet\sub-044_epochs.npz
-physionet,69,no cache file D:\my lab\LeakCheck_Cache\physionet\sub-069_epochs.npz
-physionet,86,EXCLUDED: only 24 trials (< 30)
-physionet,91,no cache file D:\my lab\LeakCheck_Cache\physionet\sub-091_epochs.npz

@@ -400,7 +400,7 @@ def run_p1_csp_on_all_for_subject(
             records.append({
                 "subject": subject,
                 "decoder": "csp_lda",
-                "design": "T1_ts_reference_on_all",
+                "design": "P1_csp_on_all",
                 "repeat": 0,
                 "fold": fold_idx,
                 "fold_label": fold_label,
@@ -435,7 +435,7 @@ def run_p1_csp_on_all_for_subject(
             records.append({
                 "subject": subject,
                 "decoder": "ts_lr",
-                "design": "P1_csp_on_all",
+                "design": "T1_ts_reference_on_all",
                 "repeat": 0,
                 "fold": fold_idx,
                 "fold_label": fold_label,
