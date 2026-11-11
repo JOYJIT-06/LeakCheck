@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eeg-benchmark-registry.org/schemas/pipeline.schema.json",
+  "title": "EEG Preprocessing Pipeline Schema",
+  "type": "object",
+  "required": ["pipeline_id", "bandpass_hz", "rereference", "bad_channel_policy", "trial_rejection"],
+  "properties": {
+    "pipeline_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "bandpass_hz": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "rereference": {
+      "type": "string",
+      "enum": ["average", "mastoids", "cz", "car", "none"]
+    },
+    "bad_channel_policy": {
+      "type": "object",
+      "properties": {
+        "method": { "type": "string" },
+        "z_threshold": { "type": "number" },
+        "max_fraction": { "type": "number" }
+      }
+    },
+    "ica": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "method": { "type": "string" },
+        "n_components": { "type": "integer" },
+        "max_excluded": { "type": "integer" }
+      }
+    },
+    "trial_rejection": {
+      "type": "object",
+      "properties": {
+        "mode": { "type": "string", "enum": ["fixed", "adaptive", "none"] },
+        "threshold_uv": { "type": "number" },
+        "k_mad": { "type": "number" },
+        "window": { "type": "string", "enum": ["full", "analysis"] }
+      }
+    }
+  }
+}
