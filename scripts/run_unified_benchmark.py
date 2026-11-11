@@ -413,7 +413,7 @@ def run_p1_csp_on_all(
             Z_all = global_csp.transform(X)
             clf_factory = lambda: DECODERS[dec].head()
         elif dec == "ts_lr":
-            design_name = "P1_ts_on_all"
+            design_name = "T1_ts_reference_on_all"
             cov_trans = CovarianceTransformer()
             cov_all = cov_trans.transform(X)
             global_ts = TangentSpaceTransformer()
