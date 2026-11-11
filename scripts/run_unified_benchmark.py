@@ -725,10 +725,13 @@ def compute_design_contrasts(
         for contrast_name, cond_b, cond_a, desc in candidate_contrasts:
             actual_cond_b = cond_b
             actual_desc = desc
-            if contrast_name == "P1_vs_D3":
-                if "P1_ts_on_all" in available_designs:
-                    actual_cond_b = "P1_ts_on_all"
-                    actual_desc = "Global Riemannian Tangent Space Reference Contamination"
+            actual_contrast_name = contrast_name
+            if contrast_name == "P1_vs_D3" and dec == "ts_lr":
+                actual_cond_b = "T1_ts_reference_on_all"
+                actual_desc = "Global tangent-space reference and global scaling control"
+                actual_contrast_name = "T1_ts_reference_vs_D3"
+            elif contrast_name == "P1_vs_D3" and dec != "csp_lda":
+                continue
 
             if actual_cond_b not in available_designs or cond_a not in available_designs:
                 continue
@@ -744,7 +747,7 @@ def compute_design_contrasts(
 
             row: Dict[str, Any] = {
                 "dataset": dataset_name,
-                "contrast": contrast_name,
+                "contrast": actual_contrast_name,
                 "estimator": "hodges_lehmann",
                 "decoder": dec,
                 "description": actual_desc,
@@ -765,35 +768,29 @@ def compute_design_contrasts(
                 "rank_biserial": np.nan,
             }
 
-            if n >= 1:
-                row["hodges_lehmann_delta"] = float(hodges_lehmann(d))
             if n >= 3:
+                row["hodges_lehmann_delta"] = float(hodges_lehmann(d))
                 ci_lo, ci_hi, ci_meth = bca_ci(d, n_resamples=2000, seed=seed, return_method=True)
                 row["bca_ci_lower"] = float(ci_lo) if np.isfinite(ci_lo) else np.nan
                 row["bca_ci_upper"] = float(ci_hi) if np.isfinite(ci_hi) else np.nan
                 row["hl_ci_method"] = ci_meth
-            elif n > 0:
-                _, _, ci_meth = bca_ci(d, n_resamples=2000, seed=seed, return_method=True)
-                row["hl_ci_method"] = ci_meth
-
-            if n >= 2:
                 if np.allclose(d, 0):
-                    p_val = 1.0
-                    w_stat = 0.0
+                    p_val, w_stat = 1.0, 0.0
                 else:
                     try:
                         res = stats.wilcoxon(d, zero_method="pratt")
-                        p_val = float(res.pvalue)
-                        w_stat = float(res.statistic)
+                        p_val, w_stat = float(res.pvalue), float(res.statistic)
                     except Exception:
-                        p_val = 1.0
-                        w_stat = 0.0
+                        p_val, w_stat = 1.0, 0.0
                 row["wilcoxon_w"] = w_stat
                 row["raw_p_value"] = p_val
                 raw_pvals.append(p_val)
                 row["rank_biserial"] = float(rank_biserial(d))
                 row["cohens_dz"] = float(cohens_dz(d))
             else:
+                if n > 0:
+                    _, _, ci_meth = bca_ci(d, n_resamples=2000, seed=seed, return_method=True)
+                    row["hl_ci_method"] = ci_meth
                 raw_pvals.append(np.nan)
 
             contrast_rows.append(row)

@@ -46,3 +46,12 @@
   Stand-alone paper based exclusively on verified PhysioNet $N=105$ empirical evidence in `manuscript/V1_PhysioNet/manuscript.md`.
 - **Manuscript B (Dual-Cohort PhysioNet + OpenBMI):** **READY**  
   Comprehensive replication paper incorporating both PhysioNet ($N=105$) and the completed OpenBMI ($N=34$) benchmark in `manuscript/V1_Expanded_PhysioNet_OpenBMI/manuscript.md`.
+
+
+## 3. GitHub validation correction — 11 November 2026
+
+The V2 development branch is not yet scientifically complete. The latest Actions matrix failed in all six jobs at the same N<3 contrast assertion (438 passed, 2 skipped, 1 failed in the Ubuntu/Python 3.12 log). The unified runner now withholds HL, CI and inferential statistics when N<3.
+
+The OpenBMI TS-LR result historically labelled `P1_csp_on_all` is not supervised CSP. Source inspection shows global unsupervised tangent-space reference fitting plus global scaling. It is renamed as a distinct T1 reference/scaling control in the runner. Existing OpenBMI result CSVs and figures still require relabeling and manifest rehashing before reuse.
+
+P2 continuous ICA, P8 global channel-selection contamination and P9 temporal/run-boundary injection are not validated as specified. D1s-versus-D3 is a validation-design contrast, not a P9 injection. PhysioNet V1.1 has `n_null=0`; do not claim null validation from that benchmark.

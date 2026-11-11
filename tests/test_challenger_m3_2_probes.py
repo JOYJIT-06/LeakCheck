@@ -535,13 +535,13 @@ class TestLevel3ContrastComputation:
         assert np.isnan(p1_row["raw_p_value"])
         assert np.isnan(p1_row["bca_ci_lower"])
 
-    def test_ts_lr_specific_p1_ts_on_all_contrast_dispatch(self):
-        """Verify compute_design_contrasts correctly pairs P1_ts_on_all for ts_lr decoder."""
+    def test_ts_lr_reference_control_contrast_dispatch(self):
+        """Verify compute_design_contrasts correctly pairs T1_ts_reference_on_all for ts_lr decoder."""
         rows = [
             {"dataset": "ts_ds", "subject_id": s, "decoder": "ts_lr", "design": "D3_loro", "mean_accuracy": 0.60 + 0.01 * s}
             for s in range(1, 5)
         ] + [
-            {"dataset": "ts_ds", "subject_id": s, "decoder": "ts_lr", "design": "P1_ts_on_all", "mean_accuracy": 0.70 + 0.01 * s}
+            {"dataset": "ts_ds", "subject_id": s, "decoder": "ts_lr", "design": "T1_ts_reference_on_all", "mean_accuracy": 0.70 + 0.01 * s}
             for s in range(1, 5)
         ]
         df_part = pd.DataFrame(rows)
@@ -549,6 +549,6 @@ class TestLevel3ContrastComputation:
 
         assert not df_contrasts.empty
         row = df_contrasts[df_contrasts["contrast"] == "P1_vs_D3"].iloc[0]
-        assert row["condition_b"] == "P1_ts_on_all"
+        assert row["condition_b"] == "T1_ts_reference_on_all"
         assert row["description"] == "Global Riemannian Tangent Space Reference Contamination"
         assert row["hodges_lehmann_delta"] > 0.0

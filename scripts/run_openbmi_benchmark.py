@@ -400,7 +400,7 @@ def run_p1_csp_on_all_for_subject(
             records.append({
                 "subject": subject,
                 "decoder": "csp_lda",
-                "design": "P1_csp_on_all",
+                "design": "T1_ts_reference_on_all",
                 "repeat": 0,
                 "fold": fold_idx,
                 "fold_label": fold_label,
@@ -519,8 +519,10 @@ def compute_design_contrasts(
         contrast_defs = []
         if "D1s_size_matched" in piv.columns and "D3_loro" in piv.columns:
             contrast_defs.append(("D1s_vs_D3", "D1s_size_matched", "D3_loro", "size_matched_divergence"))
-        if "P1_csp_on_all" in piv.columns and "D3_loro" in piv.columns:
+        if decoder == "csp_lda" and "P1_csp_on_all" in piv.columns and "D3_loro" in piv.columns:
             contrast_defs.append(("P1_vs_D3", "P1_csp_on_all", "D3_loro", "supervised_contamination"))
+        if decoder == "ts_lr" and "T1_ts_reference_on_all" in piv.columns and "D3_loro" in piv.columns:
+            contrast_defs.append(("T1_ts_reference_vs_D3", "T1_ts_reference_on_all", "D3_loro", "unsupervised_reference_contamination"))
         if "D1m_stratified" in piv.columns and "D3_loro" in piv.columns:
             contrast_defs.append(("D1m_vs_D3", "D1m_stratified", "D3_loro", "secondary_sensitivity"))
 
@@ -581,9 +583,9 @@ def compute_design_contrasts(
 
             contrast_rows.append(row)
 
-        # Apply Holm adjustment within primary confirmatory contrasts (m=2)
+        # Apply Holm adjustment within the two primary contrasts for each decoder
         # Primary family = D1s_vs_D3 and P1_vs_D3
-        primary_indices = [i for i, c in enumerate(contrast_defs) if c[0] in ("D1s_vs_D3", "P1_vs_D3")]
+        primary_indices = [i for i, c in enumerate(contrast_defs) if c[0] in ("D1s_vs_D3", "P1_vs_D3", "T1_ts_reference_vs_D3")]
         if len(primary_indices) == 2 and not any(np.isnan(raw_pvals[i]) for i in primary_indices):
             prim_pvals = [raw_pvals[i] for i in primary_indices]
             adj_pvals = holm(prim_pvals)
