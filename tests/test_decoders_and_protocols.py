@@ -390,8 +390,8 @@ def test_get_loro_folds_k1_raises_explicit_value_error():
         get_loro_folds(runs_k1, y)
 
 
-def test_compute_design_contrasts_ts_lr_p1_corrected_label():
-    """Verify that compute_design_contrasts outputs corrected label for ts_lr under P1."""
+def test_compute_design_contrasts_ts_lr_reference_control_label():
+    """Verify TS-LR global reference control is separate from supervised CSP P1."""
     rows = [
         {"dataset": "test_ds", "subject_id": s, "decoder": "ts_lr", "design": "D3_loro", "mean_accuracy": 0.60 + 0.01 * s}
         for s in range(1, 5)
@@ -405,7 +405,7 @@ def test_compute_design_contrasts_ts_lr_p1_corrected_label():
     assert not df_contrasts.empty
     row = df_contrasts[(df_contrasts["contrast"] == "T1_ts_reference_vs_D3") & (df_contrasts["decoder"] == "ts_lr")].iloc[0]
     assert row["condition_b"] == "T1_ts_reference_on_all"
-    assert row["description"] == "Global Riemannian Tangent Space Reference Contamination"
+    assert row["description"] == "Global tangent-space reference and global scaling control"
     assert row["hodges_lehmann_delta"] > 0.0
 
 
