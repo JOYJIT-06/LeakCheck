@@ -31,4 +31,4 @@ results/
 *.patch
 *.zip
 CLAUDE_HANDOFF_*.txt
-benchmark_results/openbmi_v2_smoke/
+benchmark_results/*_smoke/

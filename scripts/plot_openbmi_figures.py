@@ -136,10 +136,12 @@ def plot_leakage_inflation(
     for dec in decoders:
         sub_df = metrics_df[metrics_df["decoder"] == dec].copy()
         piv = sub_df.pivot(index="subject", columns="design", values="accuracy")
-        if "P1_csp_on_all" in piv.columns and "D3_loro" in piv.columns:
-            diff = (piv["P1_csp_on_all"] - piv["D3_loro"]).values * 100.0
+        contaminated_design = "P1_csp_on_all" if dec == "csp_lda" else "T1_ts_reference_on_all"
+        if contaminated_design in piv.columns and "D3_loro" in piv.columns:
+            diff = (piv[contaminated_design] - piv["D3_loro"]).values * 100.0
             data_points.append(diff)
-            lbl = "Shrinkage CSP-LDA\n(Supervised Spatial Filters)" if dec == "csp_lda" else "Riemannian TS-LR\n(Unsupervised Geometry)"
+            lbl = ("CSP-LDA\n(Global supervised CSP)" if dec == "csp_lda"
+                   else "TS-LR\n(Global tangent reference + scaling)")
             labels.append(lbl)
 
     if not data_points:
@@ -178,7 +180,7 @@ def plot_leakage_inflation(
 
     ax.set_xticks(positions)
     ax.set_xticklabels(labels)
-    ax.set_ylabel("Leakage Inflation $\\Delta$ ($P_1 - D_3$, percentage points)")
+    ax.set_ylabel("Global preprocessing difference vs D3 (percentage points)")
     ax.set_title("Susceptibility to Global Spatial Preprocessing Contamination ($P_1$)\nOpenBMI Motor Imagery ($N=34$ participants)")
     ax.grid(True, linestyle=":", alpha=0.5, axis="y")
 

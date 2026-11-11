@@ -83,6 +83,14 @@ def load_openbmi_subject(
 
     path = Path(data_dir) / "sourcedata" / "session1" / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
     if not path.is_file():
+        alt = Path(data_dir) / "OpenBMI" / "sourcedata" / "session1" / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
+        if alt.is_file():
+            path = alt
+        else:
+            alt2 = Path(r"D:\my lab\LeakCheck\data\OpenBMI\sourcedata\session1") / f"s{subject}" / f"sess01_subj{subject:02d}_EEG_MI.mat"
+            if alt2.is_file():
+                path = alt2
+    if not path.is_file():
         raise FileNotFoundError(f"OpenBMI file not found: {path}")
 
     mat = sio.loadmat(str(path))

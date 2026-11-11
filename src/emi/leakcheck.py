@@ -29,11 +29,21 @@ import numpy as np
 import pandas as pd
 
 from . import splitters as sp
-from .decoders import DECODERS, ChannelScaler, ChannelSelector, N_KEEP_CHANNELS, add_noise_channels
+from .decoders import (
+    DECODERS,
+    DEFAULT_FILTER_BANKS,
+    ChannelScaler,
+    ChannelSelector,
+    FilterBankCSP,
+    N_KEEP_CHANNELS,
+    add_noise_channels,
+)
 from .leakstats import holm, paired_summary
 from .metrics import METRIC_KEYS, evaluate_repeats, metrics_from_predictions, _scores
 from .nulls import NULL_GENERATORS, empirical_p, label_agreement
 from .summary import binomial_threshold
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.pipeline import Pipeline
 
 _log = logging.getLogger(__name__)
 
@@ -44,9 +54,13 @@ BASE_WINDOW = (_CFG.decode_tmin, _CFG.decode_tmax)   # one source of truth: emi.
 WINDOWS = ((0.5, 2.5), (1.0, 3.0), (1.5, 3.5), (0.5, 3.5), (0.0, 4.0))
 AUG_NOISE_FRACTION = 0.3
 
-DEFAULT_DOSE = {"P4_select_on_all": "64", "P4_select_inside": "64",
-                "P6_overlap_random": "0.5", "P6_overlap_loro": "0.5",
-                "P7_aug_all_random": "4", "P7_aug_train_only": "4"}
+DEFAULT_DOSE = {
+    "P2_ica_on_all": "16", "P2_ica_inside": "16",
+    "P4_select_on_all": "64", "P4_select_inside": "64",
+    "P7_select_on_all": "64", "P7_select_inside": "64",
+    "P6_overlap_random": "0.5", "P6_overlap_loro": "0.5",
+    "P7_aug_all_random": "4", "P7_aug_train_only": "4",
+}
 
 PRESETS = {
     "quick": ["D3_loro", "D1m_matched_k", "P1_csp_on_all"],
@@ -55,9 +69,12 @@ PRESETS = {
              "P4_select_on_all@64", "P4_select_inside@64", "P5_tune_on_test", "P5_tune_nested"],
     "full": ["D1_shuffled_kfold", "D2_stratified_kfold", "D1m_matched_k", "D1s_size_matched", "D3_loro",
              "D4_chrono", "D4b_forward_chain", "D5_gap2", "D5_gap4", "D6_loso_session",
-             "P1_csp_on_all", "P3_scale_on_all", "P3_scale_inside",
+             "P1_csp_on_all", "P2_ica_on_all", "P2_ica_inside",
+             "P3_scale_on_all", "P3_scale_inside", "P5_scale_on_all", "P5_scale_inside",
              "P4_select_on_all@0", "P4_select_inside@0", "P4_select_on_all@64", "P4_select_inside@64",
-             "P4_select_on_all@256", "P4_select_inside@256", "P5_tune_on_test", "P5_tune_nested",
+             "P4_select_on_all@256", "P4_select_inside@256",
+             "P7_select_on_all@0", "P7_select_inside@0", "P7_select_on_all@64", "P7_select_inside@64",
+             "P5_tune_on_test", "P5_tune_nested",
              "P6_overlap_random@1.0", "P6_overlap_loro@1.0", "P6_overlap_random@0.5", "P6_overlap_loro@0.5",
              "P6_overlap_random@0.25", "P6_overlap_loro@0.25",
              "P7_aug_all_random@4", "P7_aug_train_only@4"],
@@ -71,8 +88,11 @@ REFERENCE = {
     "D1s_size_matched": ("D3_loro", "size-matched (headline)"),
     "D4_chrono": ("D5_gap4", "effect of a 4-trial gap"),
     "P1_csp_on_all": ("D3_loro", "P1 CSP on all data"),
+    "P2_ica_on_all": ("P2_ica_inside", "P2 global ICA unmixing contamination"),
     "P3_scale_on_all": ("P3_scale_inside", "P3 scaling on all data"),
+    "P5_scale_on_all": ("P5_scale_inside", "P5 scaling on all data"),
     "P4_select_on_all": ("P4_select_inside", "P4 selection on all data"),
+    "P7_select_on_all": ("P7_select_inside", "P7 selection on all data"),
     "P5_tune_on_test": ("P5_tune_nested", "P5 tuning on test folds"),
     "P6_overlap_random": ("P6_overlap_loro", "P6 overlapping windows"),
     "P7_aug_all_random": ("P7_aug_train_only", "P7 augmentation before split"),
@@ -175,10 +195,84 @@ def d6_loso_session(c, dose):
 def p1_csp_on_all(c, dose):
     if not c.spec.uses_csp:
         raise NotApplicable("P1 needs a decoder with CSP")
-    feats = c.csp_factory(c.spec.base["n_csp"]).fit_transform(c.Xb, c.y)
+    if c.spec.name == "fbcsp":
+        fbcsp_step = FilterBankCSP(
+            sfreq=c.spec.base.get("sfreq", 250.0),
+            bands=c.spec.base.get("bands", DEFAULT_FILTER_BANKS),
+            n_components=c.spec.base.get("n_csp", 4),
+            csp_factory=c.csp_factory,
+        )
+        sel = SelectKBest(score_func=f_classif, k=c.spec.base.get("k_features", 8))
+        pipe = Pipeline([("fbcsp", fbcsp_step), ("select", sel)])
+        feats = pipe.fit_transform(c.Xb, c.y)
+    else:
+        feats = c.csp_factory(c.spec.base["n_csp"]).fit_transform(c.Xb, c.y)
     repeats = sp.loro_splits(c.runs)
     sp.validate_splits(repeats, c.y, groups=c.runs)
     return evaluate_repeats(lambda: c.spec.head(), feats, c.y, repeats)
+
+
+def p2_ica_on_all(c, dose):
+    """P2: Global ICA unmixing matrix fitted across all trials before split."""
+    from sklearn.decomposition import FastICA
+    n_trials, n_ch, n_times = c.Xb.shape
+    n_comp = min(int(float(dose)) if dose else 16, n_ch - 1)
+    if n_comp < 2:
+        n_comp = min(4, n_ch)
+    X_2d = c.Xb.transpose(1, 0, 2).reshape(n_ch, -1).T
+    ica = FastICA(n_components=n_comp, random_state=c.seed, max_iter=200, tol=1e-3)
+    S = ica.fit_transform(X_2d)
+    X_clean_2d = ica.inverse_transform(S)
+    X_leaky = X_clean_2d.T.reshape(n_ch, n_trials, n_times).transpose(1, 0, 2)
+    return _clean(c, sp.loro_splits(c.runs), X=X_leaky)
+
+
+def p2_ica_inside(c, dose):
+    """P2 clean reference: fold-nested ICA unmixing matrix fitted strictly on training trials."""
+    from sklearn.decomposition import FastICA
+    n_trials, n_ch, n_times = c.Xb.shape
+    n_comp = min(int(float(dose)) if dose else 16, n_ch - 1)
+    if n_comp < 2:
+        n_comp = min(4, n_ch)
+    repeats = sp.loro_splits(c.runs)
+    sp.validate_splits(repeats, c.y, groups=c.runs)
+
+    fold_accs = []
+    yt_all, yp_all, ys_all = [], [], []
+    n_test = []
+    for tr, te in repeats[0]:
+        Xtr, ytr = c.Xb[tr], c.y[tr]
+        Xte, yte = c.Xb[te], c.y[te]
+        n_tr_trials = len(tr)
+        n_te_trials = len(te)
+
+        Xtr_2d = Xtr.transpose(1, 0, 2).reshape(n_ch, -1).T
+        ica = FastICA(n_components=n_comp, random_state=c.seed, max_iter=200, tol=1e-3)
+        S_tr = ica.fit_transform(Xtr_2d)
+        Xtr_clean = ica.inverse_transform(S_tr).T.reshape(n_ch, n_tr_trials, n_times).transpose(1, 0, 2)
+
+        Xte_2d = Xte.transpose(1, 0, 2).reshape(n_ch, -1).T
+        S_te = ica.transform(Xte_2d)
+        Xte_clean = ica.inverse_transform(S_te).T.reshape(n_ch, n_te_trials, n_times).transpose(1, 0, 2)
+
+        model = c.build().fit(Xtr_clean, ytr)
+        pred = model.predict(Xte_clean)
+        yt_all.append(yte)
+        yp_all.append(pred)
+        score = _scores(model, Xte_clean)
+        if score is not None:
+            ys_all.append(score)
+        fold_accs.append(float(np.mean(pred == yte)))
+        n_test.append(n_te_trials)
+
+    y_true = np.concatenate(yt_all)
+    y_pred = np.concatenate(yp_all)
+    y_score = np.concatenate(ys_all) if len(ys_all) == len(yt_all) else None
+    return metrics_from_predictions(
+        y_true, y_pred, y_score=y_score, fold_accs=fold_accs,
+        n_folds=len(fold_accs), n_test_mean=float(np.mean(n_test))
+    )
+
 
 def p3_scale_on_all(c, dose):
     Xs = ChannelScaler().fit(c.Xb).transform(c.Xb)                              # statistics from ALL trials
@@ -187,6 +281,10 @@ def p3_scale_on_all(c, dose):
 
 def p3_scale_inside(c, dose):
     return _clean(c, sp.loro_splits(c.runs), scale=True)
+
+
+p5_scale_on_all = p3_scale_on_all
+p5_scale_inside = p3_scale_inside
 
 
 def _noisy(c, dose):
@@ -201,6 +299,10 @@ def p4_select_on_all(c, dose):
 
 def p4_select_inside(c, dose):
     return _clean(c, sp.loro_splits(c.runs), X=_noisy(c, dose), n_keep=N_KEEP_CHANNELS)
+
+
+p7_select_on_all = p4_select_on_all
+p7_select_inside = p4_select_inside
 
 
 def _grid(c):
@@ -416,8 +518,12 @@ DESIGN_FUNCS = {
     "D1m_matched_k": d1m_matched_k, "D1s_size_matched": d1s_size_matched, "D3_loro": d3_loro,
     "D4_chrono": d4_chrono, "D4b_forward_chain": d4b_forward_chain,
     "D5_gap2": _gap(2), "D5_gap4": _gap(4), "D6_loso_session": d6_loso_session,
-    "P1_csp_on_all": p1_csp_on_all, "P3_scale_on_all": p3_scale_on_all, "P3_scale_inside": p3_scale_inside,
+    "P1_csp_on_all": p1_csp_on_all,
+    "P2_ica_on_all": p2_ica_on_all, "P2_ica_inside": p2_ica_inside,
+    "P3_scale_on_all": p3_scale_on_all, "P3_scale_inside": p3_scale_inside,
+    "P5_scale_on_all": p5_scale_on_all, "P5_scale_inside": p5_scale_inside,
     "P4_select_on_all": p4_select_on_all, "P4_select_inside": p4_select_inside,
+    "P7_select_on_all": p7_select_on_all, "P7_select_inside": p7_select_inside,
     "P5_tune_on_test": p5_tune_on_test, "P5_tune_nested": p5_tune_nested,
     "P6_overlap_random": p6_overlap_random, "P6_overlap_loro": p6_overlap_loro,
     "P7_aug_all_random": p7_aug_all_random, "P7_aug_train_only": p7_aug_train_only,

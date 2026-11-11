@@ -2,7 +2,7 @@ name: LeakCheck CI & Registry Verification
 
 on:
   push:
-    branches: [main, master, "fix/*", "feat/*", "release/*"]
+    branches: [main, master, "v2-dev", "fix/*", "feat/*", "release/*"]
   pull_request:
     branches: [main, master]
 

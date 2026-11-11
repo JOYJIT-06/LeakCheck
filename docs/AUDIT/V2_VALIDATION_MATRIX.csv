@@ -1,14 +1,14 @@
 category,identifier,name,implementation_file,clean_comparator,validation_level,empirical_effect_summary,limitations
-leakage,P1,Supervised Global CSP,src/emi/leakcheck.py,D3_loro,3_validated_on_real_eeg,"+24.50 pp (PhysioNet N=105), +6.25 pp (OpenBMI N=34 CSP-LDA)",Supervised spatial filters overfit across runs; TS-LR shows only +0.75 pp inflation
-leakage,P2,Global Continuous ICA,src/emi/preprocess.py,Run-isolated ICA,5_not_implemented,"N/A (architectural design documented, not yet piped)",Requires raw continuous data across entire recording session
+leakage,P1,Supervised Global CSP,src/emi/leakcheck.py,D3_loro,3_validated_on_real_eeg,"+24.50 pp (PhysioNet N=105), +6.25 pp (OpenBMI N=34 CSP-LDA)",Real EEG evidence applies to CSP-LDA; TS-LR global tangent reference is a distinct unsupervised control
+leakage,P2,Global Continuous ICA,src/emi/preprocess.py,Run-isolated continuous ICA,5_not_implemented,"N/A for continuous raw-data P2",Epoch-level ICA helper is not an integrated continuous-recording P2 pipeline
 leakage,P3,Global Channel Scaling,src/emi/leakcheck.py,P3_scale_inside,2_validated_synthetic,"+0.0 pp on noise, mild non-stationarity leak",Label-free leak; effect size minimal in stationary data
 leakage,P4,Global Feature Selection,src/emi/leakcheck.py,P4_select_inside,2_validated_synthetic,"+12.0 pp on synthetic noise channels",Magnified when many uninformative noise channels are present
 leakage,P5,Test-Set Tuning,src/emi/leakcheck.py,P5_tune_nested,2_validated_synthetic,"+3.5 pp on synthetic hyperparameter grid",Requires at least 3 runs for proper nested cross-validation
 leakage,P6,Overlapping Epoch Windows,src/emi/leakcheck.py,P6_overlap_loro,2_validated_synthetic,"+15.0 pp on continuous synthetic autoregressive data",Highly sensitive to step size and filter impulse response duration
 leakage,P7,Pre-Split Data Augmentation,src/emi/leakcheck.py,P7_aug_train_only,2_validated_synthetic,"+8.0 pp on jittered synthetic copies",Applies to geometric and temporal jittering pipelines
-leakage,P8,Global Channel Selection,src/emi/decoders.py,Within-fold ChannelSelector,1_implemented_and_tested,"Tested on synthetic data in test_decode.py",Requires raw channel montages
-leakage,P9,Temporal/Run Boundary Violation,src/emi/leakcheck.py,D3_loro,3_validated_on_real_eeg,"-2.68 pp (PhysioNet N=105), +2.84 pp (OpenBMI N=34)",Effect sign depends on stationarity vs cross-paradigm shift
-dataset,PhysioNet,PhysioNet EEGMMIDB,src/emi/datasets_adapters.py,N/A,3_validated_on_real_eeg,"N=105 complete cohort evaluated across D1-D6, P1",Limited to 64 channels and 160 Hz
-dataset,OpenBMI,OpenBMI (Lee et al. 2019),src/emi/datasets_adapters.py,N/A,3_validated_on_real_eeg,"N=34 intact Session 1 cohort evaluated on D3, D1s, P1",Session 1 evaluated; Session 2 and truncated subjects pending recovery
+leakage,P8,Global Channel Selection,src/emi/decoders.py,Within-fold ChannelSelector,5_not_implemented,"No global contaminated comparator validated",Within-fold ChannelSelector exists; separate global contaminated pathway and paired comparator not established
+leakage,P9,Temporal/Run Boundary Violation,src/emi/leakcheck.py,D3_loro,5_not_implemented,"No P9-specific empirical effect established",D1s-versus-D3 is a validation-design contrast, not a distinct P9 injection
+dataset,PhysioNet,PhysioNet EEGMMIDB,src/emi/datasets_adapters.py,N/A,3_validated_on_real_eeg,"N=105 cohort evaluated for D3, D1m, D1s and P1; n_null=0",Limited to 64 channels and 160 Hz
+dataset,OpenBMI,OpenBMI (Lee et al. 2019),src/emi/datasets_adapters.py,N/A,3_validated_on_real_eeg,"N=34 intact Session 1: D3, D1s, CSP-LDA P1 and separate TS-LR global-reference control",Session 1 evaluated; Session 2 and truncated subjects pending recovery
 dataset,BNCI2014_001,BCI Competition IV-2a,src/emi/datasets_adapters.py,N/A,1_implemented_and_tested,"Adapter implemented, tested for missing-data handling",Real data files pending local acquisition
 dataset,Cho2017,Cho et al. 2017 GigaScience,src/emi/datasets_adapters.py,N/A,1_implemented_and_tested,"Adapter implemented, tested for missing-data handling",Real data files pending local acquisition
