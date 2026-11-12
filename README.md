@@ -1,454 +1,131 @@
-# LeakCheck: EEG Validation Design & Data Leakage Auditing Benchmark
+# LeakCheck: A Leakage-Aware Benchmarking Framework for Evaluating Validation Strategies and Supervised Contamination in Within-Subject Motor-Imagery EEG Decoding
 
-[![Tests](https://img.shields.io/badge/tests-186%20passed-brightgreen.svg)](tests/)
-[![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](pyproject.toml)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Reproducibility](https://img.shields.io/badge/reproducibility-SHA--256%20verified-purple.svg)](docs/reproducibility.md)
-[![Datasets](https://img.shields.io/badge/datasets-PhysioNet%20%7C%20OpenBMI-orange.svg)](docs/datasets.md)
+[](https://opensource.org/licenses/MIT)
+[](https://www.python.org/downloads/)
+[Repository Commit](https://www.google.com/search?q=https://github.com/JOYJIT-06/LeakCheck/tree/2be2821)
 
-**LeakCheck** is a scientific Python framework and empirical benchmarking suite for auditing validation design, data leakage, and statistical reproducibility in electroencephalography (EEG) machine learning and brain-computer interfaces (BCIs).
+**LeakCheck** (`src/emi/`) is a reproducible benchmarking and audit framework designed to evaluate **validation-partitioning choices** (run-held-out vs. trial-level random splitting) separately from **supervised pipeline contamination** (fitting spatial filters using held-out test labels prior to partitioning) in within-subject motor-imagery electroencephalography (MI-EEG) decoding.
 
 ---
 
-## Table of Contents
-1. [Project Overview](#1-project-overview)
-2. [Why EEG Data Leakage Matters](#2-why-eeg-data-leakage-matters)
-3. [Research Motivation & Problem Statement](#3-research-motivation--problem-statement)
-4. [Scientific Objectives](#4-scientific-objectives)
-5. [Key Contributions & Novel Findings](#5-key-contributions--novel-findings)
-6. [System Architecture](#6-system-architecture)
-7. [Supported EEG Datasets](#7-supported-eeg-datasets)
-8. [Leakage Taxonomy & Mechanisms (P1–P9)](#8-leakage-taxonomy--mechanisms-p1p9)
-9. [Supported Validation Designs (D1–D6)](#9-supported-validation-designs-d1d6)
-10. [Supported Decoders](#10-supported-decoders)
-11. [Statistical Methods & Inference](#11-statistical-methods--inference)
-12. [Verified Empirical Benchmark Results](#12-verified-empirical-benchmark-results)
-13. [Installation Guide](#13-installation-guide)
-14. [Environment Setup](#14-environment-setup)
-15. [Quick-Start Demonstration](#15-quick-start-demonstration)
-16. [Dataset Preparation & Ingestion](#16-dataset-preparation--ingestion)
-17. [How to Run Audits & Benchmarks](#17-how-to-run-audits--benchmarks)
-18. [How to Reproduce Published Results](#18-how-to-reproduce-published-results)
-19. [Output Artifacts & Interpretation](#19-output-artifacts--interpretation)
-20. [Repository Structure](#20-repository-structure)
-21. [Automated Testing & Continuous Integration](#21-automated-testing--continuous-integration)
-22. [Known Limitations & Roadmap Boundaries](#22-known-limitations--roadmap-boundaries)
-23. [Citation & References](#23-citation--references)
-24. [License](#24-license)
-25. [Contributing Guidelines](#25-contributing-guidelines)
-26. [Contact & Governance](#26-contact--governance)
-27. [Documentation Directory Map](#27-documentation-directory-map)
+## 1. Scope & Methodological Distinction
+
+Published BCI evaluations frequently group two distinct methodological phenomena under the single umbrella term *"data leakage"*:
+1. **Validation Design (Partitioning Granularity)**: Choosing how trials are partitioned into training and testing sets while keeping all learned parameters strictly nested inside the training fold—specifically comparing run-held-out validation (`D3_loro`, where entire recording runs are held out) against trial-level random cross-validation across pooled runs (`D1s_size_matched` and `D1m_matched_k`). These protocols evaluate different generalization targets (inter-run transfer vs. within-pool interpolation) without exposing held-out test labels during training.
+2. **Supervised Feature-Extraction Contamination**: Fitting supervised spatial filters (Common Spatial Patterns, CSP) on the entire dataset—including held-out test trials and their class labels—prior to cross-validation splitting (`P1_csp_on_all`), and subsequently training a fold-level classifier on the globally projected features.
+
+In the PhysioNet EEG Motor Movement/Imagery Dataset (`EEGMMIDB`, $N = 105$ retained participants, frozen artifact record `rec_physionet_v1_1_e4a2b05c`), these two choices act in **opposite empirical directions** relative to run-held-out validation (`D3_loro`):
+- Size- and class-matched random trial splitting (`D1s_size_matched`) produced an estimated accuracy **2.68 percentage points (pp) lower** in Hodges–Lehmann location than `D3_loro` ($\hat{\theta}_{\text{HL}} = -2.68\text{ pp}$, 95% BCa CI $[-3.95, -1.47]\text{ pp}$ in `inflation_table.csv` / $[-3.94, -1.46]\text{ pp}$ via `scipy.stats.bootstrap(..., random_state=0)`, $p_{\text{Holm}} = 5.86 \times 10^{-5}$).
+- Unconstrained $k$-matched random splitting (`D1m_matched_k`) produced an estimated accuracy **4.47 pp lower** in Hodges–Lehmann location than `D3_loro` ($\hat{\theta}_{\text{HL}} = -4.47\text{ pp}$, 95% BCa CI $[-5.83, -3.14]\text{ pp}$ in `inflation_table.csv` / $[-5.80, -3.11]\text{ pp}$ via `random_state=0`, $p_{\text{Holm}} = 1.08 \times 10^{-8}$).
+- Joining participants by ID in `benchmark_results/physionet_v1_1/inflation_by_subject.csv` shows that matching fold sample size and class counts (`D1s_size_matched` vs. `D1m_matched_k`) yielded a direct Hodges–Lehmann location difference of **$+1.86\text{ pp}$** (95% BCa CI $[+1.27, +2.50]\text{ pp}$, arithmetic mean $+1.89\text{ pp}$, median $+1.79\text{ pp}$, $p_{\text{Holm}} = 4.87 \times 10^{-7}$).
+- Deliberate pre-split supervised CSP contamination (`P1_csp_on_all`) produced an estimated accuracy **24.50 pp higher** in Hodges–Lehmann location than `D3_loro` ($\hat{\theta}_{\text{HL}} = +24.50\text{ pp}$, 95% BCa CI $[+22.22, +27.78]\text{ pp}$ in `inflation_table.csv` / $[+21.75, +27.78]\text{ pp}$ via `random_state=0`, $p_{\text{Holm}} = 4.43 \times 10^{-18}$ [`wilcox`] / $2.42 \times 10^{-18}$ [`pratt`]), lifting cohort mean accuracy from **60.15%** (`D3_loro`) to **84.97%** (`P1_csp_on_all`).
+
+> **Scope Note on Mechanisms**: In this dataset and pipeline, random trial splitting produced lower estimated accuracy than leave-one-run-out validation (`D3_loro`), whereas pre-split supervised CSP fitting substantially increased estimated accuracy. Here `D3_loro` serves as the run-held-out reference protocol rather than proven deployment ground truth, and the mechanisms underlying the observed difference between random and run-held-out splitting were not directly tested.
 
 ---
 
-## 1. Project Overview
+## 2. Protocol & Positive-Control Taxonomy (V1.1 Frozen Record vs. V2 Main-Branch Nomenclature)
 
-LeakCheck (Python package: `emi`) provides computational neuroscientists and machine learning researchers with deterministic tools to detect, quantify, and prevent methodological data leakage in EEG decoding. 
+To prevent ambiguity between the frozen V1.1 PhysioNet artifact (`benchmark_results/physionet_v1_1/`) and the expanded V2 multi-dataset taxonomy in `src/emi/leakcheck.py`, Table 2.1 maps all protocol identifiers across versions.
 
-By comparing clean operational benchmarks (e.g. Leave-One-Run-Out cross-validation, $D_3$) against naive pooled partitions ($D_1, D_{1s}$) and controlled leakage injections ($P_1\text{--}P_9$), LeakCheck isolates the exact statistical magnitude and directionality of validation biases across multi-channel neuroimaging cohorts.
+### Table 2.1: Cross-Reference Between V1.1 Frozen Artifact Identifiers and V2 Main-Branch Identifiers
 
----
-
-## 2. Why EEG Data Leakage Matters
-
-In biomedical machine learning and neurotechnology, reported classification accuracies often fail to translate to clinical or real-time deployment. In EEG and BCI literature, this performance collapse is largely driven by **methodological data leakage**:
-- **Temporal Autocorrelation**: Slicing continuous, bandpass-filtered signals into overlapping epochs before cross-validation allows contiguous samples to leak across train/test splits.
-- **Supervised Spatial Snooping**: Common Spatial Pattern (CSP) filters or supervised feature selectors fitted on pooled data use test-set class labels, producing near-perfect classification on pure white noise.
-- **Inter-Run Non-Stationarity**: Standard random $k$-fold cross-validation shuffles trials across recording runs, obscuring slow electrode impedance changes and baseline drift that real-time decoders face.
-
-LeakCheck provides the open-source auditing foundation to eliminate these flaws prior to publication.
+| V1.1 Frozen ID (`physionet_v1_1`) | V2 Main-Branch ID | Category | Partitioning & Parameter-Fitting Boundary | Included in Frozen PhysioNet V1.1 CSVs? |
+| :--- | :--- | :--- | :--- | :--- |
+| **`D3_loro`** | `D3_loro` / `L0_block` | Run-Held-Out Reference | 3-fold Leave-One-Run-Out across Runs 4, 8, 12; OAS-CSP ($m=4$) and shrinkage LDA fitted strictly inside training runs. | **Yes** (`reference` / `ref_design`) |
+| **`D1s_size_matched`** | `D1s_size_matched` / `L2_random_size_matched` | Size/Class-Matched Random | 20-repeat random trial split across pooled Runs 4, 8, 12 constrained to match exact `D3_loro` per-fold train/test sample sizes and class counts; fold-nested CSP+LDA. | **Yes** (315-row & summary CSVs) |
+| **`D1m_matched_k`** | `D1m_matched_k` / `L2_random_k_matched` | $k$-Matched Stratified Random | 5-repeat 3-fold stratified random trial split (`RepeatedStratifiedKFold`, `seed=0`) across pooled runs without matching run-specific fold sizes; fold-nested CSP+LDA. | **Yes** (315-row & summary CSVs) |
+| **`P1_csp_on_all`** | `P7_global_csp` (`P1_csp_on_all` alias) | Positive Contamination Control | Supervised OAS-CSP ($m=4$) fitted once on all trials and labels across all selected runs before `D3_loro` splitting; fold-nested LDA fitted on globally projected features. | **Yes** (315-row & summary CSVs) |
+| *(Not in V1.1)* | `P1`–`P6`, `P8`–`P9` | Extended V2 Perturbations | Additional main-branch diagnostic controls (e.g., global standardization, feature selection, hyperparameter tuning, and channel interpolation checks). | **No** (V2 extension only) |
 
 ---
 
-## 3. Research Motivation & Problem Statement
+## 3. Repository Structure & Key Files
 
-Prior literature contained conflicting claims regarding whether random trial shuffling ($D_1$) systematically inflates or deflates cross-validation accuracy relative to clean leave-one-run-out ($D_3$). Many authors hypothesized that apparent performance differences were merely artifacts of unequal training fold sizes.
-
-LeakCheck was designed to answer two central questions:
-1. **The Cardinality Hypothesis**: Does random trial shuffling distort performance even when fold sizes and per-class trial counts strictly match clean run-level cross-validation ($D_{1s}$)?
-2. **The Contamination Dominance Hypothesis**: Does supervised spatial filter leakage ($P_1$) overwhelm partition-level validation effects, and are Riemannian geometry decoders mathematically immune to this contamination?
-
----
-
-## 4. Scientific Objectives
-
-1. **Rigorous Verification**: Provide an end-to-end, mathematically verified auditing pipeline that guarantees zero training/test set index overlap.
-2. **Cardinality-Controlled Benchmarking**: Benchmark size- and class-matched random splitting ($D_{1s}$) against LORO ($D_3$) across large, multi-session public cohorts.
-3. **Multi-Dataset Generalization**: Extend auditing beyond a single corpus by benchmarking both PhysioNet EEGMMIDB ($N=105$) and OpenBMI ($N=34$).
-4. **Decoder Resilience Analysis**: Compare the susceptibility of spatial filtering pipelines (CSP-LDA) versus Riemannian manifold geometry (`ts_lr`).
-5. **Open Science Standards**: Formalize the EEG Benchmark Registry schemas (`registry/schemas/`) for open meta-analyses.
-
----
-
-## 5. Key Contributions & Novel Findings
-
-1. **Deflation Under Stationary Drift**: Across $N=105$ participants of PhysioNet EEGMMIDB, size-matched trial shuffling ($D_{1s}$) produces a statistically significant **$-2.68$ pp deflation** relative to clean LORO ($p = 5.86 \times 10^{-5}$), disproving the assumption that trial shuffling universally inflates accuracy.
-2. **Regime-Dependent Directionality**: On the OpenBMI cohort ($N=34$), where Run 0 (offline screening) and Run 1 (online feedback) represent qualitatively distinct operational states, trial pooling produces an **inflation of $+2.84$ pp** ($p = 1.87 \times 10^{-4}$). The direction of partition bias is determined by whether the recording blocks exhibit sensor drift (forcing noisy interpolation) or regime shifts (allowing interpolation to bypass calibration).
-3. **Refutation of Riemannian Spatial Immunity**: On the full $N=34$ OpenBMI cohort, Riemannian Tangent Space Logistic Regression (`ts_lr`) exhibits a small but statistically significant **$+0.75$ pp shift** ($p = 0.0203$) under $P_1$. While not mathematically immune (due to slight Fréchet reference point shifts), TS-LR is over **$8\times$ more resilient** than CSP-LDA ($+6.25$ pp).
-4. **Dominance of Supervised Spatial Snooping**: Fitting CSP globally on all data produces an overwhelming **$+24.50$ pp artificial inflation** on PhysioNet ($d_z = 1.771$), demonstrating that spatial filter leakage completely dwarfs partition effects.
-
----
-
-## 6. System Architecture
-
-```mermaid
-flowchart TD
-    subgraph Ingestion["1. Multi-Dataset Ingestion"]
-        P_raw["PhysioNet EEGMMIDB<br>(64 ch, 160 Hz, N=105)"]
-        O_raw["OpenBMI GigaScience<br>(62 ch, 1000 Hz, N=34)"]
-        B_raw["BNCI2014-001 / Cho2017<br>(Adapters Tested)"]
-        P_raw --> Base["BaseEEGDataset Interface"]
-        O_raw --> Base
-        B_raw --> Base
-    end
-
-    subgraph Preprocessing["2. Preprocessing & Caching"]
-        Base --> Filter["Label-Blind 8-30 Hz Butterworth"]
-        Filter --> Reject["Automated PTP Artifact Rejection"]
-        Reject --> Cache["Schema v2 Epoch Cache (.npz)<br>SHA-256 Provenance Hashing"]
-    end
-
-    subgraph Splitting["3. Validation Partitioning Engine"]
-        Cache --> D3["D3_loro (Leave-One-Run-Out)"]
-        Cache --> D1s["D1s_size_matched (Cardinality Matched)"]
-        Cache --> D1m["D1m_matched_k (k=K_runs)"]
-        Cache --> D4["D4_chrono (Forward Split)"]
-        Cache --> Leak["Injected Leakage (P1: Global CSP)"]
-    end
-
-    subgraph Decoders["4. Machine Learning & Riemannian Decoders"]
-        D3 --> Dec["Decoders Engine"]
-        D1s --> Dec
-        D1m --> Dec
-        D4 --> Dec
-        Leak --> Dec
-        Dec --> CSP["Shrinkage CSP-LDA (MNE / Custom)"]
-        Dec --> TS["Riemannian Tangent Space LR (ts_lr)"]
-    end
-
-    subgraph Evaluation["5. Non-Parametric Statistical Audit"]
-        CSP --> Stats["Participant-Level Inference (No Pseudoreplication)"]
-        TS --> Stats
-        Stats --> HL["Hodges-Lehmann Estimator (Δ_HL)"]
-        Stats --> BCa["95% BCa Bootstrap CIs (B=2000)"]
-        Stats --> WP["Wilcoxon-Pratt Signed-Rank Test"]
-        Stats --> Holm["Holm-Bonferroni FWER Multiplicity"]
-    end
-
-    subgraph Output["6. Sealed Research Artifacts"]
-        HL --> CSV["benchmark_results/ (*.csv, *.json)"]
-        BCa --> CSV
-        WP --> CSV
-        Holm --> CSV
-        CSV --> Fig["figures/ (Vector PDF & PNG)"]
-    end
-```
-
-For complete architectural contracts and Cordis-style seams, see [docs/architecture.md](docs/architecture.md).
-
----
-
-## 7. Supported EEG Datasets
-
-| Dataset | Cohort Size | Channels | Sampling Rate | Paradigm | Status |
-|---|---|---|---|---|---|
-| **PhysioNet EEGMMIDB** | 109 ($N=105$ analyzed) | 64 EEG | 160 Hz | Left vs Right Fist MI (Runs 4, 8, 12) | **Tier 1 (V1.1 Gold Standard)** |
-| **OpenBMI (Lee et al. 2019)** | 54 ($N=34$ verified intact) | 62 EEG | 1000 Hz $\to$ 160 Hz | Left vs Right Hand MI (Session 1, Runs 0 & 1) | **Tier 1 (V2 Benchmark)** |
-| **BNCI2014-001 (BCI IV-2a)** | 9 | 22 EEG | 250 Hz | 4-class Motor Imagery | **Tier 2 (Adapter Verified)** |
-| **Cho et al. (2017)** | 52 | 64 EEG | 512 Hz | Left vs Right Hand MI | **Tier 2 (Adapter Verified)** |
-
-Detailed descriptions, exclusion rationales, and BIDS compatibility are documented in [docs/datasets.md](docs/datasets.md).
-
----
-
-## 8. Leakage Taxonomy & Mechanisms (P1–P9)
-
-| Mechanism | Description | Contamination Pathway | Status |
-|---|---|---|---|
-| **P1** | **Supervised Spatial Filtering** | CSP filters computed across all trials prior to fold splitting. | **Tier 1 (Empirically Proven)** |
-| **P2** | **Unsupervised Spatial Filtering** | ICA ocular unmixing fitted across concatenated runs. | **Tier 2 (Architecturally Designed)** |
-| **P3** | **Temporal Filter Boundary Leakage** | Continuous bandpass filtering crossing fold boundaries. | **Tier 3 (Registry Protocol)** |
-| **P4** | **Temporal Window Peeking** | Tuning post-cue time windows directly to test accuracy. | **Tier 3 (Registry Protocol)** |
-| **P5** | **Global Feature Normalization** | Z-scoring features using pooled mean and variance. | **Tier 2 (Prototype Implemented)** |
-| **P6** | **Hyperparameter Snooping** | Selecting regularisation parameter $C$ on test fold data. | **Tier 2 (Prototype Implemented)** |
-| **P7** | **Global Feature Selection** | Ranking/selecting features via correlation with test labels. | **Tier 3 (Registry Protocol)** |
-| **P8** | **Sliding Window Overlap** | Overlapping temporal windows spanning train and test sets. | **Tier 3 (Registry Protocol)** |
-| **P9** | **Subject Identity Confounding** | Evaluating cross-subject models on trials from known subjects. | **Tier 3 (Registry Protocol)** |
-
-For mathematical formulations and controls, see [docs/leakage_mechanisms.md](docs/leakage_mechanisms.md).
-
----
-
-## 9. Supported Validation Designs (D1–D6)
-
-- **`D3_loro` (Leave-One-Run-Out)**: Clean operational benchmark. Train on $K-1$ runs, test on run $k$. Complete inter-run isolation.
-- **`D1s_size_matched`**: Cardinality-matched random split. Each fold matches `D3_loro` in sample size and class balance, isolating the pure trial shuffling effect.
-- **`D1m_matched_k`**: Standard $k$-fold cross-validation with $k = K_{\text{runs}}$.
-- **`D1_kfold`**: Naive $k$-fold cross-validation across all pooled trials.
-- **`D4_chrono`**: Forward-chaining split (train on runs $1 \dots K-1$, test on run $K$).
-- **`D5_within_run`**: Within-run cross-validation averaged across blocks.
-
-Full protocol specifications are given in [docs/benchmark_protocols.md](docs/benchmark_protocols.md).
-
----
-
-## 10. Supported Decoders
-
-1. **`csp_lda` (Shrinkage CSP-LDA)**: Common Spatial Patterns with OAS covariance shrinkage followed by Linear Discriminant Analysis.
-2. **`csp_lr` (CSP Logistic Regression)**: CSP spatial filtering followed by $L_2$-regularized Logistic Regression.
-3. **`csp_svm` (CSP Support Vector Machine)**: CSP spatial filtering with linear SVM.
-4. **`ts_lr` (Riemannian Tangent Space LR)**: Native pure-NumPy `CovarianceTransformer` and `TangentSpaceTransformer` mapping SPD matrices to the Riemannian tangent space at the Fréchet mean.
-5. **`ts_lda` (Riemannian Tangent Space LDA)**: Tangent space projection coupled with shrinkage LDA.
-
----
-
-## 11. Statistical Methods & Inference
-
-To eliminate pseudoreplication, LeakCheck computes all inferential statistics strictly at the participant level ($N=105$ or $N=34$):
-- **Hodges-Lehmann Estimator ($\Delta_{\text{HL}}$)**: Median of all pairwise Walsh averages: $\Delta_{\text{HL}} = \operatorname{median}_{i \le j} \frac{D_i + D_j}{2}$.
-- **95% BCa Bootstrap CIs**: Bias-Corrected and Accelerated confidence intervals ($B = 2{,}000$ resamples) adjusting for bias and skewness.
-- **Wilcoxon-Pratt Signed-Rank Test**: Two-sided non-parametric hypothesis testing retaining zero-difference pairs.
-- **Holm-Bonferroni FWER Multiplicity Correction**: Step-down control across tested contrast families.
-- **Within-Subject Effect Size ($d_z$)**: Standardized mean difference $d_z = \bar{D} / s_D$.
-
-Complete mathematical derivations are provided in [docs/statistical_methods.md](docs/statistical_methods.md).
-
----
-
-## 12. Verified Empirical Benchmark Results
-
-### 12.1 PhysioNet EEGMMIDB Benchmark ($N = 105$, CSP-LDA)
-*Evaluated across all 105 verified participants on runs 4, 8, 12 (left vs. right fist).*
-
-| Comparison | Contrast Type | Mean Diff | Median Diff | Hodges-Lehmann ($\Delta_{\text{HL}}$) | 95% BCa Bootstrap CI | Wilcoxon $p_{\text{Holm}}$ | Cohen's $d_z$ |
-|---|---|---:|---:|---:|---:|---:|---:|
-| **P1 vs D3** | Supervised Spatial Leakage | $+24.82$ pp | $+23.26$ pp | **$+24.50$ pp** | $[+21.75, +27.78]$ pp | $2.42 \times 10^{-18}$ | $+1.771$ |
-| **D1s vs D3** | Size-Matched Random | $-2.77$ pp | $-2.61$ pp | **$-2.68$ pp** | $[-3.94, -1.46]$ pp | $5.86 \times 10^{-5}$ | $-0.449$ |
-| **D1m vs D3** | $k$-Matched Random ($k=3$) | $-4.67$ pp | $-4.00$ pp | **$-4.47$ pp** | $[-5.80, -3.11]$ pp | $1.10 \times 10^{-8}$ | $-0.685$ |
-
-### 12.2 OpenBMI Benchmark ($N = 34$, CSP-LDA vs. Riemannian TS-LR)
-*Evaluated across all 34 intact participants on Session 1 (Run 0: offline screening, Run 1: online feedback).*
-
-| Decoder | Contrast | Contrast Type | Hodges-Lehmann ($\Delta_{\text{HL}}$) | 95% BCa Bootstrap CI | Wilcoxon $p_{\text{Holm}}$ | Cohen's $d_z$ |
-|---|---|---|---:|---:|---:|---:|
-| **CSP-LDA** | **P1 vs D3** | Supervised Spatial Leakage | **$+6.25$ pp** | $[+3.25, +8.23]$ pp | $1.87 \times 10^{-4}$ | $+0.745$ |
-| **CSP-LDA** | **D1s vs D3** | Size-Matched Random | **$+2.84$ pp** | $[+1.46, +4.98]$ pp | $1.87 \times 10^{-4}$ | $+0.751$ |
-| **TS-LR** | **P1 vs D3** | Supervised Spatial Leakage | **$+0.75$ pp** | $[+0.25, +1.50]$ pp | $0.0203$ | $+0.417$ |
-| **TS-LR** | **D1s vs D3** | Size-Matched Random | **$+2.94$ pp** | $[+1.66, +4.51]$ pp | $1.94 \times 10^{-4}$ | $+0.771$ |
-
-### 12.3 Publication Figures
-- `figures/openbmi_v2/paired_accuracy_openbmi_csp_lda.png` (Paired participant scatter for CSP-LDA)
-- `figures/openbmi_v2/paired_accuracy_openbmi_ts_lr.png` (Paired participant scatter for Riemannian TS-LR)
-- `figures/openbmi_v2/inflation_openbmi.png` (Paired difference distributions with Hodges-Lehmann CIs)
-
----
-
-## 13. Installation Guide
-
-> [!NOTE]
-> LeakCheck is distributed directly via GitHub as a reproducible scientific package. Do not install `emi` from PyPI.
-
-```bash
-# Clone the repository
-git clone https://github.com/JOYJIT-06/LeakCheck.git
-cd LeakCheck
-
-# Install editable package
-pip install -e .
-```
-
-For full OS-specific instructions, see [docs/installation.md](docs/installation.md).
-
----
-
-## 14. Environment Setup
-
-- **Python Version**: Python 3.10+ (tested on Python 3.10.19)
-- **Hardware**: Standard multi-core CPU (tested on Windows 11 AMD64, 8 GB RAM)
-- **Dependencies**: MNE (`>=1.7,<1.14`), NumPy, SciPy, Scikit-Learn, Pandas, Matplotlib, Joblib.
-
----
-
-## 15. Quick-Start Demonstration
-
-Run the instant, zero-download synthetic demo in $<2$ seconds:
-
-```bash
-python scripts/quickstart_demo.py
-```
-
-See [docs/quickstart.md](docs/quickstart.md) for a full walkthrough.
-
----
-
-## 16. Dataset Preparation & Ingestion
-
-### PhysioNet EEGMMIDB
-Downloaded automatically into `~/mne_data/MNE-eegbci-data/` upon running `scripts/run_leakcheck.py`.
-
-### OpenBMI
-Place raw `.mat` session archives under `data/OpenBMI/`. Run `src/emi/datasets_openbmi.py` to screen corruption and downsample. See [docs/datasets.md](docs/datasets.md).
-
----
-
-## 17. How to Run Audits & Benchmarks
-
-### Single Participant Smoke Test
-```bash
-python scripts/run_leakcheck.py --subjects 1 --designs D3_loro,D1s_size_matched,P1_csp_on_all --n-null 0
-```
-
-### Full-Cohort PhysioNet Audit
-```bash
-python scripts/run_leakcheck.py --subjects 1-109 --designs D3_loro,D1m_matched_k,D1s_size_matched,P1_csp_on_all --decoders csp_lda --csp mne --csp-reg oas --n-jobs 4 --outdir benchmark_results/physionet_v1_1
-```
-
-### Full OpenBMI Benchmark
-```bash
-python scripts/run_openbmi_benchmark.py --data-dir data/OpenBMI --subjects 1-54 --decoders csp_lda,ts_lr --designs D3_loro,D1s_size_matched,P1_csp_on_all --outdir benchmark_results/openbmi_v2
-```
-
-Consult the [User Guide](docs/user_guide.md) for complete CLI argument reference.
-
----
-
-## 18. How to Reproduce Published Results
-
-Follow the step-by-step reproduction instructions and compare SHA-256 cryptographic digests in [docs/reproducibility.md](docs/reproducibility.md).
-
----
-
-## 19. Output Artifacts & Interpretation
-
-- `fold_metrics.csv`: Individual fold accuracies, balanced accuracies, and AUROC values.
-- `participant_metrics.csv`: Aggregated participant scores per design.
-- `design_comparisons.csv`: Paired contrast statistics ($\Delta_{\text{HL}}$, BCa CIs, Holm-adjusted $p$-values, $d_z$).
-- `benchmark_manifest.json`: Cryptographic manifest of parameters, seeds, and cohort exclusions.
-
----
-
-## 20. Repository Structure
-
-```
+```text
 LeakCheck/
-├── .github/workflows/          # Multi-OS CI workflows (Ubuntu, Windows)
-├── benchmark_results/          # Sealed benchmark outputs
-│   ├── physionet_v1/           # Historical V1 frozen benchmark (N=105)
-│   ├── physionet_v1_1/         # Stabilized V1.1 size-matched benchmark (N=105)
-│   └── openbmi_v2/             # Sealed OpenBMI multi-dataset benchmark (N=34)
-├── docs/                       # Comprehensive documentation
-│   ├── installation.md         # Environment setup and dependencies
-│   ├── quickstart.md           # 5-minute fast-start guide
-│   ├── user_guide.md           # Full CLI and API manual
-│   ├── datasets.md             # Dataset catalog and adapter architecture
-│   ├── benchmark_protocols.md  # Formal D1-D6 validation designs
-│   ├── leakage_mechanisms.md   # P1-P9 leakage taxonomy and mathematics
-│   ├── statistical_methods.md  # Hodges-Lehmann, BCa CI, Wilcoxon-Pratt
-│   ├── reproducibility.md      # Reproduction commands and SHA-256 hashes
-│   ├── troubleshooting.md      # Common pitfalls and FAQs
-│   ├── architecture.md         # Architectural contracts and schemas
-│   └── AUDIT/                  # Independent verification and audit reports
-├── figures/                    # Vector (PDF) and raster (PNG) publication figures
-├── registry/schemas/           # EEG Benchmark Registry JSON schemas
-├── scripts/                    # CLI benchmark runners and demo scripts
-├── src/emi/                    # Core Python package
-│   ├── __init__.py             # Version 1.1.0 metadata
-│   ├── cache.py                # Schema v2 epoch caching
-│   ├── config.py               # Frozen experimental constants
-│   ├── datasets_adapters.py    # PhysioNet, OpenBMI, BNCI, Cho adapters
-│   ├── datasets_base.py        # Abstract BaseEEGDataset interface
-│   ├── datasets_openbmi.py     # OpenBMI parser and corruption handler
-│   ├── decoders.py             # CSP, Riemannian Covariance & Tangent Space
-│   ├── leakcheck.py            # Central audit engine and leakage injection
-│   ├── metrics.py              # Balanced accuracy, fold pooling
-│   ├── preprocess.py           # Label-blind filtering and artifact rejection
-│   ├── splitters.py            # Deterministic, index-safe CV generators
-│   └── stats.py                # Non-parametric statistical inference
-├── tests/                      # 186 automated unit and regression tests
-├── CHANGELOG.md                # Semantic versioning changelog
-├── CITATION.cff                # Citation File Format metadata
-├── CONTRIBUTING.md             # Development and contribution guide
-├── LICENSE                     # Apache License 2.0
-├── pyproject.toml              # Build metadata and dependencies
-└── README.md                   # Main documentation
+├── benchmark_results/
+│   └── physionet_v1_1/
+│       ├── inflation_by_subject.csv         # 315 subject-contrast rows (N = 105 subjects × 3 designs)
+│       ├── inflation_table.csv              # Frozen 3-row cohort statistical summary table (20 columns)
+│       ├── excluded_or_failed_subjects.csv  # Operational exclusion log (S044, S069, S086, S091)
+│       ├── subject_info.csv                 # Retained subject trial counts & SHA-256 .npz cache hashes
+│       ├── settings.json                    # Frozen execution parameters (hash: e4a2b05c, n_null: 0)
+│       └── provenance.json                  # Record rec_physionet_v1_1_e4a2b05c metadata
+├── docs/
+│   └── AUDIT/
+│       └── V1_1_PROVENANCE_RECONCILIATION.md # Historical cache provenance & audit notes
+├── src/
+│   └── emi/
+│       ├── config.py                        # Pipeline & eligibility gate configuration defaults
+│       ├── preprocess.py                    # MNE epoching (baseline=None, include_tmax=False) & caching
+│       ├── splitters.py                     # D3_loro, D1m_matched_k, and D1s_size_matched splitters
+│       ├── decoders.py                      # OAS-CSP (n_components=4, reg='oas') & shrinkage LDA
+│       ├── metrics.py                       # Pooled vs. fold-mean accuracy & repeat aggregation
+│       ├── leakcheck.py                     # Orchestration of fold-nested & P1 contaminated evaluations
+│       └── leakstats.py                     # Hodges-Lehmann, BCa bootstrap, Wilcoxon, dz, & paired TOST
+└── README.md
 ```
 
 ---
 
-## 21. Automated Testing & Continuous Integration
+## 4. Cohort Accounting & Provenance Reconciliation (`N = 105`)
 
-LeakCheck maintains a rigorous test suite of **186 passing tests** across 13 test modules:
+Of the $109$ volunteers in the [PhysioNet EEG Motor Movement/Imagery Dataset v1.0.0](https://physionet.org/content/eegmmidb/1.0.0/) (`S001`–`S109`), the frozen V1.1 benchmark (`benchmark_results/physionet_v1_1/`) retains **$N = 105$ participants**:
+- **Missing Local Cache Files ($n = 3$)**: **`S044`, `S069`, and `S091`** failed with `"no cache file D:\my lab\LeakCheck_Cache\physionet\sub-0{44,69,91}_epochs.npz"` in `excluded_or_failed_subjects.csv`. These represent missing local cache files at execution time rather than verified raw EDF recording defects.
+- **Excluded by Trial-Count Eligibility Gate ($n = 1$)**: **`S086`** was excluded with `"EXCLUDED: only 24 trials (< 30)"` under the configured gate (`min_trials >= 30`, `min_per_class >= 10`, `min_runs >= 3`, `min_per_run >= 8`).
+- **Erratum Note on `docs/AUDIT/V1_1_PROVENANCE_RECONCILIATION.md`**: An earlier note in `V1_1_PROVENANCE_RECONCILIATION.md` listed `sub-088, sub-092, sub-100, sub-104` as excluded and `sub-086` as retained. Direct inspection of `benchmark_results/physionet_v1_1/inflation_by_subject.csv` and `excluded_or_failed_subjects.csv` confirms that **`S088`, `S092`, `S100`, and `S104` are present and retained in `inflation_by_subject.csv`**, whereas **`S044`, `S069`, `S086`, and `S091` are the exact 4 absent subject IDs**.
+
+---
+
+## 5. Reconciled Benchmark Results (`benchmark_results/physionet_v1_1/`)
+
+### 5.1 Participant-Level Accuracy Summary Across Protocols ($N = 105$)
+
+Calculated directly from `benchmark_results/physionet_v1_1/inflation_by_subject.csv` (`acc_ref` and `acc_leaky` columns):
+
+| Protocol ID | Role | Mean Accuracy (SD) | Median Accuracy (IQR: Q1–Q3) | Minimum (Subject ID) | Maximum (Subject ID) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **`D3_loro`** | Run-Held-Out Reference (3-fold LORO) | **60.15%** (13.29%) | **57.78%** (17.78%: 51.11%–68.89%) | **35.56%** (`S028`) | **100.00%** (`S029`; `S007` = 97.78%) |
+| **`D1s_size_matched`** | Size- & Class-Matched Random (20 repeats) | **57.38%** (13.50%) | **52.89%** (16.72%: 47.73%–64.44%) | **40.11%** (`S077`) | **99.67%** (`S029`) |
+| **`D1m_matched_k`** | $k=3$ Stratified Random (5 repeats) | **55.48%** (13.51%) | **52.00%** (16.44%: 45.78%–62.22%) | **33.78%** (`S017`) | **99.11%** (`S029`) |
+| **`P1_csp_on_all`** | Pre-Split Global Supervised CSP Control | **84.97%** (11.16%) | **86.67%** (15.56%: 77.78%–93.33%) | **56.82%** (`S099`) | **100.00%** (`S005, S007, S009, S029, S061, S062`) |
+
+---
+
+### 5.2 Paired Contrasts & Reconciliation of `inflation_table.csv` vs. Recomputed SciPy Statistics ($N = 105$)
+
+Why did earlier README tables and `inflation_table.csv` show minor numerical differences in the 95% BCa CI bounds and the `P1_csp_on_all` Wilcoxon $p$-value?
+1. **BCa Bootstrap CI Routine**: `src/emi/leakstats.py` uses `scipy.stats.bootstrap((d,), statistic=hodges_lehmann, n_resamples=10000, confidence_level=0.95, method="BCa", random_state=0)`, which yields `[-3.94, -1.46] pp` (`D1s`), `[-5.80, -3.11] pp` (`D1m`), and `[+21.75, +27.78] pp` (`P1`). The frozen file `inflation_table.csv` recorded slightly different BCa endpoints (`[-3.95, -1.47]`, `[-5.83, -3.14]`, `[+22.22, +27.78] pp`) from an earlier bootstrap run.
+2. **Wilcoxon Zero-Difference Method & Floating-Point Tie Tolerance**: In `inflation_by_subject.csv`, averaging over 20 or 5 random repeats produces 3 machine-epsilon differences in `D1s_size_matched` (`S024`: $+5.55 \times 10^{-15}\text{ pp}$, `S053`: $+1.11 \times 10^{-14}\text{ pp}$, `S067`: $+5.55 \times 10^{-15}\text{ pp}$) and 1 machine-epsilon difference in `D1m_matched_k` (`S002`: $+1.11 \times 10^{-14}\text{ pp}$, alongside exact tie `S093`: $0.0\text{ pp}$). For `P1_csp_on_all`, `S029` ($100.00\%$ vs. $100.00\%$) and `S054` ($84.09\%$ vs. $84.09\%$) are exact ties ($0.0\text{ pp}$), while `S026` ($-2.22\text{ pp}$) and `S049` ($-2.27\text{ pp}$) are negative. Passing `zero_method="wilcox"` (SciPy default in `leakstats.py`) yields $p_{\text{Holm}} = 4.43 \times 10^{-18}$ for `P1_csp_on_all` (matching `inflation_table.csv`), whereas `zero_method="pratt"` yields $p_{\text{Holm}} = 2.42 \times 10^{-18}$ (matching the earlier README table).
+
+Both sets of values are reported transparently in **Table 5.2** below.
+
+| Contrast ($\Delta = \text{Protocol} - \text{Ref}$) | Directional Counts ($|\Delta| \le 10^{-9}\text{ pp}$ tie tolerance) [Raw Float `== 0`] | Mean $\Delta$ (SD) | Median $\Delta$ | Hodges–Lehmann $\hat{\theta}_{\text{HL}}$ | 95% BCa CI (`inflation_table.csv` \| `scipy` `seed=0`) | Wilcoxon $p_{\text{Holm}}$ (`wilcox` \| `pratt`, $|\Delta|\le 10^{-9}$) | Cohen's $d_z$ ($r_{\text{rb}}$) | Exploratory TOST ($\pm 2.0\text{ pp}$) $p_{\text{TOST}}$ [90% Mean CI] |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`D1s_size_matched` vs. `D3_loro`** | **36 (+), 66 (−), 3 (0)** (`S024, S053, S067`) [Raw: 39+, 66−, 0] | **−2.77 pp** (6.17 pp) | **−2.61 pp** | **−2.68 pp** (`-2.6768`) | **`[-3.95, -1.47]`** \| `[-3.94, -1.46]` pp | **`5.86e-05`** (raw) \| `4.99e-05` (`wilcox`) \| `5.62e-05` (`pratt`) | **−0.449** (−0.452) | **0.8985** [`[-3.77, -1.77]` pp] |
+| **`D1m_matched_k` vs. `D3_loro`** | **26 (+), 77 (−), 2 (0)** (`S002, S093`) [Raw: 27+, 77−, 1] | **−4.67 pp** (6.81 pp) | **−4.00 pp** | **−4.47 pp** (`-4.4697`) | **`[-5.83, -3.14]`** \| `[-5.80, -3.11]` pp | **`1.08e-08`** (raw) \| `1.05e-08` (`wilcox`) \| `1.06e-08` (`pratt`) | **−0.685** (−0.659) | **0.9999** [`[-5.77, -3.56]` pp] |
+| **`P1_csp_on_all` vs. `D3_loro`** | **101 (+), 2 (−)** (`S026, S049`), **2 (0)** (`S029, S054`) [Raw: 101+, 2−, 2] | **+24.82 pp** (14.01 pp) | **+23.26 pp** | **+24.50 pp** (`+24.5029`) | **`[+22.22, +27.78]`** \| `[+21.75, +27.78]` pp | **`4.43e-18`** (`wilcox`) \| `2.42e-18` (`pratt`) | **+1.771** (+0.998) | **1.0000** [`[+22.54, +27.09]` pp] |
+| **`D1s_size_matched` vs. `D1m_matched_k`** *(Direct ID-Joined Contrast)* | **71 (+), 29 (−), 5 (0)** (`S003, S011, S027, S045, S052`) [Raw: 74+, 31−, 0] | **+1.89 pp** (3.43 pp) | **+1.79 pp** | **+1.86 pp** (`+1.8561`) | *Not in `inflation_table`* \| **`[+1.27, +2.50]`** pp | **`4.87e-07`** (`wilcox`, $m=4$) \| `5.61e-07` (`pratt`, $m=4$) | **+0.552** (+0.625) | **0.3765** [`[+1.34, +2.45]` pp] |
+
+---
+
+## 6. Note on Secondary Multi-Dataset Benchmarks
+
+In supplementary repository runs across secondary datasets (such as BNCI2014-001 and Lee2019), trial-level vs. run-held-out differences varied in sign and magnitude. **The observed direction differed across the reported benchmarks; the mechanisms responsible require further investigation.** Users should not assume that trial-level random splitting universally increases or universally decreases decoding accuracy across all EEG recording paradigms.
+
+---
+
+## 7. Reproducing the Statistical Verification from Frozen CSVs
+
+To verify every statistic, directional count, bootstrap interval, Wilcoxon test (`wilcox` and `pratt`), and direct ID-joined contrast directly from `benchmark_results/physionet_v1_1/inflation_by_subject.csv`:
 
 ```bash
-pytest tests -q
-# Output: 186 passed in ~60s
-```
-
-CI runs automatically via GitHub Actions across:
-- **Operating Systems**: Ubuntu Linux, Windows Server
-- **Python Versions**: 3.10, 3.11, 3.12
-
----
-
-## 22. Known Limitations & Roadmap Boundaries
-
-1. **Multi-Class Motor Imagery**: Current empirical benchmarks focus on 2-class motor imagery (Left vs. Right hand/fist). Multi-class adapters (`BNCI2014001`) are implemented and tested, with full-cohort benchmarks scheduled for V2.1.
-2. **Deep Learning Decoders**: Deep architectures (EEGNet, ShallowFBCSPNet) are architecturally supported via Scikit-Learn wrapper seams, but are not included in the standard CPU-only benchmark due to compute constraints.
-3. **P3–P9 Empirical Sweeps**: While P1 (spatial leakage) is fully audited across 139 total participants, mechanisms P3–P9 are formalised in registry schemas and prototypes, awaiting expanded multi-cohort campaigns.
-
----
-
-## 23. Citation & References
-
-If you use LeakCheck in your research, please cite:
-
-```bibtex
-@software{das2026leakcheck,
-  author       = {Das, Joyjit},
-  title        = {{LeakCheck: A Multi-Dataset EEG Validation and Data Leakage Auditing Framework}},
-  month        = nov,
-  year         = 2026,
-  publisher    = {GitHub},
-  version      = {v1.1.0},
-  url          = {https://github.com/JOYJIT-06/LeakCheck}
-}
+python3 recalculate_all_stats.py
 ```
 
 ---
 
-## 24. License
+## 8. License & Citation
 
-This project is licensed under the **Apache License 2.0** — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 25. Contributing Guidelines
-
-We welcome contributions! Please review [CONTRIBUTING.md](CONTRIBUTING.md) for details on code style, conventional commits, and required unit tests before submitting pull requests.
-
----
-
-## 26. Contact & Governance
-
-- **Project Lead**: Joyjit Das ([@JOYJIT-06](https://github.com/JOYJIT-06))
-- **ORCID**: [0009-0008-0529-4104](https://orcid.org/0009-0008-0529-4104)
-- **Repository**: [https://github.com/JOYJIT-06/LeakCheck](https://github.com/JOYJIT-06/LeakCheck)
-- **Issues**: Please file bug reports and feature requests via GitHub Issues.
-
----
-
-## 27. Documentation Directory Map
-
-| Document | Purpose |
-|---|---|
-| [docs/installation.md](docs/installation.md) | Complete environment setup for Windows, Linux, macOS |
-| [docs/quickstart.md](docs/quickstart.md) | 5-minute zero-download walkthrough |
-| [docs/user_guide.md](docs/user_guide.md) | CLI commands, API reference, options |
-| [docs/datasets.md](docs/datasets.md) | Dataset details, preprocessing, adapters |
-| [docs/benchmark_protocols.md](docs/benchmark_protocols.md) | Formal specifications of D1–D6 validation designs |
-| [docs/leakage_mechanisms.md](docs/leakage_mechanisms.md) | P1–P9 taxonomy and mathematical pathways |
-| [docs/statistical_methods.md](docs/statistical_methods.md) | Hodges-Lehmann, BCa CIs, Wilcoxon-Pratt, Holm |
-| [docs/reproducibility.md](docs/reproducibility.md) | Reproduction guide and SHA-256 verification hashes |
-| [docs/troubleshooting.md](docs/troubleshooting.md) | Common errors, memory tuning, FAQ |
-| [docs/architecture.md](docs/architecture.md) | Component architecture and extension interfaces |
-| [docs/AUDIT/](docs/AUDIT/) | Independent verification reports and claim matrices |
+Released under the MIT License. When citing the PhysioNet EEGMMIDB dataset, please cite Schalk et al. (2004) and Goldberger et al. (2000).
