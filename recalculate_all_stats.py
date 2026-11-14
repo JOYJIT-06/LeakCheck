@@ -25,10 +25,13 @@ def resolve_csv_path() -> str:
         if os.path.isfile(cand):
             return cand
         raise FileNotFoundError(f"Specified CSV file does not exist: {cand}")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     candidates = [
         "inflation_by_subject.csv",
+        os.path.join(base_dir, "benchmark_results", "physionet_v1_1", "inflation_by_subject.csv"),
         os.path.join("benchmark_results", "physionet_v1_1", "inflation_by_subject.csv"),
-        os.path.join(os.path.dirname(__file__), "inflation_by_subject.csv"),
+        os.path.join(base_dir, "inflation_by_subject.csv"),
+        os.path.join(base_dir, "..", "benchmark_results", "physionet_v1_1", "inflation_by_subject.csv"),
         "/working_dir/c_2e17a9d5e1c4bb66/artifacts/file_generation/ttl=63d/intermediate/inflation_by_subject.csv",
     ]
     for c in candidates:

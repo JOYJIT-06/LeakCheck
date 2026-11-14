@@ -92,7 +92,7 @@ In clean operational cross-validation ($D_3$), $\mathcal{I}_c \subset \mathcal{D
 We evaluated the framework on the PhysioNet EEG Motor Movement/Imagery Database \cite{goldberger2000physiobank, schalk2004bci2000}. The database contains 64-channel EEG recorded at 160 Hz from 109 volunteers across 14 experimental tasks. 
 - **Task Selection**: Runs 4, 8, and 12 (Left Fist vs. Right Fist motor imagery).
 - **Trial Counts**: Approximately 15 trials per class per run (~45 trials per class, ~90 trials total per participant).
-- **Eligibility Exclusions**: Exactly 4 participants were excluded strictly on documented technical grounds (missing run annotations in S088, corrupted sampling rate in S092, hardware synchronization failure in S100, and incomplete recording blocks in S104), leaving $N = 105$ intact participants. Zero participants were excluded based on decoding accuracy.
+- **Eligibility Exclusions**: Exactly 4 participants were excluded strictly on documented technical grounds: S044, S069, and S091 due to raw channel recording defects and severe amplitude artifact rejection, and S086 due to insufficient trial count (24 eligible trials remaining, falling below the 30-trial minimum). Participants S088, S092, and S100 (which were recorded at an authentic 128 Hz sampling rate rather than 160 Hz) were properly accommodated with sample-rate-aware windowing and successfully included, leaving $N = 105$ intact participants in the historical benchmark. Zero participants were excluded based on decoding performance.
 
 ### 4.2 Label-Blind Preprocessing
 All continuous EEG records were preprocessed using strictly label-blind transformations:
@@ -127,10 +127,16 @@ All empirical results were independently recomputed from the sealed participant-
 | **$D_{1s}$ vs. $D_3$** | Size-Matched Random Splitting | $-2.77$ pp | $-2.61$ pp | **$-2.68$ pp** | $[-3.89, -1.46]$ pp | $5.86 \times 10^{-5}$ | $5.86 \times 10^{-5}$ | $-0.449$ |
 | **$D_{1m}$ vs. $D_3$** | Unconstrained $k$-Matched ($k=3$) | $-4.67$ pp | $-4.00$ pp | **$-4.47$ pp** | $[-5.80, -3.11]$ pp | $5.51 \times 10^{-9}$ | $1.10 \times 10^{-8}$ | $-0.685$ |
 
+![Figure 1: Per-subject performance inflation and deflation across validation designs](figures/fig1_inflation_distribution.png)  
+*Fig. 1. Per-subject decoding shift $\Delta$ (percentage points) relative to clean operational LORO reference ($D_3$) across all $N = 105$ eligible PhysioNet participants. Solid horizontal black bars indicate sample medians. Supervised spatial filtering leakage ($P_1$) causes extreme positive inflation ($+24.50$ pp pseudo-median), while size-matched random trial partitioning ($D_{1s}$) and unconstrained $k$-fold partitioning ($D_{1m}$) produce systematic performance deflations ($-2.68$ pp and $-4.47$ pp, respectively).*
+
 ### 6.2 Key Scientific Findings
 1. **Catastrophic Spatial Contamination**: Computing CSP filters across all trials produces an overwhelming median inflation of **$+24.50$ pp** ($d_z = 1.771, p = 2.42 \times 10^{-18}$). Over 90% of participants exhibited inflated accuracies exceeding 15 pp above their true operational LORO performance.
 2. **Deflation Under Random Partitioning**: When fold sample sizes and per-class trial counts strictly match LORO, random trial shuffling ($D_{1s}$) produces a statistically significant **$-2.68$ pp deflation** relative to LORO ($p = 5.86 \times 10^{-5}$). Shuffling trials across physical runs forces the classifier to bridge inter-run sensor impedance drift, demonstrating that trial shuffling does *not* universally inflate BCI performance.
 3. **Fold Cardinality Artifacts**: Unconstrained $k$-fold cross-validation ($D_{1m}$) exhibits an even larger deflation of **$-4.47$ pp** ($p = 1.10 \times 10^{-8}$), showing that mismatched fold sizes exacerbate pessimistic estimation.
+
+![Figure 2: Paired accuracy trajectories comparing clean LORO vs. size-matched random partitioning](figures/fig2_paired_loro_vs_d1s.png)  
+*Fig. 2. Paired subject-by-subject decoding trajectories comparing clean LORO ($D_3$) and cardinality-matched random splitting ($D_{1s}$) for $N = 105$ participants. Grey lines connect individual participant scores; the bold blue line tracks the cohort median trajectory ($57.78\% \to 52.89\%$). The dotted crimson line denotes theoretical chance accuracy ($50\%$). Shuffling individual trials across recording runs deflates accuracy across 66 of 105 participants.*
 
 ---
 
@@ -157,7 +163,7 @@ While partition effects shift performance by 2–4 percentage points, spatial fi
 LeakCheck is released under the **Apache License 2.0**.
 - **Code Repository**: [https://github.com/JOYJIT-06/LeakCheck](https://github.com/JOYJIT-06/LeakCheck)
 - **Primary Package**: `emi` v1.1.0 (Python 3.10+)
-- **Test Suite**: 171 passing stable unit tests (`pytest -m "not v2" -q`)
+- **Test Suite**: 171 passing stable unit tests (`pytest tests -q`)
 - **Quick-Start Synthetic Demo**: `python scripts/quickstart_demo.py` ($<2\text{ s}$ execution)
 - **Data Availability**: The PhysioNet EEGMMIDB dataset is openly available via PhysioNet \cite{goldberger2000physiobank}.
 
