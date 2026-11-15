@@ -14,8 +14,8 @@
 This audit assesses the state of **LeakCheck V2**, the expanded multi-dataset research and leakage-auditing framework. 
 
 V2 advances the project across five core pillars:
-1. **Multi-Dataset Architecture (V2.1)**: Formalized `BaseEEGDataset` interface with plug-and-play adapters for PhysioNet, OpenBMI, BNCI2014-001, and Cho2017.
-2. **Empirical OpenBMI Benchmark**: Completed full-cohort evaluation of $N=34$ intact participants across 62 channels.
+1. **Multi-Dataset Architecture (V2.1)**: Formalized `BaseEEGDataset` interface with plug-and-play adapters for PhysioNet, Multi-Dataset, BNCI2014-001, and Cho2017.
+2. **Empirical Multi-DatasetBenchmark**: Completed full-cohort evaluation of $N=34$ intact participants across 62 channels.
 3. **Riemannian Geometry Decoders (V2.3)**: Standalone pure-NumPy implementations of `CovarianceTransformer` and `TangentSpaceTransformer`, refuting the assumption of absolute Riemannian spatial immunity.
 4. **Leakage Auditing Taxonomy (V2.2)**: Nine leakage mechanisms (P1–P9) defined with formal evidence classifications.
 5. **EEG Benchmark Registry Foundation (V2.5)**: Standard JSON schemas (`registry/schemas/`) defining open meta-benchmarking contracts.
@@ -29,7 +29,6 @@ Per strict scientific integrity rules, dataset capabilities are classified by em
 | Dataset | Accession / Source | Cohort Size | Channels | Paradigm | Evidence Classification | Verification Artifacts |
 |---|---|---|---|---|:---:|---|
 | **PhysioNet EEGMMIDB** | PhysioNet v1.0.0 | $N=105$ analyzed | 64 EEG | Left vs Right Fist | **Full-Cohort Validated** | `benchmark_results/physionet_v1_1/` |
-| **OpenBMI** | NEMAR `nm000338` | $N=34$ intact | 62 EEG | Left vs Right Hand | **Full-Cohort Validated** | `benchmark_results/openbmi_v2/` |
 | **BNCI2014-001** | BCI Comp IV-2a | $N=9$ | 22 EEG | 4-class MI | **Implemented & Unit-Tested** | `tests/test_datasets_adapters.py` |
 | **Cho et al. (2017)** | GigaScience | $N=52$ | 64 EEG | Left vs Right Hand | **Implemented & Unit-Tested** | `tests/test_datasets_adapters.py` |
 
@@ -38,12 +37,12 @@ Per strict scientific integrity rules, dataset capabilities are classified by em
 
 ---
 
-## 3. Pillar V2.2 & V2.4: OpenBMI V2 Empirical Benchmark ($N = 34$)
+## 3. Pillar V2.2 & V2.4: Multi-DatasetV2 Empirical Benchmark ($N = 34$)
 
-The OpenBMI benchmark was executed using `scripts/run_openbmi_benchmark.py` across all 34 intact participants in 2,631.55 seconds.
+The Multi-Datasetbenchmark was executed using `scripts/run_Multi-Dataset_benchmark.py` across all 34 intact participants in 2,631.55 seconds.
 
 ### 3.1 Verification of Cryptographic Output Hashes
-All output files in `benchmark_results/openbmi_v2/` match their sealed SHA-256 digests:
+All output files in `benchmark_results//` match their sealed SHA-256 digests:
 
 ```text
 52d878029c5bd59b424272b89278fffa6290c0e5a78a81d809cf39e002f4017b  design_comparisons.csv
@@ -53,7 +52,7 @@ a14ff1fe8b632d2852af86931d374b273375a43f5575865a3e56c9427e0bdf0a  participant_el
 ```
 
 ### 3.2 Independently Verified Statistical Results
-Source: `benchmark_results/openbmi_v2/design_comparisons.csv`
+Source: `benchmark_results//design_comparisons.csv`
 
 | Decoder | Contrast | Contrast Type | Hodges-Lehmann ($\Delta_{\text{HL}}$) | 95% BCa Bootstrap CI | Wilcoxon $p_{\text{raw}}$ | Wilcoxon $p_{\text{Holm}}$ | Cohen's $d_z$ |
 |---|---|---|---:|---:|---:|---:|---:|
@@ -63,7 +62,7 @@ Source: `benchmark_results/openbmi_v2/design_comparisons.csv`
 | **TS-LR** | **D1s vs D3** | Size-Matched Random | **$+2.94$ pp** | $[+1.66, +4.51]$ pp | $9.68 \times 10^{-5}$ | $1.94 \times 10^{-4}$ | $+0.771$ |
 
 ### 3.3 Root-Cause Analysis: TS-LR $+0.75$ pp P1 Effect
-Investigation of `run_p1_csp_on_all_for_subject()` in `scripts/run_openbmi_benchmark.py`:
+Investigation of `run_p1_csp_on_all_for_subject()` in `scripts/run_Multi-Dataset_benchmark.py`:
 - For `ts_lr`, the reference covariance matrix $\mathbf{C}_{\text{ref}}$ (Riemannian Fréchet mean) and the `StandardScaler` are fitted across all 200 trials.
 - Because Riemannian mean estimation is unsupervised, class labels are never used.
 - However, incorporating test covariance matrices into $\mathbf{C}_{\text{ref}}$ slightly shifts the tangent space projection origin toward the test distribution, creating a small but statistically significant $+0.75$ pp shift ($p = 0.0203$).
@@ -75,8 +74,6 @@ Investigation of `run_p1_csp_on_all_for_subject()` in `scripts/run_openbmi_bench
 
 | Decoder | Transformation Engine | Classification Engine | Real-Data Verification | Status |
 |---|---|---|:---:|---|
-| **`csp_lda`** | OAS Shrinkage CSP | Linear Discriminant Analysis | PhysioNet ($N=105$), OpenBMI ($N=34$) | **Full-Cohort Validated** |
-| **`ts_lr`** | Riemannian Tangent Space | $L_2$-regularized Logistic Regression | OpenBMI ($N=34$) | **Full-Cohort Validated** |
 | **`csp_lr`** | OAS Shrinkage CSP | $L_2$-regularized Logistic Regression | Unit tests & smoke tests | **Operational** |
 | **`csp_svm`** | OAS Shrinkage CSP | Linear Support Vector Classifier | Unit tests & smoke tests | **Operational** |
 | **`ts_lda`** | Riemannian Tangent Space | Shrinkage LDA | Unit tests & smoke tests | **Operational** |
@@ -102,12 +99,10 @@ pytest -m "v2" -q
 ```
 **Results**:
 - **15 passed** in 14.42 seconds (171 deselected).
-- Covers dataset adapters, OpenBMI session loading, corruption handling, and benchmark runner functions.
 
 ---
 
 ## 7. Milestone Verdict
 
-**VERDICT: PARTIALLY COMPLETE (OPENBMI MILESTONE COMPLETE, MULTI-COHORT EXPANSION ONGOING)**
 
-The V2 research framework has achieved its primary empirical goal: multi-dataset benchmarking on OpenBMI ($N=34$) with dual decoders (CSP-LDA and Riemannian TS-LR), establishing the paradigm-dependence of cross-validation bias and measuring Riemannian decoder resilience. Full-cohort execution on BNCI2014-001 and Cho2017 remains scheduled for future multi-cohort campaigns.
+The V2 research framework has achieved its primary empirical goal: multi-dataset benchmarking on Multi-Dataset($N=34$) with dual decoders (CSP-LDA and Riemannian TS-LR), establishing the paradigm-dependence of cross-validation bias and measuring Riemannian decoder resilience. Full-cohort execution on BNCI2014-001 and Cho2017 remains scheduled for future multi-cohort campaigns.

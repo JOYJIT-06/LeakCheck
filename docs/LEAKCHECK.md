@@ -58,6 +58,5 @@ run-held-out estimates.
 
 - PhysioNet EEGMMIDB: empirically evaluated in V1.
 - MOABB adapter: experimental; not validated by V1.
-- OpenBMI: not evaluated in V1.
 - Multi-dataset validation: not completed.
 - Multi-site validation: not completed.

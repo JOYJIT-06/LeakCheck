@@ -33,9 +33,9 @@ conda create -n leakcheck python=3.10
 2. Alternatively, pre-download the participant EDF files into `~/mne_data/MNE-eegbci-data/physionet.org/files/eegmmidb/1.0.0/`.
 3. LeakCheck automatically detects existing files and does not re-download them.
 
-### Q: OpenBMI `MatReadError` or corrupted `.mat` files
-**Answer**: OpenBMI `.mat` archives are large (~300 MB per participant). If an HTTP download is interrupted, SciPy's MATLAB parser will raise `MatReadError`.
-- LeakCheck's `src/emi/datasets_openbmi.py` catches this exception automatically, records `status="corrupted"` in `participant_eligibility.csv`, and continues evaluating remaining participants.
+### Q: Multi-Dataset`MatReadError` or corrupted `.mat` files
+**Answer**: Multi-Dataset`.mat` archives are large (~300 MB per participant). If an HTTP download is interrupted, SciPy's MATLAB parser will raise `MatReadError`.
+- LeakCheck's `src/emi/datasets_Multi-Dataset.py` catches this exception automatically, records `status="corrupted"` in `participant_eligibility.csv`, and continues evaluating remaining participants.
 - To re-download a single participant, delete the truncated file and fetch it from the NEMAR repository.
 
 ### Q: Windows Long Path Errors (`FileNotFoundError`)
@@ -58,7 +58,6 @@ In `src/emi/leakcheck.py`, `p1_csp_on_all` raises `NotApplicable` for any decode
 ### Q: Memory limits on systems with 8 GB RAM
 **Answer**: Each participant epoch array requires between 50 MB and 150 MB of memory. When running with `--n-jobs -1` on high-core machines, spawning 8 or 16 parallel workers can momentarily spike memory usage.
 - On 8 GB RAM systems, use `--n-jobs 2` or `--n-jobs 4`.
-- The sequential runner `scripts/run_openbmi_benchmark.py` operates stably under $1.5\text{ GB}$ peak resident memory.
 
 ### Q: Permutation null testing is slow
 **Answer**: Running full label permutation tests (`--n-null 200` or `1000`) computes 200–1,000 complete cross-validation loops per subject.

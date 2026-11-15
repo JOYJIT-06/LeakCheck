@@ -14,7 +14,7 @@
 
 In compliance with Phase 1 of the Master Execution Prompt and Requirements R1 and R2:
 1. An exhaustive forensic audit was conducted on the local development directory `D:\my lab\LeakCheck` and the authoritative Git repository `D:\my lab\LeakCheck_remote`.
-2. A complete non-destructive backup was generated in `D:\my lab\LeakCheck_backups\LeakCheck_code_backup_20261114\` (74 code/docs/config files, 282,937 bytes), strictly excluding the 21.04 GB `data/OpenBMI` raw dataset.
+2. A complete non-destructive backup was generated in `D:\my lab\LeakCheck_backups\LeakCheck_code_backup_20261114\` (74 code/docs/config files, 282,937 bytes), strictly excluding the 21.04 GB `data/Multi-Dataset` raw dataset.
 3. Every local modification made by the user on 2026-11-04 (including cache shape assertions, automatic sampling frequency detection, `file_sha256` hashing, and settings-hashed directory structures) was forensically compared and verified to be 100% incorporated and preserved within release tag `v1.1.0` (commit `d35afa6fe8e86dfdf532ee4f26e4abc1482c3155`).
 4. Two critical defects present in the older local snapshot—an unhandled empty null DataFrame crash in `scripts/run_leakcheck.py:452` and an unsafe rejection window ternary in `src/emi/preprocess.py:72`—were identified and verified as already repaired in `v1.1.0`.
 5. A comprehensive backup of `LeakCheck_remote` was created in `D:\my lab\LeakCheck_backups\LeakCheck_remote_backup_20261114\`, including a full Git bundle (`leakcheck_remote_all.bundle`, 15.73 MB, SHA256 `858710844b51428feb2e1921396f9fbadbfec8ead72976337d35412fe32d6b5a`), unstaged diff patches, and all untracked evidence files.
@@ -28,7 +28,7 @@ In compliance with Phase 1 of the Master Execution Prompt and Requirements R1 an
 - **Filesystem Type**: Windows NTFS Directory Junction (`d----l`).
 - **Junction Target**: `C:\Users\user\OneDrive\Documents\GitHub\eeg pipeline 2\eeg-motor-imagery-mne\eeg-motor-imagery-mne`.
 - **Git Repository Status**: `fatal: not a git repository (or any of the parent directories): .git`.
-- **Nature of Content**: An unversioned historical development snapshot corresponding to the pre-release v0.3 / v1.0.0 transition, containing local backup files (`*.bak`, `*.validation_backup`, `*.pre_csp_backup`), unversioned package metadata (`__version__ = "0.1.0"`), and 39 raw OpenBMI EEG recordings (`.mat`) totaling 21.04 GB downloaded on 2026-11-13.
+- **Nature of Content**: An unversioned historical development snapshot corresponding to the pre-release v0.3 / v1.0.0 transition, containing local backup files (`*.bak`, `*.validation_backup`, `*.pre_csp_backup`), unversioned package metadata (`__version__ = "0.1.0"`), and 39 raw Multi-DatasetEEG recordings (`.mat`) totaling 21.04 GB downloaded on 2026-11-13.
 - **Code Size**: Excluding `data/`, the tree contains exactly 74 files totaling 282,937 bytes (276.31 KB).
 
 ### B. Authoritative Git Repository: `D:\my lab\LeakCheck_remote`

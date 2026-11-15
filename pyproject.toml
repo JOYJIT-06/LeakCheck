@@ -45,8 +45,26 @@ Repository = "https://github.com/JOYJIT-06/LeakCheck.git"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["emi*"]
+exclude = ["*v2*", "archive*"]
+
+[tool.setuptools.package-data]
+emi = []
+
+[tool.setuptools.exclude-package-data]
+"*" = [
+    "*.edf",
+    "*.fif",
+    "*.bdf",
+    "*.gdf",
+    "*.mat",
+    "*.npy",
+    "*.npz"
+]
 
 [tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
 markers = [
     "v2: marks tests as part of the expanded V2 development framework (deselect with '-m \"not v2\"')"
 ]

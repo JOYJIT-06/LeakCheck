@@ -36,7 +36,6 @@ During the consolidation of the reference library, 7 pairs of references were fo
 | `efron1987better` | `efron1987bca` | Efron (1987) | Better bootstrap confidence intervals | *J. Am. Stat. Assoc.* | `10.1080/01621459.1987.10478410` |
 | `tangermann2012review` | `tangermann2012bcicomp4` | Tangermann et al. (2012) | Review of the BCI Competition IV | *Front. Neurosci.* | `10.3389/fnins.2012.00055` |
 | `cho2017eeg` | `cho2017gigadb` | Cho et al. (2017) | EEG datasets for motor imagery brain-computer interface | *GigaScience* | `10.1093/gigascience/gix034` |
-| `lee2019eeg` | `lee2019openbmi` | Lee et al. (2019) | EEG dataset and OpenBMI toolbox for three BCI paradigms | *GigaScience* | `10.1093/gigascience/giz002` |
 | `varoquaux2017cross` | `varoquaux2017decoders` | Varoquaux et al. (2017) | Assessing and tuning brain decoders: Cross-validation, caveats, and guidelines | *NeuroImage* | `10.1016/j.neuroimage.2016.10.038` |
 
 ---
@@ -89,12 +88,10 @@ The table below catalogs every entry in `manuscript/references.bib`, verifying i
 | 40 | `jayaram2018moabb` | Jayaram & Barachant (2018) | MOABB: trustworthy algorithm benchmarking for BCIs | *J. Neural Eng.* | `10.1088/1741-2552/aadea0` | Cross-Validation Standard Architectures |
 | 41 | `tangermann2012bcicomp4` | Tangermann et al. (2012) | Review of the BCI Competition IV | *Front. Neurosci.* | `10.3389/fnins.2012.00055` | Historical BCI Benchmark Standards |
 | 42 | `cho2017gigadb` | Cho et al. (2017) | EEG datasets for motor imagery brain-computer interface | *GigaScience* | `10.1093/gigascience/gix034` | Literature Benchmark Corpus |
-| 43 | `lee2019openbmi` | Lee et al. (2019) | EEG dataset and OpenBMI toolbox for three BCI paradigms | *GigaScience* | `10.1093/gigascience/giz002` | Literature Benchmark Corpus |
 | 44 | `pedregosa2011sklearn` | Pedregosa et al. (2011) | Scikit-learn: Machine learning in Python | *JMLR* | `jmlr.org/papers/v12/pedregosa11a.html` | Classifier & Covariance Engine |
 | 45 | `harris2020numpy` | Harris et al. (2020) | Array programming with NumPy | *Nature* | `10.1038/s41586-020-2649-2` | Array Computation Infrastructure |
 | 46 | `virtanen2020scipy` | Virtanen et al. (2020) | SciPy 1.0: fundamental algorithms for scientific computing in Python | *Nat. Methods* | `10.1038/s41592-019-0686-2` | Statistical Testing Engine |
 | 47 | `das2026leakcheck` | Das (2026) | LeakCheck: EEG Validation and Data Leakage Auditing Framework | *GitHub* | `github.com/JOYJIT-06/LeakCheck` | Software Framework Artifact |
-| 48 | `lee2019eeg` | Lee et al. (2019) | EEG dataset and OpenBMI toolbox for three BCI paradigms | *GigaScience* | `10.1093/gigascience/giz002` | Canonical Key for Lee (2019) |
 | 49 | `lemm2011introduction` | Lemm et al. (2011) | Introduction to machine learning for brain imaging | *NeuroImage* | `10.1016/j.neuroimage.2010.11.004` | Non-Stationarity in Neuroimaging |
 | 50 | `farquhar2013longitudinal` | Farquhar & Hill (2013) | Longitudinal evaluation of brain-computer interfaces | *Proc. IEEE* | `10.1109/JPROC.2012.2224087` | Longitudinal Non-Stationarity |
 | 51 | `barachant2012multiclass` | Barachant et al. (2012) | Multiclass brain-computer interface classification by Riemannian geometry | *IEEE TBME* | `10.1109/TBME.2011.2172208` | Canonical Key for Riemannian |

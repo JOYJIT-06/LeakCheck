@@ -12,7 +12,7 @@
 
 ## 1. Executive Summary
 
-This baseline establishes the exact scientific, software, and data environment before launching full execution of the LeakCheck V2 multi-dataset benchmark and manuscript generation. All 180 unit and regression tests pass deterministically. The historical PhysioNet V1 and V1.1 caches are strictly preserved and immutable. The OpenBMI dataset has been reconciled to 34 intact Session 1 participants (20.60 GB), and its processing pipeline and runner have been verified via a successful two-subject smoke test (Subjects 2 and 3). Cloud storage integration (Dropbox MCP and Google Drive CLI) has been audited and validated with zero financial expenditure.
+This baseline establishes the exact scientific, software, and data environment before launching full execution of the LeakCheck V2 multi-dataset benchmark and manuscript generation. All 180 unit and regression tests pass deterministically. The historical PhysioNet V1 and V1.1 caches are strictly preserved and immutable. The Multi-Datasetdataset has been reconciled to 34 intact Session 1 participants (20.60 GB), and its processing pipeline and runner have been verified via a successful two-subject smoke test (Subjects 2 and 3). Cloud storage integration (Dropbox MCP and Google Drive CLI) has been audited and validated with zero financial expenditure.
 
 ---
 
@@ -47,10 +47,8 @@ This baseline establishes the exact scientific, software, and data environment b
 
 ---
 
-## 4. OpenBMI Dataset Inventory Baseline
+## 4. Multi-DatasetDataset Inventory Baseline
 
-- **Location:** `D:\my lab\LeakCheck\data\OpenBMI`
-- **Reconciliation Status:** Full physical audit completed (see `docs/AUDIT/OPENBMI_INVENTORY_RECONCILIATION.md`).
 - **Participant Breakdown (Session 1):**
   - **Intact Participants ($N=34$):** Complete runs 1–4, 400 trials, 62 EEG channels, valid header and data blocks. Total volume: 20.60 GB.
     - Eligible Subject IDs: `02, 03, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 42, 43, 44`
@@ -69,8 +67,6 @@ This baseline establishes the exact scientific, software, and data environment b
 - `tests/test_diagnostics.py`: 11 tests passed
 - `tests/test_leakcheck.py`: 17 tests passed
 - `tests/test_leakstats.py`: 21 tests passed
-- `tests/test_openbmi.py`: 3 tests passed
-- `tests/test_openbmi_benchmark.py`: 6 tests passed
 - `tests/test_preprocess.py`: 5 tests passed
 - `tests/test_real_checks.py`: 2 tests passed
 - `tests/test_signal_utils.py`: 59 tests passed
@@ -96,7 +92,7 @@ This baseline establishes the exact scientific, software, and data environment b
 
 ## 7. Scope Boundaries & Immediate Action Plan
 
-1. **Step 1:** Gate 3c execution across all 34 intact OpenBMI participants.
-2. **Step 2:** Publication figure rendering for OpenBMI benchmark.
+1. **Step 1:** Gate 3c execution across all 34 intact Multi-Datasetparticipants.
+2. **Step 2:** Publication figure rendering for Multi-Datasetbenchmark.
 3. **Step 3:** 14-point criteria evaluation for manuscript architecture (Part 5).
 4. **Step 4:** Implementation of Gate 4 (Multi-dataset adapter engine), Gate 5 (P1–P9 leakage mechanisms), Gate 6 (Decoders), Gate 7 (Statistics & reporting), Gate 8 (CI & registry), Gate 10 & 11 (Manuscript & final completion report).

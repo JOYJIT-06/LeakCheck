@@ -28,9 +28,8 @@
 
 ---
 
-## 2. Study 2: OpenBMI Replication Benchmark
+## 2. Study 2: Multi-DatasetReplication Benchmark
 
-- **Dataset:** OpenBMI (Lee et al., 2019, GigaScience), NEMAR accession `nm000338` (v1.0.5)
 - **Cohort Size:** $N = 34$ verified intact human participants (Session 1: runs 0 & 1)
 - **Cohort Subject IDs:** `[2, 3, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 42, 43, 44]`
 - **Excluded Subjects:**
@@ -40,7 +39,7 @@
   - **Timestamp (UTC):** `2026-11-08T18:27:18.936647+00:00`
   - **Total Elapsed Execution Time:** `2631.55 seconds` (~43.8 minutes)
   - **Runner Invocation:**  
-    `python scripts/run_openbmi_benchmark.py --subjects intact --designs D3_loro,D1s_size_matched,P1_csp_on_all --decoders csp_lda,ts_lr --output-dir benchmark_results/openbmi_v2`
+    `python scripts/run_Multi-Dataset_benchmark.py --subjects intact --designs D3_loro,D1s_size_matched,P1_csp_on_all --decoders csp_lda,ts_lr --output-dir benchmark_results/`
   - **Target Frequency:** 250.0 Hz (polyphase decimation from 1000 Hz)
   - **Epoch Window:** $[-0.5, 4.0)\text{ s}$ half-open (1,125 time points)
   - **Bandpass Filter:** 8.0–30.0 Hz run-isolated zero-phase FIR

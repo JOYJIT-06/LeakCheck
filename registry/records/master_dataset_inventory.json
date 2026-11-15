@@ -30,37 +30,27 @@
       "sampling_rate_hz": 160.0,
       "channel_count": 64,
       "montage": "standard_1020",
-      "tasks": ["left_hand_mi", "right_hand_mi", "both_fists_mi", "both_feet_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "both_fists_mi",
+        "both_feet_mi"
+      ],
       "participant_count": 109,
       "eligible_v1_1_cohort": 105,
       "sessions_per_participant": 1,
       "runs_per_session": 14,
-      "supported_protocols": ["D1", "D1m", "D1s", "D3", "D4", "P1"],
+      "supported_protocols": [
+        "D1",
+        "D1m",
+        "D1s",
+        "D3",
+        "D4",
+        "P1"
+      ],
       "official_source": "https://physionet.org/content/eegmmidb/1.0.0/",
       "local_status": "Complete cached baseline (N=105) in data/cache",
       "storage_gb": 2.6
-    },
-    {
-      "dataset_id": "openbmi_lee2019",
-      "name": "OpenBMI / Lee et al. 2019",
-      "group": "A",
-      "priority": 1,
-      "action_category": "B",
-      "validation_level": "pipeline-validated",
-      "doi": "10.1093/gigascience/giz032",
-      "license": "Creative Commons Attribution 4.0 International (CC-BY 4.0)",
-      "sampling_rate_hz": 250.0,
-      "channel_count": 62,
-      "montage": "standard_1020",
-      "tasks": ["left_hand_mi", "right_hand_mi", "both_feet_mi"],
-      "participant_count": 54,
-      "eligible_v1_1_cohort": 34,
-      "sessions_per_participant": 2,
-      "runs_per_session": 2,
-      "supported_protocols": ["D1", "D1m", "D1s", "D3", "D6", "P1", "P2"],
-      "official_source": "https://doi.org/10.5524/100542",
-      "local_status": "34 intact subjects in sourcedata/session1 (20.6 GB); 20 subjects missing/truncated (17.9 GB needed)",
-      "storage_gb": 38.5
     },
     {
       "dataset_id": "cho2017",
@@ -74,11 +64,21 @@
       "sampling_rate_hz": 512.0,
       "channel_count": 64,
       "montage": "biosemi_64",
-      "tasks": ["left_hand_mi", "right_hand_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi"
+      ],
       "participant_count": 52,
       "sessions_per_participant": 1,
       "runs_per_session": 5,
-      "supported_protocols": ["D1", "D1m", "D1s", "D3", "P1", "P2"],
+      "supported_protocols": [
+        "D1",
+        "D1m",
+        "D1s",
+        "D3",
+        "P1",
+        "P2"
+      ],
       "official_source": "https://doi.org/10.5524/100295",
       "local_status": "Not downloaded locally",
       "storage_gb": 22.0
@@ -95,11 +95,22 @@
       "sampling_rate_hz": 250.0,
       "channel_count": 64,
       "montage": "standard_1020",
-      "tasks": ["left_hand_mi", "right_hand_mi", "both_fists_mi", "feet_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "both_fists_mi",
+        "feet_mi"
+      ],
       "participant_count": 51,
       "sessions_per_participant": 3,
       "runs_per_session": 6,
-      "supported_protocols": ["D1", "D1s", "D3", "D6", "D7"],
+      "supported_protocols": [
+        "D1",
+        "D1s",
+        "D3",
+        "D6",
+        "D7"
+      ],
       "official_source": "https://www.scidb.cn/en/detail?dataSetId=XXXX",
       "local_status": "Not downloaded locally",
       "storage_gb": 85.0
@@ -116,11 +127,21 @@
       "sampling_rate_hz": 250.0,
       "channel_count": 22,
       "montage": "standard_1020_22ch",
-      "tasks": ["left_hand_mi", "right_hand_mi", "feet_mi", "tongue_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "feet_mi",
+        "tongue_mi"
+      ],
       "participant_count": 9,
       "sessions_per_participant": 2,
       "runs_per_session": 6,
-      "supported_protocols": ["D1", "D1s", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D1s",
+        "D3",
+        "D6"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Deferred to MOABB integration",
       "storage_gb": 1.2
@@ -137,11 +158,19 @@
       "sampling_rate_hz": 250.0,
       "channel_count": 3,
       "montage": "bipolar_c3_cz_c4",
-      "tasks": ["left_hand_mi", "right_hand_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi"
+      ],
       "participant_count": 9,
       "sessions_per_participant": 5,
       "runs_per_session": 4,
-      "supported_protocols": ["D1", "D1s", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D1s",
+        "D3",
+        "D6"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Deferred to MOABB integration",
       "storage_gb": 0.6
@@ -158,11 +187,20 @@
       "sampling_rate_hz": 500.0,
       "channel_count": 128,
       "montage": "custom_128",
-      "tasks": ["left_hand_mi", "right_hand_mi", "feet_mi", "rest"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "feet_mi",
+        "rest"
+      ],
       "participant_count": 14,
       "sessions_per_participant": 1,
       "runs_per_session": 13,
-      "supported_protocols": ["D1", "D3", "P1"],
+      "supported_protocols": [
+        "D1",
+        "D3",
+        "P1"
+      ],
       "official_source": "https://doi.org/10.12751/g-node.f11c75",
       "local_status": "Deferred to MOABB integration",
       "storage_gb": 18.0
@@ -179,11 +217,19 @@
       "sampling_rate_hz": 200.0,
       "channel_count": 30,
       "montage": "standard_1020_30ch",
-      "tasks": ["left_hand_mi", "right_hand_mi", "mental_arithmetic"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "mental_arithmetic"
+      ],
       "participant_count": 29,
       "sessions_per_participant": 3,
       "runs_per_session": 3,
-      "supported_protocols": ["D1", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D3",
+        "D6"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Deferred to MOABB integration",
       "storage_gb": 3.5
@@ -200,11 +246,19 @@
       "sampling_rate_hz": 200.0,
       "channel_count": 64,
       "montage": "standard_1020",
-      "tasks": ["left_hand_mi", "right_hand_mi", "feet_mi", "tongue_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "feet_mi",
+        "tongue_mi"
+      ],
       "participant_count": 10,
       "sessions_per_participant": 1,
       "runs_per_session": 8,
-      "supported_protocols": ["D1", "D3"],
+      "supported_protocols": [
+        "D1",
+        "D3"
+      ],
       "official_source": "https://doi.org/10.1371/journal.pone.0107223",
       "local_status": "Registry record only",
       "storage_gb": 4.2
@@ -221,11 +275,17 @@
       "sampling_rate_hz": 500.0,
       "channel_count": 128,
       "montage": "custom_128",
-      "tasks": ["left_hand_mi", "right_hand_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi"
+      ],
       "participant_count": 10,
       "sessions_per_participant": 1,
       "runs_per_session": 6,
-      "supported_protocols": ["D1", "D3"],
+      "supported_protocols": [
+        "D1",
+        "D3"
+      ],
       "official_source": "https://ieeexplore.ieee.org/document/4912440",
       "local_status": "Registry record only",
       "storage_gb": 5.0
@@ -242,11 +302,18 @@
       "sampling_rate_hz": 250.0,
       "channel_count": 14,
       "montage": "emotiv_epoc",
-      "tasks": ["left_hand_mi", "right_hand_mi", "feet_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "feet_mi"
+      ],
       "participant_count": 4,
       "sessions_per_participant": 1,
       "runs_per_session": 3,
-      "supported_protocols": ["D1", "D3"],
+      "supported_protocols": [
+        "D1",
+        "D3"
+      ],
       "official_source": "https://doi.org/10.1371/journal.pone.0162657",
       "local_status": "Disqualified from population inference (N=4); smoke-test only",
       "storage_gb": 0.4
@@ -263,11 +330,17 @@
       "sampling_rate_hz": 512.0,
       "channel_count": 8,
       "montage": "custom_8ch",
-      "tasks": ["right_hand_mi", "feet_mi"],
+      "tasks": [
+        "right_hand_mi",
+        "feet_mi"
+      ],
       "participant_count": 14,
       "sessions_per_participant": 1,
       "runs_per_session": 8,
-      "supported_protocols": ["D1", "D3"],
+      "supported_protocols": [
+        "D1",
+        "D3"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Registry record only",
       "storage_gb": 1.5
@@ -284,11 +357,18 @@
       "sampling_rate_hz": 512.0,
       "channel_count": 13,
       "montage": "custom_13ch",
-      "tasks": ["right_hand_mi", "feet_mi"],
+      "tasks": [
+        "right_hand_mi",
+        "feet_mi"
+      ],
       "participant_count": 12,
       "sessions_per_participant": 2,
       "runs_per_session": 4,
-      "supported_protocols": ["D1", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D3",
+        "D6"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Registry record only",
       "storage_gb": 2.0
@@ -305,11 +385,18 @@
       "sampling_rate_hz": 256.0,
       "channel_count": 30,
       "montage": "standard_1020_30ch",
-      "tasks": ["right_hand_mi", "feet_mi"],
+      "tasks": [
+        "right_hand_mi",
+        "feet_mi"
+      ],
       "participant_count": 9,
       "sessions_per_participant": 2,
       "runs_per_session": 5,
-      "supported_protocols": ["D1", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D3",
+        "D6"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Registry record only",
       "storage_gb": 1.8
@@ -326,11 +413,19 @@
       "sampling_rate_hz": 250.0,
       "channel_count": 4,
       "montage": "mobile_4ch",
-      "tasks": ["left_hand_mi", "right_hand_mi", "feet_mi", "tongue_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "feet_mi",
+        "tongue_mi"
+      ],
       "participant_count": 10,
       "sessions_per_participant": 1,
       "runs_per_session": 4,
-      "supported_protocols": ["D1", "D3"],
+      "supported_protocols": [
+        "D1",
+        "D3"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Registry record only",
       "storage_gb": 0.5
@@ -347,11 +442,18 @@
       "sampling_rate_hz": 250.0,
       "channel_count": 60,
       "montage": "standard_1020",
-      "tasks": ["left_hand_mi", "right_hand_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi"
+      ],
       "participant_count": 10,
       "sessions_per_participant": 3,
       "runs_per_session": 6,
-      "supported_protocols": ["D1", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D3",
+        "D6"
+      ],
       "official_source": "http://bnci-horizon-2020.eu/database/data-sets",
       "local_status": "Registry record only",
       "storage_gb": 6.5
@@ -368,11 +470,17 @@
       "sampling_rate_hz": 500.0,
       "channel_count": 27,
       "montage": "standard_1020_27ch",
-      "tasks": ["left_hand_mi", "right_hand_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi"
+      ],
       "participant_count": 80,
       "sessions_per_participant": 1,
       "runs_per_session": 4,
-      "supported_protocols": ["D1", "D3"],
+      "supported_protocols": [
+        "D1",
+        "D3"
+      ],
       "official_source": "https://zenodo.org/record/8207196",
       "local_status": "Registry record only",
       "storage_gb": 32.0
@@ -389,11 +497,19 @@
       "sampling_rate_hz": 1000.0,
       "channel_count": 64,
       "montage": "standard_1020",
-      "tasks": ["left_hand_mi", "right_hand_mi", "both_hands_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi",
+        "both_hands_mi"
+      ],
       "participant_count": 62,
       "sessions_per_participant": 10,
       "runs_per_session": 5,
-      "supported_protocols": ["D1", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D3",
+        "D6"
+      ],
       "official_source": "https://openneuro.org/datasets/ds003810",
       "local_status": "Registry record only",
       "storage_gb": 120.0
@@ -410,11 +526,18 @@
       "sampling_rate_hz": 250.0,
       "channel_count": 64,
       "montage": "standard_1020",
-      "tasks": ["left_hand_mi", "right_hand_mi"],
+      "tasks": [
+        "left_hand_mi",
+        "right_hand_mi"
+      ],
       "participant_count": 35,
       "sessions_per_participant": 3,
       "runs_per_session": 6,
-      "supported_protocols": ["D1", "D3", "D6"],
+      "supported_protocols": [
+        "D1",
+        "D3",
+        "D6"
+      ],
       "official_source": "https://openneuro.org/datasets/ds004650",
       "local_status": "Registry record only",
       "storage_gb": 40.0

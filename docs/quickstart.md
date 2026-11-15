@@ -112,4 +112,3 @@ All outputs are structured under `results_quickstart/`:
 - For full parameter details and CLI options, see the [User Guide](user_guide.md).
 - To understand each validation design ($D_1$–$D_6$), see [Benchmark Protocols](benchmark_protocols.md).
 - To inspect how leakage mechanisms $P_1$–$P_9$ contaminate pipelines, see [Leakage Mechanisms](leakage_mechanisms.md).
-- To prepare the OpenBMI dataset or configure custom adapters, see [Datasets Guide](datasets.md).

@@ -31,7 +31,6 @@ results/
 *.patch
 *.zip
 CLAUDE_HANDOFF_*.txt
-benchmark_results/openbmi_v2_smoke/
 
 # Diagnostic scratch files and paper review evidence
 FINAL_DIAGNOSTIC.txt

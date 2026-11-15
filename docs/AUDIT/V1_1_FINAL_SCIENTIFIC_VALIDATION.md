@@ -20,7 +20,7 @@ All primary empirical claims—including the catastrophic $+24.50$ percentage po
 
 ## 1. Scope and Exact Source Version
 
-- **Study Scope**: Strict focus on LeakCheck V1.1 standalone benchmark on the PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB). All V2/OpenBMI multi-dataset implementations and preliminary results are completely excluded from this audit.
+- **Study Scope**: Strict focus on LeakCheck V1.1 standalone benchmark on the PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB). All V2/Multi-Datasetmulti-dataset implementations and preliminary results are completely excluded from this audit.
 - **Repository**: `https://github.com/JOYJIT-06/LeakCheck.git`
 - **Branch**: `research/v1.1-final-audit` (branched directly from immutable release tag `v1.1.0` at `d35afa6fe8e86dfdf532ee4f26e4abc1482c3155`)
 - **Package Identity**: `emi` v1.1.0 (Python 3.10+)

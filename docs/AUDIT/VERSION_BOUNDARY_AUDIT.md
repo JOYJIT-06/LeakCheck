@@ -17,7 +17,6 @@ Per Section 2 of the Master Execution Directive, LeakCheck maintains a strict se
 |---|---|---|---|
 | **V1.0.0** | Historical Baseline | Initial PhysioNet EEGMMIDB benchmark, commit `002dc4f` | Released (Historical) |
 | **V1.1.0** | Stabilized Release | Stabilized PhysioNet benchmark ($N=105$), $D_{1s}$ vs $D_3$, bug fixes, stable CLI, 171 unit tests | **Immediate Stable Release Target** |
-| **V2.0.0-dev** | Expanded Research | Multi-dataset architecture, OpenBMI benchmark ($N=34$), Riemannian geometry, P1–P9 taxonomy, registry schemas | **Ongoing Development Milestone** |
 
 ---
 
@@ -30,17 +29,12 @@ To prevent experimental features from masquerading as stable release capabilitie
 | `src/emi/preprocess.py` | **V1.1.0** | Fixed `_reject()` indentation blocker; label-blind Butterworth filtering. |
 | `src/emi/splitters.py` | **V1.1.0** | Contains `loro_splits` and `size_matched_random_repeats` ($D_{1s}$). |
 | `src/emi/decoders.py` (CSP-LDA, CSP-LR) | **V1.1.0** | Core spatial filtering classifiers evaluated on PhysioNet $N=105$. |
-| `src/emi/decoders.py` (`ts_lr`, `ts_lda`) | **V2** | Pure-NumPy Riemannian decoders evaluated in OpenBMI V2 benchmark. |
 | `src/emi/datasets_base.py` | **V2** | Abstract base class `BaseEEGDataset` for multi-dataset extension. |
 | `src/emi/datasets_adapters.py` | **V2** | Adapters for BNCI2014-001 and Cho2017. |
-| `src/emi/datasets_openbmi.py` | **V2** | OpenBMI parser, corruption detector, and MATLAB session loader. |
 | `scripts/run_leakcheck.py` | **V1.1.0** | Primary CLI runner for PhysioNet $N=105$ leakage audits. |
 | `scripts/quickstart_demo.py` | **V1.1.0** | Zero-download synthetic demo running in $1.36\text{ s}$. |
-| `scripts/run_openbmi_benchmark.py` | **V2** | Benchmark runner for OpenBMI $N=34$ replication study. |
-| `scripts/plot_openbmi_figures.py` | **V2** | Visualization script for OpenBMI paired scatter and inflation plots. |
 | `benchmark_results/physionet_v1/` | **V1.0.0** | Frozen historical V1 baseline ($N=105$, run `091e47dc`). Immutable. |
 | `benchmark_results/physionet_v1_1/` | **V1.1.0** | Stabilized V1.1 benchmark ($N=105$, $D_{1s}$ vs $D_3$, $P_1$ vs $D_3$). |
-| `benchmark_results/openbmi_v2/` | **V2** | Sealed OpenBMI replication benchmark ($N=34$, 62 channels). |
 | `registry/schemas/` | **V2** | JSON schemas defining open EEG Benchmark Registry specifications. |
 
 ---
@@ -62,7 +56,6 @@ Invoked via:
 ```bash
 pytest -m "v2" -q
 ```
-- Covers: `test_datasets_adapters.py`, `test_openbmi.py`, `test_openbmi_benchmark.py`.
 - **Result**: **15 passed in 14.42 seconds** (0 failures, 171 deselected).
 
 ### Combined Full Repository Suite (186 Tests)
@@ -82,7 +75,7 @@ pytest -q
    - Contains an explicit, prominent pointer directing researchers to `docs/V2/` for ongoing multi-dataset research.
 2. **Dedicated V2 Documentation (`docs/V2/`)**:
    - Resides in `docs/V2/README.md`.
-   - Documents the OpenBMI full-cohort benchmark ($N=34$), Riemannian geometry decoders, P1–P9 leakage taxonomy, and registry schemas.
+   - Documents the Multi-Datasetfull-cohort benchmark ($N=34$), Riemannian geometry decoders, P1–P9 leakage taxonomy, and registry schemas.
    - States explicitly that V2 is developmental software.
 
 ---

@@ -26,12 +26,12 @@ LeakCheck V2 transitions the framework from a single-dataset validation tool int
 flowchart TD
     subgraph DataLayer["1. Data Ingestion & Adapter Layer (emi.datasets)"]
         D_Physio["PhysioNetAdapter<br/>(64ch, 160Hz, Runs)"]
-        D_OpenBMI["OpenBMIAdapter<br/>(62ch, 250Hz, Sess/Runs)"]
+        D_Multi-Dataset["Multi-DatasetAdapter<br/>(62ch, 250Hz, Sess/Runs)"]
         D_Cho["Cho2017Adapter<br/>(64ch, 512Hz, Runs)"]
         D_Yang["Yang2025Adapter<br/>(64ch, 250Hz, Multi-Day)"]
         D_Base["BaseEEGDataset (Abstract Base Class)"]
         D_Physio --> D_Base
-        D_OpenBMI --> D_Base
+        D_Multi-Dataset--> D_Base
         D_Cho --> D_Base
         D_Yang --> D_Base
     end
@@ -165,7 +165,7 @@ sequenceDiagram
     participant Stats as Statistical Engine
     participant Reg as Benchmark Registry
 
-    Researcher->>Runner: Execute Benchmark (Dataset='OpenBMI', N=34)
+    Researcher->>Runner: Execute Benchmark (Dataset='Multi-Dataset', N=34)
     Runner->>Adapter: Load Participant Epochs (sub-02)
     Adapter-->>Runner: MNE Epochs (Trials, Channels, Times, Metadata)
     Runner->>Splitter: Generate Folds (D3, D1s, D1m)
@@ -185,6 +185,6 @@ sequenceDiagram
 ## 5. Migration Roadmap from V1.1 to V2
 
 1. **Step 1 (Zero-Breakage Packaging)**: Preserve all existing V1.1 modules (`preprocess.py`, `decoders.py`, `splitters.py`) in root package `emi`.
-2. **Step 2 (Adapter Factory Registration)**: Implement `src/emi/datasets/` containing `base.py`, `physionet.py`, and `openbmi.py`, exposed through a registry function `emi.datasets.get_dataset(name)`.
-3. **Step 3 (Multi-Dataset Batch Runner)**: Author `scripts/run_openbmi_benchmark.py` following exact output schema of `run_leakcheck.py` to ensure complete backwards compatibility with existing statistical analysis scripts.
+2. **Step 2 (Adapter Factory Registration)**: Implement `src/emi/datasets/` containing `base.py`, `physionet.py`, and `Multi-Dataset.py`, exposed through a registry function `emi.datasets.get_dataset(name)`.
+3. **Step 3 (Multi-Dataset Batch Runner)**: Author `scripts/run_Multi-Dataset_benchmark.py` following exact output schema of `run_leakcheck.py` to ensure complete backwards compatibility with existing statistical analysis scripts.
 4. **Step 4 (P2 Module Integration)**: Author `src/emi/leakage/p2_continuous_filter.py` and dedicated test suite in `tests/test_leakage_p2.py`.

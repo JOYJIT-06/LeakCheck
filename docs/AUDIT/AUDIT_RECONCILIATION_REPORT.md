@@ -17,7 +17,7 @@ Every claim has been investigated directly against primary empirical artifacts o
 1. Ground-truth participant-level paired observations (`inflation_by_subject.csv` across all $N=105$ PhysioNet participants).
 2. Authoritative summary tables (`inflation_table.csv` and `leakcheck_summary.json` in both `physionet_v1` and `physionet_v1_1`).
 3. Authoritative file manifests (NEMAR `manifest.json` v1.0.5 containing 1,955 items).
-4. Physical disk contents in `D:\my lab\LeakCheck\data\OpenBMI`.
+4. Physical disk contents in `D:\my lab\LeakCheck\data\Multi-Dataset`.
 5. Automated test suite outputs and execution logs.
 
 ---
@@ -102,19 +102,18 @@ The project documentation records two different test runtimes for the complete 1
 
 ---
 
-## 5. OpenBMI Local Download & Recovery Reconciliation (Section 3.4)
+## 5. Multi-DatasetLocal Download & Recovery Reconciliation (Section 3.4)
 
 ### 5.1 The Discrepancy
-Historical reports contained conflicting estimates regarding the download volume required to complete OpenBMI:
+Historical reports contained conflicting estimates regarding the download volume required to complete Multi-Dataset:
 - Earlier report: ~8.4 GB.
 - Later report: ~17.9 GB.
 
 ### 5.2 Mathematical Audit Against Authoritative Manifest
-Cross-referencing the 1,955 files in NEMAR `manifest.json` against local disk `D:\my lab\LeakCheck\data\OpenBMI`:
+Cross-referencing the 1,955 files in NEMAR `manifest.json` against local disk `D:\my lab\LeakCheck\data\Multi-Dataset`:
 
 ```
 +---------------------------------------------------------------------------------------------------------+
-|                                    OPENBMI SOURCEDATA FILE AUDIT                                        |
 +--------------------------+-------------+----------------+----------------+------------------------------+
 | Category                 | File Count  | Expected Size  | Present Size   | Net Transfer Needed          |
 +--------------------------+-------------+----------------+----------------+------------------------------+
@@ -155,14 +154,14 @@ The previous audit report contained a typographical error listing intact subject
 - **Scientific Audit Finding**: This sum reflects nominal recording records, NOT 529 unique human beings.
 - **Disambiguation**:
   - The BNCI Horizon 2020 suite (BNCI2014-001 through BNCI2020-001) originated from common participating academic centers (TU Graz, Inria). While BNCI2014-001 ($N=9$) and BNCI2014-004 ($N=9$) used distinct subjects and protocols, cross-challenge re-enrollment cannot be formally excluded across the broader BNCI series.
-  - Group A primary datasets (PhysioNet $N=105$, OpenBMI $N=54$, Cho2017 $N=52$, Yang2025 $N=51$) were collected at independent international institutions across different decades with distinct hardware. They represent **262 genuinely unique human participants**.
+  - Group A primary datasets (PhysioNet $N=105$, Multi-Dataset$N=54$, Cho2017 $N=52$, Yang2025 $N=51$) were collected at independent international institutions across different decades with distinct hardware. They represent **262 genuinely unique human participants**.
 
 ---
 
-## 7. OpenBMI Experimental Design & Protocol Verification (Section 6.3)
+## 7. Multi-DatasetExperimental Design & Protocol Verification (Section 6.3)
 
 ### 7.1 Trial & Class Structure Verification
-Physical inspection of OpenBMI Subject `sub-02` via `emi.datasets_openbmi` reveals:
+Physical inspection of Multi-DatasetSubject `sub-02` via `emi.datasets_Multi-Dataset` reveals:
 - **Total Trials**: 200 trials.
 - **Run Structure**: Exactly 2 operational runs per session:
   - Run 0 (Offline Calibration): 100 trials (50 Left Hand, 50 Right Hand).

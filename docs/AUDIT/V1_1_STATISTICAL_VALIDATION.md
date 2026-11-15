@@ -18,7 +18,7 @@ This audit report delivers the complete, machine-verified statistical revalidati
 
 In strict compliance with Phase 8 and Phase 9 of the Master Execution Directive:
 1. **Zero Data Fabrication / Authentic Recalculation**: Every single statistical metric, point estimate, confidence interval, hypothesis test, and effect size has been independently recalculated from the raw participant-level CSV outputs (`benchmark_results/physionet_v1_1/inflation_by_subject.csv`). Zero historical numbers were accepted without verified algorithmic recomputation.
-2. **Strict Single-Dataset Invariant**: 100% of statistical analyses, tables, scripts, and documentation strictly evaluate the single PhysioNet EEGMMIDB corpus ($N = 105$). Zero OpenBMI, multi-dataset, or V2 content is included.
+2. **Strict Single-Dataset Invariant**: 100% of statistical analyses, tables, scripts, and documentation strictly evaluate the single PhysioNet EEGMMIDB corpus ($N = 105$). Zero Multi-Dataset, multi-dataset, or V2 content is included.
 3. **Four Contrasts Fully Evaluated**: All four focal contrasts are recomputed across parametric, non-parametric, robust rank-based, bootstrap, and equivalence frameworks:
    - Contrast 1: **$P_1$ vs. $D_3$** (Supervised Spatial Filter Leakage, Positive Control)
    - Contrast 2: **$D_{1s}$ vs. $D_3$** (Size- and Class-Matched Random Trial Partitioning, Headline)

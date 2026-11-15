@@ -15,7 +15,7 @@
 This comprehensive report concludes the execution of the Master Execution Directive for **LeakCheck**. Over this development cycle:
 1. **Strict Version Boundary Established**: V1.1.0 (stabilized PhysioNet baseline release) and V2 (expanded multi-dataset research framework) are strictly partitioned in scope, code, tests, documentation, and build artifacts.
 2. **V1.1.0 Stabilized & Release Ready**: All software defects (`preprocess.py` indentation, MNE console log spam, empty null table handling) have been resolved. The headline size-matched random split ($D_{1s}$) benchmark on PhysioNet EEGMMIDB ($N=105$) was independently verified and documented. All 171 stable unit tests pass. Release wheel and source distribution are built with verified SHA-256 digests.
-3. **Strict PhysioNet EEGMMIDB Single-Dataset Scope**: In full adherence to the Project Owner Directive, LeakCheck V1.1 evaluates strictly and exclusively the PhysioNet EEGMMIDB cohort ($N=105$). All multi-dataset extensions, including OpenBMI, are strictly quarantined to the separate V2 development archive on branch `v2-dev`.
+3. **Strict PhysioNet EEGMMIDB Single-Dataset Scope**: In full adherence to the Project Owner Directive, LeakCheck V1.1 evaluates strictly and exclusively the PhysioNet EEGMMIDB cohort ($N=105$). All multi-dataset extensions, including Multi-Dataset, are strictly quarantined to the separate V2 development archive on branch `v2-dev`.
 4. **Statistical Truth Verified from Source Data**: All reported effect sizes, Hodges-Lehmann medians, BCa bootstrap confidence intervals, and Holm-adjusted p-values have been independently recalculated from the raw participant-level CSV outputs.
 5. **Full Documentation Suite Completed**: The main `README.md` was rewritten across all 27 required sections, supplemented by 10 modular guide files in `docs/` and dedicated V2 documentation in `docs/V2/`.
 6. **Zero Violations / Human-in-the-Loop Gate Respected**: Zero commits pushed to GitHub, zero release tags created, zero PyPI uploads performed, zero external costs incurred, and zero raw EEG data exposed.
@@ -41,7 +41,7 @@ V1.1.0 is strictly defined as the stabilized continuation of the PhysioNet-based
 - **Validation Designs**: $D_3$ (LORO), $D_{1s}$ (size-matched random), $D_{1m}$ ($k$-matched random).
 - **Leakage Injection**: $P_1$ (supervised CSP fitted on all trials).
 - **Software Fixes**: Resolved all syntax, logging, and CLI exceptions.
-- **Excluded from V1.1.0**: Multi-dataset adapters, OpenBMI benchmark, Riemannian decoders, and registry schemas (all routed strictly to V2).
+- **Excluded from V1.1.0**: Multi-dataset adapters, Multi-Datasetbenchmark, Riemannian decoders, and registry schemas (all routed strictly to V2).
 
 ---
 
@@ -90,7 +90,7 @@ Verified present in `dist/SHA256SUMS.txt`.
 
 - **Branch**: `v2-dev`
 - **Package Version**: `2.0.0.dev0`
-- **Scope**: Multi-dataset neuroimaging architecture (`BaseEEGDataset`), OpenBMI $N=34$ full-cohort benchmark, standalone pure-NumPy Riemannian decoders (`ts_lr`), P1–P9 leakage taxonomy, and EEG Benchmark Registry JSON schemas.
+- **Scope**: Multi-dataset neuroimaging architecture (`BaseEEGDataset`), Multi-Dataset$N=34$ full-cohort benchmark, standalone pure-NumPy Riemannian decoders (`ts_lr`), P1–P9 leakage taxonomy, and EEG Benchmark Registry JSON schemas.
 
 ---
 
@@ -100,7 +100,7 @@ Verified present in `dist/SHA256SUMS.txt`.
 |---|---|---|---|:---:|---|
 | **PhysioNet EEGMMIDB** | $N=105$ | 64 EEG, 160 Hz | Left vs Right Fist | **Full-Cohort Validated** | `benchmark_results/physionet_v1_1/` |
 
-*(Note: Multi-dataset adapters such as OpenBMI, BNCI2014-001, and Cho et al. belong strictly to the separate LeakCheck V2 development archive on branch `v2-dev` and are excluded from the V1.1 study).*
+*(Note: Multi-dataset adapters such as Multi-Dataset, BNCI2014-001, and Cho et al. belong strictly to the separate LeakCheck V2 development archive on branch `v2-dev` and are excluded from the V1.1 study).*
 
 ---
 
@@ -170,7 +170,6 @@ All raw and preprocessed data provenance is cryptographically anchored:
 | **V1.1 documentation** | **COMPLETE** | 27-section `README.md` and 10 modular guide files in `docs/` | None for V1.1 |
 | **V1.1 release artifacts** | **COMPLETE** | Built wheel, sdist, and `dist/SHA256SUMS.txt` | Awaiting push/tag authorization |
 | **V2 dataset architecture** | **COMPLETE** | `BaseEEGDataset` and 4 adapters in `datasets_adapters.py` | None |
-| **V2 datasets** | **REAL-DATA VALIDATED** | OpenBMI $N=34$ full-cohort evaluated; BNCI and Cho adapters unit-tested | Full-cohort runs on BNCI & Cho (future milestone) |
 | **V2 leakage mechanisms** | **IMPLEMENTED** | P1 validated on 2 cohorts; P2 architected; P3–P9 in schemas | Full-cohort sweeps for P3–P9 |
 | **V2 decoders** | **COMPLETE** | CSP-LDA and Riemannian TS-LR full-cohort validated | Deep learning models (EEGNet) |
 | **V2 statistics** | **COMPLETE** | Hodges-Lehmann, BCa CIs, Wilcoxon-Pratt, Holm adjustments verified | Cross-dataset random-effects meta-analysis |

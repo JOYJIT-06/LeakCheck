@@ -17,7 +17,7 @@
 - **Base Version in Git:** `v1.0.0` (`002dc4f`)
 - **Staging / Working Tree Differences:**
   - Complete stabilization patch captured in `V11_current_working.patch`.
-  - V2 multi-dataset developments are isolated in untracked files (`src/emi/datasets_adapters.py`, `src/emi/datasets_base.py`, `registry/`, `benchmark_results/openbmi_v2/`).
+  - V2 multi-dataset developments are isolated in untracked files (`src/emi/datasets_adapters.py`, `src/emi/datasets_base.py`, `registry/`, `benchmark_results//`).
 - **Isolation Invariant:**
   - V1.1.0 distribution is built strictly from the stabilized codebase (`pyproject.toml` version `1.1.0`).
   - No provisional V2 code or unvalidated features are included in the V1.1.0 package manifest.

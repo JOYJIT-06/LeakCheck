@@ -15,7 +15,6 @@ The workspace on `D:\my lab` contains 10 distinct top-level directories and 2 ro
 | Directory / Entity | File Count | Size (MB) | Primary Content Classification | Preservation Priority | Role in V1.1 / V2 |
 |---|---|---|---|---|---|
 | `LeakCheck_remote` | 269 | 34.99 | Active Git repository (`fix/v1.1-stabilization`) | **CRITICAL** | Core V1.1 Release Target |
-| `LeakCheck` | 173 | 21,040.90 | Directory Junction + Raw OpenBMI dataset (20.55 GB) | **CRITICAL** | Source of OpenBMI raw data |
 | `LeakCheck_Cache` | 106 npz | 681.24 | Cleaned PhysioNet EEG epochs (legacy schema v1) | **CRITICAL** | Precomputed PhysioNet cache (106 subjects) |
 | `LeakCheck_Cache_Test` | 1 npz | 6.53 | Single-subject test cache (`sub-001_epochs.npz`) | PRESERVE | Test fixture for cache validation |
 | `LeakCheck_Data` | 3 edf | 7.43 | PhysioNet Raw EDFs (`S001R04`, `S001R08`, `S001R12`) | PRESERVE | Real data smoke tests |
@@ -62,7 +61,6 @@ The workspace on `D:\my lab` contains 10 distinct top-level directories and 2 ro
 - **Release Target:** Excluded from git repository and distributions.
 
 ### 2.4 `data/`
-- **Location:** `LeakCheck/data/OpenBMI/`
 - **Purpose:** Local raw and BIDS-structured dataset storage.
 - **Files Contained:**
   - Metadata: `dataset_description.json`, `participants.json`, `participants.tsv`, `manifest.json`, `urls.txt`, `README.md`, `failed_downloads.txt`.

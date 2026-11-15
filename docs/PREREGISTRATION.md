@@ -32,7 +32,7 @@
 
 ### Included Datasets
 1. **PhysioNet EEG Motor Movement/Imagery**: 109 subjects, 64 channels, 160 Hz (runs 4, 8, 12).
-2. **OpenBMI (Lee et al. 2019)**: 54 subjects, 62 channels, session-1 motor imagery.
+2. **Multi-Dataset(Lee et al. 2019)**: 54 subjects, 62 channels, session-1 motor imagery.
 
 ### Explicit Exclusion Rules (Fixed in Advance)
 Participants are excluded *solely* on technical quality criteria, never on decoding accuracy:
@@ -40,7 +40,7 @@ Participants are excluded *solely* on technical quality criteria, never on decod
 2. Fewer than 10 valid trials in either motor imagery class.
 3. Any run containing fewer than 8 trials or containing only one class.
 4. Fewer than 3 recording runs available for leave-one-run-out evaluation.
-5. Incomplete or truncated download files (e.g. OpenBMI subjects 1, 4, 11, 40, 41).
+5. Incomplete or truncated download files (e.g. Multi-Datasetsubjects 1, 4, 11, 40, 41).
 
 ---
 

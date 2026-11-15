@@ -8,7 +8,6 @@ This document details the nine primary data leakage pathways identified in the l
 
 | Key | Mechanism Name | Nature | Evidence Tier | Impact on Accuracy |
 |---|---|---|---|---|
-| **P1** | **Supervised Spatial Filter Leakage** | Supervised | **Tier 1 (Empirically Proven)** | Severe Artificial Inflation ($+24.50$ pp on PhysioNet, $+6.25$ pp on OpenBMI) |
 | **P2** | **Unsupervised Spatial Filter Leakage (ICA)** | Unsupervised | **Tier 2 (Architecturally Designed)** | Moderate Shift (contaminates artifact rejection subspaces) |
 | **P3** | **Temporal Filter / Boundary Leakage** | Unsupervised | **Tier 3 (Registry Protocol)** | Subtle Inflation / Edge Discontinuities |
 | **P4** | **Temporal Window Peeking** | Supervised | **Tier 3 (Registry Protocol)** | Optimistic Bias (tuning post-cue window to test metrics) |
@@ -34,7 +33,7 @@ $$\mathbf{\Sigma}_c = \frac{1}{|\mathcal{I}_c|} \sum_{i \in \mathcal{I}_c} \frac
 When $\mathcal{I}_c$ includes test-set indices, $\mathbf{\Sigma}_c$ directly encodes the spatial covariance structure of the unseen test trials. As a consequence:
 1. The projection filters $\mathbf{w}$ are explicitly aligned to project the test trials into well-separated clusters.
 2. Even if the raw EEG data consists of **pure white noise**, fitting CSP on the entire dataset produces artificial accuracies exceeding $80\%\text{--}90\%$.
-3. On real datasets, this injects **$+24.50$ pp** of artificial accuracy on PhysioNet and **$+6.25$ pp** on OpenBMI.
+3. On real datasets, this injects **$+24.50$ pp** of artificial accuracy on PhysioNet and **$+6.25$ pp** on Multi-Dataset.
 
 ### 2.2 Mechanism P2: Unsupervised Spatial Filtering (ICA on Concatenated Runs)
 **The Flaw**: Independent Component Analysis (ICA) is computed across concatenated recording blocks containing both train and test trials to remove ocular or cardiac artifacts.
@@ -65,7 +64,6 @@ A critical finding from LeakCheck V2 is the comparative susceptibility of spatia
 | Decoder | Spatial Projection | Vulnerability to P1 | Explanation |
 |---|---|---|---|
 | **Shrinkage CSP-LDA** | Supervised generalized eigenvectors | **Extremely Vulnerable** ($+6.25$ to $+24.50$ pp) | Uses test class labels directly to optimize spatial variance filters. |
-| **Riemannian TS-LR** | Unsupervised Fréchet covariance mean | **Resilient but not immune** ($+0.75$ pp on OpenBMI, $p = 0.0203$) | Covariance matrices and Fréchet reference points are computed without class labels; test set inclusion causes only a minor reference shift. |
 
 ---
 
@@ -76,4 +74,4 @@ To guarantee zero leakage, scientific EEG pipelines must enforce the following i
 1. **Strict Scikit-Learn Pipeline Encapsulation**: All transformations that depend on training data (CSP, PCA, Scaler, Imputer) must reside inside an `sklearn.pipeline.Pipeline` or equivalent container and be called strictly via `.fit(X_train, y_train)` and `.transform(X_test)`.
 2. **Block-Level Group Splitting**: When cross-validating multi-run recordings, use `GroupKFold` or `LeaveOneGroupOut` with recording run IDs as groups.
 3. **No Epoch Slicing Prior to Splitting**: Slicing overlapping sub-windows must happen strictly *after* cross-validation partitioning, or within-run fold grouping must be preserved.
-4. **Pre-Registration of Evaluation Scripts**: Validation scripts should produce cryptographic manifests (as done by `scripts/run_openbmi_benchmark.py`) locking data hashes and split indices before reporting benchmark metrics.
+4. **Pre-Registration of Evaluation Scripts**: Validation scripts should produce cryptographic manifests (as done by `scripts/run_Multi-Dataset_benchmark.py`) locking data hashes and split indices before reporting benchmark metrics.

@@ -14,7 +14,6 @@
 | # | Dataset ID | Reference Citation | Cohort ($N$) | Channels | Native $f_s$ | Tasks / Paradigm | Size (Raw) | Status | Adapter / Pipeline |
 |---|---|---|:---:|:---:|:---:|---|:---:|:---:|---|
 | 1 | **PhysioNet EEGMMIDB** | Goldberger et al. (2000), Schalk et al. (2004) | 109 (105 analyzed) | 64 | 160 Hz | Left/Right Fist MI (Runs 3, 7, 11) | ~3 GB | **Full-Cohort Validated** | `emi.datasets` / `scripts/run_physionet_benchmark.py` |
-| 2 | **OpenBMI** | Lee et al. (2019), GigaScience / NEMAR `nm000338` | 54 (34 intact) | 62 | 1000 Hz | Left/Right Hand MI (Session 1, Runs 0 & 1) | ~45 GB | **Full-Cohort Validated** | `OpenBMIDatasetAdapter` / `scripts/run_openbmi_benchmark.py` |
 | 3 | **Cho2017** | Cho et al. (2017), GigaScience | 52 | 64 | 512 Hz | Left/Right Hand MI | ~15 GB | **Implemented & Unit-Tested** | `Cho2017DatasetAdapter` / `tests/test_datasets_adapters.py` |
 | 4 | **BNCI2014-001** | Tangermann et al. (2012), BCI Comp IV 2a | 9 | 22 | 250 Hz | 4-class MI (Left Hand, Right Hand, Feet, Tongue) | ~1.5 GB | **Implemented & Unit-Tested** | `BNCI2014_001_DatasetAdapter` / `tests/test_datasets_adapters.py` |
 | 5 | **BNCI2014-004** | Leeb et al. (2008), BCI Comp IV 2b | 9 | 3 | 250 Hz | 2-class MI (Left vs Right Hand) across 5 sessions | ~800 MB | **Ingesting / Cloud Staged** | MOABB loader / `registry/schemas/` |
@@ -38,7 +37,7 @@
   - Supervised CSP Spatial Contamination ($P_1$): $+24.50$ pp inflation ($p = 1.48 \times 10^{-18}$, rank biserial $+0.998$).
   - Size-Matched Random Trial Partitioning ($D_{1s}$): $-2.68$ pp deflation ($p = 5.86 \times 10^{-5}$, rank biserial $-0.452$). Non-stationarity across stationary runs creates noisy inter-run interpolations that impair generalization.
 
-### 2.2 OpenBMI / Lee et al. 2019 ($N = 34$)
+### 2.2 Multi-Dataset ($N = 34$)
 - **Accession**: NEMAR `nm000338`, GigaScience Open Access
 - **License**: Creative Commons Zero (CC0)
 - **Montage**: 62-channel scalp EEG, standard 10–20 international system.

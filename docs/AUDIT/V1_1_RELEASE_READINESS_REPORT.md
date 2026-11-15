@@ -33,7 +33,6 @@ An independent, rigorous audit was conducted across the source code, test suite,
   - `tests/test_preprocess.py`: 5 tests covering `clean_raw`, `_reject` (full vs. analysis window), adaptive artifact thresholds, and bad channel detection.
   - `tests/test_splitters.py`: 21 tests validating non-overlap, coverage, and strict size/class matching.
   - `tests/test_decode.py`: 3 tests including native Riemannian tangent space decoding (`ts_lr`).
-  - `tests/test_openbmi.py`: 3 tests verifying real data loading from 62-channel session-1 MAT files.
   - `tests/test_leakcheck.py`, `test_leakstats.py`, `test_diagnostics.py`, `test_summary.py`: Full test coverage of metrics, null generators, BCa intervals, and exact permutation tests.
 
 ### 2.2 Mathematical Verification of `D1s_size_matched`
@@ -80,7 +79,7 @@ Results archived in `benchmark_results/physionet_v1_1/` without modifying histor
    - `pyproject.toml`: `version = "1.1.0"`, build backend `setuptools.build_meta`.
    - `src/emi/__init__.py`: `__version__ = "1.1.0"`.
    - `dist/`: Cleanly built wheels `emi-1.1.0-py3-none-any.whl` (55.3 KB) and `emi-1.1.0.tar.gz` (66.0 KB).
-2. **Multi-Dataset OpenBMI Adapter (Quarantined to V2 Archive)**:
+2. **Multi-Dataset Multi-DatasetAdapter (Quarantined to V2 Archive)**:
    - Ingests Lee et al. 2019 session-1 MAT files.
    - Automatically excludes 5 known truncated downloads ({1, 4, 11, 40, 41}).
    - Quarantined strictly to `v2-dev` development track; excluded from V1.1 release package and paper.

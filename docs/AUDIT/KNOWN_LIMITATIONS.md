@@ -49,7 +49,7 @@
 - **Remediation:** Restore proper 4-space indentation and add unit tests specifically exercising `build_epochs_full` and `_reject`.
 
 ### 2.2 Incomplete Multi-Dataset Integration
-- **OpenBMI:** 39 session-1 `.mat` files are present in `data/OpenBMI/sourcedata/session1/` (20.55 GB), but 5 subject downloads failed, and no BIDS-derivative `.npz` cache has been built or verified for OpenBMI.
+- **Multi-Dataset:** 39 session-1 `.mat` files are present in `data/Multi-Dataset/sourcedata/session1/` (20.55 GB), but 5 subject downloads failed, and no BIDS-derivative `.npz` cache has been built or verified for Multi-Dataset.
 - **Other Proposed Datasets:** Datasets listed in research roadmaps (Cho2017, Yang2025, BNCI2014-001, BNCI2014-004, High-Gamma) are **not downloaded** on this system.
 - **Integrity Rule:** No claims of multi-dataset verification may be made until real data adapters are built, files downloaded from official repositories, checksums verified, and cache files constructed.
 

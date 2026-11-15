@@ -16,7 +16,7 @@ In accordance with Phase 3 of the Master Execution Prompt and Requirements R1, R
 This inventory classifies all files within the LeakCheck research project into four discrete architectural tiers:
 1. **Historical V1 Baseline** (v0.1–v1.0.0 initial exploratory release)
 2. **V1.1 PhysioNet Study** (authoritative core codebase, benchmark runner, 171 tests, results, and manuscript)
-3. **V2 Development Archive** (preserved on branch `v2-dev`; multi-dataset adapters, unified runner, OpenBMI pipeline)
+3. **V2 Development Archive** (preserved on branch `v2-dev`; multi-dataset adapters, unified runner, Multi-Datasetpipeline)
 4. **General Documentation and Project Governance**
 
 On working branch `research/v1.1-final-audit`, exactly 145 files are tracked by Git. All V2 development modules, scripts, and test suites reside exclusively on branch `v2-dev`, ensuring 100% clean isolation of the V1.1 PhysioNet release.
@@ -140,10 +140,8 @@ On working branch `research/v1.1-final-audit`, exactly 145 files are tracked by 
 ## 3. Preserved V2 Archive (Branch `v2-dev`)
 
 All multi-dataset and V2 expansion modules remain fully preserved on branch `v2-dev`:
-- `src/emi/datasets_base.py`, `datasets_adapters.py`, `datasets_openbmi.py`
-- `scripts/run_unified_benchmark.py`, `run_openbmi_benchmark.py`, `generate_openbmi_manifests.py`, `plot_openbmi_figures.py`
-- `tests/test_datasets_adapters.py`, `test_openbmi.py`, `test_openbmi_benchmark.py`, `test_bnci_stress.py`, `test_cho_highgamma_*.py`, `test_challenger_*.py`
+- `scripts/run_unified_benchmark.py`, `run_Multi-Dataset_benchmark.py`, `generate_Multi-Dataset_manifests.py`, `plot_Multi-Dataset_figures.py`
+- `tests/test_datasets_adapters.py`, `test_Multi-Dataset.py`, `test_Multi-Dataset_benchmark.py`, `test_bnci_stress.py`, `test_cho_highgamma_*.py`, `test_challenger_*.py`
 - `registry/` dataset schemas and reproducibility records
-- `data/OpenBMI/` 21.04 GB raw EEG dataset (preserved in local directory, excluded from Git)
 
 Zero V2 files contaminate `research/v1.1-final-audit`.

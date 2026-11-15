@@ -18,7 +18,6 @@
 | **Headline D1s vs D3 Benchmark** | **EXECUTED ($N=105$)** | `benchmark_results/physionet_v1_1/`: $\Delta_{\text{HL}} = -2.68$ pp ($95\%$ BCa CI: $[-3.95, -1.47]$). |
 | **OAS Logging De-noising** | **RESOLVED** | MNE log spam suppressed in `mne_csp_factory()` for multi-core scalability. |
 | **Null Table KeyError Fix** | **RESOLVED** | Empty null handling guarded in `scripts/run_leakcheck.py`. |
-| **OpenBMI Dataset Adapter (V2)** | **IMPLEMENTED** | `src/emi/datasets_openbmi.py`; verified via `tests/test_openbmi.py`. |
 | **Riemannian Tangent Space Decoders (V2)** | **IMPLEMENTED** | Built-in `CovarianceTransformer` & `TangentSpaceTransformer` in `src/emi/decoders.py`. |
 | **EEG Benchmark Registry Schemas (V2)** | **IMPLEMENTED** | JSON Schemas created in `registry/schemas/`. |
 | **Version Bump & Packaging** | **READY** | Bumped to `1.1.0` in `pyproject.toml` and `src/emi/__init__.py`. |

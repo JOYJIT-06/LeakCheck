@@ -26,7 +26,7 @@ In strict compliance with Phase 11 and Phase 12 of the Master Execution Directiv
 2. **Participant Flow Integrity**: Exact cohort accounting ($N = 105$, 4 true exclusions: S044, S069, S086, S091) is maintained consistently across the Abstract, Introduction, Methods, Results, Discussion, and Figures. The draft line 95 error is explicitly refuted.
 3. **Methods-to-Code Congruence**: Every stated algorithmic parameter (8–30 Hz bandpass, OAS covariance regularization, 6 CSP components, shrinkage LDA, LORO $D_3$, size-matched $D_{1s}$) perfectly reflects the executable Python code in `src/emi/`.
 4. **Complete Bibliography Resolution**: Every in-text citation resolves to a verified entry in `manuscript/references.bib`.
-5. **Absolute Scope Isolation**: All V2/OpenBMI results, multi-dataset claims, prompt-injection artifacts, and bracketed notes have been completely purged.
+5. **Absolute Scope Isolation**: All V2/Multi-Datasetresults, multi-dataset claims, prompt-injection artifacts, and bracketed notes have been completely purged.
 
 ---
 
