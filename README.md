@@ -115,4 +115,4 @@ The portable `recalculate_all_stats.py` script automatically locates `inflation_
 
 ## 8. License & Citation
 
-Released under the MIT License. When citing the PhysioNet EEGMMIDB dataset, please cite Schalk et al. (2004) and Goldberger et al. (2000).
+Released under the Apache License 2.0. When citing the PhysioNet EEGMMIDB dataset, please cite Schalk et al. (2004) and Goldberger et al. (2000).
