@@ -8,6 +8,8 @@ prune figures
 prune analysis
 prune data
 prune registry
+prune LeakCheck_paper_evidence
+prune paper_evidence
 prune scripts
 prune .agents
 prune .github

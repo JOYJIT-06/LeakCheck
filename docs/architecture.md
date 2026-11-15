@@ -58,7 +58,7 @@ LeakCheck is built on five core scientific software engineering principles:
 Provides deterministic ingestion, filtering, and epoching for PhysioNet EEGMMIDB recordings.
 - **`src/emi/data.py`**: Fetches and parses PhysioNet BCI2000 EDF files, handles channel layout, and verifies subject eligibility.
 - **`src/emi/preprocess.py`**: Label-blind 5th-order Butterworth bandpass filtering (8.0–30.0 Hz), epoch windowing ([+1.0, +3.0] s), and peak-to-peak artifact rejection.
-- **`branch 2-dev`**: The pluggable multi-dataset adapter architecture (`BaseEEGDataset`, BNCI2014, Cho) is preserved in `archive/v2/` for V2 cross-dataset studies.
+- **`branch 
 
 ### 3.2 Splitting Engine (`src/emi/splitters.py`)
 Deterministic, index-safe partitioning functions:
@@ -113,5 +113,5 @@ To support open science and reproducible meta-benchmarks, LeakCheck introduces s
    )
    ```
 
-### Multi-Dataset Architecture Preservation Notice
-Pluggable multi-dataset adapters (`BaseEEGDataset`) and cross-dataset benchmarks are archived under `archive/v2/` to ensure release isolation for the standalone V1.1 PhysioNet study. Refer to `archive/v2/README.md` for extending dataset adapters.
+### Multi-Dataset Research Scope
+Pluggable multi-dataset adapters and cross-dataset benchmarks are maintained in Git history on branch `v2-dev` to ensure strict release isolation for the standalone V1.1 PhysioNet study.

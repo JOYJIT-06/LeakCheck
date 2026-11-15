@@ -60,4 +60,4 @@ To enable instantaneous benchmarking and reproducible experiment hashing, LeakCh
 
 ## 3. Multi-Dataset Framework Preservation Notice
 
-In accordance with the project release scope boundary mandate (`ORIGINAL_REQUEST.md` lines 503–524), all multi-dataset adapters (BNCI2014-001, Cho et al. 2017, etc.) and cross-dataset benchmarking tools developed for LeakCheck V2 are quarantined in `archive/v2/` and maintained on branch `v2-dev`. Refer to `archive/v2/README.md` for architecture details, adapter interfaces, and V2 replication workflows.
+In accordance with the project release scope boundary mandate (`ORIGINAL_REQUEST.md` lines 503–524), all multi-dataset adapters (OpenBMI, BNCI2014-001, Cho et al. 2017, etc.) and cross-dataset benchmarking tools developed for LeakCheck V2 are quarantined in `archive/v2/` and maintained on branch `v2-dev`. Refer to `archive/v2/README.md` for architecture details, adapter interfaces, and V2 replication workflows.

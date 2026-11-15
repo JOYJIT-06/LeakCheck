@@ -46,7 +46,7 @@ Repository = "https://github.com/JOYJIT-06/LeakCheck.git"
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["emi*"]
-exclude = ["*v2*", "archive*"]
+exclude = ["*v2*"]
 
 [tool.setuptools.package-data]
 emi = []
@@ -65,6 +65,3 @@ emi = []
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
-markers = [
-    "v2: marks tests as part of the expanded V2 development framework (deselect with '-m \"not v2\"')"
-]
