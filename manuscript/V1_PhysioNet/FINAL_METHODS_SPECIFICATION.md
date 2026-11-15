@@ -92,10 +92,10 @@ Implemented in `src/emi/splitters.py`:
   - Test fold $\mathcal{S}_{\text{test}}^{(k)}$ is constructed by drawing $N_{k, 0}$ class 0 trials and $N_{k, 1}$ class 1 trials uniformly at random without replacement from the pooled aggregate dataset.
   - Training fold $\mathcal{S}_{\text{train}}^{(k)} = \mathcal{D} \setminus \mathcal{S}_{\text{test}}^{(k)}$.
 - **Properties**: Ensures identical training sample size and class balance as $D_3$ per fold, isolating inter-run non-stationarity from sample-efficiency artifacts.
-- **Repetitions**: 1 repetition (benchmark standard) with fixed random seed $= 42$.
+- **Repetitions**: 20 independent random partition repeats (`n_repeats_matched = 20`, base random seed $= 0$ via `numpy.random.default_rng(0)`). For each participant, decoding accuracy is evaluated per repeat and averaged across all 20 repeats (each with $K = 3$ size-matched folds) to minimize stochastic partition variance without inflating degrees of freedom.
 
 ### 4.3 Design $D_{1m}$: $k$-Matched Stratified Random Partition
-- **Folds ($K = 3$)**: Standard stratified $K$-fold cross-validation (`sklearn.model_selection.StratifiedKFold(n_splits=3, shuffle=True, random_state=42)`).
+- **Folds ($K = 3$) and Repetitions**: Standard stratified $K$-fold cross-validation with $K = 3$ folds (matching the number of physical runs in $D_3$) repeated across 5 independent iterations (`n_repeats = 5`, base random seed $= 0$). Repetition $r \in \{0, 1, 2, 3, 4\}$ initializes `sklearn.model_selection.StratifiedKFold(n_splits=3, shuffle=True, random_state=seed + r)`. Decoding accuracy is averaged across the 5 repeats for each participant.
 - **Properties**: Equal split of available trials across folds, allowing fold trial counts to fluctuate relative to physical run counts.
 
 ### 4.4 Mechanism $P_1$: Supervised Spatial Filter Contamination (Positive Control)

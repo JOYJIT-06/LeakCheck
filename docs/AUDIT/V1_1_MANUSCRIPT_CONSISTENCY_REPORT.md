@@ -32,7 +32,7 @@ In strict compliance with Phase 11 and Phase 12 of the Master Execution Directiv
 
 ## 2. Comprehensive Consistency Verification Ledger
 
-The ledger below details the 30 automated cross-checks performed across the manuscript:
+The ledger below details the 34 automated cross-checks performed across the manuscript:
 
 | # | Checked Parameter | Expected Value / Benchmark Truth | Observed Value in Manuscript | Cross-Check Source | Verdict |
 |---|---|---|---|---|---|
@@ -66,6 +66,10 @@ The ledger below details the 30 automated cross-checks performed across the manu
 | **28** | Figure Asset Parity | 5 figures in PDF, SVG, PNG, TIFF | All 5 figures embedded with captions | `scripts/generate_figures.py` | **PASS** |
 | **29** | In-Text Citation Resolution | 100% of citation keys in `references.bib` | 100% resolve without error | `manuscript/references.bib` | **PASS** |
 | **30** | Integrity & Prompt Injection Purge | Zero meta-prompts, Endor, or V2 artifacts | Zero meta-prompts, Endor, or V2 artifacts | Text search audit | **PASS** |
+| **31** | $D_3$ Cohort Mean Accuracy & Quantiles | Mean $= 60.15 \pm 13.29\%$, Median $= 57.78\%$, IQR $[51.11\%, 68.89\%]$ | Mean $= 60.15 \pm 13.29\%$, Median $= 57.78\%$, IQR $[51.11\%, 68.89\%]$ | `inflation_by_subject.csv` | **PASS** |
+| **32** | 160 Hz Sub-Cohort Invariance | $n = 102$, Mean $D_3 = 60.21\%$, Mean $D_{1s} = 57.33\%$, Mean shift $-2.88$ pp | $n = 102$, Mean $D_3 = 60.21\%$, Mean $D_{1s} = 57.33\%$, Mean shift $-2.88$ pp | `inflation_by_subject.csv` | **PASS** |
+| **33** | 128 Hz Sub-Cohort Statistics | $n = 3$, Mean $D_3 = 58.10\%$, Mean $D_{1s} = 59.08\%$, Mean shift $+0.98$ pp, Median shift $+3.33$ pp | $n = 3$, Mean $D_3 = 58.10\%$, Mean $D_{1s} = 59.08\%$, Mean shift $+0.98$ pp, Median shift $+3.33$ pp | `inflation_by_subject.csv` | **PASS** |
+| **34** | Repetition Counts & Seed Parameters | $D_{1s} = 20, D_{1m} = 5, \text{seed} = 0$ matching `settings.json` | $D_{1s} = 20, D_{1m} = 5, \text{seed} = 0$ | `settings.json`, `splitters.py` | **PASS** |
 
 ---
 
@@ -86,5 +90,5 @@ Every historical discrepancy previously identified across the codebase has been 
 
 ## 4. Final Consistency Verdict
 
-**Overall Audit Verdict**: **100% CONSISTENCY PASS (30/30 Checks Verified)**  
+**Overall Audit Verdict**: **100% CONSISTENCY PASS (34/34 Checks Verified)**  
 The revised manuscript (`manuscript/V1_PhysioNet/manuscript.md`) is certified to be mathematically, computationally, and methodologically congruent with all validated outputs of the LeakCheck V1.1 study.

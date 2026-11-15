@@ -45,7 +45,7 @@ For every reported result, this guide provides:
 ## 3. Benchmark Decoding Performance and Primary Contrasts
 
 ### 3.1 Overview of Absolute Performance
-Under the clean operational reference design (Leave-One-Run-Out, $D_3$), the cohort demonstrated a mean decoding accuracy of $58.11 \pm 12.87\%$ (median: $57.78\%$, interquartile range: $[48.89\%, 67.78\%]$). Under size-matched random trial partitioning ($D_{1s}$), mean accuracy was $55.34 \pm 10.98\%$ (median: $52.89\%$, IQR: $[45.78\%, 64.00\%]$). Under standard $k$-fold random partitioning ($D_{1m}$), mean accuracy was $53.45 \pm 11.23\%$ (median: $50.00\%$, IQR: $[42.67\%, 62.22\%]$). Under supervised spatial filter contamination ($P_1$), mean accuracy inflated to $82.93 \pm 12.59\%$ (median: $82.78\%$, IQR: $[73.33\%, 93.33\%]$).
+Under the clean operational reference design (Leave-One-Run-Out, $D_3$), the cohort demonstrated a mean decoding accuracy of $60.15 \pm 13.29\%$ (median: $57.78\%$, interquartile range: $[51.11\%, 68.89\%]$). Under size-matched random trial partitioning ($D_{1s}$), mean accuracy was $57.38 \pm 13.50\%$ (median: $52.89\%$, IQR: $[47.73\%, 64.44\%]$). Under standard $k$-fold random partitioning ($D_{1m}$), mean accuracy was $55.48 \pm 13.51\%$ (median: $52.00\%$, IQR: $[45.78\%, 62.22\%]$). Under supervised spatial filter contamination ($P_1$), mean accuracy inflated to $84.97 \pm 11.16\%$ (median: $86.67\%$, IQR: $[77.78\%, 93.33\%]$).
 
 - **Source Output**: `inflation_by_subject.csv` (aggregated across 105 subjects)
 - **Supporting Visual**: Fig. 3A (`fig3_inflation_distributions.png`, Panel A)
@@ -106,9 +106,9 @@ Under the clean operational reference design (Leave-One-Run-Out, $D_3$), the coh
 - Logit-paired $t$-test: $P_1$ vs $D_3$ ($p = 7.93 \times 10^{-16}$); $D_{1s}$ vs $D_3$ ($p = 4.84 \times 10^{-3}$); $D_{1m}$ vs $D_3$ ($p = 1.62 \times 10^{-4}$).
 
 ### 4.3 Hardware Sampling-Rate Sub-Cohort Invariance
-- 128 Hz native participants ($n = 3$: S088, S092, S100): Mean $D_3 = 58.10\%$, mean $D_{1s} = 55.45\%$ (mean shift: $-2.65$ pp).
-- 160 Hz native cohort ($n = 102$): Mean $D_3 = 58.11\%$, mean $D_{1s} = 55.33\%$ (mean shift: $-2.78$ pp).
-- Confirms that hardware sampling-rate differences do not alter the directional findings of the benchmark.
+- 128 Hz native participants ($n = 3$: S088, S092, S100): Mean $D_3 = 58.10\%$, mean $D_{1s} = 59.08\%$ (individual shifts: $-5.80$ pp for S088, $+3.33$ pp for S092, $+5.42$ pp for S100; mean shift: $+0.98$ pp, median shift: $+3.33$ pp).
+- 160 Hz native cohort ($n = 102$): Mean $D_3 = 60.21\%$, mean $D_{1s} = 57.33\%$ (mean shift: $-2.88$ pp, median shift: $-2.75$ pp; 65 of 102 participants deflated).
+- Confirms that hardware sampling-rate differences do not introduce systematic bias or alter the directional conclusions of the benchmark.
 
 ---
 

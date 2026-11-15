@@ -10,6 +10,8 @@ Verifies:
 7. Two One-Sided Tests (TOST) for equivalence within +-2.0 percentage points.
 8. Historical null controls settings (n_null == 0 disclosure).
 9. Cross-platform Python-vs-R reconciliation data integrity.
+10. Cohort-level absolute decoding accuracy distributions (D3, D1s, D1m, P1).
+11. Hardware sampling-rate strata invariance (128 Hz vs 160 Hz).
 """
 import os
 import numpy as np
@@ -210,3 +212,37 @@ def test_python_r_reconciliation_csv_exists(benchmark_paths):
     assert len(df_r) == 4, f"Expected 4 contrast rows in R CSV, got {len(df_r)}"
     expected_contrasts = {"P1 vs D3", "D1s vs D3", "D1m vs D3", "D1s vs D1m"}
     assert set(df_r["contrast"].unique()) == expected_contrasts
+
+
+def test_absolute_accuracy_distributions(cohort_data):
+    """Verify cohort-level absolute decoding accuracy distributions across all 4 designs."""
+    piv_leak = cohort_data.pivot(index="subject", columns="design", values="acc_leaky") * 100.0
+    piv_ref = cohort_data.pivot(index="subject", columns="design", values="acc_ref") * 100.0
+    d3 = piv_ref.iloc[:, 0]
+    d1s = piv_leak["D1s_size_matched"]
+    d1m = piv_leak["D1m_matched_k"]
+    p1 = piv_leak["P1_csp_on_all"]
+
+    assert abs(d3.mean() - 60.1500) < 0.01
+    assert abs(d1s.mean() - 57.3785) < 0.01
+    assert abs(d1m.mean() - 55.4841) < 0.01
+    assert abs(p1.mean() - 84.9653) < 0.01
+
+
+def test_sampling_rate_strata_invariance(cohort_data):
+    """Verify hardware sampling-rate strata breakdown (128 Hz vs 160 Hz)."""
+    piv_leak = cohort_data.pivot(index="subject", columns="design", values="acc_leaky") * 100.0
+    piv_ref = cohort_data.pivot(index="subject", columns="design", values="acc_ref") * 100.0
+    d3 = piv_ref.iloc[:, 0]
+    d1s = piv_leak["D1s_size_matched"]
+
+    s128 = [88, 92, 100]
+    d3_128 = d3.loc[s128]
+    d1s_128 = d1s.loc[s128]
+    d3_160 = d3.drop(index=s128)
+    d1s_160 = d1s.drop(index=s128)
+
+    assert abs(d3_128.mean() - 58.1001) < 0.01
+    assert abs(d1s_128.mean() - 59.0823) < 0.01
+    assert abs(d3_160.mean() - 60.2103) < 0.01
+    assert abs(d1s_160.mean() - 57.3284) < 0.01

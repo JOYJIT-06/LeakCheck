@@ -86,10 +86,10 @@ In strict accordance with Phase 10 of the Master Execution Directive:
   - `figures/physionet_v1_1/fig3_inflation_distributions.tiff` ($18.7\,\text{MB}$)
 - **Numerical Cross-Check**:
   - **Panel A (Absolute Accuracy)**:
-    - $D_3$ (LORO): Median $= 57.78\%$, Interquartile Range (IQR): $[48.89\%, 67.78\%]$.
-    - $D_{1s}$ (Size-Matched): Median $= 52.89\%$, IQR: $[45.78\%, 64.00\%]$.
-    - $D_{1m}$ ($k$-Matched): Median $= 50.00\%$, IQR: $[42.67\%, 62.22\%]$.
-    - $P_1$ (Positive Control): Median $= 82.78\%$, IQR: $[73.33\%, 93.33\%]$.
+    - $D_3$ (LORO): Mean $= 60.15 \pm 13.29\%$, Median $= 57.78\%$, Interquartile Range (IQR): $[51.11\%, 68.89\%]$ (width: $17.78$ pp; whiskers: $[35.56\%, 91.11\%]$; 2 high outliers: S055 at $97.78\%$, S084 at $100.00\%$).
+    - $D_{1s}$ (Size-Matched): Mean $= 57.38 \pm 13.50\%$, Median $= 52.89\%$, IQR: $[47.73\%, 64.44\%]$ (width: $16.72$ pp; whiskers: $[40.11\%, 88.44\%]$; 2 high outliers: S055 at $97.33\%$, S084 at $99.67\%$).
+    - $D_{1m}$ ($k$-Matched): Mean $= 55.48 \pm 13.51\%$, Median $= 52.00\%$, IQR: $[45.78\%, 62.22\%]$ (width: $16.44$ pp; whiskers: $[33.78\%, 85.58\%]$; 2 high outliers: S055 at $96.89\%$, S084 at $99.11\%$).
+    - $P_1$ (Positive Control): Mean $= 84.97 \pm 11.16\%$, Median $= 86.67\%$, IQR: $[77.78\%, 93.33\%]$ (width: $15.56$ pp; whiskers: $[56.82\%, 100.00\%]$; 0 outliers).
     - Theoretical Chance Level: $50.0\%$ (dashed red line).
   - **Panel B (Paired Differences $\Delta$, pp)**:
     - $P_1 - D_3$: Mean $= +24.82$ pp, Median $= +23.26$ pp, $\Delta_{\text{HL}} = \mathbf{+24.50}$ pp, 95% BCa CI: $[+21.75, +27.78]$ pp, $p_{\text{Holm}} = 4.43 \times 10^{-18}$.
