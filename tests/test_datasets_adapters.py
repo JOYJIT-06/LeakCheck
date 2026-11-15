@@ -119,7 +119,9 @@ def test_all_11_candidate_adapters_metadata(tmp_path):
 
 def test_registry_datasets_json_validity():
     """Verify registry/datasets.json matches required schema structure."""
-    reg_path = Path("registry/datasets.json")
+    reg_path = Path(__file__).resolve().parent.parent / "registry" / "datasets.json"
+    if not reg_path.is_file():
+        reg_path = Path("registry/datasets.json")
     assert reg_path.is_file(), "registry/datasets.json must exist"
 
     with open(reg_path, "r", encoding="utf-8") as f:
