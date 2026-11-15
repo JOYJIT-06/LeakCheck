@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eeg-benchmark-registry.org/schemas/reproducibility_record.schema.json",
+  "title": "EEG Reproducibility Record Schema",
+  "type": "object",
+  "required": ["record_id", "timestamp", "git_commit", "software_versions", "settings_hash", "results_summary"],
+  "properties": {
+    "record_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "git_commit": { "type": "string" },
+    "software_versions": {
+      "type": "object",
+      "properties": {
+        "emi": { "type": "string" },
+        "python": { "type": "string" },
+        "numpy": { "type": "string" },
+        "scipy": { "type": "string" },
+        "scikit_learn": { "type": "string" },
+        "mne": { "type": "string" }
+      },
+      "required": ["emi", "numpy", "scipy", "scikit_learn"]
+    },
+    "settings_hash": { "type": "string" },
+    "dataset": { "type": "string" },
+    "n_participants_finished": { "type": "integer" },
+    "results_summary": {
+      "type": "object",
+      "properties": {
+        "contrasts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "design": { "type": "string" },
+              "reference": { "type": "string" },
+              "hodges_lehmann_pp": { "type": "number" },
+              "bca_ci_low_pp": { "type": "number" },
+              "bca_ci_high_pp": { "type": "number" },
+              "wilcoxon_p": { "type": "number" },
+              "cohens_dz": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

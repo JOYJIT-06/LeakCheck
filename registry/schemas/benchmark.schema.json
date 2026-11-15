@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eeg-benchmark-registry.org/schemas/benchmark.schema.json",
+  "title": "EEG Benchmark Protocol Schema",
+  "type": "object",
+  "required": ["benchmark_id", "dataset_id", "validation_design", "target_classes", "primary_metric"],
+  "properties": {
+    "benchmark_id": { "type": "string" },
+    "dataset_id": { "type": "string" },
+    "validation_design": {
+      "type": "string",
+      "enum": [
+        "D1_shuffled_kfold",
+        "D2_stratified_kfold",
+        "D1m_matched_k",
+        "D1s_size_matched",
+        "D3_loro",
+        "D4_chrono",
+        "D4b_forward_chain",
+        "D5_gap2",
+        "D5_gap4",
+        "D6_loso_session"
+      ]
+    },
+    "target_classes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "n_repeats": { "type": "integer", "minimum": 1 },
+    "random_seed": { "type": "integer" },
+    "primary_metric": { "type": "string", "enum": ["acc_pooled", "balanced_acc", "macro_f1", "auc_roc"] },
+    "negative_control_nulls": {
+      "type": "object",
+      "properties": {
+        "null_types": { "type": "array", "items": { "type": "string" } },
+        "n_permutations": { "type": "integer" }
+      }
+    }
+  }
+}

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "emi"
-version = "1.1.0"
-description = "LeakCheck: reproducible EEG validation and data leakage benchmarking"
+version = "2.0.0.dev0"
+description = "LeakCheck V2: Multi-dataset EEG validation and data leakage benchmarking"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
@@ -21,7 +21,7 @@ keywords = [
     "cross-validation"
 ]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
     "Programming Language :: Python :: 3",
