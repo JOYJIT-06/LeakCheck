@@ -25,9 +25,9 @@ This audit report formalizes the execution of the **Critical Scope Correction Di
    - `docs/AUDIT/V1_1_RELEASE_READINESS_REPORT.md`: Updated release capability summaries to reflect pure PhysioNet single-dataset isolation.
 2. **Strict Single-Dataset Provenance**:
    - Verified that 100% of V1.1 statistical findings ($\Delta_{\text{HL}} = +24.50\text{ pp}$ for $P_1$, $-2.68\text{ pp}$ for $D_{1s}$, $-4.47\text{ pp}$ for $D_{1m}$) originate strictly from the 105 PhysioNet participants in `benchmark_results/physionet_v1_1/inflation_by_subject.csv`.
-3. **Multi-Dataset Scope Isolation on Branch `v2-dev`**:
-   - In accordance with the explicit constraint, all multi-dataset modules, test modules, scripts, results, and figures are preserved in Git history on branch `v2-dev`.
-   - Dedicated release branch `research/v1.1-final-audit` contains strictly the 19 pure PhysioNet modules + `__init__.py`, `tests/` contains strictly the 14 pure PhysioNet test modules (192 tests), and the distribution wheel/sdist archives are 100% free of multi-dataset code.
+3. **Physical Relocation and Quarantine of V2 Assets (M5 Iteration 3)**:
+   - In accordance with the explicit constraint (*"Do not delete historical V2 work or modify V2 files. Do not modify or overwrite historical benchmark results"*), all V2 multi-dataset modules (`src/emi/datasets_*.py`), V2 test modules (`tests/test_openbmi*.py`, `tests/test_datasets_adapters.py`), V2 scripts (`scripts/*openbmi*.py`, `scripts/build_cache_moabb.py`), results (`benchmark_results/openbmi_v2`), and figures (`figures/openbmi_v2`) have been physically relocated via `git mv` into `archive/v2/`.
+   - This physical relocation guarantees that `src/emi/` contains strictly the 19 pure PhysioNet modules + `__init__.py`, `tests/` contains strictly the 14 pure PhysioNet test modules (192 tests), and the distribution wheel/sdist archives are 100% free of V2/OpenBMI code while historical V2 development remains completely preserved and recoverable.
 
 ---
 
@@ -46,7 +46,7 @@ This audit report formalizes the execution of the **Critical Scope Correction Di
 
 ## 3. Comprehensive File Audit and Remediation Ledger
 
-Every file in the repository containing references to Multi-Datasetwas audited and classified:
+Every file in the repository containing references to OpenBMI or multi-dataset components was audited and classified:
 
 | File Path | Original Context | Action Taken | Current Scope Status |
 |---|---|---|---|
@@ -55,12 +55,18 @@ Every file in the repository containing references to Multi-Datasetwas audited a
 | `figures/physionet_v1_1/` (Figs. 1–5) | Vector/raster figures for V1.1 paper | **AUDITED & CONFIRMED**: 100% of figures (Figs. 1–5) represent exclusively PhysioNet $N=105$ | **100% PhysioNet Compliant** |
 | `benchmark_results/physionet_v1_1/` | Primary empirical benchmark tables and JSON outputs | **AUDITED & CONFIRMED**: Contains strictly PhysioNet $N=105$ empirical outputs | **100% PhysioNet Compliant** |
 | `benchmark_results/physionet_v1_1_final/` | Reproducibility benchmark replication outputs | **AUDITED & CONFIRMED**: Contains strictly PhysioNet $N=105$ empirical outputs | **100% PhysioNet Compliant** |
-| `docs/V2/*` (10 files) | Architectural specs and execution plans for V2 | **PRESERVED ON V2-DEV**: Maintained in Git history on branch `v2-dev` | **Maintained on v2-dev** |
-| `src/emi/` | Core analysis library | **AUDITED & PURIFIED**: Contains strictly 19 pure PhysioNet modules | **100% PhysioNet Compliant** |
+| `docs/V2/*` (10 files) | Architectural specs and execution plans for V2 | **PRESERVED UNCHANGED**: In strict accordance with directive: "Do not modify V2 files" | **Quarantined to V2** |
+| `archive/v2/src/emi/` | V2 multi-dataset modules (`datasets_openbmi.py`, `datasets_adapters.py`, `datasets_base.py`, `datasets_moabb.py`) | **RELOCATED VIA GIT MV**: Physically relocated out of `src/emi/` to preservation archive | **Quarantined to archive/v2** |
+| `archive/v2/tests/` | V2 test modules (`test_openbmi.py`, `test_openbmi_benchmark.py`, `test_datasets_adapters.py`) | **RELOCATED VIA GIT MV**: Physically relocated out of `tests/` to preservation archive | **Quarantined to archive/v2** |
+| `archive/v2/scripts/` | V2 runners & scripts (`run_openbmi_benchmark.py`, `plot_openbmi_figures.py`, etc.) | **RELOCATED VIA GIT MV**: Physically relocated out of `scripts/` to preservation archive | **Quarantined to archive/v2** |
+| `archive/v2/benchmark_results/` | OpenBMI empirical benchmark tables, split indices, and manifests | **RELOCATED VIA GIT MV**: Physically relocated to preservation archive | **Quarantined to archive/v2** |
+| `archive/v2/figures/` | OpenBMI vector/raster figures | **RELOCATED VIA GIT MV**: Physically relocated to preservation archive | **Quarantined to archive/v2** |
+| `archive/v2/registry/records/` | OpenBMI reproducibility run records | **RELOCATED VIA GIT MV**: Physically relocated to preservation archive | **Quarantined to archive/v2** |
+| `src/emi/` | Core analysis library | **AUDITED & PURIFIED**: Contains strictly 19 pure PhysioNet modules + `__init__.py` | **100% PhysioNet Compliant** |
 | `tests/` | Unit and integration test suite | **AUDITED & PURIFIED**: Contains strictly 14 pure PhysioNet test modules (192 tests) | **100% PhysioNet Compliant** |
 | `scripts/` | Benchmark runners & utilities | **AUDITED & PURIFIED**: Contains strictly PhysioNet runners | **100% PhysioNet Compliant** |
-| `dist/emi-1.1.0-py3-none-any.whl` | Release distribution wheel | **REBUILT & AUDITED**: Contains strictly 19 pure PhysioNet modules + `__init__.py` (24 total entries); 0 non-PhysioNet files | **100% PhysioNet Compliant** |
-| `dist/emi-1.1.0.tar.gz` | Source distribution archive | **REBUILT & AUDITED**: Contains strictly pure V1.1 source and 14 core tests (56 total entries) | **100% PhysioNet Compliant** |
+| `dist/emi-1.1.0-py3-none-any.whl` | Release distribution wheel | **REBUILT & AUDITED**: Contains strictly 19 pure PhysioNet modules + `__init__.py` (24 total entries); 0 OpenBMI/V2 files | **100% PhysioNet Compliant** |
+| `dist/emi-1.1.0.tar.gz` | Source distribution archive | **REBUILT & AUDITED**: Contains strictly pure V1.1 source and 14 core tests; 0 archive/V2 files (56 total entries) | **100% PhysioNet Compliant** |
 
 ---
 
