@@ -49,7 +49,7 @@ Every gate was evaluated against primary code artifacts, execution logs, mathema
 
 ### Gate 1: Code Recovery & Local Modifications Audit — PASS
 - **Precondition**: Audit of initial uncommitted working tree and historical snapshots.
-- **Verification Evidence**: All local changes were cataloged in `docs/AUDIT/LOCAL_CODE_RECOVERY.md`. A complete non-destructive backup was saved in `D:\my lab\LeakCheck_backups\LeakCheck_Recovery_20261115_004500` (excluding the 21.04 GB OpenBMI raw data).
+- **Verification Evidence**: All local changes were cataloged in `docs/AUDIT/LOCAL_CODE_RECOVERY.md`. Complete non-destructive backups were saved in `D:\my lab\LeakCheck_backups\LeakCheck_recovery_20261115_011109` (and snapshot `D:\my lab\LeakCheck_backups\LeakCheck_Recovery_20261115_004500`, excluding the 21.04 GB OpenBMI raw data).
 - **Integrity Guarantee**: Zero local files were deleted or overwritten without historical backup.
 
 ### Gate 2: Code Repair & Architecture Preservation — PASS
@@ -114,10 +114,11 @@ Every gate was evaluated against primary code artifacts, execution logs, mathema
 ### Gate 12: Publication-Grade Vector Figures — PASS
 - **Precondition**: Multi-panel figures generated directly from verified empirical benchmark data.
 - **Verification Evidence**: Documented in `docs/AUDIT/V1_1_FIGURE_AUDIT.md`. Vector figures in PDF and SVG, along with 300 DPI TIFF and PNG, generated in `figures/physionet_v1_1/`:
-  - Figure 1: Conceptual Experimental Design Matrix (`fig1_design_matrix.svg`)
-  - Figure 2: OAS-CSP Spatial Pattern Topographies (`fig2_csp_topographies.svg`)
-  - Figure 3: Empirical Accuracy Distributions & Paired Within-Subject Contrasts (`fig3_inflation_distributions.svg`)
-  - Figure 4: Participant Flow & Attrition Diagram (`fig4_participant_flow.svg`)
+  - Figure 1: Workflow Schematic & Validation Protocols (`fig1_workflow_schematic.svg`, `.pdf`, `.png`, `.tiff`)
+  - Figure 2: Participant Flow & Attrition Flowchart (`fig2_participant_flow.svg`, `.pdf`, `.png`, `.tiff`)
+  - Figure 3: Empirical Accuracy Distributions & Paired Within-Subject Contrasts (`fig3_inflation_distributions.svg`, `.pdf`, `.png`, `.tiff`)
+  - Figure 4: Paired Trajectories & Difference Waterfall (`fig4_paired_trajectories_waterfall.svg`, `.pdf`, `.png`, `.tiff`)
+  - Figure 5: Statistical Effects, Hodges-Lehmann CIs & TOST Equivalence (`fig5_statistical_effects_tost.svg`, `.pdf`, `.png`, `.tiff`)
 
 ### Gate 13: Abstract & Headline Numbers Alignment — PASS
 - **Precondition**: Numerical consistency between manuscript text, abstract, and outputs.
@@ -138,8 +139,9 @@ Every gate was evaluated against primary code artifacts, execution logs, mathema
 ### Gate 17: Release Packaging & Clean V1.1 Isolation — PASS
 - **Precondition**: Distribution package builds cleanly with zero V2/OpenBMI contamination.
 - **Verification Evidence**: `python -m build` executed cleanly, producing:
-  - `dist/emi-1.1.0-py3-none-any.whl` (62,356 bytes)
-  - `dist/emi-1.1.0.tar.gz` (80,861 bytes)
+  - `dist/emi-1.1.0-py3-none-any.whl` (69,737 bytes, SHA-256: `7a1e4f6daa6209d7c3409bb4a1fb5154b013c49b0006cf488cdfba86916b96df`)
+  - `dist/emi-1.1.0.tar.gz` (93,967 bytes, SHA-256: `1bc87ca19b65cae4af9080f0f4c5c5eeb15e2fb874807eb1853df9b023a0658e`)
+- Checksums verified and recorded in `dist/SHA256SUMS.txt`.
 - Inspection of package contents confirms zero V2 files, zero raw data, and clean metadata. Untracked scratch files ignored via `.gitignore`.
 
 ### Gate 18: End-to-End Reproducibility Manifest — PASS

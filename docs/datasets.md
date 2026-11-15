@@ -26,11 +26,12 @@ The PhysioNet EEG Motor Movement/Imagery Database contains 64-channel recordings
 - **Pre-filtering**: Label-blind 5th-order Butterworth bandpass filter ($8.0$–$30.0$ Hz).
 
 ### Participant Exclusion Criteria
-Of the 109 enrolled participants, exactly **4 participants are excluded** strictly on technical grounds, leaving $N = 105$ analyzable cohorts:
-- `S088`: Missing run annotations.
-- `S092`: Discrepant sampling rate and corrupted timing track.
-- `S100`: Hardware synchronization failure in Run 8.
-- `S104`: Incomplete recording blocks.
+Of the 109 requested participants, 105 are included and exactly **4 true exclusions** occur strictly on technical and eligibility grounds, leaving $N = 105$ analyzable cohorts:
+- `S044`: Missing local cache / 0 channels.
+- `S069`: Missing local cache.
+- `S086`: Insufficient trial count (24 trials < 30 trial minimum eligibility gate).
+- `S091`: Missing local cache / all 45 epochs dropped by artifact QC.
+*(Note: The refuted earlier draft claim that `S088, S092, S100, S104` were excluded has been corrected; all four are fully retained in the verified cohort).*
 *No participant is ever excluded on the basis of low classification accuracy.*
 
 ### Automated Download and Caching

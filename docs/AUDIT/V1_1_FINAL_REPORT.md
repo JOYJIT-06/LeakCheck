@@ -57,7 +57,7 @@ All 18 Quality Gates defined in the Master Execution Prompt have been audited an
 - **Diagnostic Scratch Files**: `FINAL_DIAGNOSTIC.txt`, `LeakCheck_paper_evidence/`, `benchmark_results/physionet_rebuilt/`, `paper_evidence/`, `analysis/recompute_and_crosscheck.py` (strictly ignored via `.gitignore`).
 
 ### 6. Backup Location
-- **Full Non-Destructive Code Backup**: `D:\my lab\LeakCheck_backups\LeakCheck_Recovery_20261115_004500` (contains full directory tree snapshot prior to modifications, excluding the 21.04 GB OpenBMI raw files).
+- **Full Non-Destructive Code Backup**: `D:\my lab\LeakCheck_backups\LeakCheck_recovery_20261115_011109` (snapshot `D:\my lab\LeakCheck_backups\LeakCheck_Recovery_20261115_004500` preserved; contains full directory tree snapshot prior to modifications, excluding the 21.04 GB OpenBMI raw files).
 
 ### 7. Git Branch and Commit Information
 - **Protected Baseline**: `main` (commit `d35afa6fe8e86dfdf532ee4f26e4abc1482c3155`, tag `v1.1.0`).
@@ -126,10 +126,11 @@ All 18 Quality Gates defined in the Master Execution Prompt have been audited an
 
 ### 15. Figure Paths
 All figures generated in high-resolution vector and raster formats under `figures/physionet_v1_1/`:
-- **Figure 1**: Experimental Design Matrix (`fig1_design_matrix.pdf`, `.svg`, `.png`, `.tiff`)
-- **Figure 2**: OAS-CSP Spatial Patterns (`fig2_csp_topographies.pdf`, `.svg`, `.png`, `.tiff`)
-- **Figure 3**: Inflation Distributions & Contrasts (`fig3_inflation_distributions.pdf`, `.svg`, `.png`, `.tiff`)
-- **Figure 4**: Participant Flow & Attrition (`fig4_participant_flow.pdf`, `.svg`, `.png`, `.tiff`)
+- **Figure 1**: Workflow Schematic & Validation Protocols (`fig1_workflow_schematic.pdf`, `.svg`, `.png`, `.tiff`)
+- **Figure 2**: Participant Flow & Attrition Flowchart (`fig2_participant_flow.pdf`, `.svg`, `.png`, `.tiff`)
+- **Figure 3**: Empirical Accuracy Distributions & Paired Within-Subject Contrasts (`fig3_inflation_distributions.pdf`, `.svg`, `.png`, `.tiff`)
+- **Figure 4**: Paired Trajectories & Difference Waterfall (`fig4_paired_trajectories_waterfall.pdf`, `.svg`, `.png`, `.tiff`)
+- **Figure 5**: Statistical Effects, Hodges-Lehmann CIs & TOST Equivalence (`fig5_statistical_effects_tost.pdf`, `.svg`, `.png`, `.tiff`)
 
 ### 16. Table Paths
 - Primary Statistical Contrast Table: `benchmark_results/physionet_v1_1/inflation_table.csv` and `benchmark_results/physionet_v1_1_final/inflation_table.csv`.

@@ -1,6 +1,6 @@
 # LeakCheck: A Leakage-Aware Benchmarking Framework for Evaluating Validation Strategies and Supervised Contamination in Within-Subject Motor-Imagery EEG Decoding
 
-**Repository:** [https://github.com/JOYJIT-06/LeakCheck](https://github.com/JOYJIT-06/LeakCheck) (Commit [2be2821](https://www.google.com/search?q=https://github.com/JOYJIT-06/LeakCheck/tree/2be2821) | Frozen Record `rec_physionet_v1_1_e4a2b05c` | Settings Hash `e4a2b05c`)
+**Repository:** [https://github.com/JOYJIT-06/LeakCheck](https://github.com/JOYJIT-06/LeakCheck) (Commit [2be2821](https://github.com/JOYJIT-06/LeakCheck/tree/2be2821) | Frozen Record `rec_physionet_v1_1_e4a2b05c` | Settings Hash `e4a2b05c`)
 
 **LeakCheck** (`src/emi/`) is a reproducible benchmarking and audit framework designed to evaluate **validation-partitioning choices** (run-held-out vs. trial-level random splitting) separately from **supervised pipeline contamination** (fitting spatial filters using held-out test labels prior to partitioning) in within-subject motor-imagery electroencephalography (MI-EEG) decoding.
 
@@ -99,9 +99,9 @@ Both sets of values are reported transparently in **Table 5.2** below.
 | **`P1_csp_on_all` vs. `D3_loro`** | **101 (+), 2 (−)** (`S026, S049`), **2 (0)** (`S029, S054`) [Raw: 101+, 2−, 2] | **+24.82 pp** (14.01 pp) | **+23.26 pp** | **+24.50 pp** (`+24.5029`) | **`[+22.22, +27.78]`** / `[+21.75, +27.78]` pp | **`4.43e-18`** / `4.43e-18` / `2.42e-18` | **+1.771** (+0.998) | **1.0000** [`[+22.55, +27.09]` pp] |
 | **`D1s_size_matched` vs. `D1m_matched_k`** *(Direct ID-Joined)* | **71 (+), 29 (−), 5 (0)** (`S011, S031, S034, S079, S096`) [Raw: 72+, 30−, 3] | **+1.89 pp** (3.43 pp) | **+1.79 pp** | **+1.86 pp** (`+1.8561`) | *Not in `inflation_table`* / **`[+1.27, +2.50]`** pp | *Not in table* / **`4.87e-07`** / `5.61e-07` ($m=4$) | **+0.552** (+0.595) | **0.3766** [`[+1.34, +2.45]` pp] |
 
-## 6. Note on Secondary Multi-Dataset Benchmarks
+## 6. Scope & Generalization Boundaries
 
-In supplementary repository runs across secondary datasets (such as BNCI2014-001 and Lee2019), trial-level vs. run-held-out differences varied in sign and magnitude. **The observed direction differed across the reported benchmarks; the mechanisms responsible require further investigation.** Users should not assume that trial-level random splitting universally increases or universally decreases decoding accuracy across all EEG recording paradigms.
+In this PhysioNet EEGMMIDB benchmark, trial-level random splitting produced lower estimated accuracy than leave-one-run-out validation (`D3_loro`), whereas pre-split supervised CSP fitting substantially increased estimated accuracy. The observed deflation under random trial splitting reflects sensor impedance drift and inter-run non-stationarity specific to physical recording blocks in this corpus. Here `D3_loro` serves as the run-held-out reference protocol rather than proven deployment ground truth, and the mechanisms underlying the observed difference between random and run-held-out splitting were not directly tested. Users should not assume that trial-level random splitting universally increases or universally decreases decoding accuracy across all EEG recording paradigms or experimental setups.
 
 ## 7. Reproducing the Statistical Verification from Frozen CSVs
 
