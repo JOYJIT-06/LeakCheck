@@ -38,5 +38,9 @@ FINAL_DIAGNOSTIC.txt
 LeakCheck_paper_evidence/
 benchmark_results/physionet_rebuilt/
 paper_evidence/
+
+# Private manuscript drafts and references (preserved locally on researcher laptop)
+manuscript/
+manuscript/**
 analysis/recompute_and_crosscheck.py
 
