@@ -32,3 +32,11 @@ results/
 *.zip
 CLAUDE_HANDOFF_*.txt
 benchmark_results/openbmi_v2_smoke/
+
+# Diagnostic scratch files and paper review evidence
+FINAL_DIAGNOSTIC.txt
+LeakCheck_paper_evidence/
+benchmark_results/physionet_rebuilt/
+paper_evidence/
+analysis/recompute_and_crosscheck.py
+

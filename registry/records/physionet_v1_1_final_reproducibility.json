@@ -1,0 +1,164 @@
+{
+  "benchmark_name": "PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB) V1.1 Benchmark",
+  "benchmark_id": "physionet_v1_1_final",
+  "protocol": "LeakCheck V1.1 Headline Size-Matched and Supervised Leakage Evaluation",
+  "git_commit": "fbc7ae456b6c2baa660982230b2095f9e346aaa9",
+  "git_branch": "research/v1.1-final-audit",
+  "target_remote": "https://github.com/JOYJIT-06/LeakCheck.git",
+  "date_executed": "2026-11-15T01:47:12Z",
+  "settings_hash": "e4a2b05c",
+  "environment": {
+    "python_version": "3.12.16 | packaged by Anaconda, Inc. | (main, Oct 26 2026, 20:13:05) [MSC v.1942 64 bit (AMD64)]",
+    "os": "Windows-11-10.0.26200-SP0",
+    "architecture": "AMD64",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "packages": {
+      "emi": "1.1.0",
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "mne": "1.13.2"
+    }
+  },
+  "experimental_settings": {
+    "dataset": "physionet",
+    "designs": "D3_loro,D1m_matched_k,D1s_size_matched,P1_csp_on_all",
+    "decoders": "csp_lda",
+    "n_null": 0,
+    "null_types": "perm,shift",
+    "n_repeats": 5,
+    "n_repeats_matched": 20,
+    "min_trials": 30,
+    "min_per_class": 10,
+    "min_per_run": 8,
+    "csp": "mne",
+    "csp_reg": "oas",
+    "seed": 0
+  },
+  "participant_cohort": {
+    "requested_total": 109,
+    "finished_total": 105,
+    "excluded_total": 4,
+    "excluded_subject_ids": [
+      "S044",
+      "S069",
+      "S086",
+      "S091"
+    ],
+    "technical_exclusion_reasons": {
+      "S044": "Missing EDF/cache from PhysioNet repository",
+      "S069": "Missing EDF/cache from PhysioNet repository",
+      "S086": "Excluded on minimum trial threshold (24 < 30 trials)",
+      "S091": "Corrupted/truncated raw EDF recording in PhysioNet repository"
+    }
+  },
+  "empirical_results": {
+    "N": 105,
+    "contrasts": [
+      {
+        "contrast": "P1 vs D3",
+        "description": "P1 (CSP on all data) vs D3 (LORO reference)",
+        "mean_diff_pp": 24.8153,
+        "median_diff_pp": 23.2558,
+        "hodges_lehmann_pp": 24.5029,
+        "bca_95_ci_pp": [
+          22.2222,
+          27.7778
+        ],
+        "wilcoxon_w": 6.5,
+        "wilcoxon_p_holm": 4.43e-18,
+        "cohens_dz": 1.7708,
+        "r_rb": 0.9976
+      },
+      {
+        "contrast": "D1s vs D3",
+        "description": "D1s (size- and class-matched random split) vs D3 (LORO reference)",
+        "mean_diff_pp": -2.7715,
+        "median_diff_pp": -2.6136,
+        "hodges_lehmann_pp": -2.6768,
+        "bca_95_ci_pp": [
+          -3.9464,
+          -1.4706
+        ],
+        "wilcoxon_w": 1525.5,
+        "wilcoxon_p_holm": 5.86e-05,
+        "cohens_dz": -0.4491,
+        "r_rb": -0.4518
+      },
+      {
+        "contrast": "D1m vs D3",
+        "description": "D1m (stratified k-fold, k=3) vs D3 (LORO reference)",
+        "mean_diff_pp": -4.6659,
+        "median_diff_pp": -4.0,
+        "hodges_lehmann_pp": -4.4697,
+        "bca_95_ci_pp": [
+          -5.8349,
+          -3.136
+        ],
+        "wilcoxon_w": 936.5,
+        "wilcoxon_p_holm": 1.08e-08,
+        "cohens_dz": -0.6847,
+        "r_rb": -0.657
+      }
+    ]
+  },
+  "data_artifact_hashes": {
+    "excluded_or_failed_subjects.csv": {
+      "sha256": "a2c8866278b13a5fb0d93eb7e328a8628580e25cb79bd0b4089615ed3a3a499c",
+      "size_bytes": 319
+    },
+    "inflation_by_subject.csv": {
+      "sha256": "1a2b9354cd4cade03e1faa219a96a6e8812969a8cd2fe5ef79b40f26defcf141",
+      "size_bytes": 36873
+    },
+    "inflation_csp_lda.png": {
+      "sha256": "7034a5aa9b66e993c2e087a0ef930416ce2ae99765c91c1f8980e6b471a4c926",
+      "size_bytes": 63142
+    },
+    "inflation_table.csv": {
+      "sha256": "63d86bfcddc69541a0d05da4508be6e7cf91383b4a454a55b9534d60bcf7e6f6",
+      "size_bytes": 1101
+    },
+    "leakcheck_raw.csv": {
+      "sha256": "6af65f336d06ae1a2d8911521f1e1d58d2090e680dc75d80e71aa1d017d2f6f3",
+      "size_bytes": 92622
+    },
+    "leakcheck_summary.json": {
+      "sha256": "e8af6ee69a4d18b621d49e6b010adf0a80a9d2d06adb588c39220915873677b3",
+      "size_bytes": 767
+    },
+    "null_table.csv": {
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    },
+    "paired_csp_lda_size_matched.png": {
+      "sha256": "f5841d56abe0b8b963dfaa5de6ef9648ad0771fb95207ec3a2c7d00e1ce9042e",
+      "size_bytes": 70111
+    },
+    "paired_delta_vs_null.csv": {
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    },
+    "participant_flow_manifest.json": {
+      "sha256": "b9005f5da576d0962fe9fa03ff3a7b525f7dba0105f0f2d1964119d7891e7e65",
+      "size_bytes": 105814
+    },
+    "README.md": {
+      "sha256": "864071e420e964cfea27a9bf733b8d1e835b8b2e1f318c656068c7bc36f1c952",
+      "size_bytes": 4625
+    },
+    "settings.json": {
+      "sha256": "a05710b5fba5519dbdcacf3f369e14d90c44ca083421342db6faf557a906c556",
+      "size_bytes": 453
+    },
+    "subject_empirical_p.csv": {
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "size_bytes": 2
+    },
+    "subject_info.csv": {
+      "sha256": "ef5fa264cb9368b937a48afc8a4fa9b6b6b1f488715116f7122cd349cb270e31",
+      "size_bytes": 46499
+    }
+  },
+  "verification_status": "VERIFIED_100_PERCENT_REPRODUCIBLE"
+}
