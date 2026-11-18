@@ -1,0 +1,8 @@
+﻿Audit timestamp: 20261115_235104
+Repository: D:\my lab\LeakCheck_remote
+Manuscript: D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet
+Actual starting branch: research/v1.1-final-audit
+Actual starting HEAD: 2774aa9c9461d96546d401a4ab8c490b8eb12790
+Expected branch: research/v1.1-final-audit
+Expected reported local HEAD: 2774aa9
+Expected reported remote HEAD: 4c63b27

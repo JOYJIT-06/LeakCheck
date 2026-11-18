@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "manifest_metadata": {
+    "manifest_version": "1.1.0",
+    "created_timestamp_utc": "2026-11-18T18:37:36.529244+00:00",
+    "benchmark_name": "LeakCheck V1.1 PhysioNet Repaired Benchmark",
+    "benchmark_id": "physionet_v1_1_repaired",
+    "lead_agent": "worker_day5_1 (Lead Benchmark Execution Engineer)",
+    "verification_agents": [
+      "LEAD",
+      "reviewer_day5_1",
+      "challenger_day5_1",
+      "auditor_day5_1"
+    ]
+  },
+  "git_provenance": {
+    "repository_url": "https://github.com/JOYJIT-06/LeakCheck.git",
+    "branch": "research/v1.1-final-audit",
+    "head_commit_hash": "2774aa9c9461d96546d401a4ab8c490b8eb12790",
+    "working_tree_clean": false,
+    "baseline_release_tag": "v1.1.0",
+    "baseline_release_commit": "d35afa6fe8e86dfdf532ee4f26e4abc1482c3155"
+  },
+  "environment_specifications": {
+    "os_platform": "Windows-11-10.0.26200-SP0",
+    "os_name": "Windows 11",
+    "architecture": "AMD64",
+    "processor": "AMD64 Family 25 Model 68 Stepping 1, AuthenticAMD",
+    "cpu_physical_cores": 8,
+    "cpu_logical_processors": 16,
+    "total_visible_ram_gb": 15.19,
+    "python_executable": "D:\\anaconda\\envs\\leakcheck\\python.exe",
+    "python_version": "3.12.16 | packaged by Anaconda, Inc. | (main, Oct 26 2026, 20:13:05) [MSC v.1942 64 bit (AMD64)]",
+    "software_packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "mne": "1.13.2",
+      "scikit_learn": "1.9.1",
+      "joblib": "1.6.0",
+      "pandas": "3.1.0",
+      "pytest": "9.2.0"
+    }
+  },
+  "experimental_protocol_and_seeds": {
+    "dataset": "physionet",
+    "experimental_designs": [
+      {
+        "design_id": "D3_loro",
+        "description": "Leave-one-run-out across runs R04, R08, R12 with run-independent filtering and fold-isolated preprocessing (leak-free reference)",
+        "folds": 3,
+        "is_reference": true
+      },
+      {
+        "design_id": "D1m_matched_k",
+        "description": "Matched-size random split (5 repeats of 3-fold) with fold-isolated preprocessing",
+        "repeats": 5,
+        "folds_per_repeat": 3,
+        "total_evaluations": 15
+      },
+      {
+        "design_id": "D1s_size_matched",
+        "description": "Standard size-matched random split matching D3 fold train/test class counts across 20 repeats",
+        "repeats": 20,
+        "folds_per_repeat": 3,
+        "total_evaluations": 60
+      },
+      {
+        "design_id": "P1_csp_on_all",
+        "description": "Supervised global CSP on all trials before LORO LDA (positive control leakage mechanism)",
+        "folds": 3
+      }
+    ],
+    "decoder": "csp_lda",
+    "csp_components": 4,
+    "csp_regularization": "oas",
+    "lda_solver": "lsqr",
+    "lda_shrinkage": "auto",
+    "random_seeds": {
+      "global_benchmark_seed": 42,
+      "stratified_kfold_base_seed": 42,
+      "size_matched_rng_base_seed": 123,
+      "shared_bootstrap_matrix_seed": 42
+    },
+    "shared_bootstrap_index_matrix": {
+      "path": "docs/STATISTICS/bootstrap_resample_indices_b10000_n105.csv",
+      "dimensions": [
+        10000,
+        105
+      ],
+      "sha256": "2aeb5c4176b5ef7e65447489b4a5bc86f0959be3d9d4106125ce155aea811ce7"
+    }
+  },
+  "cohort_accounting": {
+    "total_subjects_requested": 109,
+    "total_subjects_included": 105,
+    "total_subjects_excluded": 4,
+    "retention_rate_pct": 96.33,
+    "included_subject_ids": [
+      "S001",
+      "S002",
+      "S003",
+      "S004",
+      "S005",
+      "S006",
+      "S007",
+      "S008",
+      "S009",
+      "S010",
+      "S011",
+      "S012",
+      "S013",
+      "S014",
+      "S015",
+      "S016",
+      "S017",
+      "S018",
+      "S019",
+      "S020",
+      "S021",
+      "S022",
+      "S023",
+      "S024",
+      "S025",
+      "S026",
+      "S027",
+      "S028",
+      "S029",
+      "S030",
+      "S031",
+      "S032",
+      "S033",
+      "S034",
+      "S035",
+      "S036",
+      "S037",
+      "S038",
+      "S039",
+      "S040",
+      "S041",
+      "S042",
+      "S043",
+      "S045",
+      "S046",
+      "S047",
+      "S048",
+      "S049",
+      "S050",
+      "S051",
+      "S052",
+      "S053",
+      "S054",
+      "S055",
+      "S056",
+      "S057",
+      "S058",
+      "S059",
+      "S060",
+      "S061",
+      "S062",
+      "S063",
+      "S064",
+      "S065",
+      "S066",
+      "S067",
+      "S068",
+      "S070",
+      "S071",
+      "S072",
+      "S073",
+      "S074",
+      "S075",
+      "S076",
+      "S077",
+      "S078",
+      "S079",
+      "S080",
+      "S081",
+      "S082",
+      "S083",
+      "S084",
+      "S085",
+      "S087",
+      "S088",
+      "S089",
+      "S090",
+      "S092",
+      "S093",
+      "S094",
+      "S095",
+      "S096",
+      "S097",
+      "S098",
+      "S099",
+      "S100",
+      "S101",
+      "S102",
+      "S103",
+      "S104",
+      "S105",
+      "S106",
+      "S107",
+      "S108",
+      "S109"
+    ],
+    "excluded_subject_details": {
+      "S044": {
+        "status": "EXCLUDED",
+        "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+        "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
+        "raw_sampling_rate_hz": 160.0
+      },
+      "S069": {
+        "status": "EXCLUDED",
+        "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+        "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
+        "raw_sampling_rate_hz": 160.0
+      },
+      "S086": {
+        "status": "EXCLUDED",
+        "rejection_category": "MINIMUM_TRIAL_THRESHOLD_VIOLATION",
+        "rejection_rationale": "Sample size threshold violation: 24 trials < minimum 30 threshold (min_trials=30 in settings.json)",
+        "raw_sampling_rate_hz": 160.0
+      },
+      "S091": {
+        "status": "EXCLUDED",
+        "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+        "rejection_rationale": "100% trials rejected by adaptive peak-to-peak thresholding (all 45 epochs dropped)",
+        "raw_sampling_rate_hz": 160.0
+      }
+    },
+    "native_128hz_participants": [
+      "S088",
+      "S092",
+      "S100"
+    ]
+  },
+  "input_raw_edf_hashes": {
+    "manifest_reference": "data/manifests/raw_edf_sha256.json",
+    "total_raw_edf_files": 327
+  },
+  "output_result_hashes": {
+    "leakcheck_raw_csv": "f24e3a938162a1415c7840d8b5f2d0fad3f729e44bde2e371d276687b3f88b68",
+    "subject_info_csv": "58c6071b2004b9716a55c7b8a48a729c483c09ba9d948fa047a68d2ec51cf1cb",
+    "inflation_by_subject_csv": "63b8e2576efd008e6047d91ae43afde188a996e00f0eb5da0da050a409c3cc96",
+    "inflation_table_csv": "d6f7be5a380dca4732e611dbef212e5e48ff6225cd8000bc8c31414cecfd2c7f",
+    "participant_flow_manifest_json": "f60f2723006430b59f8b5cd4a1eb5a696f1c53c4c2654eddf99067a643df9b27",
+    "excluded_or_failed_subjects_csv": "0b24647957f50138a9e205c7e38163304f60cffac8ff18f02488a2da4e603778",
+    "settings_json": "197ab5f6b43e57d393a50fc5b4c3e7c95d3b75e51a99e457d664587876940cab",
+    "leakcheck_summary_json": "f63ea13a2cc4271d100c5598f93d7f175d61b9e866a4451506a0c7b9e46845a6"
+  },
+  "safety_invariants_status": {
+    "benchmark_results_physionet_v1_1_final_untouched": true,
+    "archive_v2_untouched": true,
+    "verified_clean": true
+  }
+}

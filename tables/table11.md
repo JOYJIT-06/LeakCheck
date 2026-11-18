@@ -1,0 +1,9 @@
+# Table 11: Fold-Isolated Preprocessing Parameter Stability Across Cross-Validation Folds
+
+| LORO Fold          | Held-Out Test Run        | Mean N_train (Trials) | Mean N_test (Trials) | Artifact Threshold τ (µV) | Mean Bad Channels B_train | Mean ICA Excluded W_train | Mean Fold Test Accuracy (%) |
+| ------------------ | ------------------------ | --------------------- | -------------------- | ------------------------- | ------------------------- | ------------------------- | --------------------------- |
+| Fold 0             | Run 4 (R04)              | 29.8 ± 1.4            | 14.9 ± 0.8           | 354.8 ± 188.5             | 2.50                      | 1.30                      | 58.00% ± 14.10%             |
+| Fold 1             | Run 8 (R08)              | 29.7 ± 1.5            | 14.7 ± 1.0           | 345.1 ± 175.9             | 2.38                      | 1.31                      | 61.19% ± 16.83%             |
+| Fold 2             | Run 12 (R12)             | 29.5 ± 2.2            | 14.8 ± 0.9           | 325.9 ± 165.5             | 2.14                      | 1.36                      | 59.75% ± 16.98%             |
+| Combined All Folds | All Runs (R04, R08, R12) | 29.7 ± 1.7            | 14.8 ± 0.9           | 342.0 ± 177.3             | 2.34                      | 1.33                      | 59.65% ± 16.08%             |
+

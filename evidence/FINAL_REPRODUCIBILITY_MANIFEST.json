@@ -1,0 +1,1110 @@
+{
+  "": "https://json-schema.org/draft/2020-12/schema",
+  "manifest_metadata": {
+    "manifest_version": "1.1.0-release",
+    "manifest_id": "LEAKCHECK-V1.1-FINAL-REPRODUCIBILITY-MANIFEST",
+    "created_timestamp_utc": "2026-11-18T15:04:43.885844+00:00",
+    "benchmark_name": "LeakCheck V1.1 PhysioNet Final Repaired Benchmark",
+    "dataset_cohort": "PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB)",
+    "evaluated_participants_n": 105,
+    "excluded_participants_n": 4,
+    "retention_rate_pct": 96.33,
+    "lead_packaging_engineer": "worker_day7_1 (Lead QA, Remediation & Release Packaging Engineer)",
+    "audit_consensus": "UNANIMOUS_PASS (explorer_day7_1, explorer_day7_2, explorer_day7_3, worker_day7_1)"
+  },
+  "git_provenance": {
+    "repository_url": "https://github.com/JOYJIT-06/LeakCheck.git",
+    "branch": "research/v1.1-final-audit",
+    "head_commit_hash": "2774aa9c9461d96546d401a4ab8c490b8eb12790",
+    "baseline_release_tag": "v1.1.0",
+    "baseline_release_commit": "d35afa6fe8e86dfdf532ee4f26e4abc1482c3155"
+  },
+  "environment_specifications": {
+    "os_platform": "Windows-11-10.0.26200-SP0",
+    "architecture": "AMD64",
+    "python_executable": "D:\\anaconda\\envs\\leakcheck\\python.exe",
+    "python_version": "3.12.16 | packaged by Anaconda, Inc. | (main, Oct 26 2026, 20:13:05) [MSC v.1942 64 bit (AMD64)]",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "mne": "1.11.0",
+      "scikit_learn": "1.8.0",
+      "pandas": "3.1.0",
+      "pytest": "9.2.0",
+      "joblib": "1.6.0"
+    }
+  },
+  "safety_invariants": {
+    "benchmark_results_physionet_v1_1_final_untouched": true,
+    "archive_v2_untouched": true,
+    "single_dataset_physionet_scope_preserved": true
+  },
+  "raw_edf_cohort_manifest": {
+    "manifest_reference": "data/manifests/raw_edf_sha256.json",
+    "total_raw_edf_files": 327,
+    "expected_runs_per_subject": [
+      4,
+      8,
+      12
+    ],
+    "sha256_hashes": {
+      "S001R04.edf": "3d161f88e1c00632585287d2ce584c2bc0f08862438eb255ea8723e00fac693d",
+      "S001R08.edf": "358fb5189220725141968ae285fbe9e3f36210b834ffba71d940af308e3aca68",
+      "S001R12.edf": "2b281c9b687b4c4176e83251d74743721f2d6ebd76656a972a3b9c44d9d88cd5",
+      "S002R04.edf": "fcd37831378c411d50c223d97ffbc00949be2271d093f1d8e56bbe7c02bd1539",
+      "S002R08.edf": "02d64941f6bcd1635bc7dd187a9553331b73933e9771f4e7c59249dfc5632c5a",
+      "S002R12.edf": "a3d166b23375942a5ccf352924f7766f0ca9cfd1bac7951175e710d978f5239f",
+      "S003R04.edf": "7d0732eea963488a53153835524e55c2b68220b0a0c7c5be99e535a9f5367e7f",
+      "S003R08.edf": "0f50978bb972e693b8c758a9223a2d9fa35c7f117226391090bcc32a83ce765d",
+      "S003R12.edf": "bbf7137bfa7905724741e95359fa090439d4422c07bdba16c792acb09ebd6421",
+      "S004R04.edf": "c9ddf0294961f0b877192a2479802b9c6c88403682a17b5ad679fd6485aa6f59",
+      "S004R08.edf": "1ab5909b183413283a7ea76e35311a68a4688558f0044b9faab3987291cbdb92",
+      "S004R12.edf": "c44b7be0464d86be4d460ec66432869b7b3e8dcaa2067af02d6e772abf5c11de",
+      "S005R04.edf": "956d0857b17b040955fee9b2384f818f85bfb02248c387d9aa7930c42934ca0c",
+      "S005R08.edf": "eeed6c328ee256dd2c20d1808e05819bed4ce56b8de1c57914ded00565b6b7bc",
+      "S005R12.edf": "dfaf07c8ecc583b07363485596258e66a75fb33169496c62918c6dd0803814ce",
+      "S006R04.edf": "4bd532bb728e1f2ed2afc0a5c162830a07465b6a4a58e105d1316c6ff1921f3b",
+      "S006R08.edf": "006e55ec16590f5f5b9230ac53a2f8fd0660960fa7b4b512ff61f8f7e2f8714e",
+      "S006R12.edf": "296b5cb14549098dc55ee047cc9ff63faccf480e432b94797ff73cc7209b7353",
+      "S007R04.edf": "3b31e50c4a5ebbb25459b1ebdf802b7ca86010857637580aacd53067350553a6",
+      "S007R08.edf": "fa8cfc38727e908be4626cf82b19533f7a761f102319696e53e4ee2d61b1092b",
+      "S007R12.edf": "70cd3287d6b4821661521954206f86dde9f5e62904edd76cc0cf1d03fe112df3",
+      "S008R04.edf": "034a26131e1425e6374a459e5887b1f831f7bfdb101a3658d2cd07620cf2c06b",
+      "S008R08.edf": "534c25b65a4fa68afe29a5c0272a686ac474e638c86521b177660d888401f374",
+      "S008R12.edf": "ddced4ba4dc801313554039823fa1826d0dd52648f87a5ee5ada8e9cdd0678c8",
+      "S009R04.edf": "705f53460954e465e7a6ef45bd1f64e675548c08e9238dfb1f448713f9e559f8",
+      "S009R08.edf": "a8121c688ffca3db1d3b1f61dd53d6636ac91763cd2269b39636c65dfc6e4fe2",
+      "S009R12.edf": "0c3f9700d6bfd8a8dd797803d61b80852688709011e5863f4e13e9ec3948191f",
+      "S010R04.edf": "8e68b22936cbcb7f84ed8ff037cb4a99f01064589d181c8056dbef06c1c7159b",
+      "S010R08.edf": "b468e77d0c8a73377b4510220c6be95bdefd572f6ed5c4b5f539c9dc0bdef485",
+      "S010R12.edf": "0983609a12e6fd9b3ae99fd6968938ec5a3b012948894602233a65b720ac3975",
+      "S011R04.edf": "072b75496dd935be460bc8ac9c3bf2d1fdcdb62f32ffb552955319abcb24cfe9",
+      "S011R08.edf": "70b05e696e9faff6566cabda58b9144e1cd8ca3b16e04178309b22ef7bb612b7",
+      "S011R12.edf": "9034d085bc01c1c738d80a48fdc43059f88c13d587b5de1c59d4a85ecd194ccb",
+      "S012R04.edf": "974d6c7558c8d8ee48449bf9a1f40cda596febb6365e69e8e65c2d952644017e",
+      "S012R08.edf": "5d7d13ad211f615a21db64c3a4dbc8ff4ef10dc3f777b8e6441d8942e8d40336",
+      "S012R12.edf": "2b76c97a6cbc894a85a4f54385997b6aa07d3e9ec040ec1adf61a310b26f5caa",
+      "S013R04.edf": "796eb8df7d12b32e6ebbfb6756e527217c7b59a282735eb782dd50f5f16c39c8",
+      "S013R08.edf": "dac533ea38aaa6c7505565059a5a8e19825702e68f5d27f47edd11cff0035736",
+      "S013R12.edf": "5a4d97f54f5769fb61a64854d46108b2554f1013f0e664810746911f69ea241d",
+      "S014R04.edf": "7e443b4a4bb000506137ffd79eae9fd915a282f4c6c5aac71ad8b8612072227d",
+      "S014R08.edf": "a63bc896da7b0fa302c3c3b0ad53a4c54f1a35fd1f66bebb2cedc81cbabc9320",
+      "S014R12.edf": "e6ef184a364734f2cc0fce314c93ffa545660a89567475f56ddd979a2d0fbc39",
+      "S015R04.edf": "1721d4a066e0c28221877d0f9e7da2402bdd924a532f5f19261c429def061273",
+      "S015R08.edf": "70e4dcfa5bb501007b4a502fb1ac6975128fb316de67eb825f8eee00cba9377f",
+      "S015R12.edf": "a5e56adba75340447849c46eb049b39799ee98d68133357741c6980f8f60c54a",
+      "S016R04.edf": "501fdb3cc2fb504d2948e7ce665c81e828612cf1af80a0b964b34a13803a4d6b",
+      "S016R08.edf": "c7d59291f3d037e25c672da1bf0c202f63b7913a0f72401cb73f27deddb5ac24",
+      "S016R12.edf": "f4e5942da16ca0992db7884a42d0b2a16bad648fc4bbd483f2954a93ca48a931",
+      "S017R04.edf": "9d13376473bae5b868c07fefde7d4ec465573b393a4831b0142a26812e5b6bf7",
+      "S017R08.edf": "902e30ad95dd3786fa3d3e0532743edf049850536cf773974fb9fbe3f4475da5",
+      "S017R12.edf": "ffb8ee6f01d5b12337052ee1eb9e1caccade52937b6999d34925e90634d5b82e",
+      "S018R04.edf": "0b726bfd4ce56c9fa7417f84f52759c40eb7cd326f06a25374034c199f5fd8bf",
+      "S018R08.edf": "b417c65a63c4b70f7eedc81ad11f8b5c067be5143d343a250d9397050ec5e27e",
+      "S018R12.edf": "50b4e74957541c9f1f2161ec3665b58b247727b50ed9284f1d173b9b77d1feef",
+      "S019R04.edf": "97eda5477ba1fa369a3718b332a0d5ce6a71e37b5153d6472d65b430103a3d06",
+      "S019R08.edf": "ae16abeb147d185bf9bd6e1ceff37d95f73fa2b3d03561225a35447d72cc8020",
+      "S019R12.edf": "a3c4942a316f2cc431aaa358288b3c8f55fffa7b832ebca26705f68f007983ea",
+      "S020R04.edf": "3ff2fd30d246987573897d429b8a6c51cca3f1ea4cfcf8815c49e1f6f6512013",
+      "S020R08.edf": "05314b692cd4c103071ed616e36f7dec96116f2b5251e0912a35d65782ae9205",
+      "S020R12.edf": "63ef2b1452fe4a93a84c501f10fc35a234d87eece20f0b563b373229b9b8ae7d",
+      "S021R04.edf": "9481518d6a0b086d782ba17e78fe12575500ce3c7f25071f29adc5eae093c863",
+      "S021R08.edf": "8abd01e9b2a9c563469beac4d632727d9b341438b93aea76258ea180de2ac6e5",
+      "S021R12.edf": "326023193bc901b74d1fcd5e7a88f064643a41842fef121fa031d9f628cbf3ea",
+      "S022R04.edf": "d2f48578f30b4edea2e138e74854a09e36887f8833a3e0f48cb2346ead82b201",
+      "S022R08.edf": "8f890909113d536152b987caff0d70c73468b0332dca478783e665598697367a",
+      "S022R12.edf": "46f0835897374fdc2dbc634bc4c16a61cd03a4ca25506cf923b922629b07674d",
+      "S023R04.edf": "16ebfe43b2510115dbf1b15a00a429cfbd6b3a1443c2bed08e6755282e06f3c2",
+      "S023R08.edf": "70f7e8d4af5500e2114eea7db8c50d7c4b822fbd7c92c8907018e3aa094f4ffc",
+      "S023R12.edf": "366faf95b5e6142e8c6cd9b55da2005533b199983ef0599d73d1535179e7ca5b",
+      "S024R04.edf": "fe32b65b90079a307b05c42602aa66b3c79e09726ce9457e1d95242b102c6ba1",
+      "S024R08.edf": "863899a80ad93a9ed8871be3bb775f8e74bf777dbf7a2c3da50e1433ceb3b50c",
+      "S024R12.edf": "f6287534159e552ed194cd1e3d44719e5ac162691779fd1a6fa3ae535cc036df",
+      "S025R04.edf": "25ee02ebfe5c2b2a652a295835d7a4da653c5e6b390084b7c78a4daa64336381",
+      "S025R08.edf": "eca94875e6b247b85ee541ccca3118d259132e96212fcd059ccc943f48c2dd56",
+      "S025R12.edf": "94a0c6cb21c67381221fdf364c8eadd17ce3b70021c579d0721c22d04c6d2523",
+      "S026R04.edf": "1e6bb923f94a3b28354244ea4302d213e1656bb309fe3b3ab069e9dc0b2d62ea",
+      "S026R08.edf": "2c035db71fdf3615a23be361328ff9e9017feb97c097b49a4f6c8aff2c36f1d8",
+      "S026R12.edf": "681a772c11bbdd917acbf081308f8854c972afb4bf8a05d50fdef1b1c86feff2",
+      "S027R04.edf": "4089acd89834f5aae1ea194c2d42b469b3dff95700554dbb4f0da68e91d94d48",
+      "S027R08.edf": "bb50d3febb694639ff3d90cedae79d6f9531f4d6824919ebcc843254acc8cd96",
+      "S027R12.edf": "d782cd20eb82862f4bb6f74f4fbd507ff2610480f581ccbc6ab885a60be94ac6",
+      "S028R04.edf": "deee0e2e89467831f8d6d6ad4b142bbe5ffcf79a1e4dc993e1a52b5face5604a",
+      "S028R08.edf": "f4faed4d95f419e54b95e5232155fa77af1a1a0a739bdc12b3bdfc6edb5f0a79",
+      "S028R12.edf": "ce460f08c9ece9756e66c7e413e565d106676c865bd9a4fe6aa19097ff693bf7",
+      "S029R04.edf": "4674f7e44919af804dfd99a38004f6b9ae62b21eacd61ca389df55aa18a00f01",
+      "S029R08.edf": "a77d299e99458745c7010d023698208f6b0d56cd5f2a74628688d08a600df781",
+      "S029R12.edf": "9d01ce9be2230b87a47050e0fcdbbfde4ff10144b9466fd286b618e59a81473a",
+      "S030R04.edf": "41305848c93a818493e0bbfb965d01433bdce1b48e9ea1b355e88e08f5c20f20",
+      "S030R08.edf": "6d4742bae0754084c96a1b14ff6430203b9d71b619fe9b33b420aa3d6fb83d28",
+      "S030R12.edf": "c1e5ffc5f0876254f77021f0a478bb374e1ef3c1388f8e90694e984aa085ac90",
+      "S031R04.edf": "514a2b800313549f00e927f8f322eac9a381b715b8728b835f0986fa4f7d5096",
+      "S031R08.edf": "b4cc77950c0f364cceb1ab55559a40c3ffe7a5b2fd5146a8ffa0243a35897e6a",
+      "S031R12.edf": "6bfe914504368ce54822eac53598d9d53b251b39b17e9a7090dd64619fcee982",
+      "S032R04.edf": "ae89d2c1dd10b26c8d382ddda0f6681723ab994168d0e94b4051c43d83bce694",
+      "S032R08.edf": "d707e791b0439e6b0c2401af9bcb90085272a857fa138f2b0c7d9bb20cf638a6",
+      "S032R12.edf": "86ec0265944349a8e801a96924a33cbf8834197e312cca86a576bc4be4057844",
+      "S033R04.edf": "d4520b8cafbbf03ce8d2159bb727f0f6032c1e9533bbc275f1fa4ddcb9cf135d",
+      "S033R08.edf": "0ee2a5a00463bbc650852de790943bc5af90547bc325bbc65be19e9b16eaf0a1",
+      "S033R12.edf": "a2968d5f651e72700096a652c3dd2fd34f51e9c381bef25c329dad3a3e2b319f",
+      "S034R04.edf": "16500fe53e24fd3683538d894bc85214a41801e172787e68fd7e1dc5a42bb56c",
+      "S034R08.edf": "01d92913e2d1f2bd5eba5d16f1ce03a150f6dba999db83a442e4d6a754fd4c44",
+      "S034R12.edf": "e7e7b75d6af726120e7482462e429a9faab0b1509eee0a73e064f972c4ed9779",
+      "S035R04.edf": "a8f13980108a70cc3d410ab231588bf76928e51ef9234650be443ae9cb4bfab3",
+      "S035R08.edf": "ef619d2dc6be970660c2a7ecbff9d084633c3fb023627604283b9606ea7fb668",
+      "S035R12.edf": "2358c7e90652d3c687fbcda65ae4ad4a0faca39dbd736c06ea1d8e20173671dd",
+      "S036R04.edf": "c4646d8128095e80fbebfd03dd6c77ebb3491fad49f9824c74f3e4861d9a9d04",
+      "S036R08.edf": "60ab89e8d0ecba687a40908643caaa4c7f4bf6ef92abb8d5c3c31201315eab2b",
+      "S036R12.edf": "ce79efbd62a81e00a6b7e98bbb80e2d8c0c4bf5c23ab1c1a036884044d5978df",
+      "S037R04.edf": "058d115743bbd3a114a21aa839415312b7210f4aabba8260ec7b9b471430c17a",
+      "S037R08.edf": "7b21a0f65631f91e46812aac3a2c3d46b9da9e847b2d0289f618419827973e4d",
+      "S037R12.edf": "ca053b2a09045e39cd0ecf2d7f50e4c067a515becfaaa7ade1f4dd4a06f91b6a",
+      "S038R04.edf": "45e64556375b00e2a2541ed5e14f96c79f4b86c18d54fcb1bafb2508c1ef06f2",
+      "S038R08.edf": "2f5146836f84423a5dc0a274f4d9da645bf7e485a5100d74cf98508bdac29b69",
+      "S038R12.edf": "edb6693591ebc3e273004339ec6d5eb7b11c60604828cca5e61e0d4df8eb22c1",
+      "S039R04.edf": "57302f5f9cd1714693e52b7785a839666da1560ee88b00779fe7f18f56899324",
+      "S039R08.edf": "4f5f011e61932f4f5998692bd6324c70b2286191dca137e340afbd4f9b7b93ae",
+      "S039R12.edf": "19078a959cce7c535e92c6fdc557dbd01c162549784a409af79929d9c4f20e16",
+      "S040R04.edf": "7e57eaba05275c3238d5fc60b1e696ffab146d578449abe50113f8b0dc388c12",
+      "S040R08.edf": "941d55ce92107bf7cab012df55566d5dedb0f7b0f13a408dd0a4feeae2d16da8",
+      "S040R12.edf": "4039c3d1a84f9cf689592549332130bfcd37e6739d8e978046f1427af22b10d5",
+      "S041R04.edf": "d814dd4d8d3d1e3853051e48cd3ac5e4761c3ed33a509d3c06ec946b9394c534",
+      "S041R08.edf": "daba914c30b37217f9ed61f4f79157f9e23372ed083260c47edcbda4359c97f1",
+      "S041R12.edf": "99f13ffe9ca9d9a3d680360b91555e73f190d91948c80ab8415b901b42350bc0",
+      "S042R04.edf": "278f745b79a507e87c4a4fe97542416b7723ee66e6960a459d43995486cf60bf",
+      "S042R08.edf": "b277ee780d7ed612958ca36ea7db2be9797001d5afcaf1dc20cf554dd774d18f",
+      "S042R12.edf": "e327ec08604c1a835bd0082c79c2b4f44ec22c1e0b39d12ca7be6c80d1acc8d9",
+      "S043R04.edf": "e841bfd7c22f200ed1999fd56466b9c13b05c5bfaf0c1ee30a2685827a137b85",
+      "S043R08.edf": "9359ced76df3828782fe5ab696efdef57b54e87be5363f2f3f07f8d4b3ac0adb",
+      "S043R12.edf": "514e5dd961671fbc4e1e23f852ac6e82320be1ef8b65383602c368f6de946909",
+      "S044R04.edf": "5da0315dd8b4e33769cbaf69b91e88845cd460f406fc0c72b793bc1f6b2229d2",
+      "S044R08.edf": "5f85b54550e4f648712fbd56a6edda9df6d93f0169b057dcd79ffc0a20224988",
+      "S044R12.edf": "84d09ee270206ab1f93595cb00d28b51af2cee24f4dc44c23a38464db833d463",
+      "S045R04.edf": "655d2602c087d8f9efa32722bb32aceed76cab3c72570516df12e41458a25482",
+      "S045R08.edf": "8e3ac9f836029bfdca587290743f5b7a190f2470f55fcdccbecf9eb7bb3aa40a",
+      "S045R12.edf": "171f3487729fbbea555c923c74b8ce1e0f408aab10205cc95d2f498ba3220b2b",
+      "S046R04.edf": "ed0b219b3b7f3a340b504a801044b8a6c9c33095a59a3dfab535c6a06abd0670",
+      "S046R08.edf": "30e3df4eb6380358330a30b9d9906286a110c46a5eae2a991e83ced4a2abe3b4",
+      "S046R12.edf": "3238e8feb6b1faeb6130cc813b0c147eff986e9332cbffe7b0dd9c5a87975c1b",
+      "S047R04.edf": "67a0ab9dbf9e0164fbe16036ec578b89056fdfe8efdb1eb4aa441502a23b5a5a",
+      "S047R08.edf": "4de761cc5ffcb89ae9a1d4e206a0397742e7a6e34e458bdf8e50883a3f7f6328",
+      "S047R12.edf": "d457e75b37b82724af1b7024194e5c4858b31402b01f8b2691bc9d4bd6ea112c",
+      "S048R04.edf": "0916751e1b738588b93540043b78ea96f033b83ed87141a7cde6351409020d1c",
+      "S048R08.edf": "5f519c4a10d3e18c4be0eb840be7be1022471594c46c451c3614712896feb669",
+      "S048R12.edf": "9dbd643ce614d3b1c9e07190375fb04222e065c057d468f36b1141572e1490b2",
+      "S049R04.edf": "a481efa8e833cdc64e9f0a3a5c082ac1765462d4f134beb46a3439acb40323f8",
+      "S049R08.edf": "449bc4afe04a06d018e6a4385144253bdbea91334af3be4f59165883be2c46a5",
+      "S049R12.edf": "37ac2679e0f9b35f879dd80255dad13f27fda1950a5182eddcee5cab8dc6e8ef",
+      "S050R04.edf": "d2068d794befef727cb907835cf04cbc357e16ef90766ca22917dd4b4649df85",
+      "S050R08.edf": "211a70a072988cc85fbab6e28b0e0550c18d22225dda82a9471a980447eafcf9",
+      "S050R12.edf": "ae1fa0a96ddbcf2f2e55f1df26fb90c4bfe439bf0bacb89c03579c0308ea1180",
+      "S051R04.edf": "f1560c8e23d36805035cbd36496630af7fe2a16d7676b91df7ec8f2d039b2cd8",
+      "S051R08.edf": "548006fe57af6638963b64e36efff127e1581c9f27ac932c7d4f318fcd0008ee",
+      "S051R12.edf": "a89b20cfa7435430bd00d59a884e1c9afbd5190636c63ad9d65de5917922d986",
+      "S052R04.edf": "a519ee3e292f1d8317b69f8bf39e3c6ace26dd5084baf5824f8954b42fc2c8c4",
+      "S052R08.edf": "b9583eccd78acef6f7bbb65318f6b1d3fec1ca88ab6e470cd5f97722635379e8",
+      "S052R12.edf": "bd07d4c56f8d31a0fef2a31926a98c11104d21e9b127f84b02743cacc9e6eb40",
+      "S053R04.edf": "90703ee0a3f4880dfb4bac085c883ce4b0349e7de9d9d4485fae4fb0f2a8d78a",
+      "S053R08.edf": "21c33cc1ab60d7d392b99f1a00df4d4d8024db6f46d0e3f55f53e6321eaeefb0",
+      "S053R12.edf": "d151fcac368e31dbe81495377f734a1c2ed898587696503253e197324c884ed0",
+      "S054R04.edf": "c2caf79d559efa0dbade6c67290c2840a75d9b9266b242286aab64ea048facfc",
+      "S054R08.edf": "8fccdcfa00d100148b350b772557a39b8252ceec048da5e0da93e1273cdc8c88",
+      "S054R12.edf": "2e1807664cfff1512a8a9ef5ff105e3a19a6c7ebf30dcc6a321244a46f943cf8",
+      "S055R04.edf": "5626401f88b26ca66d9621f300a98c0fd80bba41438380dddba05111c8721d36",
+      "S055R08.edf": "808e0060198a3c0189860aa2b92b768f1764c4441eee72af3a01d6014dd81176",
+      "S055R12.edf": "2e9307c91262be0c77efaebd886f75b7e3c11729a9688cada4b5767e7f7490a1",
+      "S056R04.edf": "a618b25fc7570d8fe836949761a53e9a9a61cad59e99ac53e09bccca78155c14",
+      "S056R08.edf": "0fa0554aafcc78c38f2e7d65f5941c528d26741194a1eeea8801225c44799db8",
+      "S056R12.edf": "c47457c3baec40f4b7205cd1fdd878ab5855cfe0d32fe00655639101efddd69c",
+      "S057R04.edf": "53d8515a722509864bd45b148d02730770f540ef56f44cb1e161fdec6978a0a3",
+      "S057R08.edf": "bb2842570aa4a89021f710397914cd810dac010cac428b75173adcc2fbf30a28",
+      "S057R12.edf": "a893824591d10cd67a04b1273ed436bff4522e14c1d6b6745f2e75348267d7b1",
+      "S058R04.edf": "4e52357fdd5f23f7acff7de83d870b946d3225885ea77b60f2ef6c2f889221d0",
+      "S058R08.edf": "156b9fd913d2277dcf4fd553f77b9a842992671d3f0b250e16c485b66c3aebf2",
+      "S058R12.edf": "ec035945aa497928bca1ae1387f50f06b68f346a992e9525afd3f91f74c081da",
+      "S059R04.edf": "904e79d95c362eab86e46e0a1addbe3b80ba802b98b372c63b8872537fcd9bbe",
+      "S059R08.edf": "9c96400ddc6cddc13df50bc49a564365e8f3e24fd9fac3b6fa494cb939c9c627",
+      "S059R12.edf": "ed9b66b031f545783a98ccc77915ee74b1f9b0471a6edb601408b63b7320121f",
+      "S060R04.edf": "9547bdc9013bf74161abaae66f3f30453c159a4a0ad7f030a1d527538250ab59",
+      "S060R08.edf": "5f6411e04fc1fa14636a78f15a8bb49dfbd765fd5f7d9c3c3357044a9037aaec",
+      "S060R12.edf": "8b1954f873ac2e1c741522541e4d02e1ff8beede7434a5ccff36cc356d9b95c0",
+      "S061R04.edf": "788c7f7d524dc1e483e49e81f36920a65c464ae54dece6c96ce48b7d168a22ae",
+      "S061R08.edf": "9cd27a3563ba90dd3ca373b0da2be78b64c7e4858cbc9954cf4f503f39809aac",
+      "S061R12.edf": "e16007dff642ce2bd6275e806525a0d66d0829f39b6b7e7a8fe18cb3fcea498a",
+      "S062R04.edf": "a054c47a0c59c1a375061a59144160ada314be8ad42ad7bb3971c490572c0324",
+      "S062R08.edf": "0653afdbaee66604e8f9f9161e5cfbb24fda28d9dfbd48b8a343a73a544c5e91",
+      "S062R12.edf": "f95f21cde281182535aac5a41be11bcd12c1939a485535bf551e6da3f3ffe6f3",
+      "S063R04.edf": "b3f74fe891fd3b0da76d7c42b624c8ac2b31c566e2c5d017b779ce5b2b4c8989",
+      "S063R08.edf": "76fae5c78ea8a2c05a6f7231b5eb8fb2b46a6001344197916a87306c786ef241",
+      "S063R12.edf": "fe724c2eff756b9b2079c0028e719837ed8a2e3cc90341065ba31f073c04ef5e",
+      "S064R04.edf": "c4fd5e8940ff3c9809023886c770dc3ca374adcfa93b85784d749241918ee5e1",
+      "S064R08.edf": "c0abcac7f314a6a8e921f3a3e100feeb7454f3fffaee325a89930660c5f0bb6e",
+      "S064R12.edf": "d3f5426e082f27bf037e9ad16336a763b95b00578ef426cb1389830cf40058dd",
+      "S065R04.edf": "3fc9b1712f959c02a8b6588a77e879d6d9a89d0ec4e746fafb40c2a469d66fb6",
+      "S065R08.edf": "ec531cbf9279eda222e9b873129c34b8bf33f0fcfcdeb790e1c4b5a1146dfd85",
+      "S065R12.edf": "578268f2055e302e5bc3248f8dbfbbd63c8c60b300f4082b4213add5c03e7a2f",
+      "S066R04.edf": "c92f6dbe450f79af5e76a61188c012ce7140899ef23a4adc5ea74ffcd1c36fec",
+      "S066R08.edf": "60bf15a0629829bc2e0c615639c0f288e9b1e963a086293ee95da8a4d70f3b24",
+      "S066R12.edf": "a3e8b2021df910995ad9792dfc2ec025ce1b858cba8946cab2bcab9899b51e2a",
+      "S067R04.edf": "dbdadbd4a88eb8fda3fd90835ac8a0257101c3b58dd08fc272892d707a560fbf",
+      "S067R08.edf": "838faf306afb01abe27febd1a0992f9ee46bf522073aa94bd625eef578f98480",
+      "S067R12.edf": "88607f444d64af64f30578bfd1019ff837a0139ad7985235a6401b4edcc1f388",
+      "S068R04.edf": "7009d509684ab0b13b0253178ebf2b715a7ced2dee2b409969f088c3094f272f",
+      "S068R08.edf": "d49374089836e11880347909fb5a358d6834303153e074f230be6caf0c66aa16",
+      "S068R12.edf": "966c9fe51563d5dd048482211d01eb1005130ebc14b5bc6ac89097b96ba9a5ab",
+      "S069R04.edf": "31d86ad9d97e919e9705503bcd47f391a75e1b89f327bfe4656eb76b41fc628b",
+      "S069R08.edf": "72a1bc8c4b7790aa730a92029fb18cc9a9894d3934411d3b02f5bf6806f4c3af",
+      "S069R12.edf": "c47fb991214b23a3e30fcdc62d8bca21f4df7765417bba5ebc89255f5043fb7c",
+      "S070R04.edf": "ac0f01d6df57bd65645c2c6a5b6685d38b11727bf41927fdca90ef7e2d601482",
+      "S070R08.edf": "8c3737b379124d86fe35ccbe37164773c97926d6c7731007dbf54722848e685f",
+      "S070R12.edf": "9519f622bb5de5cd8f24eb6a765888a78a28bd17446fc9a41ec13ba84b75a0db",
+      "S071R04.edf": "746cf8cb98ec73c251059675f4c5b956c9e8db11bd0de7b7785950e53ebb4647",
+      "S071R08.edf": "0fe7edfcff87102410fde01bbb9a4770b20ac6359f3bd77dbbc3551cd2ce35cc",
+      "S071R12.edf": "54ab787be535020ba05284d323656d201776261b78e2d9f903a8b4b573dc6be2",
+      "S072R04.edf": "854bc325b4913798858d5ad099c953c6a018cbbb73a1dbf465882ea2f965d5f9",
+      "S072R08.edf": "94bfc11c4720ca4a52dd683f74dba027c47a3e00a634ec15c816f7ff3801ba8f",
+      "S072R12.edf": "8d4b7877af0a9f04c281ce539c65085ab41d21cdb97b28282f55ab26f5dd6afc",
+      "S073R04.edf": "b7545db1ffdc782d1012419b18a823c35d6f6fa96e3f7c836f08e3d799aff5f4",
+      "S073R08.edf": "df5ac3bbcadd037c1698db4e3f36ba4f752c6571775c7780c3ec5a778025f909",
+      "S073R12.edf": "da24f28f7a880c97e25a45e0f9eb86dbe7aeb13b651e6cef0f99afe2aa1f425f",
+      "S074R04.edf": "ea84e05235eb45067eb84f19aa09c4c5d429af1e9d865ee5eae1b2aaab46a081",
+      "S074R08.edf": "e594ad62e81f3948d52e1bf5b896598543e4c739e06df596160dd379af59b99f",
+      "S074R12.edf": "f6ea6103b34721b8d2d8e1175d305491303cf5f028879791f14443da810d1c7a",
+      "S075R04.edf": "87714f913602a939c24e3ce672a689ce20f966c5d19d5f699f898a94cca4c086",
+      "S075R08.edf": "12c3c5d354210080fff50cd4bb475cf89df420c18b0a1e675dee817a79b380ba",
+      "S075R12.edf": "6c33faf3fad9d274e8e7718c6dc2df6e8d54e5478638684530b7f854961b0eec",
+      "S076R04.edf": "48efdb5438f403e40a95262b12bcfe0147d581610c57ae33ed71c639068a04e8",
+      "S076R08.edf": "b7177ac5c852f96bc54093baafb7fcf0036cabd1263b8dfc2ab594105df3ead8",
+      "S076R12.edf": "6e9353b6b73166048fe7477a7f76b25a768d56bb0490188f5c8186506e96c47a",
+      "S077R04.edf": "cdccce472114bda440a3eb03fa0a1bf32d9dec5753a105736672389bff46d9d9",
+      "S077R08.edf": "c0bea153dc620d85e59fd9115459a07da82c137b4e836c1752d1a350cbdedab7",
+      "S077R12.edf": "09e9310ea5e0a9a17a0f0d48e9d2cd3b36bca4c4901c4ef246b2b789d08e1927",
+      "S078R04.edf": "4448c6889ea396f851dd48708509b0620974421768814d18d1d5b0f6f22c60c4",
+      "S078R08.edf": "a008d9c403db430abd52d91a04955431b675eb283d3fb9db80e75feb08e3fe39",
+      "S078R12.edf": "e4f6f983bf941c4f713b353a79594af49095e7f002b102ec086a93dec3aa37f5",
+      "S079R04.edf": "5538f0fbeb647ea7577e448856433edd3c3884516ef6bc5bf10d601cc62824ac",
+      "S079R08.edf": "e65556abef6b586d84ebbb2e0a42caeb493f58af9c3d62ee4d41dbf43ceff973",
+      "S079R12.edf": "0350def02e230173edb8d69c7e66fb22155d00530fb7ce9e945921e0ab6abf95",
+      "S080R04.edf": "39a8fcd0b3e2e7f7e33c54e867036d5bf43350e6525278d42c39cf6e3f642796",
+      "S080R08.edf": "b0f8d997cf95924f44e7a6fe44e525d22f66c4760587cd7589d4430d210c2d0b",
+      "S080R12.edf": "a0b99813248b36ff650076e0fe38f205e84a6f26e18bce0a43c5510a4cd933f7",
+      "S081R04.edf": "abb5db7c9c42a09fe10644c0a071d8511b1a31b0014258e0b076cd9195b0ed2f",
+      "S081R08.edf": "7faa1f739438962a64487e2132aabdc5c9528430a5f8e374f4b5a9106cc70fa6",
+      "S081R12.edf": "48e0a4562e2355a3737b412fc54259c7174269f5e6012448fed56253854950a8",
+      "S082R04.edf": "b3e4c74b4cbbf1aaec1af0c3613fc9d2a27d6d96ac62c7907551a87fa9bf0bbd",
+      "S082R08.edf": "47ba5b30c2427a7dd4117f26ac5491a0bdf9a2e5a619bfc418ee59b3941042c9",
+      "S082R12.edf": "a389f918554ba206ee4330deaafe1e21750fb44317401628841ee6e2e9b83a8a",
+      "S083R04.edf": "8e28c29d9d6203a35237b30878a1678b677e762561ee6f55854661284d9b3a21",
+      "S083R08.edf": "cb1c0b233d3a0e618c4ef16f80cc5c2cfd400162aed06847c6e24b1d6cd2add6",
+      "S083R12.edf": "7fa028930f6c461c054e1d22e6026f954688b99817232e88f13892c4d7e2dd91",
+      "S084R04.edf": "0b79d12851eb2fc57b8fb94c29fc78d228c2125233a0a4ab36581d83e1136456",
+      "S084R08.edf": "4228f23c5c8579ed84d2de2a35d33b90ade7202ff18df9e404aad44395acea75",
+      "S084R12.edf": "7e726571c4a9b7513e9e0afce0546a9fb221f13681e70e2d29a02725e608451b",
+      "S085R04.edf": "da0fbebf6dd7074cb3b71769f2a32259249b360e8ff03d832e99a02ae7a55090",
+      "S085R08.edf": "7da6a14c5b2722ddfa3962cb0b5580e3a5207c77154a6bac05c73d7f75e4409e",
+      "S085R12.edf": "bd78d9b98a9ba10ac7ba51cc213970da2f2c7a7f3238714b362017306d53983f",
+      "S086R04.edf": "606f9e327b219cbd980f4cb5d83497052a07d927415d1769b039bf0ed7eda693",
+      "S086R08.edf": "221dca79488392aa00b3462fcfa6a21b185e5814cf6534ca35b24780aa1da799",
+      "S086R12.edf": "966b7d92a7e7d3981d56dbf0e159fbfb3fbaf2d955e3573e384918b24431284d",
+      "S087R04.edf": "4f1599825e6aae94add2c0ebcf8bcb23a65bed258cfb89a73a06a6861fc586c3",
+      "S087R08.edf": "58ec622ce0deaebeb43334c3f255e81b01e612751cb0b13d2471b2ce98fb67bb",
+      "S087R12.edf": "1fc744ced6882cc083447d4228f2868ad8cd3708506491adaf6b949e1e1aefc8",
+      "S088R04.edf": "ce6b97a3e00de1b844694fc889ec0ac568fb5c0129130d8e701761fdf0e2711c",
+      "S088R08.edf": "cc57c5b3d363247feacb04b4ef37a30b930ef7a202449874f3773a24af5332f2",
+      "S088R12.edf": "930e7f40798227e75d28c35e9d79b6c58c78d742daa1daad95f967f633ee02b3",
+      "S089R04.edf": "59b477c2e08b85fd3efe774945f6becc5073d654bf0f5b911d45dcf30b92c8a9",
+      "S089R08.edf": "ee2d004c55381ccbc5f75062e714da9705c7e8cac1d4193952d646399f3ef7e6",
+      "S089R12.edf": "2fcf2f10853418d0ca8184e008b29ce2d49a4762c0f5e82aa71298925ab2abf4",
+      "S090R04.edf": "693e109389bc37367ab66ff558171a2fdbcf74bdcace569303e7da8c0f9f8a58",
+      "S090R08.edf": "9585057959bbaae8a4b6ef81546a88a3ae1d6e95bbc7dfb1dd6a846d46af0637",
+      "S090R12.edf": "8cc1a80be7f14683b645e7443854c6cd938e31049be92344adc58a9e4c586554",
+      "S091R04.edf": "285b7884315a91e2d565aa74f208b1c13a9386af477cc7c6dc8253efcd5d1f25",
+      "S091R08.edf": "d38c2dff0d43f699c7c2bde4387d52745f5073a827c2d41200e0aef9371015af",
+      "S091R12.edf": "3c17be3adc32ebdf36b4addb89fb78b0b0d0aed352497795aedd8f17cea30b4e",
+      "S092R04.edf": "73ca4043e4c8d38722fc6482a0e231a8505ef6b760cb26bbbb8206f481e683c1",
+      "S092R08.edf": "38c8c9e7261c6882b4fc0db19c4ccf905e5249611c6fe9d3c34ed7da098c6481",
+      "S092R12.edf": "5e84bc4b49bd530383b8c28c9f0296d7847012e49b276e916278cea2d9b4ff9d",
+      "S093R04.edf": "cab05a2b51874a488cb968bb6c76afb883a7057e384c0af1b7a766e34f4a1de2",
+      "S093R08.edf": "54d9a7c0997e29abaa6ffec4a48e32555fff894d83e778c5e974452665835d4d",
+      "S093R12.edf": "3fea038b8ee2551bfa67f17a6dd668a30e70817996102b7b30dd7f8d7451bd47",
+      "S094R04.edf": "41b63eedefea1796e9289de2ead00b6e03bc6f8319cabe1cd293c981c4cfc406",
+      "S094R08.edf": "a265132a093b20b1366ebdd17e77628a0b4feb3b02cf7c037fb092a03a1f47dd",
+      "S094R12.edf": "2f70c608f9e291559ca1e135824ea1c8aa44eccdae35bd18705d5574abc68523",
+      "S095R04.edf": "d6e647c36b24df0524c32d896328b876a079ae75be41aa665c5fb0871ace1430",
+      "S095R08.edf": "e3a48b8a9582fc7286a014902b73cdfec56c3cb1b4376822b5275178ef7d363d",
+      "S095R12.edf": "ec1661503c6628bda69ba9aff83004bd9528e282707e83f243dc906bcd64caec",
+      "S096R04.edf": "c39a9977ef6b916ec4183e678a0eedb12695ce9084e2a43fade39a6038cc907f",
+      "S096R08.edf": "6dfcfa5182fc32ca2aa8bf74722f43cd992b2bce64cb7fc15a4ba13a9533fe10",
+      "S096R12.edf": "a55f541160ec1f29086e8ecc7e54ee60fd5d0ec9edbd40313c30bd4c7695c81d",
+      "S097R04.edf": "b179e92e1d5ff926d6aa88bf3c748201c8368312fb31b1d2bfb8bdd033c67cce",
+      "S097R08.edf": "d36269db5e812dfe12879bdf3ecd1d1f7dc0319d59f897dae352e5e19532cb98",
+      "S097R12.edf": "afab0765b4ee4d03198c1e0a18a0f285c84d6734dbd1cf305886cf0d7464f433",
+      "S098R04.edf": "9bae31bf3add196cc4588f279b3a372112331b5b385eec4490f09a23c29a9468",
+      "S098R08.edf": "e357cf8d5236aa3b63e212bccd663e8f07d8b98952d3ae301eca861a63736c19",
+      "S098R12.edf": "7523f3be8c00b0ffaf151c4e5f4b3407a88d499b65aeb8b37e6c37bdbed5bb01",
+      "S099R04.edf": "c463ad89dc08d0d5e6fd9f766b0e1c743b802290d93a3c496a9faf3b8ed6032d",
+      "S099R08.edf": "6c5630263f0e2a23e2ec4c57c00831ced0469b3fc4c8dc79cee7216bb85a4810",
+      "S099R12.edf": "79a4364092c5678b43071c5907afe061974346751bd90a2d8eabdc7ef8808e32",
+      "S100R04.edf": "0b8af6ed149b8b8d05a5d25da8896c6b555a199002acc0705dc1c5a01e489ea4",
+      "S100R08.edf": "8371eec06d0b1ff62d10e016124e3bc2db411ab6764fea572fb2d1f25a6afd97",
+      "S100R12.edf": "6dbc4350c7e26c46b96ece5cd7ae2cdf1a9303d237d7089216e5facbc1d25538",
+      "S101R04.edf": "6618bca949e60277dc7a6a23e9fcc5e1d582165550fa31b391a132b2b30b2ace",
+      "S101R08.edf": "6e3be34d8b83eac9aca9438049e9de0a8026d6d861e1a0cde5a2df3b4c225331",
+      "S101R12.edf": "89538acbaec07991b51b64bb1dd2b7e3927a4436f02028410de95d06e85f683c",
+      "S102R04.edf": "a66ad16f27f36c7fd126e15d47eae464e52c906eb5777c9188f392d0db97169e",
+      "S102R08.edf": "6155ab874f65352641325fa1a308cca891820821572a28cae81a87740a046883",
+      "S102R12.edf": "bdfca4e013a18c8f43c424fd3acf604c231b1405e12c86dc7dd902b427d235a0",
+      "S103R04.edf": "a4c707cbd94c08bb37718f9c7d03c7259389e4e43e9418f3887de35acfb1125f",
+      "S103R08.edf": "9a594869f6cfff74f5d448abd2268870fa98c57381bdfb3eeb7bf7372daabf2d",
+      "S103R12.edf": "96ea0eb56fb4470b1be09516ccd0561b857748abed9c6afd5302b24c32430aca",
+      "S104R04.edf": "21f1d57c977b6dd8e9d3e1a5893431cf4bf0a142c850e273cb34f7e0864dedab",
+      "S104R08.edf": "505ca2e90c3476a945714776461c10ce6112ad70b5893b2ac80722b56d26693f",
+      "S104R12.edf": "541340f418003d02928cfd51baeead5dcf82a405bc6dc20499e129d43dd8e8d2",
+      "S105R04.edf": "218e3e8ba2bc171a3c6dd5891e6cd604c8fec4f32fe2d4c274732ef880264180",
+      "S105R08.edf": "52bca66d6e03db2c45e6cf560f54d13abe113ad3fca5396ac4c6fda7796e36c1",
+      "S105R12.edf": "926fe3afca0077495884cbd67a09761d0a7cbb956c37dc7c140165798b510891",
+      "S106R04.edf": "7d7599596aacb4635049041a26635e1e14b6b96437a3304701a2a3d7f7cc8c05",
+      "S106R08.edf": "e75bafd408f19d7c04d86479a414c0cc29be39150f20b9e676dfb40843f34792",
+      "S106R12.edf": "1ea2b9ed0d8f02557b21bee5b70514b641e68321b3363cc3325b942832005a99",
+      "S107R04.edf": "7a4eb02e295694a920cc1db2b57bce8024b131dbbd1960310f4c5ac78d614371",
+      "S107R08.edf": "0561cb71fa613df859d632d315cd694a686a0d871ee6661d645bc7e9355a6f0b",
+      "S107R12.edf": "1f61ae883dcb0973b8aae174b588eb352e3d55cd32006cd3a083bf019ece19a9",
+      "S108R04.edf": "7c56ee104d1b080834992d79fcfdf9f995965f0a416a66fed454784486d97d40",
+      "S108R08.edf": "472179c1c0efd3662cbd47ae8ab1be2aef9ec8db8344c086f79c3ac2cd5b5fd3",
+      "S108R12.edf": "424aa46e174d38f3395647a591c20aedcecf29989f98a6006a77502af9a2add7",
+      "S109R04.edf": "c267b8aa26c70924fc9cb9fc8596b351a83894490bab95325f738d68829aab3e",
+      "S109R08.edf": "879f8c8cda430e95bcda881f9cb1ede5e0693c9b83849d659e60082dd3e8706d",
+      "S109R12.edf": "b9f0f477c70ce519595b74c887af790c78c77a7f67279fabc7fba2989ee59782"
+    }
+  },
+  "benchmark_artifacts": {
+    "excluded_or_failed_subjects.csv": {
+      "sha256": "0b24647957f50138a9e205c7e38163304f60cffac8ff18f02488a2da4e603778",
+      "size_bytes": 554
+    },
+    "fold_details.json": {
+      "sha256": "e7a8dcd9fe950a5c93a4477711a52c5b8f02b2d7943e5931c0b33fc14e8b5e6c",
+      "size_bytes": 91090
+    },
+    "inflation_by_subject.csv": {
+      "sha256": "63b8e2576efd008e6047d91ae43afde188a996e00f0eb5da0da050a409c3cc96",
+      "size_bytes": 36966
+    },
+    "inflation_table.csv": {
+      "sha256": "d6f7be5a380dca4732e611dbef212e5e48ff6225cd8000bc8c31414cecfd2c7f",
+      "size_bytes": 1254
+    },
+    "leakcheck_raw.csv": {
+      "sha256": "f24e3a938162a1415c7840d8b5f2d0fad3f729e44bde2e371d276687b3f88b68",
+      "size_bytes": 91559
+    },
+    "leakcheck_summary.json": {
+      "sha256": "f63ea13a2cc4271d100c5598f93d7f175d61b9e866a4451506a0c7b9e46845a6",
+      "size_bytes": 934
+    },
+    "participant_flow_manifest.json": {
+      "sha256": "f60f2723006430b59f8b5cd4a1eb5a696f1c53c4c2654eddf99067a643df9b27",
+      "size_bytes": 102271
+    },
+    "settings.json": {
+      "sha256": "197ab5f6b43e57d393a50fc5b4c3e7c95d3b75e51a99e457d664587876940cab",
+      "size_bytes": 454
+    },
+    "subject_info.csv": {
+      "sha256": "58c6071b2004b9716a55c7b8a48a729c483c09ba9d948fa047a68d2ec51cf1cb",
+      "size_bytes": 43338
+    }
+  },
+  "statistical_summary_tables": {
+    "total_tables": 18,
+    "formats": [
+      "CSV",
+      "Markdown"
+    ],
+    "tables": {
+      "table_01": {
+        "table_id": "Table 1",
+        "title": "Participant Flow, Inclusion/Exclusion Criteria, and Benchmark Demographics",
+        "csv_path": "tables/table01_participant_flow_demographics.csv",
+        "csv_sha256": "e9b4909c18773c8e28ac0177b189f1ec6bc6bab602aa28065fc1201982703ae6",
+        "csv_size_bytes": 1437,
+        "md_path": "tables/table01_participant_flow_demographics.md",
+        "md_sha256": "4cf5d97fc95363e87a37ea78831c397a130291eebb2cf01e96a00a276b1f9b89",
+        "md_size_bytes": 2698
+      },
+      "table_02": {
+        "table_id": "Table 2",
+        "title": "Primary Benchmark Comparison Matrix Across Validation Schemes",
+        "csv_path": "tables/table02_benchmark_comparison_matrix.csv",
+        "csv_sha256": "42ed150c39dd8aeab836ab2e355b03b9c3e6e3313b87282027e3375223cb0a77",
+        "csv_size_bytes": 668,
+        "md_path": "tables/table02_benchmark_comparison_matrix.md",
+        "md_sha256": "cad7d4d59a0cc6feb8e922a4918fdd6684b4e44767d7ee5d8d3ede87adc62de6",
+        "md_size_bytes": 1374
+      },
+      "table_03": {
+        "table_id": "Table 3",
+        "title": "Comprehensive Taxonomy of EEG Cross-Validation Leakage Mechanisms (P1-P10)",
+        "csv_path": "tables/table03_leakage_mechanisms_taxonomy.csv",
+        "csv_sha256": "652847605b004108f3fd713997b2be1656030fec34f0169bad7c4f4e5c48d8ad",
+        "csv_size_bytes": 2500,
+        "md_path": "tables/table03_leakage_mechanisms_taxonomy.md",
+        "md_sha256": "897b3abb7cdec7b4f1adfa649457feef1190bf141e28a53a0893cf22498a8961",
+        "md_size_bytes": 3525
+      },
+      "table_04": {
+        "table_id": "Table 4",
+        "title": "Cohort Sampling Rate Distribution and Covariance Invariance Diagnostics",
+        "csv_path": "tables/table04_sampling_rate_distribution.csv",
+        "csv_sha256": "92a38f9b301d0b9957f086921bea6685e6b907f3ca2b43a8bc6abf8d2878b72f",
+        "csv_size_bytes": 590,
+        "md_path": "tables/table04_sampling_rate_distribution.md",
+        "md_sha256": "b0de8bb7239b8e51b888e9c9519279730cc3676636284d96dd5ca3b8957324ba",
+        "md_size_bytes": 1520
+      },
+      "table_05": {
+        "table_id": "Table 5",
+        "title": "SVD Numerical Rank and Conditioning Across Preprocessing Transformations",
+        "csv_path": "tables/table05_svd_rank_diagnostics.csv",
+        "csv_sha256": "242f56e20dbd826b2f5de6b4d5bebbc27f8d4e6d4d94f552b52b65455af3d149",
+        "csv_size_bytes": 840,
+        "md_path": "tables/table05_svd_rank_diagnostics.md",
+        "md_sha256": "f673d9d8fe830b4290094fad8167a376dc50534b4cb3f4beecb4c64e14d562e0",
+        "md_size_bytes": 1783
+      },
+      "table_06": {
+        "table_id": "Table 6",
+        "title": "Pratt Signed-Rank Test Statistics, Zero-Tie Deductions, and Exact P-Values",
+        "csv_path": "tables/table06_pratt_wilcoxon_statistics.csv",
+        "csv_sha256": "65308f0ae69806fe18c3441fde01c8cd4aaf904083e81af9f4a9003feb1f7d69",
+        "csv_size_bytes": 416,
+        "md_path": "tables/table06_pratt_wilcoxon_statistics.md",
+        "md_sha256": "8070ece3eca19d8212a719df2cb2b3b813f4da2b995b45c519d2c05c0e981032",
+        "md_size_bytes": 1236
+      },
+      "table_07": {
+        "table_id": "Table 7",
+        "title": "BCa Bootstrap Resampling Parameters, Confidence Intervals, and Convergence",
+        "csv_path": "tables/table07_bca_bootstrap_resampling.csv",
+        "csv_sha256": "2baeb7338a7d96b8f77e4ae5d94906cefa866c4105ceb342608af9df741ad1c5",
+        "csv_size_bytes": 602,
+        "md_path": "tables/table07_bca_bootstrap_resampling.md",
+        "md_sha256": "0cc36d7352bdb38977820b6683ab48901e99ddac509d82512187338cd851f18f",
+        "md_size_bytes": 1432
+      },
+      "table_08": {
+        "table_id": "Table 8",
+        "title": "Parametric and Nonparametric Effect Size Estimates and Location Shifts",
+        "csv_path": "tables/table08_hodges_lehmann_effect_sizes.csv",
+        "csv_sha256": "7712f2c3ce078dce43ca19cf512847c9f6a9d0cec1fce00a71d5c46b2ee09c2f",
+        "csv_size_bytes": 489,
+        "md_path": "tables/table08_hodges_lehmann_effect_sizes.md",
+        "md_sha256": "66495519dd957260270a8bc951efef2a1a9189543818e50ab3db6b55fca0e9c2",
+        "md_size_bytes": 1453
+      },
+      "table_09": {
+        "table_id": "Table 9",
+        "title": "Two One-Sided Tests (TOST) Equivalence Bounds and Statistical Decisions",
+        "csv_path": "tables/table09_tost_equivalence_bounds.csv",
+        "csv_sha256": "e6c21c67c6712dc9e1008905b9bdd48a5dabe7782ea3817d59fdc98538dd9741",
+        "csv_size_bytes": 737,
+        "md_path": "tables/table09_tost_equivalence_bounds.md",
+        "md_sha256": "5ab0745e00ce1f689fb28dd5344ca3211bddaf304a70c2e66a6ab427fa91af6e",
+        "md_size_bytes": 1584
+      },
+      "table_10": {
+        "table_id": "Table 10",
+        "title": "Run-Independent FIR Filter Boundary Isolation and Cross-Run Bleed Verification",
+        "csv_path": "tables/table10_fir_filter_bleed_comparison.csv",
+        "csv_sha256": "bca2c06991dabb3459fe2a51598a67f9a75bf6afc96b2cca164c92da7231e617",
+        "csv_size_bytes": 686,
+        "md_path": "tables/table10_fir_filter_bleed_comparison.md",
+        "md_sha256": "6265514631ce5e39d84228d1b9cfe4e2064f8a520d436eae3cf8dab78b609916",
+        "md_size_bytes": 1276
+      },
+      "table_11": {
+        "table_id": "Table 11",
+        "title": "Fold-Isolated Preprocessing Parameter Stability Across Cross-Validation Folds",
+        "csv_path": "tables/table11_fold_isolated_parameter_stability.csv",
+        "csv_sha256": "d6e961185e6946099783108a39432accfad93198533e76f15093553ccf94f993",
+        "csv_size_bytes": 552,
+        "md_path": "tables/table11_fold_isolated_parameter_stability.md",
+        "md_sha256": "65f9ebac26c4efee9ea93e8da56431d1a96698d8ba2825649d82d8b6a93e2045",
+        "md_size_bytes": 1385
+      },
+      "table_12": {
+        "table_id": "Table 12",
+        "title": "Permutation Null Distribution and Signal Noise Burst Robustness",
+        "csv_path": "tables/table12_permutation_noise_robustness.csv",
+        "csv_sha256": "364c69bd5c4f01f7de16d782d8051c918bb060aab26b9d17c76420927de815bc",
+        "csv_size_bytes": 1002,
+        "md_path": "tables/table12_permutation_noise_robustness.md",
+        "md_sha256": "af039da898cdb2629b2856abc0b48d4993b26997d4b2048b5cc05557f2b5ab5d",
+        "md_size_bytes": 1647
+      },
+      "table_13": {
+        "table_id": "Table 13",
+        "title": "Spatial Covariance Matrix Regularization and Decoder Numerical Conditioning",
+        "csv_path": "tables/table13_decoders_regularization_comparison.csv",
+        "csv_sha256": "6394f9d6b52e33abebe405fe2ddd9c2e5fc8b9592128a9fd8214b52354611b18",
+        "csv_size_bytes": 693,
+        "md_path": "tables/table13_decoders_regularization_comparison.md",
+        "md_sha256": "3b81f33e1719908e28d3ee3a4969b7ef1093dbc3f776875b5c329f8294fa3300",
+        "md_size_bytes": 1202
+      },
+      "table_14": {
+        "table_id": "Table 14",
+        "title": "Participant-Level Decoding Accuracies and Paired Cross-Validation Shifts (N = 105)",
+        "csv_path": "tables/table14_paired_subject_accuracies_all_105.csv",
+        "csv_sha256": "f451f7b119305e4c84a8ada7cc8df06c6843a2b44a4d35e36f3daeed773fdf5f",
+        "csv_size_bytes": 6734,
+        "md_path": "tables/table14_paired_subject_accuracies_all_105.md",
+        "md_sha256": "7ffd550e78acc8a8d38f20ac2af0bd835469b23609ebf2f582df50a75ae63615",
+        "md_size_bytes": 19363
+      },
+      "table_15": {
+        "table_id": "Table 15",
+        "title": "Cross-Design Pearson and Spearman Correlation Matrix of Decoding Accuracies",
+        "csv_path": "tables/table15_cross_design_correlation_matrix.csv",
+        "csv_sha256": "761444f9ffd2ad10bd6604f5a406a965d14732b572a5ce91402c7b0b83dcd8f8",
+        "csv_size_bytes": 637,
+        "md_path": "tables/table15_cross_design_correlation_matrix.md",
+        "md_sha256": "b3f26ae9c4298e30c501d7e769dafd7348c7b399fd462bad2f53bc1ae48c8fcc",
+        "md_size_bytes": 1131
+      },
+      "table_16": {
+        "table_id": "Table 16",
+        "title": "Comprehensive Technical Screening and Exclusion Accounting for Rejected Participants",
+        "csv_path": "tables/table16_bad_channel_artifact_accounting.csv",
+        "csv_sha256": "af454ff0814c29be88403949748f270206f3a8a6704177bb399a3962e91885c6",
+        "csv_size_bytes": 902,
+        "md_path": "tables/table16_bad_channel_artifact_accounting.md",
+        "md_sha256": "3dddf85193254099e111f859cc08a5b21553d691a6ca81912514d42f6d66a070",
+        "md_size_bytes": 1717
+      },
+      "table_17": {
+        "table_id": "Table 17",
+        "title": "Computational Benchmark Performance and Multi-Core Multiprocessing Scaling",
+        "csv_path": "tables/table17_computational_performance_scaling.csv",
+        "csv_sha256": "65743b9eb99aa0002a6329d8e8f46ef669d5bf74dc96d88318293ee681801e85",
+        "csv_size_bytes": 774,
+        "md_path": "tables/table17_computational_performance_scaling.md",
+        "md_sha256": "bec0dff23e7046cba38ca8ce04b7b66b5ab51b5a718cf804b5b14e7525b93bad",
+        "md_size_bytes": 1341
+      },
+      "table_18": {
+        "table_id": "Table 18",
+        "title": "Sprint Capacity Ledger, Daily Active Hours, and Cumulative Milestones",
+        "csv_path": "tables/table18_sprint_ledger_capacity_utilization.csv",
+        "csv_sha256": "8a5d437044c885226b502cdf5cf6d1f52300b45568bd5afb73e2b6e287eb4467",
+        "csv_size_bytes": 1670,
+        "md_path": "tables/table18_sprint_ledger_capacity_utilization.md",
+        "md_sha256": "cf01741219e8f5107e6c94976a7147189586811edd098511b5087db68ebd2b49",
+        "md_size_bytes": 2705
+      }
+    }
+  },
+  "scientific_figures": {
+    "total_figures": 16,
+    "formats": [
+      "PNG (300 DPI)",
+      "PDF Vector",
+      "SVG Vector"
+    ],
+    "figures": {
+      "figure_01": {
+        "figure_id": "Figure 1",
+        "title": "LeakCheck Architecture, Preprocessing Pipeline, and Cross-Validation Verification Schemes",
+        "png_path": "figures/fig01_workflow_schematic.png",
+        "png_sha256": "9940662ddda4b0ca2faaf4c2bd9fd5454553fe5c7594a23e8e77a99f8442fbde",
+        "png_size_bytes": 374294,
+        "pdf_path": "figures/fig01_workflow_schematic.pdf",
+        "pdf_sha256": "406d3ac9d7d8803e1fb4a9b81e29aff8b5a8d0fa9ddb7146d31aaae0df4d03a1",
+        "pdf_size_bytes": 46524,
+        "svg_path": "figures/fig01_workflow_schematic.svg",
+        "svg_sha256": "103d3d8d2f95ae73c320fd7f4af1ec0d037fd9c0d96b949e1b16b5d3e6d6bd1a",
+        "svg_size_bytes": 151985
+      },
+      "figure_02": {
+        "figure_id": "Figure 2",
+        "title": "Participant Screening Flowchart and Exclusion Accounting (CONSORT Guideline, N = 105)",
+        "png_path": "figures/fig02_participant_flow.png",
+        "png_sha256": "b70602cfa858cc81aaff9d155a175b5915ba4dcbafb981adf2264d53bea50d6c",
+        "png_size_bytes": 331111,
+        "pdf_path": "figures/fig02_participant_flow.pdf",
+        "pdf_sha256": "2497457d43316d92721b63f35282967f12a16e114d9bd4774c98c377d2417bb8",
+        "pdf_size_bytes": 47547,
+        "svg_path": "figures/fig02_participant_flow.svg",
+        "svg_sha256": "a20adf45d29efb6ba6b59604c3e414d4409a46d2a4944b449279d6d9514aa78a",
+        "svg_size_bytes": 145046
+      },
+      "figure_03": {
+        "figure_id": "Figure 3",
+        "title": "Paired Participant-Level Decoding Accuracies Across Cross-Validation Schemes (N = 105)",
+        "png_path": "figures/fig03_paired_accuracy_scatter.png",
+        "png_sha256": "98688e76e1d77502e0b6f076ed4333539b0f70441cc3b0721edcaab6fc282238",
+        "png_size_bytes": 509938,
+        "pdf_path": "figures/fig03_paired_accuracy_scatter.pdf",
+        "pdf_sha256": "8c9ed16edbeb69238ddf38605a1802190caa02104bca86fda4b705e6434588f7",
+        "pdf_size_bytes": 46273,
+        "svg_path": "figures/fig03_paired_accuracy_scatter.svg",
+        "svg_sha256": "76c05e6b0f202d35af282a61d2c0a6374a6106897b6fc3c68a110fe2136668f6",
+        "svg_size_bytes": 179916
+      },
+      "figure_04": {
+        "figure_id": "Figure 4",
+        "title": "Accuracy Distributions and Paired Cross-Validation Performance Contrasts (N = 105)",
+        "png_path": "figures/fig04_inflation_distributions.png",
+        "png_sha256": "9eda3ec8c6f0795e914d21a3646e965899245b4a96cb2e8e3e7742d2414fc5a5",
+        "png_size_bytes": 424508,
+        "pdf_path": "figures/fig04_inflation_distributions.pdf",
+        "pdf_sha256": "217ad1bc7195dca71d9d1db72f75c512138553b78e60313056ff0b6f92ecdd98",
+        "pdf_size_bytes": 71180,
+        "svg_path": "figures/fig04_inflation_distributions.svg",
+        "svg_sha256": "fbeb688b83875c64f3657c44fb72b3e6f8a580da5151632aee9eeda949147eb8",
+        "svg_size_bytes": 264248
+      },
+      "figure_05": {
+        "figure_id": "Figure 5",
+        "title": "Hodges-Lehmann Effect Size Forest Plot Across Primary Cross-Validation Contrasts",
+        "png_path": "figures/fig05_effect_size_forest_plot.png",
+        "png_sha256": "5607c539ba37f17b7ec2382fe74cb35395ab10e4160d37702efdd1a28cf5db4b",
+        "png_size_bytes": 175316,
+        "pdf_path": "figures/fig05_effect_size_forest_plot.pdf",
+        "pdf_sha256": "1bd92ac764731c8a88b883f5e29768232fdbea8cf0ee8dc48650e36f172dbcf3",
+        "pdf_size_bytes": 39959,
+        "svg_path": "figures/fig05_effect_size_forest_plot.svg",
+        "svg_sha256": "c3dd79eb61386588d0acc559cd644184967cdda44b96293871348df1874c94c5",
+        "svg_size_bytes": 94515
+      },
+      "figure_06": {
+        "figure_id": "Figure 6",
+        "title": "FIR Filter Boundary Isolation and Cross-Run Bleed Comparison (Legacy vs. Repaired)",
+        "png_path": "figures/fig06_filter_bleed_comparison.png",
+        "png_sha256": "57eb7932fe38d2bbc8afabb7dfff5bdec0a03d3a93b08ea8e2d40d1fdb73db3f",
+        "png_size_bytes": 685095,
+        "pdf_path": "figures/fig06_filter_bleed_comparison.pdf",
+        "pdf_sha256": "e024283dd90f35d9f593c2d283c46be6d755377118147e12a341792dc23d05d5",
+        "pdf_size_bytes": 61434,
+        "svg_path": "figures/fig06_filter_bleed_comparison.svg",
+        "svg_sha256": "58876b71922e2e7b5680dba21b828abb49a9698f2d1932f1312ab147ba782e5d",
+        "svg_size_bytes": 164085
+      },
+      "figure_07": {
+        "figure_id": "Figure 7",
+        "title": "SVD Numerical Rank Diagnostics, CAR Null Space, and OAS Covariance Conditioning",
+        "png_path": "figures/fig07_svd_rank_spectrum.png",
+        "png_sha256": "ab0241314699f96b0efb8d319ad59aab633db0e6f97cbd160c37e0cd498c7cff",
+        "png_size_bytes": 295924,
+        "pdf_path": "figures/fig07_svd_rank_spectrum.pdf",
+        "pdf_sha256": "d1e4f5d2d7dd48f7cae599e65b04747bba361f90e28a2712dd9eee43340bedf7",
+        "pdf_size_bytes": 44100,
+        "svg_path": "figures/fig07_svd_rank_spectrum.svg",
+        "svg_sha256": "5224b51c310a11635d347701d9a8fcfdf7fe4de979a001f6319104749569b2b8",
+        "svg_size_bytes": 152182
+      },
+      "figure_08": {
+        "figure_id": "Figure 8",
+        "title": "Pratt Wilcoxon Ranked Participant Differences for Random Partitioning vs. Positive Leakage",
+        "png_path": "figures/fig08_pratt_wilcoxon_ranking.png",
+        "png_sha256": "92024d3d9ff39d12ded438a3281b5555fe5df5b64ca5f4182a93bd2816ca010e",
+        "png_size_bytes": 196834,
+        "pdf_path": "figures/fig08_pratt_wilcoxon_ranking.pdf",
+        "pdf_sha256": "0d5735b7594bc4c55ced19b3b646eded4a1efb9ce0b52b99bc271e7d1e6c385d",
+        "pdf_size_bytes": 42345,
+        "svg_path": "figures/fig08_pratt_wilcoxon_ranking.svg",
+        "svg_sha256": "eca74eb42f0f03b9c15ea2ca1ee31bbf970fcf4410c2300292eaad808263edea",
+        "svg_size_bytes": 133450
+      },
+      "figure_09": {
+        "figure_id": "Figure 9",
+        "title": "Empirical BCa Bootstrap Distribution Density Curves (B = 10,000 Resamples)",
+        "png_path": "figures/fig09_bca_bootstrap_density.png",
+        "png_sha256": "6b21dbab77f85d792b2eb7bf5b4b2514219c8f2249b2b016e7d864078c519fc7",
+        "png_size_bytes": 252756,
+        "pdf_path": "figures/fig09_bca_bootstrap_density.pdf",
+        "pdf_sha256": "fc3235f2dc26425e34709b8a7ca4ece8515db5dbcbb1eeac93eeddf7a3f1b8a3",
+        "pdf_size_bytes": 44670,
+        "svg_path": "figures/fig09_bca_bootstrap_density.svg",
+        "svg_sha256": "cd4f420b39b09c3be76c8a1a37732b2a9eda0e9faf2d493d3b307b117dde4496",
+        "svg_size_bytes": 136238
+      },
+      "figure_10": {
+        "figure_id": "Figure 10",
+        "title": "TOST Equivalence Testing Bounds: Conclusive Rejection of Equivalence for Random Partitions",
+        "png_path": "figures/fig10_tost_equivalence_margins.png",
+        "png_sha256": "882449b16a51cfdd8f8ee686ddb55da25ed53f13403c5e7528f6cf245683a3f0",
+        "png_size_bytes": 182192,
+        "pdf_path": "figures/fig10_tost_equivalence_margins.pdf",
+        "pdf_sha256": "0dab5ca343f2271fe882e77f9b51ac54493145ab896ffe5f12a3303ff2a00746",
+        "pdf_size_bytes": 39783,
+        "svg_path": "figures/fig10_tost_equivalence_margins.svg",
+        "svg_sha256": "e36d3afa0fcbfdac82cd18201d28b879e8cdd944935c5b0ce6bc1fcafa077dfa",
+        "svg_size_bytes": 92644
+      },
+      "figure_11": {
+        "figure_id": "Figure 11",
+        "title": "Leave-One-Run-Out Fold Stability and Parameter Invariance Across Cross-Validation Partitions",
+        "png_path": "figures/fig11_cross_validation_fold_stability.png",
+        "png_sha256": "9b7054d8437618d9be71b3d96d93e1f63585875c51d80a18da97ec286327ea2f",
+        "png_size_bytes": 729150,
+        "pdf_path": "figures/fig11_cross_validation_fold_stability.pdf",
+        "pdf_sha256": "e98fdd2c9b401e166db911c4fe711d7a313ac791a1732418e8ca3ee4e56f29d8",
+        "pdf_size_bytes": 37735,
+        "svg_path": "figures/fig11_cross_validation_fold_stability.svg",
+        "svg_sha256": "2f9bea9e29c1cb9da0eb7b2a4fa6b89c91f5e35321e92d20f4988a91c85b87fa",
+        "svg_size_bytes": 113373
+      },
+      "figure_12": {
+        "figure_id": "Figure 12",
+        "title": "Hardware Sampling Rate Invariance: Validating Full Inclusion of S088, S092, and S100",
+        "png_path": "figures/fig12_sampling_rate_invariance.png",
+        "png_sha256": "bc0c3fa712c311ae8d08c831d58ecb4d5a8a1fbd46fb3e3a8865e1bb7e0a300d",
+        "png_size_bytes": 230099,
+        "pdf_path": "figures/fig12_sampling_rate_invariance.pdf",
+        "pdf_sha256": "51317f360d255fb1643f6560a4e3e644a59c3b60a34da329f5cbeabf5d5faabc",
+        "pdf_size_bytes": 40274,
+        "svg_path": "figures/fig12_sampling_rate_invariance.svg",
+        "svg_sha256": "cb9c51599351ec00695b3e8ac289b92a30581a905a2ef21711c7b2d83c9719a0",
+        "svg_size_bytes": 102851
+      },
+      "figure_13": {
+        "figure_id": "Figure 13",
+        "title": "Positive Control (P1) Leakage Dynamics: Universal Optimistic Bias from Global CSP",
+        "png_path": "figures/fig13_positive_control_dynamics.png",
+        "png_sha256": "dccf62fcfef45d3187a506cb9d263413f661f0062cf4e9d83a96d37059dc169e",
+        "png_size_bytes": 252339,
+        "pdf_path": "figures/fig13_positive_control_dynamics.pdf",
+        "pdf_sha256": "96a1c9a82c3b0cbcb6a43df9821e94dc0c2795c91bc4c39550f9b4d48a6b21c6",
+        "pdf_size_bytes": 43943,
+        "svg_path": "figures/fig13_positive_control_dynamics.svg",
+        "svg_sha256": "b7b0d1d04bd637c7df07b766edbb2c8a9384677f557985aea235375ddca74196",
+        "svg_size_bytes": 131224
+      },
+      "figure_14": {
+        "figure_id": "Figure 14",
+        "title": "Preprocessing Quality-Control Diagnostics and Technical Screening Exclusion Boundaries",
+        "png_path": "figures/fig14_preprocessing_qc_distributions.png",
+        "png_sha256": "524e6d42d278124fcfcf34ec8f320717ae62b99cfc30a5bae1f9ca449ff4ece9",
+        "png_size_bytes": 210298,
+        "pdf_path": "figures/fig14_preprocessing_qc_distributions.pdf",
+        "pdf_sha256": "0c1104ba4c0fd54a8eccfb2e8e6a26ff7adae8c4e56114dcf97df286d188c7f2",
+        "pdf_size_bytes": 36240,
+        "svg_path": "figures/fig14_preprocessing_qc_distributions.svg",
+        "svg_sha256": "f6d57333913b4b2f14a5447d0d0c5d7a021e879aff4e46a1f72d3a9a367130fe",
+        "svg_size_bytes": 101586
+      },
+      "figure_15": {
+        "figure_id": "Figure 15",
+        "title": "Computational Performance Scaling and Multiprocessing Execution Profiles",
+        "png_path": "figures/fig15_compute_scaling.png",
+        "png_sha256": "3d41d10eb4df8af822807e2c90a9ec20a7f00ebaa8b7b914d694f3070d1dc19e",
+        "png_size_bytes": 211204,
+        "pdf_path": "figures/fig15_compute_scaling.pdf",
+        "pdf_sha256": "f07d75ce4aeee5e22028925406773d7e7505d7b156660692ca4ea79ad63edcea",
+        "pdf_size_bytes": 34572,
+        "svg_path": "figures/fig15_compute_scaling.svg",
+        "svg_sha256": "5b51e58e1b7cb377f211061bd5d9c728d0d1b88640f8a9db7cf9227c8f4a1d23",
+        "svg_size_bytes": 87860
+      },
+      "figure_16": {
+        "figure_id": "Figure 16",
+        "title": "LeakCheck V1.1 Comprehensive Multi-Metric Scientific Synthesis Dashboard",
+        "png_path": "figures/fig16_multimetric_summary_dashboard.png",
+        "png_sha256": "273efad1c7f585274dd594c4d5482debdb82c4c777fafe94a396f1722f9d2a1c",
+        "png_size_bytes": 383950,
+        "pdf_path": "figures/fig16_multimetric_summary_dashboard.pdf",
+        "pdf_sha256": "4330786aaacc047219dcedbde3575693b0d47d528c2a9bd7a943c1c67ffa2ae6",
+        "pdf_size_bytes": 58433,
+        "svg_path": "figures/fig16_multimetric_summary_dashboard.svg",
+        "svg_sha256": "9d1e6d08a9fe4c63fdd68d1e36081e6fb473e68ac146ea838edda934eb879514",
+        "svg_size_bytes": 188356
+      }
+    }
+  },
+  "code_and_test_modules": {
+    "src_emi_modules": {
+      "src/emi/__init__.py": {
+        "sha256": "3991cdc7dad67a87ab2c1dd369bdbcddfc69d380d82c280f7cce166169cd15d4",
+        "size_bytes": 227
+      },
+      "src/emi/cache.py": {
+        "sha256": "768d4581c598cea3ea3a4326680bd22061e6fa22aa4c58830a0bad9bc0f561aa",
+        "size_bytes": 15612
+      },
+      "src/emi/config.py": {
+        "sha256": "cea3ab419b53c673e4792a1104c4f2b98681243b0ca8b0acd98cc01f1da7ae18",
+        "size_bytes": 3061
+      },
+      "src/emi/data.py": {
+        "sha256": "0cccd5fa5919be2db48867d9f8fc449f2f2829233247c39ac3553297f8cc2549",
+        "size_bytes": 2409
+      },
+      "src/emi/decode.py": {
+        "sha256": "ebcbd1d00584b2953748fb5b0e2a5905186e8f0416fd4428f580417983be42db",
+        "size_bytes": 5014
+      },
+      "src/emi/decoders.py": {
+        "sha256": "15ad080554a83254e5739ac5393b504eb8177e83458f9496f40dadce67d7f812",
+        "size_bytes": 7435
+      },
+      "src/emi/diagnostics.py": {
+        "sha256": "78f66d9a4197fe15ec9057aa9236f649b10b28523333d190dde92a6e8adc8146",
+        "size_bytes": 6732
+      },
+      "src/emi/leakcheck.py": {
+        "sha256": "4c57c6fe83af022bae4548492bcbb854a9d15ecfc03cdfadb50b9acfe42e3879",
+        "size_bytes": 28840
+      },
+      "src/emi/leakstats.py": {
+        "sha256": "96880346f590cd726f588b0e8aaaf6f1c38bdc7f30b1e6a6ab208beff3bb3264",
+        "size_bytes": 10885
+      },
+      "src/emi/metrics.py": {
+        "sha256": "c5373b751e785abcea97808bc8b021a40f1195b023ee103755d1d08e8613d7cc",
+        "size_bytes": 3230
+      },
+      "src/emi/nulls.py": {
+        "sha256": "64380b148c74e587ef9860b93995a2ea329f879612d518da0e9bae09dce07d87",
+        "size_bytes": 1967
+      },
+      "src/emi/pipeline.py": {
+        "sha256": "4ec8e815d08398773889add678623c72ffc0974adcddd789b00e7e05e32e4948",
+        "size_bytes": 6110
+      },
+      "src/emi/plotting.py": {
+        "sha256": "9486fb0bd59357b1ae8e902c2da75762a6bae798170e02f9d287b939cbf14274",
+        "size_bytes": 4734
+      },
+      "src/emi/preprocess.py": {
+        "sha256": "d91f20c9e25b2f9dac43f9f2ec0940c24711aec0437f8372f40add81fde82a42",
+        "size_bytes": 23386
+      },
+      "src/emi/signal_utils.py": {
+        "sha256": "166015731a582922e9b55a5403f826a4bdeb03bad4a19f18666c770101ea2f92",
+        "size_bytes": 14279
+      },
+      "src/emi/simple_csp.py": {
+        "sha256": "ab3c22f66e0a7f77c30f5e26ae8f04655748be9dfddff836e57b7823df0baf46",
+        "size_bytes": 1903
+      },
+      "src/emi/splitters.py": {
+        "sha256": "87e634435cb9189f7bc0554ac2f51b78798cedc282eed3430fd7476c9a254ca3",
+        "size_bytes": 6963
+      },
+      "src/emi/summary.py": {
+        "sha256": "3fd1d13846791d64b7e31fe2a72255e62c8ce929f46ffc871c46e674b163679e",
+        "size_bytes": 1984
+      },
+      "src/emi/tfr.py": {
+        "sha256": "25ca7e4f926520b6b2fec8de0b58b5d0e47babaf744c9487b83dbbc44146f2b2",
+        "size_bytes": 1250
+      }
+    },
+    "test_suite_modules": {
+      "tests/__init__.py": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      "tests/conftest.py": {
+        "sha256": "8c75b617726556b77f7765ea7fb2d37a0203fddb8c336687122f0030b78f3bf9",
+        "size_bytes": 106
+      },
+      "tests/helpers.py": {
+        "sha256": "c37469b0dbd97d2474028605883d305fbd5b4b6368885a5c3d6a7831bb0982db",
+        "size_bytes": 934
+      },
+      "tests/test_cache.py": {
+        "sha256": "9730ee858b5666ff376efa31b3d9fe9ec7693c58e05f076921a3c17a20e3ce1a",
+        "size_bytes": 10847
+      },
+      "tests/test_day4_challenger2_stress.py": {
+        "sha256": "fdaceb45e833c15684c0d458e25d56b8675b16c1628583637c38d1cc153faeed",
+        "size_bytes": 24791
+      },
+      "tests/test_decode.py": {
+        "sha256": "d3e7db958df21aaaa293bfc40338f4337f278eb52c7e2a11ef925890157098a9",
+        "size_bytes": 1387
+      },
+      "tests/test_decode_loro.py": {
+        "sha256": "c31ac2297e08b83c48045856c312579bce8f952a8e04974983518283cdb2d306",
+        "size_bytes": 2580
+      },
+      "tests/test_designs_isolation.py": {
+        "sha256": "b5d6ffef6d9fb552d175f810fbc65914a0e1d4e0ac59e74635f57e9c9ce02a73",
+        "size_bytes": 6535
+      },
+      "tests/test_diagnostics.py": {
+        "sha256": "4d27fc66de0db6917b923be3349e694f543e682a4122050450239e36084a9d76",
+        "size_bytes": 4646
+      },
+      "tests/test_filter_run_independent_stress.py": {
+        "sha256": "3b0b5a48cc4621b5b9762d4eeca65f12f33c91a3802ea205ad38180d47578fcd",
+        "size_bytes": 17122
+      },
+      "tests/test_fold_isolation.py": {
+        "sha256": "cf9a8c547e1cf8b40fc68aed81c6ce069256e38c53492f695bae3899a97a8746",
+        "size_bytes": 14522
+      },
+      "tests/test_leakcheck.py": {
+        "sha256": "b1aae97192b3057715789ff167f3b4748b3b1f4610e0df49bfd69c1ddacb23ff",
+        "size_bytes": 8879
+      },
+      "tests/test_leakstats.py": {
+        "sha256": "6232295a2cde0b041beb8cffa9c21182d1b159608adf31d425a0f1777bcd6af9",
+        "size_bytes": 7089
+      },
+      "tests/test_participant_flow.py": {
+        "sha256": "48dba291fa58aab253fd520bf15ce70a70e537feebd9849ca70b9f6923cf83ef",
+        "size_bytes": 5102
+      },
+      "tests/test_pratt_wilcoxon.py": {
+        "sha256": "3218f002ee4731e56036c55c13eabaf093ed3de55d8c65712f0294f4bce9866b",
+        "size_bytes": 3795
+      },
+      "tests/test_preprocess.py": {
+        "sha256": "7d1c06e3952651f890af58f152aea41cc8d596aee37856f894597f2c50df4a7f",
+        "size_bytes": 5508
+      },
+      "tests/test_rank_svd.py": {
+        "sha256": "1a3eae0b71d9978b4ac5f7610c49f3bab45b73db2c235ae7c9ff19b49c262286",
+        "size_bytes": 1543
+      },
+      "tests/test_real_checks.py": {
+        "sha256": "83ef34c90d455074b4bca6d5ae6439b7871ec29a659a526091bdae943fb75260",
+        "size_bytes": 1498
+      },
+      "tests/test_run_boundary_filtering.py": {
+        "sha256": "a88231940ce331f89be5e64746298c212bce8bcd9cd237a430349ecf2d603e62",
+        "size_bytes": 9242
+      },
+      "tests/test_signal_utils.py": {
+        "sha256": "0f614e931b33450c49a4f0762466fc53555ff3329b4448f68772d783f3c2562f",
+        "size_bytes": 11263
+      },
+      "tests/test_splitters.py": {
+        "sha256": "191a2a48883452221e6b4f3f66ad259e666fbfe05a4109c498d4c8ef5bab4cf4",
+        "size_bytes": 4603
+      },
+      "tests/test_statistical_validation.py": {
+        "sha256": "9f7c381b9cec9208e0f6d4a9c17aaed2c44d1749978e87343bcace4d567edb32",
+        "size_bytes": 10668
+      },
+      "tests/test_summary.py": {
+        "sha256": "00b2a756e0916a62e47e890b096ea0a95cf9ca666070db302e07ad54834f6808",
+        "size_bytes": 1129
+      }
+    },
+    "script_runners": {
+      "scripts/analyze_leakcheck.py": {
+        "sha256": "ec9d2ffbb83b980c254d78ebc022e13326a4e883c31b9a455608ff5025f747f8",
+        "size_bytes": 9118
+      },
+      "scripts/build_cache.py": {
+        "sha256": "b0d5d475b8741c4caa6f636b0dc0b3b61245e89b9a368873d0a9d26f226b60e9",
+        "size_bytes": 2103
+      },
+      "scripts/generate_figures.py": {
+        "sha256": "05780e9592e509b6d72567a42db2d937ebe5821f8946699ca1d7a438e59f0821",
+        "size_bytes": 23915
+      },
+      "scripts/generate_reproducibility_manifest.py": {
+        "sha256": "6fd018a25d5b7f899779d3235db4e9a4c772a9b2a7105952bb83dfc274e939b0",
+        "size_bytes": 12184
+      },
+      "scripts/generate_tables.py": {
+        "sha256": "11887ab4d60c5bee23f18b1b901be416131a41bd8e6f1da657238d017738084e",
+        "size_bytes": 53740
+      },
+      "scripts/make_synthetic_cache.py": {
+        "sha256": "f233d97d33fd5dc64578a79b020c0da1e702f9d856c6caeaa5e3440dcf185587",
+        "size_bytes": 2877
+      },
+      "scripts/quickstart_demo.py": {
+        "sha256": "ad9b6e64449d0e6d7afa4294702261ee5b907466ce4c4047846f86ce3dbfe3f8",
+        "size_bytes": 5553
+      },
+      "scripts/rebuild_and_verify_raw_edf.py": {
+        "sha256": "c48f36956cc39ca8c1b5826d793ee5a47a8dd1d6933ec73d8cb7eeda1e8573c3",
+        "size_bytes": 18923
+      },
+      "scripts/run_benchmark.py": {
+        "sha256": "4e0def7ca353646b40a5d93ca9f93cfeec87f8ef6e0576436e677a73eab8b7bb",
+        "size_bytes": 29317
+      },
+      "scripts/run_group.py": {
+        "sha256": "7d2b441ab96aa1c5169691ebe51fd4db08f39f5dcd5647dc9c103d2862bc388a",
+        "size_bytes": 2766
+      },
+      "scripts/run_leakcheck.py": {
+        "sha256": "2bc55b4ae92990ccd33e0ae057b14650b060c3dad2843868012e086adb959cb5",
+        "size_bytes": 14709
+      },
+      "scripts/run_subject.py": {
+        "sha256": "00b067f3227b84eab4f66fa3727f6187232ac00aebd4e02afa9ab748ddf6869c",
+        "size_bytes": 1811
+      },
+      "scripts/verify_numerical_parity.py": {
+        "sha256": "2e70fbda5c57b42bde8744d1246d5a4b35e23d3e7b4e02285f14fbe4751bff7e",
+        "size_bytes": 19943
+      }
+    },
+    "pyproject_toml": {
+      "sha256": "40943886377decebaf6f110c2e448ed2242aac8e49844ff08bdd0ebd8af4b625",
+      "size_bytes": 1452
+    }
+  },
+  "shared_statistical_matrix": {
+    "path": "docs/STATISTICS/bootstrap_resample_indices_b10000_n105.csv",
+    "sha256": "2aeb5c4176b5ef7e65447489b4a5bc86f0959be3d9d4106125ce155aea811ce7",
+    "dimensions": [
+      10000,
+      105
+    ],
+    "unit": "Participant ID"
+  },
+  "primary_empirical_findings": {
+    "D1s_minus_D3": {
+      "contrast": "Size-Matched Random Partition vs. LORO Reference",
+      "hodges_lehmann_pp": -5.7149,
+      "mean_diff_pp": -5.531,
+      "bca_95_ci_pp": [
+        -7.3165,
+        -3.9447
+      ],
+      "pratt_wilcoxon_p": 8.067e-09,
+      "holm_adjusted_p": 1.6e-08,
+      "rank_biserial_r": -0.649,
+      "cohen_dz": -0.664,
+      "tost_decision": "REJECT_EQUIVALENCE (p = 0.99998)"
+    },
+    "D1m_minus_D3": {
+      "contrast": "k-Matched Random Partition vs. LORO Reference",
+      "hodges_lehmann_pp": -5.9091,
+      "mean_diff_pp": -5.7174,
+      "bca_95_ci_pp": [
+        -7.5721,
+        -4.0909
+      ],
+      "pratt_wilcoxon_p": 1.571e-08,
+      "holm_adjusted_p": 1.65e-08,
+      "rank_biserial_r": -0.641,
+      "cohen_dz": -0.644,
+      "tost_decision": "REJECT_EQUIVALENCE (p = 0.99998)"
+    },
+    "P1_minus_D3": {
+      "contrast": "Global CSP Supervised Leakage vs. LORO Reference",
+      "hodges_lehmann_pp": 22.2739,
+      "mean_diff_pp": 22.3137,
+      "bca_95_ci_pp": [
+        19.2424,
+        25.0
+      ],
+      "pratt_wilcoxon_p": 1e-20,
+      "holm_adjusted_p": 1.92e-17,
+      "rank_biserial_r": 0.989,
+      "cohen_dz": 1.61,
+      "tost_decision": "REJECT_EQUIVALENCE (p = 1.00000)"
+    }
+  }
+}

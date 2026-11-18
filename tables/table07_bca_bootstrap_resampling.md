@@ -1,0 +1,8 @@
+# Table 7: BCa Bootstrap Resampling Parameters, Confidence Intervals, and Convergence
+
+| Contrast                            | Bootstrap Resamples B | Resample Matrix Hash | Estimator Type                | Point Estimate (pp) | 95% BCa Lower Bound (pp) | 95% BCa Upper Bound (pp) | Confidence Margin Width (pp) | CI Method        | Deterministic Seed |
+| ----------------------------------- | --------------------- | -------------------- | ----------------------------- | ------------------- | ------------------------ | ------------------------ | ---------------------------- | ---------------- | ------------------ |
+| D1s − D3 (Size-Matched Headline)    | 10,000                | 2aeb5c4176b5ef7e     | Hodges-Lehmann Location Shift | -5.71               | -7.32                    | -3.94                    | 3.37                         | BCa (Efron 1987) | 42                 |
+| D1m − D3 (k-Matched Random)         | 10,000                | 2aeb5c4176b5ef7e     | Hodges-Lehmann Location Shift | -5.91               | -7.57                    | -4.09                    | 3.48                         | BCa (Efron 1987) | 42                 |
+| P1 − D3 (Global Supervised Leakage) | 10,000                | 2aeb5c4176b5ef7e     | Hodges-Lehmann Location Shift | +22.27              | +19.24                   | +25.00                   | 5.76                         | BCa (Efron 1987) | 42                 |
+

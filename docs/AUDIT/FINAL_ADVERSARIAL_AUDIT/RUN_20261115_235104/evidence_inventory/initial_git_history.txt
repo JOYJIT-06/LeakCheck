@@ -1,0 +1,30 @@
+﻿2774aa9 (HEAD -> research/v1.1-final-audit) docs(audit): add independent scientific validation audit report (18 sections, 60 KB)
+4c63b27 (origin/research/v1.1-final-audit) docs(audit): harmonize quality gates and scope compliance reports with verified package hashes and archive isolation
+dd4427e chore(release): isolate V1.1 release package, archive V2 multi-dataset modules, and update checksums
+0a7a7f2 chore(scope): purge all OpenBMI artifacts, figures, benchmarks, and references from V1.1 branch
+969721b docs(audit): enforce strict single-dataset PhysioNet-only scope compliance and purge OpenBMI results from V1.1 audit
+1d636ba chore(release): sanitize release packaging metadata, update checksums, and harmonize audit reports
+3b11ff9 fix(tests): make registry path resolution robust in test_datasets_adapters
+7a2bcac merge: resolve PR #6 merge conflict with main; remove manuscript and references from repository per researcher directive; establish master scientific validation audit
+e62cf6e chore(privacy): remove manuscript and references from repository per data governance directive; preserve full validation report in docs/AUDIT/
+c4b1bff docs(audit): author comprehensive scientific validation and claim-evidence matrix
+d90d1d2 chore(release): finalize V1.1 release package, reproducibility manifest, and test reports
+fbc7ae4 docs(manuscript): align sampling-rate strata text, boxplot quantiles, and methods parameters with empirical benchmark
+5dbbae0 docs(manuscript): complete IEEE manuscript revision, publication figures, reference audit, and 6-guide evidence package
+9791dfa feat(analysis): statistical revalidation, independent R validation suite, and reconciliation table
+5f404b6 docs(audit): participant flow, raw edf provenance, design validation, and decoder audit
+96a130d docs(manuscript): integrate vector publication figures, accurate exclusion details, and resilient recalculate_all_stats path resolution
+bfeef81 feat(audit): integrate verified recalculate_all_stats and rebuild_and_verify_raw_edf utilities and update bibliography
+03b7a0e docs(audit): author V1.1 code recovery, repair log, git safety, inventory, and scientific audit reports
+0ef7648 (origin/main, origin/HEAD) Revise references in bibliography file
+bf1bd31 Update README.md
+6147a4d Add files via upload
+6ee580d Revise README for LeakCheck project overview and details
+2be2821 Merge pull request #4 from JOYJIT-06/v2-dev
+0ef9da2 feat(v2): implement concrete adapters and registry entries for all 11 candidate datasets
+c4a0ab2 docs(audit): reconcile manuscript numbers, add leakage taxonomy migration and openbmi registry record
+80358b6 docs(v2): add cloud storage architecture and multi-dataset acquisition status
+0d0b903 feat(v2): multi-dataset benchmarking, OpenBMI evaluation, and registry schemas
+d35afa6 (tag: v1.1.0, main, fix/v1.1-stabilization) release: LeakCheck v1.1.0 ΓÇö Stabilized PhysioNet EEG Leakage Auditing Benchmark
+002dc4f (tag: v1.0.0) Release LeakCheck v1.0.0
+461574d Initial commit

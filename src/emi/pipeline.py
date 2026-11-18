@@ -60,3 +60,95 @@ def cfg_no_perm(cfg: Config) -> Config:
     """Same settings without the (slow) permutation test; used for the labelled random-split comparison."""
     from dataclasses import replace
     return replace(cfg, n_perm=0)
+
+
+def evaluate_loro_fold_isolated(subject, cfg: Config, factory=None) -> dict:
+    """True fold-isolated LORO: fit preprocessor strictly on train runs, transform test run.
+
+    Parameters
+    ----------
+    subject : int or list of mne.io.BaseRaw
+        Either subject ID (loaded via data.load_raw_runs) or pre-loaded list of run BaseRaws.
+    cfg : Config
+        Configuration options.
+    factory : callable, optional
+        CSP factory function (defaults to rank_safe CSP factory).
+
+    Returns
+    -------
+    dict
+        Evaluation results with fold_details and pooled accuracy.
+    """
+    if isinstance(subject, (list, tuple)):
+        raw_runs = list(subject)
+    else:
+        raw_runs = data.load_raw_runs(int(subject), cfg)
+
+    n_runs = len(raw_runs)
+    if n_runs < 2:
+        raise ValueError("Leave-one-run-out requires at least 2 runs.")
+
+    csp_factory = factory or get_csp_factory(getattr(cfg, "csp_impl", "rank_safe"), cfg.csp_reg)
+    fold_accs = []
+    fold_details = []
+    y_true_all, y_pred_all = [], []
+    X_test_all, y_test_all, runs_test_all = [], [], []
+    fold_specs = []
+
+    for k in range(n_runs):
+        train_runs = [raw_runs[i] for i in range(n_runs) if i != k]
+        test_runs = [raw_runs[k]]
+
+        prep = preprocess.FoldIsolatedPreprocessor(cfg)
+        X_tr, y_tr = prep.fit_transform(train_runs)
+        X_te, y_te = prep.transform(test_runs)
+
+        if len(np.unique(y_tr)) < 2:
+            raise ValueError(f"Fold {k} training set has only one class.")
+        if len(y_te) == 0:
+            raise ValueError(f"Fold {k} test set has 0 kept trials.")
+
+        clf = decode.build_pipeline(cfg.n_csp, csp_factory)
+        clf.fit(X_tr, y_tr)
+        y_pred = clf.predict(X_te)
+
+        fold_acc = float(np.mean(y_pred == y_te))
+        fold_accs.append(fold_acc)
+        y_true_all.extend(y_te.tolist())
+        y_pred_all.extend(y_pred.tolist())
+        X_test_all.append(X_te)
+        y_test_all.append(y_te)
+        runs_test_all.append(np.full(len(y_te), k))
+        fold_specs.append({
+            "n_train_0": int(np.sum(y_tr == 0)),
+            "n_train_1": int(np.sum(y_tr == 1)),
+            "n_test_0": int(np.sum(y_te == 0)),
+            "n_test_1": int(np.sum(y_te == 1)),
+        })
+        fold_details.append({
+            "fold": k,
+            "test_run": k,
+            "acc": fold_acc,
+            "n_train": len(y_tr),
+            "n_test": len(y_te),
+            "threshold_uv": prep.reject_threshold_uv_,
+            "bad_channels": list(prep.bad_channels_),
+            "ica_excluded": list(prep.ica_excluded_),
+        })
+
+    pooled_acc = float(np.mean(np.array(y_pred_all) == np.array(y_true_all)))
+    return {
+        "validation": "leave-one-run-out (fold-isolated)",
+        "mean_acc": pooled_acc,
+        "acc_fold_mean": float(np.mean(fold_accs)),
+        "n_trials": len(y_true_all),
+        "n_folds": n_runs,
+        "fold_details": fold_details,
+        "y_true": np.array(y_true_all),
+        "y_pred": np.array(y_pred_all),
+        "X": np.concatenate(X_test_all, axis=0) if X_test_all else np.empty(0),
+        "y": np.concatenate(y_test_all, axis=0) if y_test_all else np.empty(0),
+        "runs": np.concatenate(runs_test_all, axis=0) if runs_test_all else np.empty(0),
+        "fold_specs": fold_specs,
+    }
+

@@ -26,7 +26,7 @@ def load_raw(subject: int, cfg: Config) -> mne.io.BaseRaw:
     plots work. The length of each run is stored in raw.info['description'],
     so each trial can later be assigned to its run.
     """
-    paths = eegbci.load_data(subject, list(cfg.runs), path=resolve_data_path(cfg))
+    paths = eegbci.load_data(subject, list(cfg.runs), path=resolve_data_path(cfg), update_path=False)
     raws = [mne.io.read_raw_edf(p, preload=True, verbose="ERROR") for p in paths]
     lengths = [r.n_times for r in raws]
     raw = mne.concatenate_raws(raws)
@@ -35,3 +35,21 @@ def load_raw(subject: int, cfg: Config) -> mne.io.BaseRaw:
     raw.set_montage(montage, match_case=False, on_missing="ignore")
     raw.info["description"] = RUN_TAG + ",".join(str(n) for n in lengths)
     return raw
+
+
+def load_raw_runs(subject: int, cfg: Config) -> list[mne.io.BaseRaw]:
+    """Download (first time only) and load the chosen runs for one subject as separate BaseRaw objects.
+
+    Returns a list of separate BaseRaw objects (one per run in cfg.runs), each with standardised
+    channel names and the standard 10-05 montage attached.
+    """
+    paths = eegbci.load_data(subject, list(cfg.runs), path=resolve_data_path(cfg), update_path=False)
+    montage = mne.channels.make_standard_montage("standard_1005")
+    raw_runs = []
+    for p in paths:
+        r = mne.io.read_raw_edf(p, preload=True, verbose="ERROR")
+        eegbci.standardize(r)
+        r.set_montage(montage, match_case=False, on_missing="ignore")
+        raw_runs.append(r)
+    return raw_runs
+

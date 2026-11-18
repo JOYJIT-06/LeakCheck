@@ -1,0 +1,4 @@
+Contrast,Parametric Mean Diff (pp),Parametric SD (pp),Nonparametric Median Diff (pp),Interquartile Range IQR (pp),Hodges-Lehmann Estimate (pp),Rank-Biserial Correlation r_rb,Paired Cohen's dz,Logit-Transformed Paired t p-val
+D1s − D3 (Size-Matched Random),-5.53,8.33,-6.00,11.73,-5.71,-0.649,-0.664,3.29e-10
+D1m − D3 (k-Matched Random),-5.72,8.88,-6.36,11.56,-5.91,-0.641,-0.644,9.41e-10
+P1 − D3 (Positive Control Leakage),+22.31,13.86,+22.22,22.22,+22.27,+0.989,+1.610,6.49e-26

@@ -1,0 +1,174 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261117152700
+Username: JOYJIT💫\user
+RunAs User: JOYJIT💫\user
+Configuration Name: 
+Machine: JOYJIT💫 (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 16980
+PSVersion: 5.1.26100.9818
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9818
+BuildVersion: 10.0.26100.9818
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\my lab\LeakCheck_remote\docs\AUDIT\FINAL_ADVERSARIAL_AUDIT\RUN_20261115_235104\INITIAL_REPOSITORY_INVENTORY.txt
+PS D:\my lab> Write-Host "`n===== REPOSITORY ====="
+
+===== REPOSITORY =====
+PS D:\my lab> Write-Host "Path: $Repo"
+Path: D:\my lab\LeakCheck_remote
+PS D:\my lab> Test-Path $Repo
+True
+PS D:\my lab> if (Test-Path $Repo) {
+    Set-Location $Repo
+
+    Write-Host "`n===== BRANCH ====="
+    git branch -vv
+
+    Write-Host "`n===== CURRENT HEAD ====="
+    git rev-parse HEAD
+
+    Write-Host "`n===== WORKING TREE ====="
+    git status --short --branch
+
+    Write-Host "`n===== RECENT COMMITS ====="
+    git log -8 --oneline --decorate
+
+    Write-Host "`n===== TAGS ====="
+    git tag --list
+
+    Write-Host "`n===== EXPECTED COMMIT CHECK ====="
+    git show -s --format=fuller 2774aa9
+    git show -s --format=fuller 4c63b27
+
+    Write-Host "`n===== REMOTES ====="
+    git remote -v
+
+    Write-Host "`n===== TOP-LEVEL FILES ====="
+    Get-ChildItem -Force | Select-Object Name, Mode, Length
+}
+
+===== BRANCH =====
+  main                      d35afa6 [origin/main: behind 9] release: LeakCheck v1.1.0 — Stabilized Ph
+ysioNet EEG Leakage Auditing Benchmark
+* research/v1.1-final-audit 2774aa9 [origin/research/v1.1-final-audit: ahead 1] docs(audit): add inde
+pendent scientific validation audit report (18 sections, 60 KB)
+  v2-dev                    d5891db [origin/v2-dev: behind 6] fix(benchmark): robust real-data path r
+esolution and small-cohort contrast statistics
+
+===== CURRENT HEAD =====
+
+
+===== WORKING TREE =====
+
+
+===== RECENT COMMITS =====
+
+
+===== TAGS =====
+
+
+===== EXPECTED COMMIT CHECK =====
+
+
+
+===== REMOTES =====
+
+
+===== TOP-LEVEL FILES =====
+
+Name                      Mode   Length
+----                      ----   ------
+.git                      d--h--
+.github                   dar---
+.pytest_cache             d-----
+.venv                     d-----
+analysis                  d-----
+archive                   d-----
+benchmark_results         d-----
+data                      d-----
+dist                      d-----
+docs                      dar---
+figures                   d-----
+registry                  d-----
+results                   d-----
+scripts                   dar---
+src                       dar---
+tests                     dar---
+.gitignore                -a---- 697
+CHANGELOG.md              -a---- 4002
+CITATION.cff              -a---- 661
+CONTRIBUTING.md           -a---- 3559
+FINAL_DIAGNOSTIC.txt      -a---- 42836
+inspect_cache.py          -a---- 1839
+inspect_eeg.py            -a---- 2695
+leakchckzipremote.zip     -a---- 752
+LICENSE                   -a---- 11558
+MANIFEST.in               -a---- 461
+pyproject.toml            -a---- 1452
+README.md                 -a---- 16219
+recalculate_all_stats.py  -a---- 17421
+requirements.txt          -a---- 72
+uv.lock                   -a---- 548941
+V11_current_working.patch -a---- 44607
+
+
+PS D:\my lab\LeakCheck_remote> Write-Host "`n===== MANUSCRIPT DIRECTORY ====="
+
+===== MANUSCRIPT DIRECTORY =====
+PS D:\my lab\LeakCheck_remote> Write-Host "Path: $Manuscript"
+Path: D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet
+PS D:\my lab\LeakCheck_remote> Test-Path $Manuscript
+True
+PS D:\my lab\LeakCheck_remote> if (Test-Path $Manuscript) {
+    Get-ChildItem -LiteralPath $Manuscript -Recurse -File |
+        Select-Object FullName, Length
+}
+
+FullName                                                                                          Le
+                                                                                                  ng
+                                                                                                  th
+--------                                                                                          --
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\CLAIM_EVIDENCE_MATRIX.md                        03
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\DISCUSSION_EVIDENCE_GUIDE.md                    66
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\FIGURE_TABLE_GUIDE.md                           02
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\FINAL_METHODS_SPECIFICATION.md                  60
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\FINAL_RESULTS_WRITING_GUIDE.md                  73
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\manuscript.md                                   28
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\manuscript_backup.md                            35
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig1_inflation_distribution.png         45
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig1_inflation_distribution.svg         32
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig1_workflow_schematic.pdf             59
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig1_workflow_schematic.png             89
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig1_workflow_schematic.svg             41
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig1_workflow_schematic.tiff            66
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig2_paired_loro_vs_d1s.png             65
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig2_paired_loro_vs_d1s.svg             08
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig2_participant_flow.pdf               62
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig2_participant_flow.png               60
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig2_participant_flow.svg               69
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig2_participant_flow.tiff              10
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig3_inflation_distributions.pdf        12
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig3_inflation_distributions.png        67
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig3_inflation_distributions.svg        23
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig3_inflation_distributions.tiff       86
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig4_paired_trajectories_waterfall.pdf  07
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig4_paired_trajectories_waterfall.png  98
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig4_paired_trajectories_waterfall.svg  27
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig4_paired_trajectories_waterfall.tiff 26
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig5_statistical_effects_tost.pdf       03
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig5_statistical_effects_tost.png       52
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig5_statistical_effects_tost.svg       70
+D:\my lab\LeakCheck_Manuscript_Local\V1_PhysioNet\figures\fig5_statistical_effects_tost.tiff      10
+
+
+PS D:\my lab\LeakCheck_remote> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20261117152701
+**********************

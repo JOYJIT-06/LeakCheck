@@ -1,0 +1,5 @@
+dataset,subject,decoder,design,label_type,perm,n_trials,n_channels,csp_impl,base_window,label_agreement,label_hash,acc_pooled,acc_fold_mean,bal_acc,auc,kappa,recall_left,recall_right,n_folds,n_test_mean,seconds,error
+physionet,5,csp_lda,D3_loro,real,0,45,64,mne_oas,1-3,1.0,0cdb313b,0.6,0.6,0.5892857142857143,,0.18181818181818177,0.42857142857142855,0.75,3.0,15.0,0.065,
+physionet,5,csp_lda,D1m_matched_k,real,0,45,64,mne_oas,1-3,1.0,0cdb313b,0.4488888888888889,0.4488888888888889,0.45119047619047625,0.43095238095238103,-0.09631803992302077,0.48571428571428565,0.41666666666666663,3.0,15.0,11.221,
+physionet,5,csp_lda,D1s_size_matched,real,0,45,64,mne_oas,1-3,1.0,0cdb313b,0.44666666666666666,0.4466666666666666,0.4416666666666667,0.4222222222222222,-0.11701684659394951,0.36666666666666664,0.5166666666666667,3.0,15.0,9.325,
+physionet,5,csp_lda,P1_csp_on_all,real,0,45,64,mne_oas,1-3,1.0,0cdb313b,1.0,1.0,1.0,1.0,1.0,1.0,1.0,3.0,15.0,0.169,

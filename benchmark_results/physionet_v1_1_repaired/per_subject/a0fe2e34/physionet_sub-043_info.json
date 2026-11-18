@@ -1,0 +1,31 @@
+{
+  "dataset": "physionet",
+  "subject": 43,
+  "cache_file": "physionet_repaired_sub-043",
+  "cache_sha256": "a95811521f4d678789e32f2d91616bd14e1f9cd2b85a94defba9a6579ce2e62e",
+  "n_trials": 43,
+  "n_sessions": 1,
+  "sfreq": 160.0,
+  "label_lag1_autocorr": -0.3572352479163618,
+  "runs_test_p_min": 0.12432012432012432,
+  "runs_test_p_min_adj": 0.32851532187730814,
+  "class_balance_per_run": [
+    0.4666666666666667,
+    0.6153846153846154,
+    0.4666666666666667
+  ],
+  "trials_per_run": [
+    15,
+    13,
+    15
+  ],
+  "run_decode_acc": 0.9099999999999999,
+  "run_decode_chance": 0.3333333333333333,
+  "run_decode_null_mean": 0.3392,
+  "run_decode_p": 0.0196078431372549,
+  "dep_lag1": 0.15443719231575823,
+  "dep_lag2": 0.20724450736516445,
+  "dep_lag3": 0.07677190304854149,
+  "dep_lag4": -0.008073678761420733,
+  "dep_lag5": 0.20009231732631982
+}
