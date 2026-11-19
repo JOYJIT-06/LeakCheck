@@ -32,8 +32,13 @@ from emi.leakstats import (
 @pytest.fixture(scope="module")
 def benchmark_paths():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    csv_path = os.path.join(base_dir, "benchmark_results", "physionet_v1_1", "inflation_by_subject.csv")
-    settings_path = os.path.join(base_dir, "benchmark_results", "physionet_v1_1", "settings.json")
+    hist_dir = os.path.join(base_dir, "archive", "historical_benchmarks", "physionet_v1_1_final")
+    if os.path.isdir(hist_dir):
+        csv_path = os.path.join(hist_dir, "inflation_by_subject.csv")
+        settings_path = os.path.join(hist_dir, "settings.json")
+    else:
+        csv_path = os.path.join(base_dir, "benchmark_results", "physionet_v1_1", "inflation_by_subject.csv")
+        settings_path = os.path.join(base_dir, "benchmark_results", "physionet_v1_1", "settings.json")
     r_csv_path = os.path.join(base_dir, "analysis", "R_validation", "reproduced_statistics_R.csv")
     return {
         "inflation_by_subject": csv_path,
@@ -246,3 +251,46 @@ def test_sampling_rate_strata_invariance(cohort_data):
     assert abs(d1s_128.mean() - 59.0823) < 0.01
     assert abs(d3_160.mean() - 60.2103) < 0.01
     assert abs(d1s_160.mean() - 57.3284) < 0.01
+
+
+def test_no_hardcoded_absolute_drive_paths_in_repository():
+    """Verify that zero Python files in tests/, src/, scripts/, analysis/ contain hardcoded Windows drive letters."""
+    import ast
+    import re
+    from pathlib import Path
+
+    repo_root = Path(__file__).resolve().parents[1]
+    DRIVE_REGEX = re.compile(r'^[a-zA-Z]:[\\/]')
+
+    violations = []
+    scanned_count = 0
+
+    for sub in ["tests", "src", "scripts", "analysis"]:
+        target_dir = repo_root / sub
+        if not target_dir.exists():
+            continue
+        for py_file in target_dir.rglob("*.py"):
+            scanned_count += 1
+            tree = ast.parse(py_file.read_text(encoding="utf-8"), filename=str(py_file))
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Constant) and isinstance(node.value, str):
+                    val = node.value.strip()
+                    if DRIVE_REGEX.match(val):
+                        rel_path = py_file.relative_to(repo_root)
+                        violations.append(f"{rel_path}:{node.lineno} -> {val}")
+
+    assert scanned_count > 20, f"Expected >20 Python files scanned, found {scanned_count}"
+    assert not violations, f"Found {len(violations)} hardcoded absolute drive paths:\n" + "\n".join(violations)
+
+
+def test_test_suite_invocable_from_any_working_directory(monkeypatch):
+    """Verify that key path fixtures resolve correctly regardless of process working directory."""
+    from pathlib import Path
+    repo_root = Path(__file__).resolve().parents[1]
+
+    for target_cwd in [repo_root, repo_root / "tests"]:
+        monkeypatch.chdir(target_cwd)
+        resolved_root = Path(__file__).resolve().parents[1]
+        assert (resolved_root / "src").is_dir()
+        assert (resolved_root / "benchmark_results").is_dir()
+

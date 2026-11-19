@@ -77,8 +77,8 @@ def tost_paired(d, margin, alpha=0.05):
     if n < 3 or d.std(ddof=1) == 0:
         return {"tost_p": np.nan, "equivalent": False}
     se = d.std(ddof=1) / np.sqrt(n)
-    p_lower = 1 - stats.t.cdf((d.mean() + margin) / se, n - 1)   # H0: mean <= -margin
-    p_upper = stats.t.cdf((d.mean() - margin) / se, n - 1)       # H0: mean >= +margin
+    p_lower = float(stats.t.sf((d.mean() + margin) / se, n - 1)) # H0: mean <= -margin
+    p_upper = float(stats.t.cdf((d.mean() - margin) / se, n - 1)) # H0: mean >= +margin
     p = float(max(p_lower, p_upper))
     return {"tost_p": p, "equivalent": bool(p < alpha)}
 
@@ -123,7 +123,7 @@ def wilcoxon_pratt(d, zero_tol=1e-9):
     diff = w_plus - mu
     cc = 0.5 * np.sign(diff) if diff != 0 else 0.0
     z = (diff - cc) / sd if sd > 0 else 0.0
-    p = 2.0 * (1.0 - stats.norm.cdf(np.abs(z)))
+    p = float(2.0 * stats.norm.sf(np.abs(z)))
     return float(min(w_plus, w_minus)), float(z), float(p)
 
 
@@ -199,7 +199,7 @@ def required_subjects(sd, effect, alpha=0.05, power=0.80, n_max=5000):
         df = n - 1
         nc = effect / sd * np.sqrt(n)
         tcrit = stats.t.ppf(1 - alpha / 2, df)
-        pw = 1 - stats.nct.cdf(tcrit, df, nc) + stats.nct.cdf(-tcrit, df, nc)
+        pw = float(stats.nct.sf(tcrit, df, nc) + stats.nct.cdf(-tcrit, df, nc))
         if pw >= power:
             return n
     return None

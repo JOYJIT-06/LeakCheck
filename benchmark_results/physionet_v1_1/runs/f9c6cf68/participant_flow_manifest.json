@@ -1,0 +1,3899 @@
+{
+  "dataset_name": "PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB)",
+  "protocol_version": "LeakCheck V1.1 Repaired",
+  "benchmark_id": "physionet_v1_1",
+  "requested_subjects_total": 109,
+  "included_subjects_total": 105,
+  "excluded_subjects_total": 4,
+  "inclusion_rate_percent": 96.33,
+  "excluded_subject_ids": [
+    "S044",
+    "S069",
+    "S086",
+    "S091"
+  ],
+  "historical_draft_line_95_refutation": {
+    "refuted_claim": "Historical manuscript draft line 95 claimed S088, S092, S100, S104 were excluded for corrupted sampling rates or technical failure.",
+    "verdict": "FALSE (HISTORICAL DRAFT CLAIM FORMALLY REFUTED)",
+    "empirical_evidence": {
+      "S088": {
+        "status": "INCLUDED",
+        "n_trials": 53,
+        "sfreq_hz": 128.0,
+        "delta_p1_pp": 15.09,
+        "delta_d1s_pp": -8.87
+      },
+      "S092": {
+        "status": "INCLUDED",
+        "n_trials": 57,
+        "sfreq_hz": 128.0,
+        "delta_p1_pp": 19.3,
+        "delta_d1s_pp": -0.61
+      },
+      "S100": {
+        "status": "INCLUDED",
+        "n_trials": 34,
+        "sfreq_hz": 128.0,
+        "delta_p1_pp": 26.47,
+        "delta_d1s_pp": 3.53
+      },
+      "S104": {
+        "status": "INCLUDED",
+        "n_trials": 42,
+        "sfreq_hz": 160.0,
+        "delta_p1_pp": 40.48,
+        "delta_d1s_pp": 3.33
+      }
+    }
+  },
+  "subjects": {
+    "S001": {
+      "subject_id": "S001",
+      "subject_num": 1,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-001",
+      "cache_sha256": "12be6aeae89d5af1abba1e4cb2a5f06407d8c7ff13af525bcd1a2531d635772b",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.5455,
+          "delta_pp": 0.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.575,
+          "delta_pp": 2.95
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.8864,
+          "delta_pp": 34.09
+        }
+      }
+    },
+    "S002": {
+      "subject_id": "S002",
+      "subject_num": 2,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-002",
+      "cache_sha256": "a15399c9979df7a70d86fa6e8b8abe451eef735781e2f2e0813c6da41c16a389",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.9556,
+          "acc_leaky": 0.6578,
+          "delta_pp": -29.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.9556,
+          "acc_leaky": 0.6544,
+          "delta_pp": -30.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.9556,
+          "acc_leaky": 0.8444,
+          "delta_pp": -11.11
+        }
+      }
+    },
+    "S003": {
+      "subject_id": "S003",
+      "subject_num": 3,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-003",
+      "cache_sha256": "46848cca523160eee24f1e7c39d622dcf27823d2e52b54341db687f39e58519d",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5227,
+          "acc_leaky": 0.4727,
+          "delta_pp": -5.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5227,
+          "acc_leaky": 0.5023,
+          "delta_pp": -2.05
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5227,
+          "acc_leaky": 0.7045,
+          "delta_pp": 18.18
+        }
+      }
+    },
+    "S004": {
+      "subject_id": "S004",
+      "subject_num": 4,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-004",
+      "cache_sha256": "65b24cc5fc3075c246c90feac9bd4d86d8549deca827825bb6b50a362d8f7a06",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4489,
+          "delta_pp": -1.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.5011,
+          "delta_pp": 3.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.6,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S005": {
+      "subject_id": "S005",
+      "subject_num": 5,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-005",
+      "cache_sha256": "146478a3a13a925f54534d508cfb6b88102019da7c2443a54ab769b96d3e13ef",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4533,
+          "delta_pp": -16.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4222,
+          "delta_pp": -20.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 1.0,
+          "delta_pp": 37.78
+        }
+      }
+    },
+    "S006": {
+      "subject_id": "S006",
+      "subject_num": 6,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-006",
+      "cache_sha256": "cf8f9f838fd014d5b24a429d5105c20448a1d5742bea6218a00cf6c202de2af6",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4044,
+          "delta_pp": -1.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4422,
+          "delta_pp": 2.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.8222,
+          "delta_pp": 40.0
+        }
+      }
+    },
+    "S007": {
+      "subject_id": "S007",
+      "subject_num": 7,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-007",
+      "cache_sha256": "4f7a347bec8961cd048d39f6f667c9860ab53a2b7e4958faea240dad2cb858ee",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.9778,
+          "acc_leaky": 0.9778,
+          "delta_pp": -0.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.9778,
+          "acc_leaky": 0.9667,
+          "delta_pp": -1.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.9778,
+          "acc_leaky": 0.9778,
+          "delta_pp": 0.0
+        }
+      }
+    },
+    "S008": {
+      "subject_id": "S008",
+      "subject_num": 8,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-008",
+      "cache_sha256": "e42c3ebe076fc1e4c5ecdbed5c6459d0613adbd8f8c69a1c27be15ba1acbc85b",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.3867,
+          "delta_pp": -16.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4667,
+          "delta_pp": -8.89
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.9333,
+          "delta_pp": 37.78
+        }
+      }
+    },
+    "S009": {
+      "subject_id": "S009",
+      "subject_num": 9,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-009",
+      "cache_sha256": "2bbb36df721639d1d10ae0184df5b3ba37d90a2824ca29736a41232c4aca67db",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.3778,
+          "delta_pp": -13.33
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4033,
+          "delta_pp": -10.78
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.9778,
+          "delta_pp": 46.67
+        }
+      }
+    },
+    "S010": {
+      "subject_id": "S010",
+      "subject_num": 10,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-010",
+      "cache_sha256": "a1635a5e4dafdcbbbbe7daf76fae168825dbde3e114979d98630b65454605f69",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7273,
+          "acc_leaky": 0.5273,
+          "delta_pp": -20.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7273,
+          "acc_leaky": 0.6011,
+          "delta_pp": -12.61
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7273,
+          "acc_leaky": 0.7955,
+          "delta_pp": 6.82
+        }
+      }
+    },
+    "S011": {
+      "subject_id": "S011",
+      "subject_num": 11,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-011",
+      "cache_sha256": "dc36b9af68f50c6a7edf4c21e375b47165815765ebb0cac250ac6238a35ce052",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.6489,
+          "delta_pp": 16.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.62,
+          "delta_pp": 13.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.6889,
+          "delta_pp": 20.0
+        }
+      }
+    },
+    "S012": {
+      "subject_id": "S012",
+      "subject_num": 12,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-012",
+      "cache_sha256": "688347e8213a1e47ff5d3248429a02becaaf541288b3fda576f99478dd60a3ec",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.4682,
+          "delta_pp": -14.55
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.5284,
+          "delta_pp": -8.52
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.8182,
+          "delta_pp": 20.45
+        }
+      }
+    },
+    "S013": {
+      "subject_id": "S013",
+      "subject_num": 13,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-013",
+      "cache_sha256": "ea317aa7780c13bf8484de0f2eda78d6f5b3931463ba80141f432340fb9db214",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4622,
+          "delta_pp": -9.33
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4978,
+          "delta_pp": -5.78
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.7111,
+          "delta_pp": 15.56
+        }
+      }
+    },
+    "S014": {
+      "subject_id": "S014",
+      "subject_num": 14,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-014",
+      "cache_sha256": "f2a0b1bb0d6cf39ca359d7166e19b5d0f778fdd1dc6148b7d85d265a057fed99",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4756,
+          "delta_pp": -3.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.5244,
+          "delta_pp": 1.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.9111,
+          "delta_pp": 40.0
+        }
+      }
+    },
+    "S015": {
+      "subject_id": "S015",
+      "subject_num": 15,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-015",
+      "cache_sha256": "caa6f343937bc28036a77dcf8906a574ef2dab2acce2d395d97e8795668cd601",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.5022,
+          "delta_pp": -7.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.5256,
+          "delta_pp": -5.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.8667,
+          "delta_pp": 28.89
+        }
+      }
+    },
+    "S016": {
+      "subject_id": "S016",
+      "subject_num": 16,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-016",
+      "cache_sha256": "89b2436cb0d6961d325c55f70f5ad80df1afdad492ca71b794743f4933675cec",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4667,
+          "delta_pp": -6.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.5111,
+          "delta_pp": -2.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.7778,
+          "delta_pp": 24.44
+        }
+      }
+    },
+    "S017": {
+      "subject_id": "S017",
+      "subject_num": 17,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-017",
+      "cache_sha256": "d31a10fa294537b67d431d1eb6809b08d6fcc783db4891d6e447a4159c7ac5d4",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.3378,
+          "delta_pp": -21.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.3989,
+          "delta_pp": -15.67
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8667,
+          "delta_pp": 31.11
+        }
+      }
+    },
+    "S018": {
+      "subject_id": "S018",
+      "subject_num": 18,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-018",
+      "cache_sha256": "b83df9cc2775cb6f35ae07e70454fe6be0acd6b63d80a71c9ac233f89360001f",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.3867,
+          "delta_pp": -10.22
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.4489,
+          "delta_pp": -4.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.8,
+          "delta_pp": 31.11
+        }
+      }
+    },
+    "S019": {
+      "subject_id": "S019",
+      "subject_num": 19,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-019",
+      "cache_sha256": "6508de4bcf621abc4ae348eb579bf8d3dbcb01b6308acf4d00025c64e376d325",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.4444,
+          "delta_pp": -4.44
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.5,
+          "delta_pp": 1.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.8,
+          "delta_pp": 31.11
+        }
+      }
+    },
+    "S020": {
+      "subject_id": "S020",
+      "subject_num": 20,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-020",
+      "cache_sha256": "d40773b9cd848bdd3ac2a3ae2e4acd87e6734228c053f73e700e62eee0aa86bc",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.3867,
+          "delta_pp": -19.11
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.4556,
+          "delta_pp": -12.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.9778,
+          "delta_pp": 40.0
+        }
+      }
+    },
+    "S021": {
+      "subject_id": "S021",
+      "subject_num": 21,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-021",
+      "cache_sha256": "27fb1fd3678a5d9bce7b9090f759941cadf8e635c77f99d66986af3c48f899c1",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.4444,
+          "delta_pp": -20.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.4833,
+          "delta_pp": -16.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.8,
+          "delta_pp": 15.56
+        }
+      }
+    },
+    "S022": {
+      "subject_id": "S022",
+      "subject_num": 22,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-022",
+      "cache_sha256": "fee0d032e5b790a6eb4d292b6111adebd755e8a562af45ac98e6e2e9f293f14a",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.4136,
+          "delta_pp": -17.73
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.4341,
+          "delta_pp": -15.68
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.8409,
+          "delta_pp": 25.0
+        }
+      }
+    },
+    "S023": {
+      "subject_id": "S023",
+      "subject_num": 23,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-023",
+      "cache_sha256": "2e4a89aca48f69ad195cbc8d7da850f7bd0465ff09b367830faed955b3dda71e",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.4864,
+          "delta_pp": -10.45
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.5193,
+          "delta_pp": -7.16
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.7273,
+          "delta_pp": 13.64
+        }
+      }
+    },
+    "S024": {
+      "subject_id": "S024",
+      "subject_num": 24,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-024",
+      "cache_sha256": "0b38f77b57ea05ef6a406ad073aafb7e33f97df948b6f2abb60d212f461150b4",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4089,
+          "delta_pp": -21.33
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4467,
+          "delta_pp": -17.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.7111,
+          "delta_pp": 8.89
+        }
+      }
+    },
+    "S025": {
+      "subject_id": "S025",
+      "subject_num": 25,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-025",
+      "cache_sha256": "c46b411c2ba0192f3bfc2b53fc50c42c2e450aeaddf7d96be5a41d4f979f7f48",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4711,
+          "delta_pp": -6.22
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4811,
+          "delta_pp": -5.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.9333,
+          "delta_pp": 40.0
+        }
+      }
+    },
+    "S026": {
+      "subject_id": "S026",
+      "subject_num": 26,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-026",
+      "cache_sha256": "edfce085b25b8d0c37e606458bc5eb7771f16c06c3da06b75ac3529a89eaab16",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.5289,
+          "delta_pp": -16.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.6044,
+          "delta_pp": -8.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.7111,
+          "delta_pp": 2.22
+        }
+      }
+    },
+    "S027": {
+      "subject_id": "S027",
+      "subject_num": 27,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-027",
+      "cache_sha256": "01611d29e58a032d5a90e3679c0f42b86a869a78da555782d05b84b553d94145",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4318,
+          "acc_leaky": 0.4955,
+          "delta_pp": 6.36
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4318,
+          "acc_leaky": 0.533,
+          "delta_pp": 10.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4318,
+          "acc_leaky": 0.7045,
+          "delta_pp": 27.27
+        }
+      }
+    },
+    "S028": {
+      "subject_id": "S028",
+      "subject_num": 28,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-028",
+      "cache_sha256": "e74683455fc09b2ca9a8b470b0518cef63e15da949d0cd4af91b85795f1b1044",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.3111,
+          "acc_leaky": 0.4089,
+          "delta_pp": 9.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.3111,
+          "acc_leaky": 0.4056,
+          "delta_pp": 9.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.3111,
+          "acc_leaky": 0.7556,
+          "delta_pp": 44.44
+        }
+      }
+    },
+    "S029": {
+      "subject_id": "S029",
+      "subject_num": 29,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-029",
+      "cache_sha256": "0dba712fc50d4b43ea1d5f5f271e01709f8c816e36817b0ef7554d0d92c26367",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 1.0,
+          "acc_leaky": 0.9911,
+          "delta_pp": -0.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 1.0,
+          "acc_leaky": 0.9978,
+          "delta_pp": -0.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 1.0,
+          "acc_leaky": 1.0,
+          "delta_pp": 0.0
+        }
+      }
+    },
+    "S030": {
+      "subject_id": "S030",
+      "subject_num": 30,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-030",
+      "cache_sha256": "c24b35d38f88cde494f1d304cfe936b55bde6d2d7a90afa2f1dc2e2ad78cced0",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.3556,
+          "delta_pp": -24.44
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.4111,
+          "delta_pp": -18.89
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.5778,
+          "delta_pp": -2.22
+        }
+      }
+    },
+    "S031": {
+      "subject_id": "S031",
+      "subject_num": 31,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-031",
+      "cache_sha256": "1949252094dffda8248fa9aed176b12f5c97361dd0e0a2a0f42b593b8d976fed",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7067,
+          "delta_pp": -11.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7856,
+          "delta_pp": -3.67
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.9778,
+          "delta_pp": 15.56
+        }
+      }
+    },
+    "S032": {
+      "subject_id": "S032",
+      "subject_num": 32,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-032",
+      "cache_sha256": "7fa6743db3f01795e7ad15155220866f629efb94811b2117182167c2124e3a3d",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.5273,
+          "delta_pp": -8.64
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.6,
+          "delta_pp": -1.36
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.6364,
+          "delta_pp": 2.27
+        }
+      }
+    },
+    "S033": {
+      "subject_id": "S033",
+      "subject_num": 33,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-033",
+      "cache_sha256": "8058f798bd3a4c4e5347cad65204be255c644e777b2a53902eaf9dcd1b770b84",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.6889,
+          "delta_pp": -2.22
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.6833,
+          "delta_pp": -2.78
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.8,
+          "delta_pp": 8.89
+        }
+      }
+    },
+    "S034": {
+      "subject_id": "S034",
+      "subject_num": 34,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-034",
+      "cache_sha256": "d1e7c40a2eae8921f292a97d37796ea8d5321237523f89fb06a80106a03ce91d",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6977,
+          "acc_leaky": 0.7581,
+          "delta_pp": 6.05
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6977,
+          "acc_leaky": 0.7709,
+          "delta_pp": 7.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6977,
+          "acc_leaky": 0.8605,
+          "delta_pp": 16.28
+        }
+      }
+    },
+    "S035": {
+      "subject_id": "S035",
+      "subject_num": 35,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-035",
+      "cache_sha256": "2afc8cec3032d311523b2f122b712f3604277fe908c46d4bfb1ba2edb4a92ced",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.7244,
+          "delta_pp": 16.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.7911,
+          "delta_pp": 23.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.9556,
+          "delta_pp": 40.0
+        }
+      }
+    },
+    "S036": {
+      "subject_id": "S036",
+      "subject_num": 36,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-036",
+      "cache_sha256": "4a75632e95fd3b41bb235fb287eb499e397e78d9d44be00afe94c285b613a06c",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4,
+          "delta_pp": -15.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4544,
+          "delta_pp": -10.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.6,
+          "delta_pp": 4.44
+        }
+      }
+    },
+    "S037": {
+      "subject_id": "S037",
+      "subject_num": 37,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-037",
+      "cache_sha256": "a1daf597a866d4909986c137c11d2a49bb43deb0aa3c1068e065861416c23e9b",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.414,
+          "delta_pp": -16.74
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.4267,
+          "delta_pp": -15.47
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.5814,
+          "delta_pp": 0.0
+        }
+      }
+    },
+    "S038": {
+      "subject_id": "S038",
+      "subject_num": 38,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-038",
+      "cache_sha256": "8a8f23cfea718b0bd803ba6372074e5748eeff7be9dda3f435a8115e95c3c835",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.52,
+          "delta_pp": -5.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.5167,
+          "delta_pp": -6.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.8222,
+          "delta_pp": 24.44
+        }
+      }
+    },
+    "S039": {
+      "subject_id": "S039",
+      "subject_num": 39,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-039",
+      "cache_sha256": "b1cdda254868f89fa69ffe6668bfdd18f7c5cdbc74aba39680c2f300dca7bdc1",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4356,
+          "delta_pp": -7.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4511,
+          "delta_pp": -6.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.6222,
+          "delta_pp": 11.11
+        }
+      }
+    },
+    "S040": {
+      "subject_id": "S040",
+      "subject_num": 40,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-040",
+      "cache_sha256": "f0c464b26870c7e1fa281bd8a5ced80a494bf25e428ca92502f2ff8d30bbf46d",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.5091,
+          "delta_pp": -3.64
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.5284,
+          "delta_pp": -1.7
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.9091,
+          "delta_pp": 36.36
+        }
+      }
+    },
+    "S041": {
+      "subject_id": "S041",
+      "subject_num": 41,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-041",
+      "cache_sha256": "49b49bc0c12f98e7391fb1f0c31226eecc55c21347c0007f8adcde5a6e211f7f",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.3864,
+          "acc_leaky": 0.4318,
+          "delta_pp": 4.55
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.3864,
+          "acc_leaky": 0.4693,
+          "delta_pp": 8.3
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.3864,
+          "acc_leaky": 0.7727,
+          "delta_pp": 38.64
+        }
+      }
+    },
+    "S042": {
+      "subject_id": "S042",
+      "subject_num": 42,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-042",
+      "cache_sha256": "e07955ae442ad99d9b53f8a578b459af367ac214fbc6f2a288a296888005532a",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8,
+          "acc_leaky": 0.76,
+          "delta_pp": -4.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8,
+          "acc_leaky": 0.7978,
+          "delta_pp": -0.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8,
+          "acc_leaky": 0.9111,
+          "delta_pp": 11.11
+        }
+      }
+    },
+    "S043": {
+      "subject_id": "S043",
+      "subject_num": 43,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-043",
+      "cache_sha256": "cc33d607e36b9441e48bbffaadc15ba21b85fa9dc68abd7e94bace2bea124e59",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        13,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5581,
+          "acc_leaky": 0.507,
+          "delta_pp": -5.12
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5581,
+          "acc_leaky": 0.5465,
+          "delta_pp": -1.16
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5581,
+          "acc_leaky": 0.7907,
+          "delta_pp": 23.26
+        }
+      }
+    },
+    "S044": {
+      "subject_id": "S044",
+      "subject_num": 44,
+      "status": "EXCLUDED",
+      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+      "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 0,
+      "n_runs": 3,
+      "trials_per_run": [],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S045": {
+      "subject_id": "S045",
+      "subject_num": 45,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-045",
+      "cache_sha256": "80b2f6f70ded581f7b5748b87376ed8bbe22f8e41de7b4fa73580256eea5b4b8",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5116,
+          "acc_leaky": 0.3907,
+          "delta_pp": -12.09
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5116,
+          "acc_leaky": 0.4651,
+          "delta_pp": -4.65
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5116,
+          "acc_leaky": 0.8605,
+          "delta_pp": 34.88
+        }
+      }
+    },
+    "S046": {
+      "subject_id": "S046",
+      "subject_num": 46,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-046",
+      "cache_sha256": "60cce17fd5842639022fcb7eb5627d43d2f7edc010774748e14f5ee621e2f0f0",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.4409,
+          "delta_pp": -10.45
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.4455,
+          "delta_pp": -10.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.8182,
+          "delta_pp": 27.27
+        }
+      }
+    },
+    "S047": {
+      "subject_id": "S047",
+      "subject_num": 47,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-047",
+      "cache_sha256": "5c8bf58a039f873cebe99668d473098b46121ec83074cadc2007658777909839",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.3556,
+          "acc_leaky": 0.4844,
+          "delta_pp": 12.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.3556,
+          "acc_leaky": 0.5,
+          "delta_pp": 14.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.3556,
+          "acc_leaky": 0.6667,
+          "delta_pp": 31.11
+        }
+      }
+    },
+    "S048": {
+      "subject_id": "S048",
+      "subject_num": 48,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-048",
+      "cache_sha256": "804efb9d2389de32819a32128605027d1c7b49588e44ca245aa1015d6d8bd27f",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.5956,
+          "delta_pp": -0.44
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.63,
+          "delta_pp": 3.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.9111,
+          "delta_pp": 31.11
+        }
+      }
+    },
+    "S049": {
+      "subject_id": "S049",
+      "subject_num": 49,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-049",
+      "cache_sha256": "b152648df249929d6638cf264284363b65473375da343a155bd9179982273bcb",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7045,
+          "acc_leaky": 0.5636,
+          "delta_pp": -14.09
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7045,
+          "acc_leaky": 0.6159,
+          "delta_pp": -8.86
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7045,
+          "acc_leaky": 0.7955,
+          "delta_pp": 9.09
+        }
+      }
+    },
+    "S050": {
+      "subject_id": "S050",
+      "subject_num": 50,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-050",
+      "cache_sha256": "0d45bc7c43afb4231b23b08c6fcf42b1fb6c829bff86f4a9ad4011cf877f8c7c",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4444,
+          "acc_leaky": 0.4933,
+          "delta_pp": 4.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4444,
+          "acc_leaky": 0.5011,
+          "delta_pp": 5.67
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4444,
+          "acc_leaky": 0.8667,
+          "delta_pp": 42.22
+        }
+      }
+    },
+    "S051": {
+      "subject_id": "S051",
+      "subject_num": 51,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-051",
+      "cache_sha256": "97957cf5d59f878a70660700924fc7d1a59debb2ac6877599fdaf694bcbf2250",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.4,
+          "delta_pp": -20.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.4356,
+          "delta_pp": -16.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.8222,
+          "delta_pp": 22.22
+        }
+      }
+    },
+    "S052": {
+      "subject_id": "S052",
+      "subject_num": 52,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-052",
+      "cache_sha256": "6ec6d96b1e2d4dd19edaba93d3756861f37bbe7a2f256e6a9f355fb58455efbe",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6533,
+          "delta_pp": -8.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6311,
+          "delta_pp": -10.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.8,
+          "delta_pp": 6.67
+        }
+      }
+    },
+    "S053": {
+      "subject_id": "S053",
+      "subject_num": 53,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-053",
+      "cache_sha256": "6ebb152e566366ed3d181b4197578bc479bdb243b9f68fbae975f11c6514ba19",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7244,
+          "delta_pp": -9.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7789,
+          "delta_pp": -4.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.8889,
+          "delta_pp": 6.67
+        }
+      }
+    },
+    "S054": {
+      "subject_id": "S054",
+      "subject_num": 54,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-054",
+      "cache_sha256": "9d71a3a5ddd5a802e100d7a0b63039b2219c1d2b261670b39ad8a7f90579662e",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6591,
+          "acc_leaky": 0.6591,
+          "delta_pp": 0.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6591,
+          "acc_leaky": 0.6875,
+          "delta_pp": 2.84
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6591,
+          "acc_leaky": 0.8864,
+          "delta_pp": 22.73
+        }
+      }
+    },
+    "S055": {
+      "subject_id": "S055",
+      "subject_num": 55,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-055",
+      "cache_sha256": "1536b6aaaeee4e2fc594104b1830ae90adb4c782b306a823a1ec2ed6d8b5159c",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6133,
+          "delta_pp": -12.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6744,
+          "delta_pp": -5.89
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.8667,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S056": {
+      "subject_id": "S056",
+      "subject_num": 56,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-056",
+      "cache_sha256": "21d92bee029a7c5bd0d99813bc11f98933749502499b23b2b60924057db6abce",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.9318,
+          "acc_leaky": 0.8273,
+          "delta_pp": -10.45
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.9318,
+          "acc_leaky": 0.8545,
+          "delta_pp": -7.73
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.9318,
+          "acc_leaky": 0.9773,
+          "delta_pp": 4.55
+        }
+      }
+    },
+    "S057": {
+      "subject_id": "S057",
+      "subject_num": 57,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-057",
+      "cache_sha256": "dce9d26ea5b3dc2c8e8e1688d46201ac628c3c6dde1e7c4248fd1921c2d6012f",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        13,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4884,
+          "acc_leaky": 0.4419,
+          "delta_pp": -4.65
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4884,
+          "acc_leaky": 0.4256,
+          "delta_pp": -6.28
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4884,
+          "acc_leaky": 0.7209,
+          "delta_pp": 23.26
+        }
+      }
+    },
+    "S058": {
+      "subject_id": "S058",
+      "subject_num": 58,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-058",
+      "cache_sha256": "ec134f89d433a29763aa76e3b0f4a90443b4df25e2ab1efb62d7abfc6fae1465",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.48,
+          "delta_pp": 5.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4856,
+          "delta_pp": 6.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.6667,
+          "delta_pp": 24.44
+        }
+      }
+    },
+    "S059": {
+      "subject_id": "S059",
+      "subject_num": 59,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-059",
+      "cache_sha256": "a41c7a5962972bc7d85a01788ee4d73fd52e985994ba8d09ca2cfa164438a3d0",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.3911,
+          "delta_pp": -7.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4233,
+          "delta_pp": -4.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.6667,
+          "delta_pp": 20.0
+        }
+      }
+    },
+    "S060": {
+      "subject_id": "S060",
+      "subject_num": 60,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-060",
+      "cache_sha256": "8b0967139063124e84c5b10f4c668fb235fa2a2a75b6d58e2c526dce7dc5f345",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8409,
+          "acc_leaky": 0.8182,
+          "delta_pp": -2.27
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8409,
+          "acc_leaky": 0.808,
+          "delta_pp": -3.3
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8409,
+          "acc_leaky": 0.9091,
+          "delta_pp": 6.82
+        }
+      }
+    },
+    "S061": {
+      "subject_id": "S061",
+      "subject_num": 61,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-061",
+      "cache_sha256": "d10cdca0c6fc0bd83f6a34916a8ed3c43f98db37f941b23298a92723b18960f4",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.4711,
+          "delta_pp": -24.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.5433,
+          "delta_pp": -16.78
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.8444,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S062": {
+      "subject_id": "S062",
+      "subject_num": 62,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-062",
+      "cache_sha256": "d4a2ae0a83daf468f70df0eb28fcbb27969e9705525b65d48b56fe1b7e0921f5",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.9333,
+          "acc_leaky": 0.8089,
+          "delta_pp": -12.44
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.9333,
+          "acc_leaky": 0.8578,
+          "delta_pp": -7.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.9333,
+          "acc_leaky": 1.0,
+          "delta_pp": 6.67
+        }
+      }
+    },
+    "S063": {
+      "subject_id": "S063",
+      "subject_num": 63,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-063",
+      "cache_sha256": "867d696a3b5e27f263f50f8f6a6b1f055d2e222c0e4b5896f82a0cec2c01281d",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4756,
+          "delta_pp": -14.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.5267,
+          "delta_pp": -9.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.8,
+          "delta_pp": 17.78
+        }
+      }
+    },
+    "S064": {
+      "subject_id": "S064",
+      "subject_num": 64,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-064",
+      "cache_sha256": "d0a80625650df738c587404000be5b7431fac4ce3ab38a35e17ecddfd38689ea",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4545,
+          "acc_leaky": 0.3955,
+          "delta_pp": -5.91
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4545,
+          "acc_leaky": 0.4705,
+          "delta_pp": 1.59
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4545,
+          "acc_leaky": 0.9091,
+          "delta_pp": 45.45
+        }
+      }
+    },
+    "S065": {
+      "subject_id": "S065",
+      "subject_num": 65,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-065",
+      "cache_sha256": "e022555d3b87d03a5a98ed7b10560f548c8ada9b44a2adb23161a1fc3b658b23",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4667,
+          "delta_pp": -15.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4444,
+          "delta_pp": -17.78
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.8889,
+          "delta_pp": 26.67
+        }
+      }
+    },
+    "S066": {
+      "subject_id": "S066",
+      "subject_num": 66,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-066",
+      "cache_sha256": "bd0743a5466ba11e3133c549c76129fa360c5a2d259a4f08c7ae364e32cf8af7",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.44,
+          "delta_pp": -11.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.44,
+          "delta_pp": -11.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
+        }
+      }
+    },
+    "S067": {
+      "subject_id": "S067",
+      "subject_num": 67,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-067",
+      "cache_sha256": "7fd7351a4e10076b0f75487866bda1b10641fbbeb5a8c6be88ec485566a7787c",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4044,
+          "delta_pp": -6.22
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4967,
+          "delta_pp": 3.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.6,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S068": {
+      "subject_id": "S068",
+      "subject_num": 68,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-068",
+      "cache_sha256": "16fa259688a8c22d009d0394c56a8fac0185ab07127cfcb80998ab23892fef8c",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.4465,
+          "delta_pp": -13.49
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.4698,
+          "delta_pp": -11.16
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.9302,
+          "delta_pp": 34.88
+        }
+      }
+    },
+    "S069": {
+      "subject_id": "S069",
+      "subject_num": 69,
+      "status": "EXCLUDED",
+      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+      "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 0,
+      "n_runs": 3,
+      "trials_per_run": [],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S070": {
+      "subject_id": "S070",
+      "subject_num": 70,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-070",
+      "cache_sha256": "c98dbd937cc30dd72a0a65273c8510f0ea9eb2c7257627ee50731c42fe473bd4",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.6756,
+          "delta_pp": 12.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.6878,
+          "delta_pp": 13.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
+        }
+      }
+    },
+    "S071": {
+      "subject_id": "S071",
+      "subject_num": 71,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-071",
+      "cache_sha256": "d63e3803570b29aeba59b75a2140e5c0ab306cb7966443a5a67116238c53fe4c",
+      "n_trials": 41,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        11
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7317,
+          "acc_leaky": 0.639,
+          "delta_pp": -9.27
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7317,
+          "acc_leaky": 0.5878,
+          "delta_pp": -14.39
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7317,
+          "acc_leaky": 0.8537,
+          "delta_pp": 12.2
+        }
+      }
+    },
+    "S072": {
+      "subject_id": "S072",
+      "subject_num": 72,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-072",
+      "cache_sha256": "555ecec12f66567beb4d98327528a2d7ddaa74f4e1a4aeaca9fa56c7da20944b",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8605,
+          "acc_leaky": 0.8419,
+          "delta_pp": -1.86
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8605,
+          "acc_leaky": 0.8616,
+          "delta_pp": 0.12
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8605,
+          "acc_leaky": 0.8605,
+          "delta_pp": 0.0
+        }
+      }
+    },
+    "S073": {
+      "subject_id": "S073",
+      "subject_num": 73,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-073",
+      "cache_sha256": "b2977af1332294ae4cfd38923849c3db85a64f7290989921e496123b4814f8c5",
+      "n_trials": 42,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4143,
+          "delta_pp": -3.81
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4155,
+          "delta_pp": -3.69
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.8333,
+          "delta_pp": 38.1
+        }
+      }
+    },
+    "S074": {
+      "subject_id": "S074",
+      "subject_num": 74,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-074",
+      "cache_sha256": "386ae849755079ee7d56bfa68bdec976f0eb60fa8cc5da77a04dab2467629aa3",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6512,
+          "acc_leaky": 0.4698,
+          "delta_pp": -18.14
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6512,
+          "acc_leaky": 0.4535,
+          "delta_pp": -19.77
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6512,
+          "acc_leaky": 0.7442,
+          "delta_pp": 9.3
+        }
+      }
+    },
+    "S075": {
+      "subject_id": "S075",
+      "subject_num": 75,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-075",
+      "cache_sha256": "98345cd62875e0bc64f51da284e089a0a986d638768102e85461af4eeea44e5a",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.5778,
+          "delta_pp": -6.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.5589,
+          "delta_pp": -8.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.9333,
+          "delta_pp": 28.89
+        }
+      }
+    },
+    "S076": {
+      "subject_id": "S076",
+      "subject_num": 76,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-076",
+      "cache_sha256": "aa0f09dc34db7bd8222172cb3e8980922fa1829030868cd5fd8db09d771d940e",
+      "n_trials": 42,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4429,
+          "delta_pp": -0.95
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4369,
+          "delta_pp": -1.55
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.7381,
+          "delta_pp": 28.57
+        }
+      }
+    },
+    "S077": {
+      "subject_id": "S077",
+      "subject_num": 77,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-077",
+      "cache_sha256": "9a235e2aef9a33cabe14a3e5314b8e7611c676a4a924d9b5281d8de699e5f3d5",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.3556,
+          "delta_pp": -6.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4,
+          "delta_pp": -2.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.8,
+          "delta_pp": 37.78
+        }
+      }
+    },
+    "S078": {
+      "subject_id": "S078",
+      "subject_num": 78,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-078",
+      "cache_sha256": "f06286434d8d49b7c751e82e76c88525fbb7ee2708b961137c25577ab700ce66",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.3778,
+          "delta_pp": -8.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4256,
+          "delta_pp": -4.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.8444,
+          "delta_pp": 37.78
+        }
+      }
+    },
+    "S079": {
+      "subject_id": "S079",
+      "subject_num": 79,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-079",
+      "cache_sha256": "652f63d7ec6d1d4f2fa406e6cc8b1b2a0ba943a7b9d685854c4547877305f571",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4419,
+          "acc_leaky": 0.5349,
+          "delta_pp": 9.3
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4419,
+          "acc_leaky": 0.557,
+          "delta_pp": 11.51
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4419,
+          "acc_leaky": 0.907,
+          "delta_pp": 46.51
+        }
+      }
+    },
+    "S080": {
+      "subject_id": "S080",
+      "subject_num": 80,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-080",
+      "cache_sha256": "d19067402621d722b7c7686c4be43fca6e99e595cad671faa9c875ef831c1a59",
+      "n_trials": 42,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        12
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.4524,
+          "delta_pp": -14.29
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.4143,
+          "delta_pp": -18.1
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.9286,
+          "delta_pp": 33.33
+        }
+      }
+    },
+    "S081": {
+      "subject_id": "S081",
+      "subject_num": 81,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-081",
+      "cache_sha256": "cb12de8b2770b041e324d276dcd798824ff1b2a18b703e2e5de59a1e4f2eed1f",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.44,
+          "delta_pp": -11.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4744,
+          "delta_pp": -8.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8889,
+          "delta_pp": 33.33
+        }
+      }
+    },
+    "S082": {
+      "subject_id": "S082",
+      "subject_num": 82,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-082",
+      "cache_sha256": "5150dcdbec8d9eb9623fc3ef45efe7d19a5daea813e24da41a00f4131d071fed",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.48,
+          "delta_pp": -20.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.5344,
+          "delta_pp": -15.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.8,
+          "delta_pp": 11.11
+        }
+      }
+    },
+    "S083": {
+      "subject_id": "S083",
+      "subject_num": 83,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-083",
+      "cache_sha256": "53c330e431c16a252305eb63f4542766f00fd5bd0fb7bb4979fd738ddddcf6fc",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.4591,
+          "delta_pp": -15.45
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.4909,
+          "delta_pp": -12.27
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6136,
+          "acc_leaky": 1.0,
+          "delta_pp": 38.64
+        }
+      }
+    },
+    "S084": {
+      "subject_id": "S084",
+      "subject_num": 84,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-084",
+      "cache_sha256": "bf6babfe550c6361d15077b4097118595801ae94e998532d3d66497352bc83d4",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.5511,
+          "delta_pp": -7.11
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.5067,
+          "delta_pp": -11.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.7556,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S085": {
+      "subject_id": "S085",
+      "subject_num": 85,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-085",
+      "cache_sha256": "183a841ac5e1eba02ebfe87430124ad1cf28129fa0d3d7bfca18bfd85faa370b",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7556,
+          "acc_leaky": 0.7778,
+          "delta_pp": 2.22
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7556,
+          "acc_leaky": 0.7811,
+          "delta_pp": 2.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7556,
+          "acc_leaky": 0.8889,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S086": {
+      "subject_id": "S086",
+      "subject_num": 86,
+      "status": "EXCLUDED",
+      "rejection_category": "MINIMUM_TRIAL_THRESHOLD_VIOLATION",
+      "rejection_rationale": "Sample size threshold violation: 24 trials < minimum 30 threshold (< 30; min_trials=30 in settings.json)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 24,
+      "n_runs": 3,
+      "trials_per_run": [
+        5,
+        4,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S087": {
+      "subject_id": "S087",
+      "subject_num": 87,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-087",
+      "cache_sha256": "8e5d6b76fc8304e12af9ba1d2657376c68c7a250f050fb9eba7d41a72f22f068",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4844,
+          "delta_pp": -7.11
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4733,
+          "delta_pp": -8.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8222,
+          "delta_pp": 26.67
+        }
+      }
+    },
+    "S088": {
+      "subject_id": "S088",
+      "subject_num": 88,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-088",
+      "cache_sha256": "2c30c5ae178fecc214611a25865c87e0e2c477b82914e09bc6eb225713d513fe",
+      "n_trials": 53,
+      "n_runs": 3,
+      "trials_per_run": [
+        19,
+        15,
+        19
+      ],
+      "sfreq": 128.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.566,
+          "acc_leaky": 0.4604,
+          "delta_pp": -10.57
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.566,
+          "acc_leaky": 0.4774,
+          "delta_pp": -8.87
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.566,
+          "acc_leaky": 0.717,
+          "delta_pp": 15.09
+        }
+      }
+    },
+    "S089": {
+      "subject_id": "S089",
+      "subject_num": 89,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-089",
+      "cache_sha256": "f178d0bb7e51562bff10d1f0f9f529b2b2fc35f9ac4bbc00dd795f089fd0697c",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.3867,
+          "delta_pp": -14.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4267,
+          "delta_pp": -10.67
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.6667,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S090": {
+      "subject_id": "S090",
+      "subject_num": 90,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-090",
+      "cache_sha256": "993a0ea8c2db1b16dc8a772f45352a62215bf80d4949c1f9ea44811e77947a54",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4222,
+          "delta_pp": -13.33
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4667,
+          "delta_pp": -8.89
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
+        }
+      }
+    },
+    "S091": {
+      "subject_id": "S091",
+      "subject_num": 91,
+      "status": "EXCLUDED",
+      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+      "rejection_rationale": "100% trials rejected by adaptive peak-to-peak thresholding (all 45 epochs dropped)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 0,
+      "n_runs": 3,
+      "trials_per_run": [],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S092": {
+      "subject_id": "S092",
+      "subject_num": 92,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-092",
+      "cache_sha256": "210c5e375d987f6bfc0c1756319d50306d05e691a0e2bf41db2940bedabc4055",
+      "n_trials": 57,
+      "n_runs": 3,
+      "trials_per_run": [
+        19,
+        19,
+        19
+      ],
+      "sfreq": 128.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.614,
+          "acc_leaky": 0.5965,
+          "delta_pp": -1.75
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.614,
+          "acc_leaky": 0.6079,
+          "delta_pp": -0.61
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.614,
+          "acc_leaky": 0.807,
+          "delta_pp": 19.3
+        }
+      }
+    },
+    "S093": {
+      "subject_id": "S093",
+      "subject_num": 93,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-093",
+      "cache_sha256": "3b0e432202702860bb8f975428640a627a25c9894a2501ff102719a7de29f757",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7727,
+          "acc_leaky": 0.7136,
+          "delta_pp": -5.91
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7727,
+          "acc_leaky": 0.7193,
+          "delta_pp": -5.34
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7727,
+          "acc_leaky": 0.8409,
+          "delta_pp": 6.82
+        }
+      }
+    },
+    "S094": {
+      "subject_id": "S094",
+      "subject_num": 94,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-094",
+      "cache_sha256": "6ddd086dc40e81af515fa40730e9aa50a2113b0a9144e1836adf59e188709697",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7156,
+          "delta_pp": -10.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7756,
+          "delta_pp": -4.67
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.8444,
+          "delta_pp": 2.22
+        }
+      }
+    },
+    "S095": {
+      "subject_id": "S095",
+      "subject_num": 95,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-095",
+      "cache_sha256": "80b262f16a64ea899bfad01aeee59049ab48196ed000e5820ef8f03d3fe545fd",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        13
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6279,
+          "acc_leaky": 0.4186,
+          "delta_pp": -20.93
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6279,
+          "acc_leaky": 0.4686,
+          "delta_pp": -15.93
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6279,
+          "acc_leaky": 0.6977,
+          "delta_pp": 6.98
+        }
+      }
+    },
+    "S096": {
+      "subject_id": "S096",
+      "subject_num": 96,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-096",
+      "cache_sha256": "24429df39c06a22fb22441197b7b5ca8de9d1953b919d9e8a44f2abcde1cfa09",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5682,
+          "acc_leaky": 0.4818,
+          "delta_pp": -8.64
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5682,
+          "acc_leaky": 0.5295,
+          "delta_pp": -3.86
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5682,
+          "acc_leaky": 0.6818,
+          "delta_pp": 11.36
+        }
+      }
+    },
+    "S097": {
+      "subject_id": "S097",
+      "subject_num": 97,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-097",
+      "cache_sha256": "7185b6d7b5db81975ad8301edbc91656a7e53a3b45dc9ba6c4e64b66c075378d",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4651,
+          "acc_leaky": 0.4884,
+          "delta_pp": 2.33
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4651,
+          "acc_leaky": 0.5116,
+          "delta_pp": 4.65
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4651,
+          "acc_leaky": 0.814,
+          "delta_pp": 34.88
+        }
+      }
+    },
+    "S098": {
+      "subject_id": "S098",
+      "subject_num": 98,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-098",
+      "cache_sha256": "67e5e056322a37d2af35e5f8acfca4ffa7321121901d941cb6e248b5f4a5019a",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.6133,
+          "delta_pp": 5.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.5878,
+          "delta_pp": 3.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
+        }
+      }
+    },
+    "S099": {
+      "subject_id": "S099",
+      "subject_num": 99,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-099",
+      "cache_sha256": "44effa7acf5b335f89d22ce1285ade14462c634e6cb0f6bc34dc726a283d3fba",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4489,
+          "delta_pp": -1.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4767,
+          "delta_pp": 1.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.5778,
+          "delta_pp": 11.11
+        }
+      }
+    },
+    "S100": {
+      "subject_id": "S100",
+      "subject_num": 100,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-100",
+      "cache_sha256": "46b5f4c09f684d923adcd0b337bb89c4a2b94254d4de88500c788378c240767d",
+      "n_trials": 34,
+      "n_runs": 3,
+      "trials_per_run": [
+        10,
+        12,
+        12
+      ],
+      "sfreq": 128.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6176,
+          "acc_leaky": 0.6471,
+          "delta_pp": 2.94
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6176,
+          "acc_leaky": 0.6529,
+          "delta_pp": 3.53
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6176,
+          "acc_leaky": 0.8824,
+          "delta_pp": 26.47
+        }
+      }
+    },
+    "S101": {
+      "subject_id": "S101",
+      "subject_num": 101,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-101",
+      "cache_sha256": "2bdc9a391b77ececeb1a5514bd2faad208e63f6556f589a5959ee5160ffd71ed",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4622,
+          "delta_pp": 4.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4567,
+          "delta_pp": 3.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.9556,
+          "delta_pp": 53.33
+        }
+      }
+    },
+    "S102": {
+      "subject_id": "S102",
+      "subject_num": 102,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-102",
+      "cache_sha256": "24e5ea3c39cc4124974d87fab71f9e57e4282ba16d808e6a9a43184f66a38af2",
+      "n_trials": 42,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.4952,
+          "delta_pp": -10.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.456,
+          "delta_pp": -13.93
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.9286,
+          "delta_pp": 33.33
+        }
+      }
+    },
+    "S103": {
+      "subject_id": "S103",
+      "subject_num": 103,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-103",
+      "cache_sha256": "fa4449c57869187406e5e4f8bfb5aa627fb18975bfb559e0344cdbb7b4c4e894",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4311,
+          "delta_pp": -8.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.5067,
+          "delta_pp": -0.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.7111,
+          "delta_pp": 20.0
+        }
+      }
+    },
+    "S104": {
+      "subject_id": "S104",
+      "subject_num": 104,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-104",
+      "cache_sha256": "44ae14172839eb2dbe54b05c189264048a5e6425293daa95aa542f8086678c2a",
+      "n_trials": 42,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        12,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5238,
+          "acc_leaky": 0.519,
+          "delta_pp": -0.48
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5238,
+          "acc_leaky": 0.5571,
+          "delta_pp": 3.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5238,
+          "acc_leaky": 0.9286,
+          "delta_pp": 40.48
+        }
+      }
+    },
+    "S105": {
+      "subject_id": "S105",
+      "subject_num": 105,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-105",
+      "cache_sha256": "43d86f127e5671d91825a10675b03645dc16020c9d0f8eb49b94c98179643b97",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4844,
+          "delta_pp": -2.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.5144,
+          "delta_pp": 0.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.7111,
+          "delta_pp": 20.0
+        }
+      }
+    },
+    "S106": {
+      "subject_id": "S106",
+      "subject_num": 106,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-106",
+      "cache_sha256": "bf6c5cd5a7cf9f0d678dde829cf5d84385b374cb39b37409d420140a9f20f315",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.4622,
+          "delta_pp": -11.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.5078,
+          "delta_pp": -7.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.9111,
+          "delta_pp": 33.33
+        }
+      }
+    },
+    "S107": {
+      "subject_id": "S107",
+      "subject_num": 107,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-107",
+      "cache_sha256": "6d48aab74e89d81c78e30e9d34569aeda6fe785376c407877928f48a97299c76",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6047,
+          "acc_leaky": 0.4605,
+          "delta_pp": -14.42
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6047,
+          "acc_leaky": 0.4767,
+          "delta_pp": -12.79
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6047,
+          "acc_leaky": 0.8372,
+          "delta_pp": 23.26
+        }
+      }
+    },
+    "S108": {
+      "subject_id": "S108",
+      "subject_num": 108,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-108",
+      "cache_sha256": "d53fa531f1955b30164d5bbdba0ca550601982051bb427127a444b4fae2012bc",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.5689,
+          "delta_pp": -5.33
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.6233,
+          "delta_pp": 0.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.8889,
+          "delta_pp": 26.67
+        }
+      }
+    },
+    "S109": {
+      "subject_id": "S109",
+      "subject_num": 109,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-109",
+      "cache_sha256": "4e56bfb3014a4322131589676c4dccf4cca1bdb082d0bd1ba6729dfa21b218dd",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.4667,
+          "delta_pp": -2.22
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.47,
+          "delta_pp": -1.89
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.7111,
+          "delta_pp": 22.22
+        }
+      }
+    }
+  }
+}

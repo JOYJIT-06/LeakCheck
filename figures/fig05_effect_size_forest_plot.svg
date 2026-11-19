@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-18T18:15:55.502150</dc:date>
+    <dc:date>2026-11-19T21:05:35.579113</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -43,18 +43,18 @@ L 361.454322 319.863994
 L 361.454322 47.165391 
 L 315.581981 47.165391 
 z
-" clip-path="url(#p2c068abdf1)" style="fill: #d0e1fd; opacity: 0.4; stroke: #d0e1fd; stroke-linejoin: miter"/>
+" clip-path="url(#p986c5d5187)" style="fill: #d0e1fd; opacity: 0.4; stroke: #d0e1fd; stroke-linejoin: miter"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="m4664ac6a5e" d="M 0 0 
+       <path id="mc97dd7df2e" d="M 0 0 
 L 0 3.5 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m4664ac6a5e" x="223.837301" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mc97dd7df2e" x="223.837301" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
@@ -115,7 +115,7 @@ z
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#m4664ac6a5e" x="338.518152" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mc97dd7df2e" x="338.518152" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
@@ -128,7 +128,7 @@ z
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#m4664ac6a5e" x="453.199003" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mc97dd7df2e" x="453.199003" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
@@ -142,7 +142,7 @@ z
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#m4664ac6a5e" x="567.879854" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mc97dd7df2e" x="567.879854" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
@@ -183,7 +183,7 @@ z
     <g id="xtick_5">
      <g id="line2d_5">
       <g>
-       <use xlink:href="#m4664ac6a5e" x="682.560705" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mc97dd7df2e" x="682.560705" y="319.863994" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
@@ -807,12 +807,12 @@ z
     <g id="ytick_1">
      <g id="line2d_6">
       <defs>
-       <path id="m96c71bde03" d="M 0 0 
+       <path id="m065345acb9" d="M 0 0 
 L -3.5 0 
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#m96c71bde03" x="166.496875" y="274.414227" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m065345acb9" x="166.496875" y="274.414227" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_7">
@@ -1178,7 +1178,7 @@ z
     <g id="ytick_2">
      <g id="line2d_7">
       <g>
-       <use xlink:href="#m96c71bde03" x="166.496875" y="198.664615" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m065345acb9" x="166.496875" y="198.664615" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_8">
@@ -1360,7 +1360,7 @@ z
     <g id="ytick_3">
      <g id="line2d_8">
       <g>
-       <use xlink:href="#m96c71bde03" x="166.496875" y="122.915003" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m065345acb9" x="166.496875" y="122.915003" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_9">
@@ -1570,7 +1570,7 @@ z
    <g id="line2d_9">
     <path d="M 338.518152 319.863994 
 L 338.518152 47.165391 
-" clip-path="url(#p2c068abdf1)" style="fill: none; stroke-dasharray: 4.44,1.92; stroke-dashoffset: 0; stroke: #000000; stroke-opacity: 0.7; stroke-width: 1.2"/>
+" clip-path="url(#p986c5d5187)" style="fill: none; stroke-dasharray: 4.44,1.92; stroke-dashoffset: 0; stroke: #000000; stroke-opacity: 0.7; stroke-width: 1.2"/>
    </g>
    <g id="patch_4">
     <path d="M 166.496875 319.863994 
@@ -1583,8 +1583,8 @@ L 705.496875 319.863994
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_10">
-    <!-- HL = -5.91 pp [95% BCa: -7.57, -4.09] -->
-    <g style="fill: #333333" transform="translate(200.31035 241.939185) scale(0.082 -0.082)">
+    <!-- HL = -7.59 pp [95% BCa: -9.24, -5.79] -->
+    <g style="fill: #333333" transform="translate(181.048544 241.939185) scale(0.082 -0.082)">
      <defs>
       <path id="Arial-BoldMT-20" d="M 266 2550 
 L 266 3356 
@@ -1597,6 +1597,26 @@ L 266 1972
 L 3469 1972 
 L 3469 1163 
 L 266 1163 
+z
+" transform="scale(0.015625)"/>
+      <path id="Arial-BoldMT-1a" d="M 272 3703 
+L 272 4519 
+L 3275 4519 
+L 3275 3881 
+Q 2903 3516 2518 2831 
+Q 2134 2147 1932 1376 
+Q 1731 606 1734 0 
+L 888 0 
+Q 909 950 1279 1937 
+Q 1650 2925 2269 3703 
+L 272 3703 
+z
+" transform="scale(0.015625)"/>
+      <path id="Arial-BoldMT-11" d="M 459 0 
+L 459 878 
+L 1338 878 
+L 1338 0 
+L 459 0 
 z
 " transform="scale(0.015625)"/>
       <path id="Arial-BoldMT-18" d="M 284 1178 
@@ -1621,13 +1641,6 @@ Q 3366 972 3038 528
 Q 2591 -78 1797 -78 
 Q 1163 -78 763 262 
 Q 363 603 284 1178 
-z
-" transform="scale(0.015625)"/>
-      <path id="Arial-BoldMT-11" d="M 459 0 
-L 459 878 
-L 1338 878 
-L 1338 0 
-L 459 0 
 z
 " transform="scale(0.015625)"/>
       <path id="Arial-BoldMT-1c" d="M 291 1059 
@@ -1796,30 +1809,28 @@ L 1506 0
 L 628 0 
 z
 " transform="scale(0.015625)"/>
-      <path id="Arial-BoldMT-1a" d="M 272 3703 
-L 272 4519 
-L 3275 4519 
-L 3275 3881 
-Q 2903 3516 2518 2831 
-Q 2134 2147 1932 1376 
-Q 1731 606 1734 0 
-L 888 0 
-Q 909 950 1279 1937 
-Q 1650 2925 2269 3703 
-L 272 3703 
-z
-" transform="scale(0.015625)"/>
-      <path id="Arial-BoldMT-f" d="M 438 878 
-L 1316 878 
-L 1316 250 
-Q 1316 -131 1250 -351 
-Q 1184 -572 1001 -747 
-Q 819 -922 538 -1022 
-L 366 -659 
-Q 631 -572 743 -419 
-Q 856 -266 863 0 
-L 438 0 
-L 438 878 
+      <path id="Arial-BoldMT-15" d="M 3238 816 
+L 3238 0 
+L 159 0 
+Q 209 463 459 877 
+Q 709 1291 1447 1975 
+Q 2041 2528 2175 2725 
+Q 2356 2997 2356 3263 
+Q 2356 3556 2198 3714 
+Q 2041 3872 1763 3872 
+Q 1488 3872 1325 3706 
+Q 1163 3541 1138 3156 
+L 263 3244 
+Q 341 3969 753 4284 
+Q 1166 4600 1784 4600 
+Q 2463 4600 2850 4234 
+Q 3238 3869 3238 3325 
+Q 3238 3016 3127 2736 
+Q 3016 2456 2775 2150 
+Q 2616 1947 2200 1565 
+Q 1784 1184 1673 1059 
+Q 1563 934 1494 816 
+L 3238 816 
 z
 " transform="scale(0.015625)"/>
       <path id="Arial-BoldMT-17" d="M 1994 0 
@@ -1839,6 +1850,95 @@ M 1994 1694
 L 1994 3259 
 L 941 1694 
 L 1994 1694 
+z
+" transform="scale(0.015625)"/>
+      <path id="Arial-BoldMT-f" d="M 438 878 
+L 1316 878 
+L 1316 250 
+Q 1316 -131 1250 -351 
+Q 1184 -572 1001 -747 
+Q 819 -922 538 -1022 
+L 366 -659 
+Q 631 -572 743 -419 
+Q 856 -266 863 0 
+L 438 0 
+L 438 878 
+z
+" transform="scale(0.015625)"/>
+      <path id="Arial-BoldMT-40" d="M 1675 4581 
+L 1675 -1291 
+L 119 -1291 
+L 119 -600 
+L 841 -600 
+L 841 3897 
+L 119 3897 
+L 119 4581 
+L 1675 4581 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#Arial-BoldMT-2b"/>
+     <use xlink:href="#Arial-BoldMT-2f" transform="translate(72.21875 0)"/>
+     <use xlink:href="#Arial-BoldMT-3" transform="translate(131.484375 0)"/>
+     <use xlink:href="#Arial-BoldMT-20" transform="translate(159.265625 0)"/>
+     <use xlink:href="#Arial-BoldMT-3" transform="translate(217.671875 0)"/>
+     <use xlink:href="#Arial-BoldMT-10" transform="translate(245.453125 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(278.75 0)"/>
+     <use xlink:href="#Arial-BoldMT-11" transform="translate(334.359375 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(362.140625 0)"/>
+     <use xlink:href="#Arial-BoldMT-1c" transform="translate(417.75 0)"/>
+     <use xlink:href="#Arial-BoldMT-3" transform="translate(473.359375 0)"/>
+     <use xlink:href="#Arial-BoldMT-53" transform="translate(501.140625 0)"/>
+     <use xlink:href="#Arial-BoldMT-53" transform="translate(562.21875 0)"/>
+     <use xlink:href="#Arial-BoldMT-3" transform="translate(623.296875 0)"/>
+     <use xlink:href="#Arial-BoldMT-3e" transform="translate(651.078125 0)"/>
+     <use xlink:href="#Arial-BoldMT-1c" transform="translate(684.375 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(739.984375 0)"/>
+     <use xlink:href="#Arial-BoldMT-8" transform="translate(795.59375 0)"/>
+     <use xlink:href="#Arial-BoldMT-3" transform="translate(884.515625 0)"/>
+     <use xlink:href="#Arial-BoldMT-25" transform="translate(912.296875 0)"/>
+     <use xlink:href="#Arial-BoldMT-26" transform="translate(984.515625 0)"/>
+     <use xlink:href="#Arial-BoldMT-44" transform="translate(1056.734375 0)"/>
+     <use xlink:href="#Arial-BoldMT-1d" transform="translate(1112.34375 0)"/>
+     <use xlink:href="#Arial-BoldMT-3" transform="translate(1145.640625 0)"/>
+     <use xlink:href="#Arial-BoldMT-10" transform="translate(1173.421875 0)"/>
+     <use xlink:href="#Arial-BoldMT-1c" transform="translate(1206.71875 0)"/>
+     <use xlink:href="#Arial-BoldMT-11" transform="translate(1262.328125 0)"/>
+     <use xlink:href="#Arial-BoldMT-15" transform="translate(1290.109375 0)"/>
+     <use xlink:href="#Arial-BoldMT-17" transform="translate(1345.71875 0)"/>
+     <use xlink:href="#Arial-BoldMT-f" transform="translate(1401.328125 0)"/>
+     <use xlink:href="#Arial-BoldMT-3" transform="translate(1429.109375 0)"/>
+     <use xlink:href="#Arial-BoldMT-10" transform="translate(1456.890625 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(1490.1875 0)"/>
+     <use xlink:href="#Arial-BoldMT-11" transform="translate(1545.796875 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(1573.578125 0)"/>
+     <use xlink:href="#Arial-BoldMT-1c" transform="translate(1629.1875 0)"/>
+     <use xlink:href="#Arial-BoldMT-40" transform="translate(1684.796875 0)"/>
+    </g>
+    <!-- r_rb = -0.747 | dz = -0.813 | p_adj = 6.77e-11 -->
+    <g style="fill: #333333" transform="translate(168.177748 250.863892) scale(0.082 -0.082)">
+     <defs>
+      <path id="Arial-BoldMT-55" d="M 1300 0 
+L 422 0 
+L 422 3319 
+L 1238 3319 
+L 1238 2847 
+Q 1447 3181 1614 3287 
+Q 1781 3394 1994 3394 
+Q 2294 3394 2572 3228 
+L 2300 2463 
+Q 2078 2606 1888 2606 
+Q 1703 2606 1575 2504 
+Q 1447 2403 1373 2137 
+Q 1300 1872 1300 1025 
+L 1300 0 
+z
+" transform="scale(0.015625)"/>
+      <path id="Arial-BoldMT-42" d="M -59 -1266 
+L -59 -697 
+L 3591 -697 
+L 3591 -1266 
+L -59 -1266 
 z
 " transform="scale(0.015625)"/>
       <path id="Arial-BoldMT-13" d="M 1756 4600 
@@ -1866,139 +1966,11 @@ Q 2163 3669 2039 3770
 Q 1916 3872 1756 3872 
 z
 " transform="scale(0.015625)"/>
-      <path id="Arial-BoldMT-40" d="M 1675 4581 
-L 1675 -1291 
-L 119 -1291 
-L 119 -600 
-L 841 -600 
-L 841 3897 
-L 119 3897 
-L 119 4581 
-L 1675 4581 
-z
-" transform="scale(0.015625)"/>
-     </defs>
-     <use xlink:href="#Arial-BoldMT-2b"/>
-     <use xlink:href="#Arial-BoldMT-2f" transform="translate(72.21875 0)"/>
-     <use xlink:href="#Arial-BoldMT-3" transform="translate(131.484375 0)"/>
-     <use xlink:href="#Arial-BoldMT-20" transform="translate(159.265625 0)"/>
-     <use xlink:href="#Arial-BoldMT-3" transform="translate(217.671875 0)"/>
-     <use xlink:href="#Arial-BoldMT-10" transform="translate(245.453125 0)"/>
-     <use xlink:href="#Arial-BoldMT-18" transform="translate(278.75 0)"/>
-     <use xlink:href="#Arial-BoldMT-11" transform="translate(334.359375 0)"/>
-     <use xlink:href="#Arial-BoldMT-1c" transform="translate(362.140625 0)"/>
-     <use xlink:href="#Arial-BoldMT-14" transform="translate(417.75 0)"/>
-     <use xlink:href="#Arial-BoldMT-3" transform="translate(473.359375 0)"/>
-     <use xlink:href="#Arial-BoldMT-53" transform="translate(501.140625 0)"/>
-     <use xlink:href="#Arial-BoldMT-53" transform="translate(562.21875 0)"/>
-     <use xlink:href="#Arial-BoldMT-3" transform="translate(623.296875 0)"/>
-     <use xlink:href="#Arial-BoldMT-3e" transform="translate(651.078125 0)"/>
-     <use xlink:href="#Arial-BoldMT-1c" transform="translate(684.375 0)"/>
-     <use xlink:href="#Arial-BoldMT-18" transform="translate(739.984375 0)"/>
-     <use xlink:href="#Arial-BoldMT-8" transform="translate(795.59375 0)"/>
-     <use xlink:href="#Arial-BoldMT-3" transform="translate(884.515625 0)"/>
-     <use xlink:href="#Arial-BoldMT-25" transform="translate(912.296875 0)"/>
-     <use xlink:href="#Arial-BoldMT-26" transform="translate(984.515625 0)"/>
-     <use xlink:href="#Arial-BoldMT-44" transform="translate(1056.734375 0)"/>
-     <use xlink:href="#Arial-BoldMT-1d" transform="translate(1112.34375 0)"/>
-     <use xlink:href="#Arial-BoldMT-3" transform="translate(1145.640625 0)"/>
-     <use xlink:href="#Arial-BoldMT-10" transform="translate(1173.421875 0)"/>
-     <use xlink:href="#Arial-BoldMT-1a" transform="translate(1206.71875 0)"/>
-     <use xlink:href="#Arial-BoldMT-11" transform="translate(1262.328125 0)"/>
-     <use xlink:href="#Arial-BoldMT-18" transform="translate(1290.109375 0)"/>
-     <use xlink:href="#Arial-BoldMT-1a" transform="translate(1345.71875 0)"/>
-     <use xlink:href="#Arial-BoldMT-f" transform="translate(1401.328125 0)"/>
-     <use xlink:href="#Arial-BoldMT-3" transform="translate(1429.109375 0)"/>
-     <use xlink:href="#Arial-BoldMT-10" transform="translate(1456.890625 0)"/>
-     <use xlink:href="#Arial-BoldMT-17" transform="translate(1490.1875 0)"/>
-     <use xlink:href="#Arial-BoldMT-11" transform="translate(1545.796875 0)"/>
-     <use xlink:href="#Arial-BoldMT-13" transform="translate(1573.578125 0)"/>
-     <use xlink:href="#Arial-BoldMT-1c" transform="translate(1629.1875 0)"/>
-     <use xlink:href="#Arial-BoldMT-40" transform="translate(1684.796875 0)"/>
-    </g>
-    <!-- r_rb = -0.641 | dz = -0.644 | p_adj = 1.65e-08 -->
-    <g style="fill: #333333" transform="translate(187.213413 250.863892) scale(0.082 -0.082)">
-     <defs>
-      <path id="Arial-BoldMT-55" d="M 1300 0 
-L 422 0 
-L 422 3319 
-L 1238 3319 
-L 1238 2847 
-Q 1447 3181 1614 3287 
-Q 1781 3394 1994 3394 
-Q 2294 3394 2572 3228 
-L 2300 2463 
-Q 2078 2606 1888 2606 
-Q 1703 2606 1575 2504 
-Q 1447 2403 1373 2137 
-Q 1300 1872 1300 1025 
-L 1300 0 
-z
-" transform="scale(0.015625)"/>
-      <path id="Arial-BoldMT-42" d="M -59 -1266 
-L -59 -697 
-L 3591 -697 
-L 3591 -1266 
-L -59 -1266 
-z
-" transform="scale(0.015625)"/>
-      <path id="Arial-BoldMT-19" d="M 3247 3459 
-L 2397 3366 
-Q 2366 3628 2234 3753 
-Q 2103 3878 1894 3878 
-Q 1616 3878 1423 3628 
-Q 1231 3378 1181 2588 
-Q 1509 2975 1997 2975 
-Q 2547 2975 2939 2556 
-Q 3331 2138 3331 1475 
-Q 3331 772 2918 347 
-Q 2506 -78 1859 -78 
-Q 1166 -78 719 461 
-Q 272 1000 272 2228 
-Q 272 3488 737 4044 
-Q 1203 4600 1947 4600 
-Q 2469 4600 2811 4308 
-Q 3153 4016 3247 3459 
-z
-M 1256 1544 
-Q 1256 1116 1453 883 
-Q 1650 650 1903 650 
-Q 2147 650 2309 840 
-Q 2472 1031 2472 1466 
-Q 2472 1913 2297 2120 
-Q 2122 2328 1859 2328 
-Q 1606 2328 1431 2129 
-Q 1256 1931 1256 1544 
-z
-" transform="scale(0.015625)"/>
       <path id="Arial-BoldMT-5f" d="M 550 -1347 
 L 550 4659 
 L 1247 4659 
 L 1247 -1347 
 L 550 -1347 
-z
-" transform="scale(0.015625)"/>
-      <path id="Arial-BoldMT-4d" d="M 441 3769 
-L 441 4581 
-L 1319 4581 
-L 1319 3769 
-L 441 3769 
-z
-M 1319 3319 
-L 1319 103 
-Q 1319 -531 1236 -792 
-Q 1153 -1053 917 -1200 
-Q 681 -1347 316 -1347 
-Q 184 -1347 32 -1323 
-Q -119 -1300 -294 -1253 
-L -141 -503 
-Q -78 -516 -23 -523 
-Q 31 -531 78 -531 
-Q 213 -531 298 -473 
-Q 384 -416 412 -334 
-Q 441 -253 441 153 
-L 441 3319 
-L 1319 3319 
 z
 " transform="scale(0.015625)"/>
       <path id="Arial-BoldMT-1b" d="M 1025 2472 
@@ -2040,6 +2012,58 @@ Q 1441 2097 1283 1875
 Q 1125 1653 1125 1394 
 z
 " transform="scale(0.015625)"/>
+      <path id="Arial-BoldMT-4d" d="M 441 3769 
+L 441 4581 
+L 1319 4581 
+L 1319 3769 
+L 441 3769 
+z
+M 1319 3319 
+L 1319 103 
+Q 1319 -531 1236 -792 
+Q 1153 -1053 917 -1200 
+Q 681 -1347 316 -1347 
+Q 184 -1347 32 -1323 
+Q -119 -1300 -294 -1253 
+L -141 -503 
+Q -78 -516 -23 -523 
+Q 31 -531 78 -531 
+Q 213 -531 298 -473 
+Q 384 -416 412 -334 
+Q 441 -253 441 153 
+L 441 3319 
+L 1319 3319 
+z
+" transform="scale(0.015625)"/>
+      <path id="Arial-BoldMT-19" d="M 3247 3459 
+L 2397 3366 
+Q 2366 3628 2234 3753 
+Q 2103 3878 1894 3878 
+Q 1616 3878 1423 3628 
+Q 1231 3378 1181 2588 
+Q 1509 2975 1997 2975 
+Q 2547 2975 2939 2556 
+Q 3331 2138 3331 1475 
+Q 3331 772 2918 347 
+Q 2506 -78 1859 -78 
+Q 1166 -78 719 461 
+Q 272 1000 272 2228 
+Q 272 3488 737 4044 
+Q 1203 4600 1947 4600 
+Q 2469 4600 2811 4308 
+Q 3153 4016 3247 3459 
+z
+M 1256 1544 
+Q 1256 1116 1453 883 
+Q 1650 650 1903 650 
+Q 2147 650 2309 840 
+Q 2472 1031 2472 1466 
+Q 2472 1913 2297 2120 
+Q 2122 2328 1859 2328 
+Q 1606 2328 1431 2129 
+Q 1256 1931 1256 1544 
+z
+" transform="scale(0.015625)"/>
      </defs>
      <use xlink:href="#Arial-BoldMT-55"/>
      <use xlink:href="#Arial-BoldMT-42" transform="translate(38.921875 0)"/>
@@ -2051,9 +2075,9 @@ z
      <use xlink:href="#Arial-BoldMT-10" transform="translate(308.5 0)"/>
      <use xlink:href="#Arial-BoldMT-13" transform="translate(341.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(397.40625 0)"/>
-     <use xlink:href="#Arial-BoldMT-19" transform="translate(425.1875 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(425.1875 0)"/>
      <use xlink:href="#Arial-BoldMT-17" transform="translate(480.796875 0)"/>
-     <use xlink:href="#Arial-BoldMT-14" transform="translate(536.40625 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(536.40625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(592.015625 0)"/>
      <use xlink:href="#Arial-BoldMT-5f" transform="translate(619.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(647.78125 0)"/>
@@ -2065,9 +2089,9 @@ z
      <use xlink:href="#Arial-BoldMT-10" transform="translate(900.609375 0)"/>
      <use xlink:href="#Arial-BoldMT-13" transform="translate(933.90625 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(989.515625 0)"/>
-     <use xlink:href="#Arial-BoldMT-19" transform="translate(1017.296875 0)"/>
-     <use xlink:href="#Arial-BoldMT-17" transform="translate(1072.90625 0)"/>
-     <use xlink:href="#Arial-BoldMT-17" transform="translate(1128.515625 0)"/>
+     <use xlink:href="#Arial-BoldMT-1b" transform="translate(1017.296875 0)"/>
+     <use xlink:href="#Arial-BoldMT-14" transform="translate(1072.90625 0)"/>
+     <use xlink:href="#Arial-BoldMT-16" transform="translate(1128.515625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1184.125 0)"/>
      <use xlink:href="#Arial-BoldMT-5f" transform="translate(1211.90625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1239.890625 0)"/>
@@ -2079,55 +2103,29 @@ z
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1528.828125 0)"/>
      <use xlink:href="#Arial-BoldMT-20" transform="translate(1556.609375 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1615.015625 0)"/>
-     <use xlink:href="#Arial-BoldMT-14" transform="translate(1642.796875 0)"/>
+     <use xlink:href="#Arial-BoldMT-19" transform="translate(1642.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(1698.40625 0)"/>
-     <use xlink:href="#Arial-BoldMT-19" transform="translate(1726.1875 0)"/>
-     <use xlink:href="#Arial-BoldMT-18" transform="translate(1781.796875 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(1726.1875 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(1781.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-48" transform="translate(1837.40625 0)"/>
      <use xlink:href="#Arial-BoldMT-10" transform="translate(1893.015625 0)"/>
-     <use xlink:href="#Arial-BoldMT-13" transform="translate(1926.3125 0)"/>
-     <use xlink:href="#Arial-BoldMT-1b" transform="translate(1981.921875 0)"/>
+     <use xlink:href="#Arial-BoldMT-14" transform="translate(1926.3125 0)"/>
+     <use xlink:href="#Arial-BoldMT-14" transform="translate(1976.40625 0)"/>
     </g>
    </g>
    <g id="text_11">
-    <!-- HL = -5.71 pp [95% BCa: -7.32, -3.94] -->
-    <g style="fill: #333333" transform="translate(202.537899 166.189573) scale(0.082 -0.082)">
-     <defs>
-      <path id="Arial-BoldMT-15" d="M 3238 816 
-L 3238 0 
-L 159 0 
-Q 209 463 459 877 
-Q 709 1291 1447 1975 
-Q 2041 2528 2175 2725 
-Q 2356 2997 2356 3263 
-Q 2356 3556 2198 3714 
-Q 2041 3872 1763 3872 
-Q 1488 3872 1325 3706 
-Q 1163 3541 1138 3156 
-L 263 3244 
-Q 341 3969 753 4284 
-Q 1166 4600 1784 4600 
-Q 2463 4600 2850 4234 
-Q 3238 3869 3238 3325 
-Q 3238 3016 3127 2736 
-Q 3016 2456 2775 2150 
-Q 2616 1947 2200 1565 
-Q 1784 1184 1673 1059 
-Q 1563 934 1494 816 
-L 3238 816 
-z
-" transform="scale(0.015625)"/>
-     </defs>
+    <!-- HL = -4.78 pp [95% BCa: -6.44, -3.06] -->
+    <g style="fill: #333333" transform="translate(213.284346 166.189573) scale(0.082 -0.082)">
      <use xlink:href="#Arial-BoldMT-2b"/>
      <use xlink:href="#Arial-BoldMT-2f" transform="translate(72.21875 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(131.484375 0)"/>
      <use xlink:href="#Arial-BoldMT-20" transform="translate(159.265625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(217.671875 0)"/>
      <use xlink:href="#Arial-BoldMT-10" transform="translate(245.453125 0)"/>
-     <use xlink:href="#Arial-BoldMT-18" transform="translate(278.75 0)"/>
+     <use xlink:href="#Arial-BoldMT-17" transform="translate(278.75 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(334.359375 0)"/>
      <use xlink:href="#Arial-BoldMT-1a" transform="translate(362.140625 0)"/>
-     <use xlink:href="#Arial-BoldMT-14" transform="translate(417.75 0)"/>
+     <use xlink:href="#Arial-BoldMT-1b" transform="translate(417.75 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(473.359375 0)"/>
      <use xlink:href="#Arial-BoldMT-53" transform="translate(501.140625 0)"/>
      <use xlink:href="#Arial-BoldMT-53" transform="translate(562.21875 0)"/>
@@ -2143,21 +2141,21 @@ z
      <use xlink:href="#Arial-BoldMT-1d" transform="translate(1112.34375 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1145.640625 0)"/>
      <use xlink:href="#Arial-BoldMT-10" transform="translate(1173.421875 0)"/>
-     <use xlink:href="#Arial-BoldMT-1a" transform="translate(1206.71875 0)"/>
+     <use xlink:href="#Arial-BoldMT-19" transform="translate(1206.71875 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(1262.328125 0)"/>
-     <use xlink:href="#Arial-BoldMT-16" transform="translate(1290.109375 0)"/>
-     <use xlink:href="#Arial-BoldMT-15" transform="translate(1345.71875 0)"/>
+     <use xlink:href="#Arial-BoldMT-17" transform="translate(1290.109375 0)"/>
+     <use xlink:href="#Arial-BoldMT-17" transform="translate(1345.71875 0)"/>
      <use xlink:href="#Arial-BoldMT-f" transform="translate(1401.328125 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1429.109375 0)"/>
      <use xlink:href="#Arial-BoldMT-10" transform="translate(1456.890625 0)"/>
      <use xlink:href="#Arial-BoldMT-16" transform="translate(1490.1875 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(1545.796875 0)"/>
-     <use xlink:href="#Arial-BoldMT-1c" transform="translate(1573.578125 0)"/>
-     <use xlink:href="#Arial-BoldMT-17" transform="translate(1629.1875 0)"/>
+     <use xlink:href="#Arial-BoldMT-13" transform="translate(1573.578125 0)"/>
+     <use xlink:href="#Arial-BoldMT-19" transform="translate(1629.1875 0)"/>
      <use xlink:href="#Arial-BoldMT-40" transform="translate(1684.796875 0)"/>
     </g>
-    <!-- r_rb = -0.649 | dz = -0.664 | p_adj = 1.60e-08 -->
-    <g style="fill: #333333" transform="translate(189.440961 175.11428) scale(0.082 -0.082)">
+    <!-- r_rb = -0.572 | dz = -0.535 | p_adj = 3.65e-07 -->
+    <g style="fill: #333333" transform="translate(200.187408 175.11428) scale(0.082 -0.082)">
      <use xlink:href="#Arial-BoldMT-55"/>
      <use xlink:href="#Arial-BoldMT-42" transform="translate(38.921875 0)"/>
      <use xlink:href="#Arial-BoldMT-55" transform="translate(94.53125 0)"/>
@@ -2168,9 +2166,9 @@ z
      <use xlink:href="#Arial-BoldMT-10" transform="translate(308.5 0)"/>
      <use xlink:href="#Arial-BoldMT-13" transform="translate(341.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(397.40625 0)"/>
-     <use xlink:href="#Arial-BoldMT-19" transform="translate(425.1875 0)"/>
-     <use xlink:href="#Arial-BoldMT-17" transform="translate(480.796875 0)"/>
-     <use xlink:href="#Arial-BoldMT-1c" transform="translate(536.40625 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(425.1875 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(480.796875 0)"/>
+     <use xlink:href="#Arial-BoldMT-15" transform="translate(536.40625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(592.015625 0)"/>
      <use xlink:href="#Arial-BoldMT-5f" transform="translate(619.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(647.78125 0)"/>
@@ -2182,9 +2180,9 @@ z
      <use xlink:href="#Arial-BoldMT-10" transform="translate(900.609375 0)"/>
      <use xlink:href="#Arial-BoldMT-13" transform="translate(933.90625 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(989.515625 0)"/>
-     <use xlink:href="#Arial-BoldMT-19" transform="translate(1017.296875 0)"/>
-     <use xlink:href="#Arial-BoldMT-19" transform="translate(1072.90625 0)"/>
-     <use xlink:href="#Arial-BoldMT-17" transform="translate(1128.515625 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(1017.296875 0)"/>
+     <use xlink:href="#Arial-BoldMT-16" transform="translate(1072.90625 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(1128.515625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1184.125 0)"/>
      <use xlink:href="#Arial-BoldMT-5f" transform="translate(1211.90625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1239.890625 0)"/>
@@ -2196,19 +2194,19 @@ z
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1528.828125 0)"/>
      <use xlink:href="#Arial-BoldMT-20" transform="translate(1556.609375 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1615.015625 0)"/>
-     <use xlink:href="#Arial-BoldMT-14" transform="translate(1642.796875 0)"/>
+     <use xlink:href="#Arial-BoldMT-16" transform="translate(1642.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(1698.40625 0)"/>
      <use xlink:href="#Arial-BoldMT-19" transform="translate(1726.1875 0)"/>
-     <use xlink:href="#Arial-BoldMT-13" transform="translate(1781.796875 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(1781.796875 0)"/>
      <use xlink:href="#Arial-BoldMT-48" transform="translate(1837.40625 0)"/>
      <use xlink:href="#Arial-BoldMT-10" transform="translate(1893.015625 0)"/>
      <use xlink:href="#Arial-BoldMT-13" transform="translate(1926.3125 0)"/>
-     <use xlink:href="#Arial-BoldMT-1b" transform="translate(1981.921875 0)"/>
+     <use xlink:href="#Arial-BoldMT-1a" transform="translate(1981.921875 0)"/>
     </g>
    </g>
    <g id="text_12">
-    <!-- HL = +22.27 pp [95% BCa: +19.24, +25.00] -->
-    <g style="fill: #333333" transform="translate(513.586903 90.439961) scale(0.082 -0.082)">
+    <!-- HL = +22.22 pp [95% BCa: +19.65, +25.00] -->
+    <g style="fill: #333333" transform="translate(512.994237 90.439961) scale(0.082 -0.082)">
      <defs>
       <path id="Arial-BoldMT-e" d="M 1466 659 
 L 1466 1850 
@@ -2236,7 +2234,7 @@ z
      <use xlink:href="#Arial-BoldMT-15" transform="translate(359.46875 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(415.078125 0)"/>
      <use xlink:href="#Arial-BoldMT-15" transform="translate(442.859375 0)"/>
-     <use xlink:href="#Arial-BoldMT-1a" transform="translate(498.46875 0)"/>
+     <use xlink:href="#Arial-BoldMT-15" transform="translate(498.46875 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(554.078125 0)"/>
      <use xlink:href="#Arial-BoldMT-53" transform="translate(581.859375 0)"/>
      <use xlink:href="#Arial-BoldMT-53" transform="translate(642.9375 0)"/>
@@ -2255,8 +2253,8 @@ z
      <use xlink:href="#Arial-BoldMT-14" transform="translate(1312.546875 0)"/>
      <use xlink:href="#Arial-BoldMT-1c" transform="translate(1368.15625 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(1423.765625 0)"/>
-     <use xlink:href="#Arial-BoldMT-15" transform="translate(1451.546875 0)"/>
-     <use xlink:href="#Arial-BoldMT-17" transform="translate(1507.15625 0)"/>
+     <use xlink:href="#Arial-BoldMT-19" transform="translate(1451.546875 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(1507.15625 0)"/>
      <use xlink:href="#Arial-BoldMT-f" transform="translate(1562.765625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1590.546875 0)"/>
      <use xlink:href="#Arial-BoldMT-e" transform="translate(1618.328125 0)"/>
@@ -2267,8 +2265,8 @@ z
      <use xlink:href="#Arial-BoldMT-13" transform="translate(1871.34375 0)"/>
      <use xlink:href="#Arial-BoldMT-40" transform="translate(1926.953125 0)"/>
     </g>
-    <!-- r_rb = +0.989 | dz = +1.610 | p_adj = 1.92e-17 -->
-    <g style="fill: #333333" transform="translate(508.359403 99.364668) scale(0.082 -0.082)">
+    <!-- r_rb = +0.991 | dz = +1.653 | p_adj = 4.93e-18 -->
+    <g style="fill: #333333" transform="translate(507.766737 99.364668) scale(0.082 -0.082)">
      <use xlink:href="#Arial-BoldMT-55"/>
      <use xlink:href="#Arial-BoldMT-42" transform="translate(38.921875 0)"/>
      <use xlink:href="#Arial-BoldMT-55" transform="translate(94.53125 0)"/>
@@ -2280,8 +2278,8 @@ z
      <use xlink:href="#Arial-BoldMT-13" transform="translate(366.90625 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(422.515625 0)"/>
      <use xlink:href="#Arial-BoldMT-1c" transform="translate(450.296875 0)"/>
-     <use xlink:href="#Arial-BoldMT-1b" transform="translate(505.90625 0)"/>
-     <use xlink:href="#Arial-BoldMT-1c" transform="translate(561.515625 0)"/>
+     <use xlink:href="#Arial-BoldMT-1c" transform="translate(505.90625 0)"/>
+     <use xlink:href="#Arial-BoldMT-14" transform="translate(561.515625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(617.125 0)"/>
      <use xlink:href="#Arial-BoldMT-5f" transform="translate(644.90625 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(672.890625 0)"/>
@@ -2294,8 +2292,8 @@ z
      <use xlink:href="#Arial-BoldMT-14" transform="translate(984.125 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(1039.734375 0)"/>
      <use xlink:href="#Arial-BoldMT-19" transform="translate(1067.515625 0)"/>
-     <use xlink:href="#Arial-BoldMT-14" transform="translate(1123.125 0)"/>
-     <use xlink:href="#Arial-BoldMT-13" transform="translate(1178.734375 0)"/>
+     <use xlink:href="#Arial-BoldMT-18" transform="translate(1123.125 0)"/>
+     <use xlink:href="#Arial-BoldMT-16" transform="translate(1178.734375 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1234.34375 0)"/>
      <use xlink:href="#Arial-BoldMT-5f" transform="translate(1262.125 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1290.109375 0)"/>
@@ -2307,14 +2305,14 @@ z
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1579.046875 0)"/>
      <use xlink:href="#Arial-BoldMT-20" transform="translate(1606.828125 0)"/>
      <use xlink:href="#Arial-BoldMT-3" transform="translate(1665.234375 0)"/>
-     <use xlink:href="#Arial-BoldMT-14" transform="translate(1693.015625 0)"/>
+     <use xlink:href="#Arial-BoldMT-17" transform="translate(1693.015625 0)"/>
      <use xlink:href="#Arial-BoldMT-11" transform="translate(1748.625 0)"/>
      <use xlink:href="#Arial-BoldMT-1c" transform="translate(1776.40625 0)"/>
-     <use xlink:href="#Arial-BoldMT-15" transform="translate(1832.015625 0)"/>
+     <use xlink:href="#Arial-BoldMT-16" transform="translate(1832.015625 0)"/>
      <use xlink:href="#Arial-BoldMT-48" transform="translate(1887.625 0)"/>
      <use xlink:href="#Arial-BoldMT-10" transform="translate(1943.234375 0)"/>
      <use xlink:href="#Arial-BoldMT-14" transform="translate(1976.53125 0)"/>
-     <use xlink:href="#Arial-BoldMT-1a" transform="translate(2032.140625 0)"/>
+     <use xlink:href="#Arial-BoldMT-1b" transform="translate(2032.140625 0)"/>
     </g>
    </g>
    <g id="text_13">
@@ -2417,68 +2415,68 @@ z
     </g>
    </g>
    <g id="LineCollection_1">
-    <path d="M 251.681099 274.414227 
-L 291.603258 274.414227 
-" clip-path="url(#p2c068abdf1)" style="fill: none; stroke: #e69f00; stroke-width: 2.2"/>
+    <path d="M 232.532534 274.414227 
+L 272.122472 274.414227 
+" clip-path="url(#p986c5d5187)" style="fill: none; stroke: #e69f00; stroke-width: 2.2"/>
    </g>
    <g id="line2d_10">
     <defs>
-     <path id="m0a3209864b" d="M 0 6 
+     <path id="m1946462a4b" d="M 0 6 
 L 0 -6 
 " style="stroke: #e69f00; stroke-width: 2"/>
     </defs>
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#m0a3209864b" x="251.681099" y="274.414227" style="fill: #e69f00; stroke: #e69f00; stroke-width: 2"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#m1946462a4b" x="232.532534" y="274.414227" style="fill: #e69f00; stroke: #e69f00; stroke-width: 2"/>
     </g>
    </g>
    <g id="line2d_11">
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#m0a3209864b" x="291.603258" y="274.414227" style="fill: #e69f00; stroke: #e69f00; stroke-width: 2"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#m1946462a4b" x="272.122472" y="274.414227" style="fill: #e69f00; stroke: #e69f00; stroke-width: 2"/>
     </g>
    </g>
    <g id="LineCollection_2">
-    <path d="M 254.611722 198.664615 
-L 293.279426 198.664615 
-" clip-path="url(#p2c068abdf1)" style="fill: none; stroke: #2e8b57; stroke-width: 2.2"/>
+    <path d="M 264.612714 198.664615 
+L 303.47678 198.664615 
+" clip-path="url(#p986c5d5187)" style="fill: none; stroke: #2e8b57; stroke-width: 2.2"/>
    </g>
    <g id="line2d_12">
     <defs>
-     <path id="mc17bd19c02" d="M 0 6 
+     <path id="mf950888ad6" d="M 0 6 
 L 0 -6 
 " style="stroke: #2e8b57; stroke-width: 2"/>
     </defs>
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#mc17bd19c02" x="254.611722" y="198.664615" style="fill: #2e8b57; stroke: #2e8b57; stroke-width: 2"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#mf950888ad6" x="264.612714" y="198.664615" style="fill: #2e8b57; stroke: #2e8b57; stroke-width: 2"/>
     </g>
    </g>
    <g id="line2d_13">
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#mc17bd19c02" x="293.279426" y="198.664615" style="fill: #2e8b57; stroke: #2e8b57; stroke-width: 2"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#mf950888ad6" x="303.47678" y="198.664615" style="fill: #2e8b57; stroke: #2e8b57; stroke-width: 2"/>
     </g>
    </g>
    <g id="LineCollection_3">
-    <path d="M 559.19191 122.915003 
+    <path d="M 563.855964 122.915003 
 L 625.220279 122.915003 
-" clip-path="url(#p2c068abdf1)" style="fill: none; stroke: #b22222; stroke-width: 2.2"/>
+" clip-path="url(#p986c5d5187)" style="fill: none; stroke: #b22222; stroke-width: 2.2"/>
    </g>
    <g id="line2d_14">
     <defs>
-     <path id="me3b530a22c" d="M 0 6 
+     <path id="m4688754b72" d="M 0 6 
 L 0 -6 
 " style="stroke: #b22222; stroke-width: 2"/>
     </defs>
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#me3b530a22c" x="559.19191" y="122.915003" style="fill: #b22222; stroke: #b22222; stroke-width: 2"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#m4688754b72" x="563.855964" y="122.915003" style="fill: #b22222; stroke: #b22222; stroke-width: 2"/>
     </g>
    </g>
    <g id="line2d_15">
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#me3b530a22c" x="625.220279" y="122.915003" style="fill: #b22222; stroke: #b22222; stroke-width: 2"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#m4688754b72" x="625.220279" y="122.915003" style="fill: #b22222; stroke: #b22222; stroke-width: 2"/>
     </g>
    </g>
    <g id="line2d_16">
     <defs>
-     <path id="m10f5aaa6bd" d="M 0 4 
+     <path id="mbcdda95c48" d="M 0 4 
 C 1.060812 4 2.078319 3.578535 2.828427 2.828427 
 C 3.578535 2.078319 4 1.060812 4 0 
 C 4 -1.060812 3.578535 -2.078319 2.828427 -2.828427 
@@ -2490,13 +2488,13 @@ C -2.078319 3.578535 -1.060812 4 0 4
 z
 " style="stroke: #e69f00"/>
     </defs>
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#m10f5aaa6bd" x="270.752194" y="274.414227" style="fill: #e69f00; stroke: #e69f00"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#mbcdda95c48" x="251.490388" y="274.414227" style="fill: #e69f00; stroke: #e69f00"/>
     </g>
    </g>
    <g id="line2d_17">
     <defs>
-     <path id="mf2a04cce8a" d="M 0 4 
+     <path id="m9bf4d6989c" d="M 0 4 
 C 1.060812 4 2.078319 3.578535 2.828427 2.828427 
 C 3.578535 2.078319 4 1.060812 4 0 
 C 4 -1.060812 3.578535 -2.078319 2.828427 -2.828427 
@@ -2508,13 +2506,13 @@ C -2.078319 3.578535 -1.060812 4 0 4
 z
 " style="stroke: #2e8b57"/>
     </defs>
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#mf2a04cce8a" x="272.979742" y="198.664615" style="fill: #2e8b57; stroke: #2e8b57"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#m9bf4d6989c" x="283.726189" y="198.664615" style="fill: #2e8b57; stroke: #2e8b57"/>
     </g>
    </g>
    <g id="line2d_18">
     <defs>
-     <path id="m4026a320c3" d="M 0 4 
+     <path id="m8c5d3fef55" d="M 0 4 
 C 1.060812 4 2.078319 3.578535 2.828427 2.828427 
 C 3.578535 2.078319 4 1.060812 4 0 
 C 4 -1.060812 3.578535 -2.078319 2.828427 -2.828427 
@@ -2526,8 +2524,8 @@ C -2.078319 3.578535 -1.060812 4 0 4
 z
 " style="stroke: #b22222"/>
     </defs>
-    <g clip-path="url(#p2c068abdf1)">
-     <use xlink:href="#m4026a320c3" x="593.957153" y="122.915003" style="fill: #b22222; stroke: #b22222"/>
+    <g clip-path="url(#p986c5d5187)">
+     <use xlink:href="#m8c5d3fef55" x="593.364487" y="122.915003" style="fill: #b22222; stroke: #b22222"/>
     </g>
    </g>
    <g id="legend_1">
@@ -2872,7 +2870,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p2c068abdf1">
+  <clipPath id="p986c5d5187">
    <rect x="166.496875" y="47.165391" width="539" height="272.698604"/>
   </clipPath>
  </defs>

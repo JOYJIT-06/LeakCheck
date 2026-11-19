@@ -37,7 +37,7 @@ import scipy.stats as stats
 
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-BENCHMARK_DIR = os.path.join(BASE_DIR, "benchmark_results", "physionet_v1_1_repaired")
+BENCHMARK_DIR = os.path.join(BASE_DIR, "benchmark_results", "physionet_v1_1")
 TABLES_DIR = os.path.join(BASE_DIR, "tables")
 EVIDENCE_DIR = os.path.join(BASE_DIR, "evidence")
 PROGRESS_DIR = os.path.join(BASE_DIR, "progress")
@@ -138,8 +138,8 @@ def generate_all_tables():
             "95% BCa CI (pp)": f"[{r['hl_ci_low_pp']:+.2f}, {r['hl_ci_high_pp']:+.2f}]",
             "Pratt W": f"{r['wilcoxon_pratt_w']:.1f}",
             "Pratt Z": f"{r['wilcoxon_pratt_z']:+.3f}",
-            "Pratt p-val": f"{r['wilcoxon_pratt_p']:.2e}" if r['wilcoxon_pratt_p'] > 0 else "< 1.00e-17",
-            "Holm Adj p": f"{r['wilcoxon_p_holm']:.2e}" if r['wilcoxon_p_holm'] > 0 else "< 1.00e-17",
+            "Pratt p-val": f"{r['wilcoxon_pratt_p']:.2e}",
+            "Holm Adj p": f"{r.get('wilcoxon_pratt_p_holm', r['wilcoxon_p_holm']):.2e}",
             "Rank-Biserial r": f"{r['rank_biserial']:+.3f}",
             "Cohen's dz": f"{r['cohens_dz']:+.3f}",
             "TOST p (±2pp)": f"{r['tost_p']:.5f}",
@@ -244,8 +244,8 @@ def generate_all_tables():
             "Negative Shifts (d<0)": n_neg,
             "Pratt W Statistic": f"{inf_row['wilcoxon_pratt_w']:.1f}",
             "Pratt Standardized Z": f"{inf_row['wilcoxon_pratt_z']:+.3f}",
-            "Pratt p-value": f"{inf_row['wilcoxon_pratt_p']:.2e}" if inf_row['wilcoxon_pratt_p'] > 0 else "< 1.00e-17",
-            "Holm Adjusted p": f"{inf_row['wilcoxon_p_holm']:.2e}" if inf_row['wilcoxon_p_holm'] > 0 else "< 1.00e-17",
+            "Pratt p-value": f"{inf_row['wilcoxon_pratt_p']:.2e}",
+            "Holm Adjusted p": f"{inf_row.get('wilcoxon_pratt_p_holm', inf_row['wilcoxon_p_holm']):.2e}",
             "Matched-Pairs Rank-Biserial r": f"{inf_row['rank_biserial']:+.3f}"
         })
     t6_df = pd.DataFrame(t6_rows)
@@ -320,7 +320,7 @@ def generate_all_tables():
         se_d = float(np.std(deltas, ddof=1) / np.sqrt(len(deltas)))
         df_t = len(deltas) - 1
         t_low = (mean_d - (-2.0)) / se_d
-        p_low = float(1.0 - stats.t.cdf(t_low, df=df_t))
+        p_low = float(stats.t.sf(t_low, df=df_t))
         t_high = (mean_d - 2.0) / se_d
         p_high = float(stats.t.cdf(t_high, df=df_t))
         t_crit = stats.t.ppf(0.95, df=df_t)
@@ -541,55 +541,55 @@ def generate_table_index():
 
     table_catalog = [
         ("Table 1", "Participant Flow, Inclusion/Exclusion Criteria, and Benchmark Demographics", "table01_participant_flow_demographics",
-         "benchmark_results/physionet_v1_1_repaired/participant_flow_manifest.json, subject_info.csv, excluded_or_failed_subjects.csv",
+         "benchmark_results/physionet_v1_1/participant_flow_manifest.json, subject_info.csv, excluded_or_failed_subjects.csv",
          "109 requested -> 105 analyzed cohort (96.33% retention), 4 exclusions (S044, S069, S086, S091), 4,591 total trials, 102 @ 160Hz, 3 @ 128Hz, refutation of line 95 error."),
         ("Table 2", "Primary Benchmark Comparison Matrix Across Validation Schemes", "table02_benchmark_comparison_matrix",
-         "benchmark_results/physionet_v1_1_repaired/inflation_table.csv",
+         "benchmark_results/physionet_v1_1/inflation_table.csv",
          "Primary paired contrasts (D1s - D3, D1m - D3, P1 - D3) reporting mean, median, Hodges-Lehmann, BCa 95% CIs, Pratt Wilcoxon W, Z, p-values, Holm adjustment, rank-biserial r, Cohen's dz, and TOST."),
         ("Table 3", "Comprehensive Taxonomy of EEG Cross-Validation Leakage Mechanisms (P1–P10)", "table03_leakage_mechanisms_taxonomy",
          "evidence/SCIENTIFIC_AUDIT.md, src/emi/preprocess.py, src/emi/leakstats.py",
          "Formal scientific definition, contaminated vs. clean comparators, theoretical bias direction, empirical shifts, and verification status for all 10 leakage mechanisms."),
         ("Table 4", "Cohort Sampling Rate Distribution and Covariance Invariance Diagnostics", "table04_sampling_rate_distribution",
-         "benchmark_results/physionet_v1_1_repaired/subject_info.csv",
+         "benchmark_results/physionet_v1_1/subject_info.csv",
          "Complete accounting of 160.0 Hz (n=102) and 128.0 Hz (n=3) participants, trial counts, samples per epoch, covariance matrix dimensionality (64x64), and SVD rank invariance (rank 63)."),
         ("Table 5", "SVD Numerical Rank and Conditioning Across Preprocessing Transformations", "table05_svd_rank_diagnostics",
          "evidence/DATASET_AUDIT.md, src/emi/diagnostics.py, tests/test_rank_svd.py",
          "Matrix dimensions, theoretical degrees of freedom, empirical SVD rank, condition numbers, and null space singular values (< 1e-14) pre/post-CAR, bad channel interpolation, and OAS."),
         ("Table 6", "Pratt Signed-Rank Test Statistics, Zero-Tie Deductions, and Exact P-Values", "table06_pratt_wilcoxon_statistics",
-         "benchmark_results/physionet_v1_1_repaired/inflation_table.csv, inflation_by_subject.csv",
+         "benchmark_results/physionet_v1_1/inflation_table.csv, inflation_by_subject.csv",
          "Detailed Pratt Wilcoxon breakdown: zero-tie counts, positive/negative ranks, test statistic W, variance correction, standardized Z, asymptotic and Holm-adjusted p-values."),
         ("Table 7", "BCa Bootstrap Resampling Parameters, Confidence Intervals, and Convergence", "table07_bca_bootstrap_resampling",
-         "benchmark_results/physionet_v1_1_repaired/inflation_table.csv, docs/STATISTICS/bootstrap_resample_indices_b10000_n105.csv",
+         "benchmark_results/physionet_v1_1/inflation_table.csv, docs/STATISTICS/bootstrap_resample_indices_b10000_n105.csv",
          "B=10,000 resamples, deterministic index matrix hash, Hodges-Lehmann location shift point estimates, 95% BCa lower and upper bounds, and confidence interval widths."),
         ("Table 8", "Parametric and Nonparametric Effect Size Estimates and Location Shifts", "table08_hodges_lehmann_effect_sizes",
-         "benchmark_results/physionet_v1_1_repaired/inflation_table.csv, inflation_by_subject.csv",
+         "benchmark_results/physionet_v1_1/inflation_table.csv, inflation_by_subject.csv",
          "Side-by-side comparison of parametric (mean, SD, Cohen's dz) and nonparametric (median, IQR, Hodges-Lehmann, rank-biserial r) effect sizes, plus logit-transformed paired t-tests."),
         ("Table 9", "Two One-Sided Tests (TOST) Equivalence Bounds and Statistical Decisions", "table09_tost_equivalence_bounds",
-         "benchmark_results/physionet_v1_1_repaired/inflation_table.csv",
+         "benchmark_results/physionet_v1_1/inflation_table.csv",
          "Equivalence bounds [-2.0 pp, +2.0 pp], lower and upper t-tests, overall TOST p-value, 90% confidence intervals, and conclusive rejection of equivalence for random splits vs. LORO."),
         ("Table 10", "Run-Independent FIR Filter Boundary Isolation and Cross-Run Bleed Verification", "table10_fir_filter_bleed_comparison",
          "tests/test_run_boundary_filtering.py, evidence/PREPROCESSING_AUDIT.md",
          "Empirical verification of 0.000 V impulse bleed in run-independent MNE reflection padding vs. > 1.0 V cross-boundary bleed in legacy concatenated filtering."),
         ("Table 11", "Fold-Isolated Preprocessing Parameter Stability Across Cross-Validation Folds", "table11_fold_isolated_parameter_stability",
-         "benchmark_results/physionet_v1_1_repaired/fold_details.json",
+         "benchmark_results/physionet_v1_1/fold_details.json",
          "Training fold parameter stability across 315 fold fits: mean training/test trials, adaptive peak-to-peak rejection threshold tau, bad channel count B_train, ICA components W_train, fold accuracy."),
         ("Table 12", "Permutation Null Distribution and Signal Noise Burst Robustness", "table12_permutation_noise_robustness",
-         "benchmark_results/physionet_v1_1_repaired/subject_info.csv",
+         "benchmark_results/physionet_v1_1/subject_info.csv",
          "Wald-Wolfowitz runs tests, run decoding accuracy vs. chance, lag-1 autoregressive trial autocorrelation, and simulated noise burst attenuation (50 µV and 200 µV)."),
         ("Table 13", "Spatial Covariance Matrix Regularization and Decoder Numerical Conditioning", "table13_decoders_regularization_comparison",
          "src/emi/decoders.py, tests/test_signal_utils.py, settings.json",
          "Comparison of Empirical Sample Covariance, Ledoit-Wolf Shrinkage, and Oracle Approximating Shrinkage (OAS) condition numbers, invertibility guarantees, and benchmark selection."),
         ("Table 14", "Participant-Level Decoding Accuracies and Paired Cross-Validation Shifts (N = 105)", "table14_paired_subject_accuracies_all_105",
-         "benchmark_results/physionet_v1_1_repaired/inflation_by_subject.csv, subject_info.csv",
+         "benchmark_results/physionet_v1_1/inflation_by_subject.csv, subject_info.csv",
          "Complete 105-subject inventory listing native sampling frequency, analyzed trial counts, absolute accuracies for D3, D1s, D1m, P1, and individual paired shifts (ΔD1s, ΔD1m, ΔP1)."),
         ("Table 15", "Cross-Design Pearson and Spearman Correlation Matrix of Decoding Accuracies", "table15_cross_design_correlation_matrix",
-         "benchmark_results/physionet_v1_1_repaired/inflation_by_subject.csv",
+         "benchmark_results/physionet_v1_1/inflation_by_subject.csv",
          "Correlation matrix among D3, D1s, D1m, and P1 decoding accuracies across 105 participants, reporting Pearson r, Spearman rho, and two-sided p-values."),
         ("Table 16", "Comprehensive Technical Screening and Exclusion Accounting for Rejected Participants", "table16_bad_channel_artifact_accounting",
-         "benchmark_results/physionet_v1_1_repaired/excluded_or_failed_subjects.csv, participant_flow_manifest.json",
+         "benchmark_results/physionet_v1_1/excluded_or_failed_subjects.csv, participant_flow_manifest.json",
          "Audit of all 4 excluded participants (S044, S069, S086, S091): flagged channels, bad channel ratio, trial counts, adaptive voltage threshold, exclusion criterion, and rationale."),
         ("Table 17", "Computational Benchmark Performance and Multi-Core Multiprocessing Scaling", "table17_computational_performance_scaling",
-         "benchmark_results/physionet_v1_1_repaired/leakcheck_summary.json",
+         "benchmark_results/physionet_v1_1/leakcheck_summary.json",
          "Hardware specs, 4-worker multiprocessing throughput, total compute time (1248.24s), mean time per subject (11.89s), peak RAM footprint (1.82 GB), and zero failure rate."),
         ("Table 18", "Sprint Capacity Ledger, Daily Active Hours, and Cumulative Milestones", "table18_sprint_ledger_capacity_utilization",
          "progress/AGENT_HOUR_LOG.csv, progress/MASTER_PROGRESS.csv, progress/TEAM_CAPACITY_REPORT.md",
@@ -600,7 +600,7 @@ def generate_table_index():
         "# LeakCheck V1.1 Evidence Package: Statistical Summary Table Index",
         "",
         "**Benchmark Cohort**: PhysioNet EEGMMIDB Motor Imagery ($N = 105$ analyzed participants, $N = 4$ screened exclusions)  ",
-        "**Repaired Benchmark Directory**: `benchmark_results/physionet_v1_1_repaired/`  ",
+        "**Authoritative Benchmark Directory**: `benchmark_results/physionet_v1_1/`  ",
         "**Generated Format**: Both Comma-Separated Values (`.csv`) and GitHub-Flavored Markdown (`.md`)  ",
         "**Generation Script**: `scripts/generate_tables.py`  ",
         "**Cryptographic Verification**: Strict SHA-256 integrity hashes computed for every table artifact  ",

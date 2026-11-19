@@ -542,12 +542,15 @@ def inflation_table(by_subject, margin_pp=2.0, n_boot=2000, seed=0):
         s = paired_summary(g["acc_leaky"], g["acc_ref"], n_test=None, margin_pp=margin_pp, n_boot=n_boot, seed=seed)
         rows.append({"dataset": dataset, "decoder": decoder, "design": design, "reference": ref, "kind": kind, **s})
     tab = pd.DataFrame(rows)
-    if len(tab) and "wilcoxon_p" in tab:
-        tab["wilcoxon_p_holm"] = np.nan
-        for _, idx in tab.groupby(["dataset", "decoder"]).groups.items():
-            p = tab.loc[idx, "wilcoxon_p"].to_numpy(float)
-            if np.isfinite(p).all():
-                tab.loc[idx, "wilcoxon_p_holm"] = holm(p)
+    if len(tab):
+        for raw_col, holm_col in [("wilcoxon_p", "wilcoxon_p_holm"),
+                                  ("wilcoxon_pratt_p", "wilcoxon_pratt_p_holm")]:
+            if raw_col in tab.columns:
+                tab[holm_col] = np.nan
+                for _, idx in tab.groupby(["dataset", "decoder"]).groups.items():
+                    p = tab.loc[idx, raw_col].to_numpy(float)
+                    if np.isfinite(p).all():
+                        tab.loc[idx, holm_col] = holm(p)
     return tab
 
 

@@ -8,9 +8,13 @@ Executes the repaired benchmark pipeline incorporating:
    - Minimum trial threshold: < 30 retained trials (rejects S086).
    - Excluded participants logged in excluded_or_failed_subjects.csv.
 2. Four experimental validation designs for eligible subjects:
+   - Preprocessing Design Boundary: Continuous preprocessing (run-independent filtering, bad-channel
+     interpolation, CAR, FastICA, and PTP rejection) is executed at the continuous run boundary to yield
+     a standardized trial pool (X, y, runs). Downstream validation designs operate on this common pool.
+   - Clean designs (D3, D1m, D1s) enforce 100% fold-isolated decoder estimation (OAS CSP + Shrinkage LDA).
    - D3: Leave-one-run-out (3 folds) with FoldIsolatedPreprocessor and filter_run_independent (100% leak-free reference).
    - D1m: 3-fold StratifiedKFold (5 repeats = 15 folds).
-   - D1s: Size-matched random split (20 repeats = 60 folds).
+   - D1s: Size-matched random split (20 repeats = 60 folds) via size_matched_random_repeats.
    - P1: Positive control global supervised CSP fit on all trials + 3 LORO LDA folds.
 3. Strict safety invariants:
    - benchmark_results/physionet_v1_1_final/ is 100% READ-ONLY and UNTOUCHABLE.
@@ -44,22 +48,24 @@ from mne.decoding import CSP
 ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT_DIR / "src"))
 
-from emi import __version__, data, diagnostics as dg, leakcheck as lc, preprocess
+from emi import __version__, data, diagnostics as dg, leakcheck as lc, preprocess, splitters as sp
 from emi.cache import CACHE_WINDOW
 from emi.config import Config, EVENT_ID
 from emi.metrics import METRIC_KEYS, _scores, metrics_from_predictions
+from emi.nulls import NULL_GENERATORS, label_agreement
 from emi.pipeline import evaluate_loro_fold_isolated
+from emi.plotting import plot_leakcheck_inflation, plot_paired_accuracy, plot_leakcheck_null
 
 log = logging.getLogger("run_benchmark")
 
 
 def check_safety_invariants(outdir: Path) -> None:
-    """Enforce that benchmark_results/physionet_v1_1_final/ and archive/v2/ are protected."""
+    """Enforce that archive directories and legacy baseline are protected from benchmark writes."""
     resolved_out = outdir.resolve()
     final_dir = (ROOT_DIR / "benchmark_results" / "physionet_v1_1_final").resolve()
-    archive_dir = (ROOT_DIR / "archive" / "v2").resolve()
+    archive_dir = (ROOT_DIR / "archive").resolve()
 
-    if resolved_out == final_dir or final_dir in resolved_out.parents:
+    if final_dir.exists() and (resolved_out == final_dir or final_dir in resolved_out.parents):
         raise ValueError(
             f"CRITICAL SAFETY INVARIANT VIOLATION: Refusing to write to baseline directory: {final_dir}"
         )
@@ -94,6 +100,25 @@ def process_one_subject(subj_id: int, args, cfg: Config, folder: Path):
 
     t_start = time.time()
     sid_str = f"S{subj_id:03d}"
+
+    # Fast path: Load genuinely computed subject from cache if valid and not forced
+    if not getattr(args, "force", False):
+        csv_file = folder / f"physionet_sub-{subj_id:03d}.csv"
+        info_file = folder / f"physionet_sub-{subj_id:03d}_info.json"
+        fold_file = folder / f"physionet_sub-{subj_id:03d}_fold_details.json"
+        if csv_file.exists() and info_file.exists() and fold_file.exists():
+            try:
+                df_subj = pd.read_csv(csv_file)
+                expected_rows = 4 + (2 * args.n_null * 4 if args.n_null > 0 else 0)
+                if len(df_subj) == expected_rows:
+                    with open(info_file, "r", encoding="utf-8") as f:
+                        subj_info = json.load(f)
+                    with open(fold_file, "r", encoding="utf-8") as f:
+                        fold_dets = json.load(f)
+                    log.info("%s loaded from cache (%d rows)", sid_str, len(df_subj))
+                    return (subj_id, df_subj, subj_info, fold_dets, None)
+            except Exception as exc:
+                log.warning("%s cache read failed, recomputing: %s", sid_str, exc)
 
     try:
         # 1. Whole-recording participant technical screening (Approach A)
@@ -179,7 +204,7 @@ def process_one_subject(subj_id: int, args, cfg: Config, folder: Path):
         n_screen_trials = len(ep_dec)
         if n_screen_trials < args.min_trials:
             per_run = np.bincount(runs_full)[np.bincount(runs_full) > 0].tolist()
-            reason = f"Sample size threshold violation: {n_screen_trials} trials < minimum {args.min_trials} threshold (min_trials={args.min_trials} in settings.json)"
+            reason = f"Sample size threshold violation: {n_screen_trials} trials < minimum {args.min_trials} threshold (< 30; min_trials={args.min_trials} in settings.json)"
             log.warning("%s excluded: %s", sid_str, reason)
             return (
                 subj_id,
@@ -248,6 +273,7 @@ def process_one_subject(subj_id: int, args, cfg: Config, folder: Path):
         d3_seconds = round(time.time() - d3_t0, 3)
 
         # Design D1m: 3-fold StratifiedKFold (5 repeats = 15 folds)
+        # Operates on standardized preprocessed epoch pool (X, y); CSP and LDA fitted strictly on train fold.
         d1m_t0 = time.time()
         d1m_rep_metrics = []
         for rep in range(args.n_repeats):
@@ -272,22 +298,16 @@ def process_one_subject(subj_id: int, args, cfg: Config, folder: Path):
         d1m_seconds = round(time.time() - d1m_t0, 3)
 
         # Design D1s: Size-matched random split (20 repeats = 60 folds)
+        # Uses sp.size_matched_random_repeats to guarantee strictly disjoint test partitions
+        # that match LORO fold sizes and class counts exactly, testing every trial once per repeat.
         d1s_t0 = time.time()
-        idx_c0 = np.where(y == 0)[0]
-        idx_c1 = np.where(y == 1)[0]
+        d1s_repeats = sp.size_matched_random_repeats(
+            y, runs, repeats=args.n_repeats_matched, seed=args.seed
+        )
         d1s_rep_metrics = []
-        for rep in range(args.n_repeats_matched):
+        for folds in d1s_repeats:
             yt, yp, ys, fa, sizes = [], [], [], [], []
-            for fold_i, spec in enumerate(fold_specs):
-                rng = np.random.default_rng(123 + rep * 1000 + fold_i)
-                perm0 = rng.permutation(idx_c0)
-                perm1 = rng.permutation(idx_c1)
-                test_0 = perm0[: spec["n_test_0"]]
-                train_0 = perm0[spec["n_test_0"] : spec["n_test_0"] + spec["n_train_0"]]
-                test_1 = perm1[: spec["n_test_1"]]
-                train_1 = perm1[spec["n_test_1"] : spec["n_test_1"] + spec["n_train_1"]]
-                tr = np.concatenate([train_0, train_1])
-                te = np.concatenate([test_0, test_1])
+            for tr, te in folds:
                 clf = make_clf()
                 clf.fit(X[tr], y[tr])
                 pred = clf.predict(X[te])
@@ -300,7 +320,7 @@ def process_one_subject(subj_id: int, args, cfg: Config, folder: Path):
             yt_arr, yp_arr, ys_arr = np.concatenate(yt), np.concatenate(yp), np.concatenate(ys)
             score_val = None if np.isnan(ys_arr).any() else ys_arr
             d1s_rep_metrics.append(
-                metrics_from_predictions(yt_arr, yp_arr, score_val, fa, len(fold_specs), float(np.mean(sizes)))
+                metrics_from_predictions(yt_arr, yp_arr, score_val, fa, len(folds), float(np.mean(sizes)))
             )
         d1s_metrics = {k: float(np.nanmean([m[k] for m in d1s_rep_metrics])) for k in METRIC_KEYS}
         d1s_seconds = round(time.time() - d1s_t0, 3)
@@ -397,6 +417,180 @@ def process_one_subject(subj_id: int, args, cfg: Config, folder: Path):
                 "error": "",
             },
         ]
+
+        # 6b. Null models evaluation (if n_null > 0)
+        if args.n_null > 0 and args.null_types:
+            null_types = [t.strip() for t in args.null_types.split(",") if t.strip()]
+            rng = np.random.default_rng(args.seed + 1000 * int(subj_id))
+            for nt in null_types:
+                if nt not in NULL_GENERATORS:
+                    continue
+                gen_fn = NULL_GENERATORS[nt]
+                for k in range(1, args.n_null + 1):
+                    yk = gen_fn(y, runs, rng)
+                    agree = label_agreement(y, yk)
+                    lhash_k = hashlib.md5(yk.astype(np.int8).tobytes()).hexdigest()[:8]
+
+                    # Design D3: LORO on yk
+                    d3_k_t0 = time.time()
+                    yt, yp, ys, fa, sizes = [], [], [], [], []
+                    logo = LeaveOneGroupOut()
+                    for tr, te in logo.split(X, yk, groups=runs):
+                        clf = make_clf()
+                        clf.fit(X[tr], yk[tr])
+                        pred = clf.predict(X[te])
+                        yt.append(yk[te])
+                        yp.append(pred)
+                        s = _scores(clf, X[te])
+                        ys.append(s if s is not None else np.full(len(te), np.nan))
+                        fa.append(float(np.mean(pred == yk[te])))
+                        sizes.append(len(te))
+                    yt_arr, yp_arr, ys_arr = np.concatenate(yt), np.concatenate(yp), np.concatenate(ys)
+                    score_val = None if np.isnan(ys_arr).any() else ys_arr
+                    d3_k_metrics = metrics_from_predictions(yt_arr, yp_arr, score_val, fa, 3, float(np.mean(sizes)))
+                    d3_k_seconds = round(time.time() - d3_k_t0, 3)
+
+                    # Design D1m: 3-fold StratifiedKFold (5 repeats = 15 folds)
+                    d1m_k_t0 = time.time()
+                    d1m_rep_metrics = []
+                    for rep in range(args.n_repeats):
+                        skf = StratifiedKFold(n_splits=3, shuffle=True, random_state=args.seed + rep)
+                        yt, yp, ys, fa, sizes = [], [], [], [], []
+                        for tr, te in skf.split(X, yk):
+                            clf = make_clf()
+                            clf.fit(X[tr], yk[tr])
+                            pred = clf.predict(X[te])
+                            yt.append(yk[te])
+                            yp.append(pred)
+                            s = _scores(clf, X[te])
+                            ys.append(s if s is not None else np.full(len(te), np.nan))
+                            fa.append(float(np.mean(pred == yk[te])))
+                            sizes.append(len(te))
+                        yt_arr, yp_arr, ys_arr = np.concatenate(yt), np.concatenate(yp), np.concatenate(ys)
+                        score_val = None if np.isnan(ys_arr).any() else ys_arr
+                        d1m_rep_metrics.append(
+                            metrics_from_predictions(yt_arr, yp_arr, score_val, fa, 3, float(np.mean(sizes)))
+                        )
+                    d1m_k_metrics = {k_m: float(np.nanmean([m[k_m] for m in d1m_rep_metrics])) for k_m in METRIC_KEYS}
+                    d1m_k_seconds = round(time.time() - d1m_k_t0, 3)
+
+                    # Design D1s: Size-matched random split (20 repeats = 60 folds)
+                    d1s_k_t0 = time.time()
+                    d1s_repeats = sp.size_matched_random_repeats(
+                        yk, runs, repeats=args.n_repeats_matched, seed=args.seed
+                    )
+                    d1s_rep_metrics = []
+                    for folds in d1s_repeats:
+                        yt, yp, ys, fa, sizes = [], [], [], [], []
+                        for tr, te in folds:
+                            clf = make_clf()
+                            clf.fit(X[tr], yk[tr])
+                            pred = clf.predict(X[te])
+                            yt.append(yk[te])
+                            yp.append(pred)
+                            s = _scores(clf, X[te])
+                            ys.append(s if s is not None else np.full(len(te), np.nan))
+                            fa.append(float(np.mean(pred == yk[te])))
+                            sizes.append(len(te))
+                        yt_arr, yp_arr, ys_arr = np.concatenate(yt), np.concatenate(yp), np.concatenate(ys)
+                        score_val = None if np.isnan(ys_arr).any() else ys_arr
+                        d1s_rep_metrics.append(
+                            metrics_from_predictions(yt_arr, yp_arr, score_val, fa, len(folds), float(np.mean(sizes)))
+                        )
+                    d1s_k_metrics = {k_m: float(np.nanmean([m[k_m] for m in d1s_rep_metrics])) for k_m in METRIC_KEYS}
+                    d1s_k_seconds = round(time.time() - d1s_k_t0, 3)
+
+                    # Design P1: Positive control global CSP fit on all trials + 3 LORO LDA folds
+                    p1_k_t0 = time.time()
+                    csp_global = CSP(n_components=4, reg="oas", log=True, norm_trace=False)
+                    X_csp_all = csp_global.fit_transform(X, yk)
+                    logo = LeaveOneGroupOut()
+                    yt, yp, ys, fa, sizes = [], [], [], [], []
+                    for tr, te in logo.split(X_csp_all, yk, groups=runs):
+                        lda = LinearDiscriminantAnalysis(solver="lsqr", shrinkage="auto")
+                        lda.fit(X_csp_all[tr], yk[tr])
+                        pred = lda.predict(X_csp_all[te])
+                        yt.append(yk[te])
+                        yp.append(pred)
+                        s = _scores(lda, X_csp_all[te])
+                        ys.append(s if s is not None else np.full(len(te), np.nan))
+                        fa.append(float(np.mean(pred == yk[te])))
+                        sizes.append(len(te))
+                    yt_arr, yp_arr, ys_arr = np.concatenate(yt), np.concatenate(yp), np.concatenate(ys)
+                    score_val = None if np.isnan(ys_arr).any() else ys_arr
+                    p1_k_metrics = metrics_from_predictions(yt_arr, yp_arr, score_val, fa, 3, float(np.mean(sizes)))
+                    p1_k_seconds = round(time.time() - p1_k_t0, 3)
+
+                    rows.extend([
+                        {
+                            "dataset": args.dataset,
+                            "subject": subj_id,
+                            "decoder": "csp_lda",
+                            "design": "D3_loro",
+                            "label_type": nt,
+                            "perm": k,
+                            "n_trials": len(yk),
+                            "n_channels": X.shape[1],
+                            "csp_impl": "mne_oas",
+                            "base_window": "1-3",
+                            "label_agreement": agree,
+                            "label_hash": lhash_k,
+                            **{k_m: d3_k_metrics[k_m] for k_m in METRIC_KEYS},
+                            "seconds": d3_k_seconds,
+                            "error": "",
+                        },
+                        {
+                            "dataset": args.dataset,
+                            "subject": subj_id,
+                            "decoder": "csp_lda",
+                            "design": "D1m_matched_k",
+                            "label_type": nt,
+                            "perm": k,
+                            "n_trials": len(yk),
+                            "n_channels": X.shape[1],
+                            "csp_impl": "mne_oas",
+                            "base_window": "1-3",
+                            "label_agreement": agree,
+                            "label_hash": lhash_k,
+                            **{k_m: d1m_k_metrics[k_m] for k_m in METRIC_KEYS},
+                            "seconds": d1m_k_seconds,
+                            "error": "",
+                        },
+                        {
+                            "dataset": args.dataset,
+                            "subject": subj_id,
+                            "decoder": "csp_lda",
+                            "design": "D1s_size_matched",
+                            "label_type": nt,
+                            "perm": k,
+                            "n_trials": len(yk),
+                            "n_channels": X.shape[1],
+                            "csp_impl": "mne_oas",
+                            "base_window": "1-3",
+                            "label_agreement": agree,
+                            "label_hash": lhash_k,
+                            **{k_m: d1s_k_metrics[k_m] for k_m in METRIC_KEYS},
+                            "seconds": d1s_k_seconds,
+                            "error": "",
+                        },
+                        {
+                            "dataset": args.dataset,
+                            "subject": subj_id,
+                            "decoder": "csp_lda",
+                            "design": "P1_csp_on_all",
+                            "label_type": nt,
+                            "perm": k,
+                            "n_trials": len(yk),
+                            "n_channels": X.shape[1],
+                            "csp_impl": "mne_oas",
+                            "base_window": "1-3",
+                            "label_agreement": agree,
+                            "label_hash": lhash_k,
+                            **{k_m: p1_k_metrics[k_m] for k_m in METRIC_KEYS},
+                            "seconds": p1_k_seconds,
+                            "error": "",
+                        },
+                    ])
 
         df_subj = pd.DataFrame(rows)
 
@@ -623,25 +817,89 @@ def main():
     if not frames:
         raise SystemExit("Error: No subjects completed successfully. Check logs.")
 
-    # 1. leakcheck_raw.csv
+    # 1. leakcheck_raw.csv (& fold_metrics.csv alias)
     df_raw = pd.concat(frames, ignore_index=True)
     df_raw.to_csv(outdir / "leakcheck_raw.csv", index=False)
     df_raw.to_csv(run_out / "leakcheck_raw.csv", index=False)
+    df_raw.to_csv(outdir / "fold_metrics.csv", index=False)
+    df_raw.to_csv(run_out / "fold_metrics.csv", index=False)
 
     # 2. subject_info.csv
     df_info = pd.DataFrame(infos)
     df_info.to_csv(outdir / "subject_info.csv", index=False)
     df_info.to_csv(run_out / "subject_info.csv", index=False)
 
-    # 3. inflation_by_subject.csv
+    # 3. inflation_by_subject.csv (& participant_metrics.csv alias)
     by_subject = lc.inflation_by_subject(df_raw)
     by_subject.to_csv(outdir / "inflation_by_subject.csv", index=False)
     by_subject.to_csv(run_out / "inflation_by_subject.csv", index=False)
+    by_subject.to_csv(outdir / "participant_metrics.csv", index=False)
+    by_subject.to_csv(run_out / "participant_metrics.csv", index=False)
 
-    # 4. inflation_table.csv
+    # 4. inflation_table.csv (& design_comparisons.csv alias)
     infl_tab = lc.inflation_table(by_subject)
     infl_tab.to_csv(outdir / "inflation_table.csv", index=False)
     infl_tab.to_csv(run_out / "inflation_table.csv", index=False)
+    infl_tab.to_csv(outdir / "design_comparisons.csv", index=False)
+    infl_tab.to_csv(run_out / "design_comparisons.csv", index=False)
+
+    # 4b. null outputs (when n_null > 0)
+    has_null = (df_raw["label_type"] != "real").any()
+    if has_null:
+        nul = lc.null_table(df_raw)
+        nul.to_csv(outdir / "null_table.csv", index=False)
+        nul.to_csv(run_out / "null_table.csv", index=False)
+
+        emp_p = lc.subject_empirical_p(df_raw)
+        emp_p.to_csv(outdir / "subject_empirical_p.csv", index=False)
+        emp_p.to_csv(run_out / "subject_empirical_p.csv", index=False)
+
+        paired_null = lc.paired_delta_vs_null(df_raw)
+        paired_null.to_csv(outdir / "paired_delta_vs_null.csv", index=False)
+        paired_null.to_csv(run_out / "paired_delta_vs_null.csv", index=False)
+    else:
+        nul = pd.DataFrame()
+        for fn in ["null_table.csv", "subject_empirical_p.csv", "paired_delta_vs_null.csv"]:
+            pd.DataFrame().to_csv(outdir / fn, index=False)
+            pd.DataFrame().to_csv(run_out / fn, index=False)
+
+    # 4c. Diagnostic and benchmark figures
+    try:
+        plot_leakcheck_inflation(
+            by_subject,
+            outdir / "inflation_csp_lda.png",
+            title="PhysioNet EEGMMIDB | csp_lda",
+        )
+        plot_leakcheck_inflation(
+            by_subject,
+            run_out / "inflation_csp_lda.png",
+            title="PhysioNet EEGMMIDB | csp_lda",
+        )
+        if "D1s_size_matched" in set(by_subject["design"]):
+            plot_paired_accuracy(
+                by_subject,
+                "D1s_size_matched",
+                outdir / "paired_csp_lda_size_matched.png",
+            )
+            plot_paired_accuracy(
+                by_subject,
+                "D1s_size_matched",
+                run_out / "paired_csp_lda_size_matched.png",
+            )
+        if has_null and not nul.empty and "decoder" in nul.columns:
+            for (dec, nt), g in nul.groupby(["decoder", "null_type"]):
+                plot_leakcheck_null(
+                    g,
+                    outdir / f"null_fpr_{dec}_{nt}.png",
+                    title=f"{args.dataset} | {dec} | null: {nt}",
+                )
+                plot_leakcheck_null(
+                    g,
+                    run_out / f"null_fpr_{dec}_{nt}.png",
+                    title=f"{args.dataset} | {dec} | null: {nt}",
+                )
+    except Exception as exc:
+        log.warning("Figure plotting encountered non-fatal error: %s", exc)
 
     # 5. fold_details.json
     (outdir / "fold_details.json").write_text(json.dumps(all_fold_details, indent=2))
@@ -670,7 +928,7 @@ def main():
     flow_manifest = {
         "dataset_name": "PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB)",
         "protocol_version": "LeakCheck V1.1 Repaired",
-        "benchmark_id": "physionet_v1_1_repaired",
+        "benchmark_id": outdir.name,
         "requested_subjects_total": n_req,
         "included_subjects_total": n_inc,
         "excluded_subjects_total": n_exc,

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-18T18:15:40.955589</dc:date>
+    <dc:date>2026-11-19T21:05:29.168989</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 16.4448 67.279295 16.4448 73.102214
 L 16.4448 153.070303 
 Q 16.4448 158.893222 28.0008 158.893222 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #1f4e79; opacity: 0.92"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #1f4e79; opacity: 0.92"/>
    </g>
    <g id="patch_3">
     <path d="M 212.8968 158.893222 
@@ -53,7 +53,7 @@ Q 201.3408 67.279295 201.3408 73.102214
 L 201.3408 153.070303 
 Q 201.3408 158.893222 212.8968 158.893222 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #2b5c8f; opacity: 0.92"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #2b5c8f; opacity: 0.92"/>
    </g>
    <g id="patch_4">
     <path d="M 413.2008 158.893222 
@@ -66,7 +66,7 @@ Q 401.6448 67.279295 401.6448 73.102214
 L 401.6448 153.070303 
 Q 401.6448 158.893222 413.2008 158.893222 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #2e8b57; opacity: 0.92"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #2e8b57; opacity: 0.92"/>
    </g>
    <g id="patch_5">
     <path d="M 590.3928 120.073762 
@@ -79,7 +79,7 @@ Q 578.8368 47.869564 578.8368 53.692483
 L 578.8368 114.250842 
 Q 578.8368 120.073762 590.3928 120.073762 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #1f4e79; opacity: 0.92"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #1f4e79; opacity: 0.92"/>
    </g>
    <g id="patch_6">
     <path d="M 590.3928 213.240468 
@@ -92,7 +92,7 @@ Q 578.8368 141.03627 578.8368 146.85919
 L 578.8368 207.417549 
 Q 578.8368 213.240468 590.3928 213.240468 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #2e8b57; opacity: 0.92"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #2e8b57; opacity: 0.92"/>
    </g>
    <g id="patch_7">
     <path d="M 590.3928 306.407174 
@@ -105,7 +105,7 @@ Q 578.8368 234.202977 578.8368 240.025896
 L 578.8368 300.584255 
 Q 578.8368 306.407174 590.3928 306.407174 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #e69f00; opacity: 0.92"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #e69f00; opacity: 0.92"/>
    </g>
    <g id="patch_8">
     <path d="M 590.3928 399.57388 
@@ -118,7 +118,7 @@ Q 578.8368 327.369683 578.8368 333.192602
 L 578.8368 393.750961 
 Q 578.8368 399.57388 590.3928 399.57388 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #b22222; opacity: 0.92"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #b22222; opacity: 0.92"/>
    </g>
    <g id="patch_9">
     <path d="M 26.46 398.409296 
@@ -131,7 +131,7 @@ Q 18.756 313.006482 18.756 316.888429
 L 18.756 394.52735 
 Q 18.756 398.409296 26.46 398.409296 
 z
-" clip-path="url(#p08bd3e8a07)" style="fill: #f0f4f8; stroke: #c0cdd8; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#pbd628f8b7c)" style="fill: #f0f4f8; stroke: #c0cdd8; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- PhysioNet EEGMMIDB -->
@@ -3977,7 +3977,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p08bd3e8a07">
+  <clipPath id="pbd628f8b7c">
    <rect x="7.2" y="31.565391" width="770.4" height="388.194609"/>
   </clipPath>
  </defs>

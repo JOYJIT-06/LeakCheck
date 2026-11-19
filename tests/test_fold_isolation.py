@@ -255,8 +255,12 @@ def test_legacy_vs_fold_isolated_side_by_side_execution():
     assert hashlib.sha256(raw_r12.get_data().tobytes()).hexdigest() == hash_r12_before
 
     # 4. Verify frozen baseline results directory is completely intact and untouched
-    baseline_dir = Path("D:/my lab/LeakCheck_remote/benchmark_results/physionet_v1_1_final")
-    assert baseline_dir.exists(), "Frozen baseline directory benchmark_results/physionet_v1_1_final must exist"
+    repo_root = Path(__file__).resolve().parents[1]
+    baseline_dir = repo_root / "benchmark_results" / "physionet_v1_1_final"
+    if not baseline_dir.exists():
+        # Fallback to archived historical benchmarks if consolidated during M3
+        baseline_dir = repo_root / "archive" / "historical_benchmarks" / "physionet_v1_1_final"
+    assert baseline_dir.exists(), f"Frozen baseline directory {baseline_dir} must exist"
     mandatory_baseline_files = [
         "inflation_by_subject.csv",
         "leakcheck_raw.csv",

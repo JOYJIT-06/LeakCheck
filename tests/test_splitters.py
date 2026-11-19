@@ -121,3 +121,83 @@ def test_size_matched_split_differs_between_repeats():
     reps = sp.size_matched_random_repeats(y, runs, repeats=4, seed=0)
     firsts = [tuple(folds[0][1]) for folds in reps]
     assert len(set(firsts)) > 1
+
+
+def test_d1s_strictly_disjoint_partitions_and_complete_coverage():
+    """Verify that size_matched_random_repeats forms strictly pairwise-disjoint test folds
+    and covers 100% of trials across arbitrary run sizes, unbalanced classes, and repeats.
+    """
+    rng = np.random.default_rng(42)
+
+    # Stress test case: 4 runs of varying trial counts (15, 17, 13, 19 trials) with unbalanced classes
+    run_sizes = [15, 17, 13, 19]
+    groups = np.concatenate([np.full(n, r) for r, n in enumerate(run_sizes)])
+    y = np.concatenate([
+        rng.permutation(np.r_[np.zeros(n // 2, int), np.ones(n - n // 2, int)])
+        for n in run_sizes
+    ])
+    n_total = len(y)
+    all_trials = set(range(n_total))
+
+    n_repeats = 20
+    repeats = sp.size_matched_random_repeats(y, groups, repeats=n_repeats, seed=123)
+    assert len(repeats) == n_repeats
+
+    for rep_idx, folds in enumerate(repeats):
+        assert len(folds) == len(run_sizes), f"Repeat {rep_idx} fold count mismatch"
+        seen_test_indices = []
+
+        for fold_idx, (tr, te) in enumerate(folds):
+            tr_set, te_set = set(tr), set(te)
+
+            # Invariant 1: Train and test are disjoint within fold
+            assert tr_set.isdisjoint(te_set), f"Repeat {rep_idx} fold {fold_idx} train and test overlap!"
+
+            # Invariant 2: Train and test form complete partition of all trials
+            assert tr_set | te_set == all_trials, f"Repeat {rep_idx} fold {fold_idx} partition does not equal full trial set!"
+            assert len(tr) + len(te) == n_total
+
+            # Invariant 3: Test size matches corresponding run size exactly
+            expected_run_size = run_sizes[fold_idx]
+            assert len(te) == expected_run_size, (
+                f"Repeat {rep_idx} fold {fold_idx} size mismatch: expected {expected_run_size}, got {len(te)}"
+            )
+
+            # Invariant 4: Class distribution matches corresponding run exactly
+            for c in np.unique(y):
+                expected_class_count = int(np.sum((groups == fold_idx) & (y == c)))
+                actual_class_count = int(np.sum(y[te] == c))
+                assert actual_class_count == expected_class_count, (
+                    f"Repeat {rep_idx} fold {fold_idx} class {c} count mismatch: "
+                    f"expected {expected_class_count}, got {actual_class_count}"
+                )
+
+            seen_test_indices.append(te)
+
+        # Invariant 5: Pairwise disjointness across folds in the same repeat
+        for i in range(len(folds)):
+            for j in range(i + 1, len(folds)):
+                assert set(seen_test_indices[i]).isdisjoint(set(seen_test_indices[j])), (
+                    f"Repeat {rep_idx}: Test folds {i} and {j} overlap!"
+                )
+
+        # Invariant 6: Union of all test sets covers every trial exactly once (zero omissions, zero duplicates)
+        flat_tested = np.concatenate(seen_test_indices)
+        assert len(flat_tested) == n_total, f"Repeat {rep_idx} tested count mismatch"
+        assert sorted(flat_tested) == list(range(n_total)), f"Repeat {rep_idx} failed complete partition coverage"
+
+
+def test_run_benchmark_d1s_prediction_disjointness():
+    """Verify that benchmark runner D1s loop generates predictions covering all trials exactly once per repeat."""
+    y = np.array([0] * 22 + [1] * 23)
+    runs = np.array([0] * 15 + [1] * 15 + [2] * 15)
+    repeats = sp.size_matched_random_repeats(y, runs, repeats=5, seed=123)
+
+    for rep_idx, folds in enumerate(repeats):
+        tested_trials = []
+        for tr, te in folds:
+            tested_trials.extend(te)
+        assert sorted(tested_trials) == list(range(len(y))), (
+            f"Repeat {rep_idx} in benchmark D1s does not partition trials exactly once"
+        )
+

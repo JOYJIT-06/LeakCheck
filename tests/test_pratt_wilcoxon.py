@@ -102,3 +102,51 @@ def test_continuity_correction_direction():
     sd = np.sqrt(n * (n + 1) * (2 * n + 1) / 24.0)
     z_expected = (21 - mu - 0.5) / sd
     assert np.isclose(z, z_expected)
+
+
+def test_wilcoxon_pratt_large_z_numerical_stability():
+    """Verify that wilcoxon_pratt does not underflow to 0.0 when standardized z is large (e.g. z >= 8.30).
+    
+    Tests synthetic vectors matching empirical contrast scales (e.g. z = 8.75 and z = 8.86),
+    verifying strict positive bounds, finite log-p values, and exact agreement with scipy.stats.norm.sf.
+    """
+    from emi.leakstats import wilcoxon_pratt, holm
+    import scipy.stats as stats
+
+    # 1. Point test on an exact synthetic difference vector yielding z ~ 8.75 - 8.86
+    # (Matches PhysioNet V1.1 P1 vs D3 contrast: N=105, 4 zero ties, 98 positive shifts, 3 negative shifts)
+    rng = np.random.default_rng(42)
+    d_large = np.concatenate([
+        np.zeros(4),
+        np.full(98, 25.0) + rng.uniform(-1.0, 1.0, 98),
+        np.full(3, -5.0) + rng.uniform(-0.5, 0.5, 3)
+    ])
+    w, z, p = wilcoxon_pratt(d_large)
+
+    assert z > 8.0, f"Expected large Z > 8.0, got {z}"
+    assert p > 0.0, f"Critical failure: p-value underflowed to 0.0 at Z={z}!"
+    assert np.isfinite(p), "p-value must be finite"
+    assert p < 1e-15, f"p-value must reflect extreme significance, got {p}"
+
+    # Verify exact match with 2 * norm.sf(abs(z))
+    expected_p = float(2.0 * stats.norm.sf(abs(z)))
+    assert np.isclose(p, expected_p, rtol=1e-12), f"p-value {p} diverges from norm.sf {expected_p}"
+
+    # 2. Extreme Z boundary tests (up to z = 30) ensuring no overflow/underflow or exception
+    for z_target in [8.30, 8.75, 10.0, 15.0, 25.0]:
+        expected_sf = float(2.0 * stats.norm.sf(z_target))
+        assert expected_sf > 0.0, f"norm.sf unexpectedly underflowed at z={z_target}"
+        assert np.isfinite(expected_sf)
+
+    # 3. Two-sided symmetry check: negative large Z must yield identical p-value
+    w_neg, z_neg, p_neg = wilcoxon_pratt(-d_large)
+    assert np.isclose(z_neg, -z), "Z statistic should be sign-reversed"
+    assert np.isclose(p_neg, p, rtol=1e-12), "Two-sided p-value must be symmetric for -z"
+
+    # 4. Multiplicity adjustment (Holm) on vectors containing extreme p-values
+    p_family = np.array([p, 5.66e-05, 5.45e-09])
+    adj_p = holm(p_family)
+    assert adj_p[0] > 0.0, "Holm-adjusted p-value must remain strictly positive"
+    assert np.isclose(adj_p[0], p * 3.0, rtol=1e-12), "Holm step-down multiplier 3 failed on smallest p"
+    assert adj_p[0] < adj_p[2] < adj_p[1], "Holm monotonicity violated"
+

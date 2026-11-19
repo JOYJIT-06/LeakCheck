@@ -1,6 +1,6 @@
 {
   "dataset_name": "PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB)",
-  "protocol_version": "LeakCheck V1.1",
+  "protocol_version": "LeakCheck V1.1 Repaired",
   "benchmark_id": "physionet_v1_1",
   "requested_subjects_total": 109,
   "included_subjects_total": 105,
@@ -18,31 +18,31 @@
     "empirical_evidence": {
       "S088": {
         "status": "INCLUDED",
-        "n_trials": 56,
+        "n_trials": 53,
         "sfreq_hz": 128.0,
-        "delta_p1_pp": 12.5,
-        "delta_d1s_pp": -5.8
+        "delta_p1_pp": 15.09,
+        "delta_d1s_pp": -8.87
       },
       "S092": {
         "status": "INCLUDED",
         "n_trials": 57,
         "sfreq_hz": 128.0,
-        "delta_p1_pp": 24.56,
-        "delta_d1s_pp": 3.33
+        "delta_p1_pp": 19.3,
+        "delta_d1s_pp": -0.61
       },
       "S100": {
         "status": "INCLUDED",
-        "n_trials": 36,
+        "n_trials": 34,
         "sfreq_hz": 128.0,
-        "delta_p1_pp": 25.0,
-        "delta_d1s_pp": 5.42
+        "delta_p1_pp": 26.47,
+        "delta_d1s_pp": 3.53
       },
       "S104": {
         "status": "INCLUDED",
         "n_trials": 42,
         "sfreq_hz": 160.0,
         "delta_p1_pp": 40.48,
-        "delta_d1s_pp": 2.74
+        "delta_d1s_pp": 3.33
       }
     }
   },
@@ -54,12 +54,12 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-001_epochs.npz",
-      "cache_sha256": "aea22a2eb46f0c73892a00d5e8d24d394f0cbb863418c55e0f9ed93710c80e0f",
-      "n_trials": 45,
+      "cache_path": "physionet_repaired_sub-001",
+      "cache_sha256": "12be6aeae89d5af1abba1e4cb2a5f06407d8c7ff13af525bcd1a2531d635772b",
+      "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
-        15,
+        14,
         15,
         15
       ],
@@ -67,19 +67,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.5689,
-          "delta_pp": -14.22
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.5455,
+          "delta_pp": 0.0
         },
         "D1s_size_matched": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.6567,
-          "delta_pp": -5.44
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.575,
+          "delta_pp": 2.95
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.9111,
-          "delta_pp": 20.0
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.8864,
+          "delta_pp": 34.09
         }
       }
     },
@@ -90,8 +90,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-002_epochs.npz",
-      "cache_sha256": "92e94c98296ffb5a36867a1b9662bb70c05b6aae8282accf5f63c81a790e3f50",
+      "cache_path": "physionet_repaired_sub-002",
+      "cache_sha256": "a15399c9979df7a70d86fa6e8b8abe451eef735781e2f2e0813c6da41c16a389",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -103,19 +103,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.8222,
-          "acc_leaky": 0.8222,
-          "delta_pp": 0.0
+          "acc_ref": 0.9556,
+          "acc_leaky": 0.6578,
+          "delta_pp": -29.78
         },
         "D1s_size_matched": {
-          "acc_ref": 0.8222,
-          "acc_leaky": 0.7933,
-          "delta_pp": -2.89
+          "acc_ref": 0.9556,
+          "acc_leaky": 0.6544,
+          "delta_pp": -30.11
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.8222,
+          "acc_ref": 0.9556,
           "acc_leaky": 0.8444,
-          "delta_pp": 2.22
+          "delta_pp": -11.11
         }
       }
     },
@@ -126,32 +126,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-003_epochs.npz",
-      "cache_sha256": "e5ed6ba8e8c569f7d44f60814279105a9c7c3d22ec776abaaa665e3916fed8a4",
-      "n_trials": 45,
+      "cache_path": "physionet_repaired_sub-003",
+      "cache_sha256": "46848cca523160eee24f1e7c39d622dcf27823d2e52b54341db687f39e58519d",
+      "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
         15,
-        15,
+        14,
         15
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.4489,
-          "delta_pp": -8.44
+          "acc_ref": 0.5227,
+          "acc_leaky": 0.4727,
+          "delta_pp": -5.0
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.5289,
-          "delta_pp": -0.44
+          "acc_ref": 0.5227,
+          "acc_leaky": 0.5023,
+          "delta_pp": -2.05
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.8222,
-          "delta_pp": 28.89
+          "acc_ref": 0.5227,
+          "acc_leaky": 0.7045,
+          "delta_pp": 18.18
         }
       }
     },
@@ -162,8 +162,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-004_epochs.npz",
-      "cache_sha256": "bac2bf6100dda1d18ce951db2a67339515f3c65fbf41cf66bdc2442ae5604579",
+      "cache_path": "physionet_repaired_sub-004",
+      "cache_sha256": "65b24cc5fc3075c246c90feac9bd4d86d8549deca827825bb6b50a362d8f7a06",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -175,19 +175,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.5422,
-          "delta_pp": 5.33
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4489,
+          "delta_pp": -1.78
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.5044,
-          "delta_pp": 1.56
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.5011,
+          "delta_pp": 3.44
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.6444,
-          "delta_pp": 15.56
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.6,
+          "delta_pp": 13.33
         }
       }
     },
@@ -198,8 +198,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-005_epochs.npz",
-      "cache_sha256": "484ecdc0bd327cb34d03eac57739ee20642e244cb7c841b9088b65222ab0ae7b",
+      "cache_path": "physionet_repaired_sub-005",
+      "cache_sha256": "146478a3a13a925f54534d508cfb6b88102019da7c2443a54ab769b96d3e13ef",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -211,19 +211,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.4356,
-          "delta_pp": -9.78
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4533,
+          "delta_pp": -16.89
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.4544,
-          "delta_pp": -7.89
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4222,
+          "delta_pp": -20.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5333,
+          "acc_ref": 0.6222,
           "acc_leaky": 1.0,
-          "delta_pp": 46.67
+          "delta_pp": 37.78
         }
       }
     },
@@ -234,8 +234,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-006_epochs.npz",
-      "cache_sha256": "feb7150e44c085dd8b7f7347d1bf6cb72639721510cd9f126cfccf249dbfa8d5",
+      "cache_path": "physionet_repaired_sub-006",
+      "cache_sha256": "cf8f9f838fd014d5b24a429d5105c20448a1d5742bea6218a00cf6c202de2af6",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -247,19 +247,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4267,
-          "delta_pp": -4.0
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4044,
+          "delta_pp": -1.78
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4344,
-          "delta_pp": -3.22
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4422,
+          "delta_pp": 2.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4667,
+          "acc_ref": 0.4222,
           "acc_leaky": 0.8222,
-          "delta_pp": 35.56
+          "delta_pp": 40.0
         }
       }
     },
@@ -270,8 +270,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-007_epochs.npz",
-      "cache_sha256": "c69a8a3c20bb70e26fca0e45a35e1895f23fdde4270e498b0134e1ce9a822458",
+      "cache_path": "physionet_repaired_sub-007",
+      "cache_sha256": "4f7a347bec8961cd048d39f6f667c9860ab53a2b7e4958faea240dad2cb858ee",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -284,18 +284,18 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.9778,
-          "acc_leaky": 0.9689,
-          "delta_pp": -0.89
+          "acc_leaky": 0.9778,
+          "delta_pp": -0.0
         },
         "D1s_size_matched": {
           "acc_ref": 0.9778,
-          "acc_leaky": 0.9733,
-          "delta_pp": -0.44
+          "acc_leaky": 0.9667,
+          "delta_pp": -1.11
         },
         "P1_csp_on_all": {
           "acc_ref": 0.9778,
-          "acc_leaky": 1.0,
-          "delta_pp": 2.22
+          "acc_leaky": 0.9778,
+          "delta_pp": 0.0
         }
       }
     },
@@ -306,8 +306,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-008_epochs.npz",
-      "cache_sha256": "6a65d0890acf32456f564fd7f10397523f6f1344bc9421ac87716dd7f4a8b95e",
+      "cache_path": "physionet_repaired_sub-008",
+      "cache_sha256": "e42c3ebe076fc1e4c5ecdbed5c6459d0613adbd8f8c69a1c27be15ba1acbc85b",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -319,19 +319,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4222,
-          "acc_leaky": 0.4578,
-          "delta_pp": 3.56
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.3867,
+          "delta_pp": -16.89
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4222,
-          "acc_leaky": 0.4989,
-          "delta_pp": 7.67
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4667,
+          "delta_pp": -8.89
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4222,
-          "acc_leaky": 0.9556,
-          "delta_pp": 53.33
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.9333,
+          "delta_pp": 37.78
         }
       }
     },
@@ -342,8 +342,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-009_epochs.npz",
-      "cache_sha256": "7d5126d994a2bcd2a22f3280eabc0de55f4c0294f5b098e6ab89f361aab42ed4",
+      "cache_path": "physionet_repaired_sub-009",
+      "cache_sha256": "2bbb36df721639d1d10ae0184df5b3ba37d90a2824ca29736a41232c4aca67db",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -355,19 +355,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.3733,
-          "delta_pp": -18.22
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.3778,
+          "delta_pp": -13.33
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4089,
-          "delta_pp": -14.67
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4033,
+          "delta_pp": -10.78
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 1.0,
-          "delta_pp": 44.44
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.9778,
+          "delta_pp": 46.67
         }
       }
     },
@@ -378,32 +378,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-010_epochs.npz",
-      "cache_sha256": "3baac29c65de785129d23dec9dad2d43c0eb703ee6647638eb3cae8b0c55939c",
-      "n_trials": 45,
+      "cache_path": "physionet_repaired_sub-010",
+      "cache_sha256": "a1635a5e4dafdcbbbbe7daf76fae168825dbde3e114979d98630b65454605f69",
+      "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
         15,
-        15,
+        14,
         15
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.5822,
-          "delta_pp": -6.22
+          "acc_ref": 0.7273,
+          "acc_leaky": 0.5273,
+          "delta_pp": -20.0
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.5689,
-          "delta_pp": -7.56
+          "acc_ref": 0.7273,
+          "acc_leaky": 0.6011,
+          "delta_pp": -12.61
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.8889,
-          "delta_pp": 24.44
+          "acc_ref": 0.7273,
+          "acc_leaky": 0.7955,
+          "delta_pp": 6.82
         }
       }
     },
@@ -414,8 +414,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-011_epochs.npz",
-      "cache_sha256": "2ad4707939f74f6ea276ebd56442dfd0f4b8f0bf0e55d63b0db981ee6d10bec3",
+      "cache_path": "physionet_repaired_sub-011",
+      "cache_sha256": "dc36b9af68f50c6a7edf4c21e375b47165815765ebb0cac250ac6238a35ce052",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -427,19 +427,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.6356,
-          "delta_pp": 5.78
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.6489,
+          "delta_pp": 16.0
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.6356,
-          "delta_pp": 5.78
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.62,
+          "delta_pp": 13.11
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5778,
+          "acc_ref": 0.4889,
           "acc_leaky": 0.6889,
-          "delta_pp": 11.11
+          "delta_pp": 20.0
         }
       }
     },
@@ -450,8 +450,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-012_epochs.npz",
-      "cache_sha256": "b6fa582f9f5a14b27b4a6713c49d5d7ae8f3f7f91dae55122c6dbec6b1cefb4a",
+      "cache_path": "physionet_repaired_sub-012",
+      "cache_sha256": "688347e8213a1e47ff5d3248429a02becaaf541288b3fda576f99478dd60a3ec",
       "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
@@ -463,19 +463,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.6091,
-          "delta_pp": 4.09
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.4682,
+          "delta_pp": -14.55
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.6,
-          "delta_pp": 3.18
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.5284,
+          "delta_pp": -8.52
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.8864,
-          "delta_pp": 31.82
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.8182,
+          "delta_pp": 20.45
         }
       }
     },
@@ -486,32 +486,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-013_epochs.npz",
-      "cache_sha256": "c81fcd984f669085fe5845d752a79dd6cbbe0d992f407f08a9e714cc206ce986",
-      "n_trials": 44,
+      "cache_path": "physionet_repaired_sub-013",
+      "cache_sha256": "ea317aa7780c13bf8484de0f2eda78d6f5b3931463ba80141f432340fb9db214",
+      "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
         15,
         15,
-        14
+        15
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5227,
-          "acc_leaky": 0.5136,
-          "delta_pp": -0.91
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4622,
+          "delta_pp": -9.33
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5227,
-          "acc_leaky": 0.5534,
-          "delta_pp": 3.07
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4978,
+          "delta_pp": -5.78
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5227,
-          "acc_leaky": 0.6364,
-          "delta_pp": 11.36
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.7111,
+          "delta_pp": 15.56
         }
       }
     },
@@ -522,8 +522,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-014_epochs.npz",
-      "cache_sha256": "532a22745f1a26aa7244c86474f0c6f0c7d1e8c265714346ae792fc393702299",
+      "cache_path": "physionet_repaired_sub-014",
+      "cache_sha256": "f2a0b1bb0d6cf39ca359d7166e19b5d0f778fdd1dc6148b7d85d265a057fed99",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -535,19 +535,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.5289,
-          "delta_pp": -11.56
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4756,
+          "delta_pp": -3.56
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.5278,
-          "delta_pp": -11.67
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.5244,
+          "delta_pp": 1.33
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.9333,
-          "delta_pp": 28.89
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.9111,
+          "delta_pp": 40.0
         }
       }
     },
@@ -558,8 +558,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-015_epochs.npz",
-      "cache_sha256": "e1dcd4881ea952ea4754e9de8cf4708556ba3837d60c7250916a886ccac3fdee",
+      "cache_path": "physionet_repaired_sub-015",
+      "cache_sha256": "caa6f343937bc28036a77dcf8906a574ef2dab2acce2d395d97e8795668cd601",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -571,19 +571,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.4978,
-          "delta_pp": -10.22
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.5022,
+          "delta_pp": -7.56
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.5956,
-          "delta_pp": -0.44
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.5256,
+          "delta_pp": -5.22
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.8222,
-          "delta_pp": 22.22
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.8667,
+          "delta_pp": 28.89
         }
       }
     },
@@ -594,8 +594,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-016_epochs.npz",
-      "cache_sha256": "f4520570a5848d649be52e55b9a208bbf498958402ac8779fcc33cae7f8b3fcd",
+      "cache_path": "physionet_repaired_sub-016",
+      "cache_sha256": "89b2436cb0d6961d325c55f70f5ad80df1afdad492ca71b794743f4933675cec",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -607,19 +607,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.5289,
-          "delta_pp": -2.67
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4667,
+          "delta_pp": -6.67
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.5244,
-          "delta_pp": -3.11
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.5111,
+          "delta_pp": -2.22
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.7556,
-          "delta_pp": 20.0
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.7778,
+          "delta_pp": 24.44
         }
       }
     },
@@ -630,8 +630,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-017_epochs.npz",
-      "cache_sha256": "06e2ce53e9e713a60ee7b8ad3ac3b04eb19f03a2291148ce366d4075650eacad",
+      "cache_path": "physionet_repaired_sub-017",
+      "cache_sha256": "d31a10fa294537b67d431d1eb6809b08d6fcc783db4891d6e447a4159c7ac5d4",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -643,18 +643,18 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4889,
+          "acc_ref": 0.5556,
           "acc_leaky": 0.3378,
-          "delta_pp": -15.11
+          "delta_pp": -21.78
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.42,
-          "delta_pp": -6.89
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.3989,
+          "delta_pp": -15.67
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.8,
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8667,
           "delta_pp": 31.11
         }
       }
@@ -666,8 +666,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-018_epochs.npz",
-      "cache_sha256": "aab62e5bbe609fabc14417a06d9ffcce556478444cdb52b5be9b391c91178e34",
+      "cache_path": "physionet_repaired_sub-018",
+      "cache_sha256": "b83df9cc2775cb6f35ae07e70454fe6be0acd6b63d80a71c9ac233f89360001f",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -679,19 +679,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.3956,
-          "delta_pp": -13.78
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.3867,
+          "delta_pp": -10.22
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.4744,
-          "delta_pp": -5.89
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.4489,
+          "delta_pp": -4.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.7556,
-          "delta_pp": 22.22
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.8,
+          "delta_pp": 31.11
         }
       }
     },
@@ -702,8 +702,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-019_epochs.npz",
-      "cache_sha256": "e54b7be584333ca9caa14df11dbfa36a5c83352e87dceff280777ffda4122c90",
+      "cache_path": "physionet_repaired_sub-019",
+      "cache_sha256": "6508de4bcf621abc4ae348eb579bf8d3dbcb01b6308acf4d00025c64e376d325",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -716,13 +716,13 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.4889,
-          "acc_leaky": 0.52,
-          "delta_pp": 3.11
+          "acc_leaky": 0.4444,
+          "delta_pp": -4.44
         },
         "D1s_size_matched": {
           "acc_ref": 0.4889,
-          "acc_leaky": 0.5244,
-          "delta_pp": 3.56
+          "acc_leaky": 0.5,
+          "delta_pp": 1.11
         },
         "P1_csp_on_all": {
           "acc_ref": 0.4889,
@@ -738,8 +738,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-020_epochs.npz",
-      "cache_sha256": "c6b770c3eae532b9abef3f34571c49041f0b55337e15b00097a85e7d9c17f2fd",
+      "cache_path": "physionet_repaired_sub-020",
+      "cache_sha256": "d40773b9cd848bdd3ac2a3ae2e4acd87e6734228c053f73e700e62eee0aa86bc",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -751,19 +751,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4222,
-          "delta_pp": -4.44
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.3867,
+          "delta_pp": -19.11
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.48,
-          "delta_pp": 1.33
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.4556,
+          "delta_pp": -12.22
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4667,
+          "acc_ref": 0.5778,
           "acc_leaky": 0.9778,
-          "delta_pp": 51.11
+          "delta_pp": 40.0
         }
       }
     },
@@ -774,8 +774,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-021_epochs.npz",
-      "cache_sha256": "b0a6ed6679e57e6c66e829d835a11523123a81335bc8038bceee293e64d14a82",
+      "cache_path": "physionet_repaired_sub-021",
+      "cache_sha256": "27fb1fd3678a5d9bce7b9090f759941cadf8e635c77f99d66986af3c48f899c1",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -788,18 +788,18 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.6444,
-          "acc_leaky": 0.5378,
-          "delta_pp": -10.67
+          "acc_leaky": 0.4444,
+          "delta_pp": -20.0
         },
         "D1s_size_matched": {
           "acc_ref": 0.6444,
-          "acc_leaky": 0.5522,
-          "delta_pp": -9.22
+          "acc_leaky": 0.4833,
+          "delta_pp": -16.11
         },
         "P1_csp_on_all": {
           "acc_ref": 0.6444,
-          "acc_leaky": 0.9111,
-          "delta_pp": 26.67
+          "acc_leaky": 0.8,
+          "delta_pp": 15.56
         }
       }
     },
@@ -810,188 +810,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-022_epochs.npz",
-      "cache_sha256": "fe2b5421cee65c1a539f724bd9fa73e9a01b094e9f1fde3a94cbc9885212662d",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.4267,
-          "delta_pp": -21.78
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.4833,
-          "delta_pp": -16.11
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.8667,
-          "delta_pp": 22.22
-        }
-      }
-    },
-    "S023": {
-      "subject_id": "S023",
-      "subject_num": 23,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-023_epochs.npz",
-      "cache_sha256": "6c5a899e31397ca7691b4ece33f009a24b4c099aa88ab35f56ad94f322abcb94",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.5289,
-          "delta_pp": -4.89
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.5633,
-          "delta_pp": -1.44
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.7111,
-          "delta_pp": 13.33
-        }
-      }
-    },
-    "S024": {
-      "subject_id": "S024",
-      "subject_num": 24,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-024_epochs.npz",
-      "cache_sha256": "060494c3180f9735d97c71d5ba0bf83cfc7b7475c46cea80b59b7afdf3c26f49",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.4444,
-          "acc_leaky": 0.4178,
-          "delta_pp": -2.67
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.4444,
-          "acc_leaky": 0.4444,
-          "delta_pp": 0.0
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.4444,
-          "acc_leaky": 0.5778,
-          "delta_pp": 13.33
-        }
-      }
-    },
-    "S025": {
-      "subject_id": "S025",
-      "subject_num": 25,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-025_epochs.npz",
-      "cache_sha256": "4346818e919f48f14faacf0eb1311945cd9bb5caafdbb60d5ea79d12b8f7f245",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.4978,
-          "delta_pp": -1.33
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.4967,
-          "delta_pp": -1.44
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.9556,
-          "delta_pp": 44.44
-        }
-      }
-    },
-    "S026": {
-      "subject_id": "S026",
-      "subject_num": 26,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-026_epochs.npz",
-      "cache_sha256": "44b58cfb95e35d5ce1182aac9da65cec679ec474a1c81058b125a721dd63d40e",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.5867,
-          "delta_pp": -14.67
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.62,
-          "delta_pp": -11.33
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.7111,
-          "delta_pp": -2.22
-        }
-      }
-    },
-    "S027": {
-      "subject_id": "S027",
-      "subject_num": 27,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-027_epochs.npz",
-      "cache_sha256": "8f1a866f0dcf75363eecac14ae45596bc83b1c91e46e6b5cddabfe72dfdc57c9",
+      "cache_path": "physionet_repaired_sub-022",
+      "cache_sha256": "fee0d032e5b790a6eb4d292b6111adebd755e8a562af45ac98e6e2e9f293f14a",
       "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
@@ -1004,30 +824,66 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.5909,
-          "acc_leaky": 0.5591,
-          "delta_pp": -3.18
+          "acc_leaky": 0.4136,
+          "delta_pp": -17.73
         },
         "D1s_size_matched": {
           "acc_ref": 0.5909,
-          "acc_leaky": 0.5977,
-          "delta_pp": 0.68
+          "acc_leaky": 0.4341,
+          "delta_pp": -15.68
         },
         "P1_csp_on_all": {
           "acc_ref": 0.5909,
-          "acc_leaky": 0.75,
-          "delta_pp": 15.91
+          "acc_leaky": 0.8409,
+          "delta_pp": 25.0
         }
       }
     },
-    "S028": {
-      "subject_id": "S028",
-      "subject_num": 28,
+    "S023": {
+      "subject_id": "S023",
+      "subject_num": 23,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-028_epochs.npz",
-      "cache_sha256": "cd7320c519a6856b043c9ff0099663f269da161dd5a9ebcc1dfb253bf8775394",
+      "cache_path": "physionet_repaired_sub-023",
+      "cache_sha256": "2e4a89aca48f69ad195cbc8d7da850f7bd0465ff09b367830faed955b3dda71e",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.4864,
+          "delta_pp": -10.45
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.5193,
+          "delta_pp": -7.16
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5909,
+          "acc_leaky": 0.7273,
+          "delta_pp": 13.64
+        }
+      }
+    },
+    "S024": {
+      "subject_id": "S024",
+      "subject_num": 24,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-024",
+      "cache_sha256": "0b38f77b57ea05ef6a406ad073aafb7e33f97df948b6f2abb60d212f461150b4",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1039,19 +895,163 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.3556,
-          "acc_leaky": 0.4578,
-          "delta_pp": 10.22
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4089,
+          "delta_pp": -21.33
         },
         "D1s_size_matched": {
-          "acc_ref": 0.3556,
-          "acc_leaky": 0.4056,
-          "delta_pp": 5.0
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4467,
+          "delta_pp": -17.56
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.3556,
-          "acc_leaky": 0.8222,
-          "delta_pp": 46.67
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.7111,
+          "delta_pp": 8.89
+        }
+      }
+    },
+    "S025": {
+      "subject_id": "S025",
+      "subject_num": 25,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-025",
+      "cache_sha256": "c46b411c2ba0192f3bfc2b53fc50c42c2e450aeaddf7d96be5a41d4f979f7f48",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4711,
+          "delta_pp": -6.22
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4811,
+          "delta_pp": -5.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.9333,
+          "delta_pp": 40.0
+        }
+      }
+    },
+    "S026": {
+      "subject_id": "S026",
+      "subject_num": 26,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-026",
+      "cache_sha256": "edfce085b25b8d0c37e606458bc5eb7771f16c06c3da06b75ac3529a89eaab16",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.5289,
+          "delta_pp": -16.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.6044,
+          "delta_pp": -8.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.7111,
+          "delta_pp": 2.22
+        }
+      }
+    },
+    "S027": {
+      "subject_id": "S027",
+      "subject_num": 27,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-027",
+      "cache_sha256": "01611d29e58a032d5a90e3679c0f42b86a869a78da555782d05b84b553d94145",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4318,
+          "acc_leaky": 0.4955,
+          "delta_pp": 6.36
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4318,
+          "acc_leaky": 0.533,
+          "delta_pp": 10.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4318,
+          "acc_leaky": 0.7045,
+          "delta_pp": 27.27
+        }
+      }
+    },
+    "S028": {
+      "subject_id": "S028",
+      "subject_num": 28,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-028",
+      "cache_sha256": "e74683455fc09b2ca9a8b470b0518cef63e15da949d0cd4af91b85795f1b1044",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.3111,
+          "acc_leaky": 0.4089,
+          "delta_pp": 9.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.3111,
+          "acc_leaky": 0.4056,
+          "delta_pp": 9.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.3111,
+          "acc_leaky": 0.7556,
+          "delta_pp": 44.44
         }
       }
     },
@@ -1062,8 +1062,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-029_epochs.npz",
-      "cache_sha256": "c8e01c03a5e2f61f005d4c040e129fe894377e4238e596970810782323f51f83",
+      "cache_path": "physionet_repaired_sub-029",
+      "cache_sha256": "0dba712fc50d4b43ea1d5f5f271e01709f8c816e36817b0ef7554d0d92c26367",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1081,8 +1081,8 @@
         },
         "D1s_size_matched": {
           "acc_ref": 1.0,
-          "acc_leaky": 0.9967,
-          "delta_pp": -0.33
+          "acc_leaky": 0.9978,
+          "delta_pp": -0.22
         },
         "P1_csp_on_all": {
           "acc_ref": 1.0,
@@ -1098,8 +1098,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-030_epochs.npz",
-      "cache_sha256": "50b2b1aaf9de2979b57a62bedaaf04321d46822ea5b11f042fabeca096cf6cca",
+      "cache_path": "physionet_repaired_sub-030",
+      "cache_sha256": "c24b35d38f88cde494f1d304cfe936b55bde6d2d7a90afa2f1dc2e2ad78cced0",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1111,19 +1111,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.4044,
-          "delta_pp": -12.89
+          "acc_ref": 0.6,
+          "acc_leaky": 0.3556,
+          "delta_pp": -24.44
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.4133,
-          "delta_pp": -12.0
+          "acc_ref": 0.6,
+          "acc_leaky": 0.4111,
+          "delta_pp": -18.89
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5333,
-          "acc_leaky": 0.6,
-          "delta_pp": 6.67
+          "acc_ref": 0.6,
+          "acc_leaky": 0.5778,
+          "delta_pp": -2.22
         }
       }
     },
@@ -1134,8 +1134,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-031_epochs.npz",
-      "cache_sha256": "b543ad80f055133abf286170730221f517b19ff5eb846498500706e4a0287c7d",
+      "cache_path": "physionet_repaired_sub-031",
+      "cache_sha256": "1949252094dffda8248fa9aed176b12f5c97361dd0e0a2a0f42b593b8d976fed",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1147,19 +1147,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.8444,
-          "acc_leaky": 0.8133,
-          "delta_pp": -3.11
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7067,
+          "delta_pp": -11.56
         },
         "D1s_size_matched": {
-          "acc_ref": 0.8444,
-          "acc_leaky": 0.8133,
-          "delta_pp": -3.11
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7856,
+          "delta_pp": -3.67
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.8444,
+          "acc_ref": 0.8222,
           "acc_leaky": 0.9778,
-          "delta_pp": 13.33
+          "delta_pp": 15.56
         }
       }
     },
@@ -1170,12 +1170,12 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-032_epochs.npz",
-      "cache_sha256": "4e2f1847f2c6b031181356454ac7d3f2f0027306bb1bf57e226ecae594d815ec",
-      "n_trials": 45,
+      "cache_path": "physionet_repaired_sub-032",
+      "cache_sha256": "7fa6743db3f01795e7ad15155220866f629efb94811b2117182167c2124e3a3d",
+      "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
-        15,
+        14,
         15,
         15
       ],
@@ -1183,19 +1183,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.6489,
-          "delta_pp": -6.22
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.5273,
+          "delta_pp": -8.64
         },
         "D1s_size_matched": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.6444,
-          "delta_pp": -6.67
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.6,
+          "delta_pp": -1.36
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.8667,
-          "delta_pp": 15.56
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.6364,
+          "delta_pp": 2.27
         }
       }
     },
@@ -1206,8 +1206,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-033_epochs.npz",
-      "cache_sha256": "455986afe0d3d17d3ea479b4674cf720a2b641eeda563d5a4162bf8c70b4152c",
+      "cache_path": "physionet_repaired_sub-033",
+      "cache_sha256": "8058f798bd3a4c4e5347cad65204be255c644e777b2a53902eaf9dcd1b770b84",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1220,18 +1220,18 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.7111,
-          "acc_leaky": 0.6578,
-          "delta_pp": -5.33
+          "acc_leaky": 0.6889,
+          "delta_pp": -2.22
         },
         "D1s_size_matched": {
           "acc_ref": 0.7111,
-          "acc_leaky": 0.6911,
-          "delta_pp": -2.0
+          "acc_leaky": 0.6833,
+          "delta_pp": -2.78
         },
         "P1_csp_on_all": {
           "acc_ref": 0.7111,
-          "acc_leaky": 0.8667,
-          "delta_pp": 15.56
+          "acc_leaky": 0.8,
+          "delta_pp": 8.89
         }
       }
     },
@@ -1242,8 +1242,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-034_epochs.npz",
-      "cache_sha256": "f297a777559c0b86d1e33fdef71d1911c12c0e3486f07894eaefc7d9f9f5df23",
+      "cache_path": "physionet_repaired_sub-034",
+      "cache_sha256": "d1e7c40a2eae8921f292a97d37796ea8d5321237523f89fb06a80106a03ce91d",
       "n_trials": 43,
       "n_runs": 3,
       "trials_per_run": [
@@ -1255,19 +1255,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.7907,
-          "acc_leaky": 0.8,
-          "delta_pp": 0.93
+          "acc_ref": 0.6977,
+          "acc_leaky": 0.7581,
+          "delta_pp": 6.05
         },
         "D1s_size_matched": {
-          "acc_ref": 0.7907,
-          "acc_leaky": 0.8,
-          "delta_pp": 0.93
+          "acc_ref": 0.6977,
+          "acc_leaky": 0.7709,
+          "delta_pp": 7.33
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.7907,
-          "acc_leaky": 0.9302,
-          "delta_pp": 13.95
+          "acc_ref": 0.6977,
+          "acc_leaky": 0.8605,
+          "delta_pp": 16.28
         }
       }
     },
@@ -1278,8 +1278,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-035_epochs.npz",
-      "cache_sha256": "00c6027fc9ac633f3536e368abada2a0461355e6f207be95d359ca8ab0f83b1f",
+      "cache_path": "physionet_repaired_sub-035",
+      "cache_sha256": "2afc8cec3032d311523b2f122b712f3604277fe908c46d4bfb1ba2edb4a92ced",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1291,19 +1291,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.8444,
-          "acc_leaky": 0.7333,
-          "delta_pp": -11.11
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.7244,
+          "delta_pp": 16.89
         },
         "D1s_size_matched": {
-          "acc_ref": 0.8444,
-          "acc_leaky": 0.7856,
-          "delta_pp": -5.89
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.7911,
+          "delta_pp": 23.56
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.8444,
+          "acc_ref": 0.5556,
           "acc_leaky": 0.9556,
-          "delta_pp": 11.11
+          "delta_pp": 40.0
         }
       }
     },
@@ -1314,8 +1314,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-036_epochs.npz",
-      "cache_sha256": "739e1b6d2d23f228ec82cb83a0b2475d80aa90867471a806495ba55c64b3f240",
+      "cache_path": "physionet_repaired_sub-036",
+      "cache_sha256": "4a75632e95fd3b41bb235fb287eb499e397e78d9d44be00afe94c285b613a06c",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1327,19 +1327,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6222,
-          "acc_leaky": 0.4311,
-          "delta_pp": -19.11
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4,
+          "delta_pp": -15.56
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6222,
-          "acc_leaky": 0.4611,
-          "delta_pp": -16.11
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4544,
+          "delta_pp": -10.11
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6222,
-          "acc_leaky": 0.7333,
-          "delta_pp": 11.11
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.6,
+          "delta_pp": 4.44
         }
       }
     },
@@ -1350,8 +1350,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-037_epochs.npz",
-      "cache_sha256": "1e2304c7d8938a0c8280428ec1e759e237515ea0f553686a506d19cfb9fbe557",
+      "cache_path": "physionet_repaired_sub-037",
+      "cache_sha256": "a1daf597a866d4909986c137c11d2a49bb43deb0aa3c1068e065861416c23e9b",
       "n_trials": 43,
       "n_runs": 3,
       "trials_per_run": [
@@ -1363,19 +1363,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5116,
+          "acc_ref": 0.5814,
           "acc_leaky": 0.414,
-          "delta_pp": -9.77
+          "delta_pp": -16.74
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5116,
-          "acc_leaky": 0.4349,
-          "delta_pp": -7.67
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.4267,
+          "delta_pp": -15.47
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5116,
-          "acc_leaky": 0.6047,
-          "delta_pp": 9.3
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.5814,
+          "delta_pp": 0.0
         }
       }
     },
@@ -1386,312 +1386,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-038_epochs.npz",
-      "cache_sha256": "8fa2fa9bf993802a50b9a62b8fbbe34275494133544a824703db81ab03b72427",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.5067,
-          "delta_pp": -13.78
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.5267,
-          "delta_pp": -11.78
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.7778,
-          "delta_pp": 13.33
-        }
-      }
-    },
-    "S039": {
-      "subject_id": "S039",
-      "subject_num": 39,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-039_epochs.npz",
-      "cache_sha256": "c65466c8800b32e38caf2bed607ab595ea6f6a75ac2d28eb87b790fdd04605e6",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.48,
-          "delta_pp": -7.56
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4578,
-          "delta_pp": -9.78
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.6667,
-          "delta_pp": 11.11
-        }
-      }
-    },
-    "S040": {
-      "subject_id": "S040",
-      "subject_num": 40,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-040_epochs.npz",
-      "cache_sha256": "efd4c03f8efb4f8175d383d2d9be8686b3d5183a8f89fabf82bb563f8db1a396",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        14,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.5364,
-          "delta_pp": -3.18
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.5341,
-          "delta_pp": -3.41
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.9091,
-          "delta_pp": 34.09
-        }
-      }
-    },
-    "S041": {
-      "subject_id": "S041",
-      "subject_num": 41,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-041_epochs.npz",
-      "cache_sha256": "480667c950d7a942fcc1c776d85c8688ead86e291caf485abe6bd72cee5871e4",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        14,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.4545,
-          "delta_pp": -2.27
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.4852,
-          "delta_pp": 0.8
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.7955,
-          "delta_pp": 31.82
-        }
-      }
-    },
-    "S042": {
-      "subject_id": "S042",
-      "subject_num": 42,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-042_epochs.npz",
-      "cache_sha256": "5f88c406b8fc8a71ed68127a38c50a2b83e6ee90feae9db12f38bb4b4481240b",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.7778,
-          "acc_leaky": 0.7867,
-          "delta_pp": 0.89
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.7778,
-          "acc_leaky": 0.8244,
-          "delta_pp": 4.67
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.7778,
-          "acc_leaky": 0.9333,
-          "delta_pp": 15.56
-        }
-      }
-    },
-    "S043": {
-      "subject_id": "S043",
-      "subject_num": 43,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-043_epochs.npz",
-      "cache_sha256": "1dcab535a3944e7e20ee6b709508225f1c3e6076dc5d8e3b1906909d84f54060",
-      "n_trials": 41,
-      "n_runs": 3,
-      "trials_per_run": [
-        14,
-        12,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.7073,
-          "acc_leaky": 0.5415,
-          "delta_pp": -16.59
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.7073,
-          "acc_leaky": 0.5805,
-          "delta_pp": -12.68
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.7073,
-          "acc_leaky": 0.9268,
-          "delta_pp": 21.95
-        }
-      }
-    },
-    "S044": {
-      "subject_id": "S044",
-      "subject_num": 44,
-      "status": "EXCLUDED",
-      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
-      "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
-      "cache_exists": false,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-044_epochs.npz",
-      "cache_sha256": null,
-      "n_trials": 0,
-      "n_runs": 0,
-      "trials_per_run": [],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {}
-    },
-    "S045": {
-      "subject_id": "S045",
-      "subject_num": 45,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-045_epochs.npz",
-      "cache_sha256": "0e7c1981e54ff93dd3c311b06f58a3b329096c0ca9cb3bb4439c109c49e66385",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        14
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.5045,
-          "delta_pp": -6.36
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.4898,
-          "delta_pp": -7.84
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5682,
-          "acc_leaky": 0.9091,
-          "delta_pp": 34.09
-        }
-      }
-    },
-    "S046": {
-      "subject_id": "S046",
-      "subject_num": 46,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-046_epochs.npz",
-      "cache_sha256": "3dc6dcc588ebf48ae843785491fe152e3296fde78a27db9cdddb156aafd208f7",
-      "n_trials": 42,
-      "n_runs": 3,
-      "trials_per_run": [
-        14,
-        15,
-        13
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5,
-          "acc_leaky": 0.481,
-          "delta_pp": -1.9
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5,
-          "acc_leaky": 0.425,
-          "delta_pp": -7.5
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5,
-          "acc_leaky": 0.9286,
-          "delta_pp": 42.86
-        }
-      }
-    },
-    "S047": {
-      "subject_id": "S047",
-      "subject_num": 47,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-047_epochs.npz",
-      "cache_sha256": "0f18777228b758caeacd7c6c05327921740989cad0b41f5124f09e343c69530f",
+      "cache_path": "physionet_repaired_sub-038",
+      "cache_sha256": "8a8f23cfea718b0bd803ba6372074e5748eeff7be9dda3f435a8115e95c3c835",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1709,25 +1405,25 @@
         },
         "D1s_size_matched": {
           "acc_ref": 0.5778,
-          "acc_leaky": 0.5444,
-          "delta_pp": -3.33
+          "acc_leaky": 0.5167,
+          "delta_pp": -6.11
         },
         "P1_csp_on_all": {
           "acc_ref": 0.5778,
-          "acc_leaky": 0.7556,
-          "delta_pp": 17.78
+          "acc_leaky": 0.8222,
+          "delta_pp": 24.44
         }
       }
     },
-    "S048": {
-      "subject_id": "S048",
-      "subject_num": 48,
+    "S039": {
+      "subject_id": "S039",
+      "subject_num": 39,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-048_epochs.npz",
-      "cache_sha256": "470a7f25dc867779f2e270a5bac3c6b6fcf39290707419b6f568a011eef17fc5",
+      "cache_path": "physionet_repaired_sub-039",
+      "cache_sha256": "b1cdda254868f89fa69ffe6668bfdd18f7c5cdbc74aba39680c2f300dca7bdc1",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -1739,71 +1435,35 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.6667,
-          "delta_pp": -6.67
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4356,
+          "delta_pp": -7.56
         },
         "D1s_size_matched": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.6633,
-          "delta_pp": -7.0
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4511,
+          "delta_pp": -6.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.9111,
-          "delta_pp": 17.78
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.6222,
+          "delta_pp": 11.11
         }
       }
     },
-    "S049": {
-      "subject_id": "S049",
-      "subject_num": 49,
+    "S040": {
+      "subject_id": "S040",
+      "subject_num": 40,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-049_epochs.npz",
-      "cache_sha256": "f36bb52b7df9159b2eba7fd432c1f865a0f34c50bf26ab6cf706361c1937e081",
+      "cache_path": "physionet_repaired_sub-040",
+      "cache_sha256": "f0c464b26870c7e1fa281bd8a5ced80a494bf25e428ca92502f2ff8d30bbf46d",
       "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
-        15,
-        15,
-        14
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.7955,
-          "acc_leaky": 0.6,
-          "delta_pp": -19.55
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.7955,
-          "acc_leaky": 0.6852,
-          "delta_pp": -11.02
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.7955,
-          "acc_leaky": 0.7727,
-          "delta_pp": -2.27
-        }
-      }
-    },
-    "S050": {
-      "subject_id": "S050",
-      "subject_num": 50,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-050_epochs.npz",
-      "cache_sha256": "d4578b69f19a0bf5ae5f5c22473bc4e2b241066e6fee1dc9d238246cc889d6b3",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
+        14,
         15,
         15
       ],
@@ -1811,139 +1471,31 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.52,
-          "delta_pp": 5.33
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.5091,
+          "delta_pp": -3.64
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.5267,
-          "delta_pp": 6.0
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.5284,
+          "delta_pp": -1.7
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.8667,
-          "delta_pp": 40.0
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.9091,
+          "delta_pp": 36.36
         }
       }
     },
-    "S051": {
-      "subject_id": "S051",
-      "subject_num": 51,
+    "S041": {
+      "subject_id": "S041",
+      "subject_num": 41,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-051_epochs.npz",
-      "cache_sha256": "d8bdc3eb8ba912a008afdde93484bc4488bde078a3b63b549fcd11c4c3bb718e",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4889,
-          "delta_pp": -6.67
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4878,
-          "delta_pp": -6.78
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.9556,
-          "delta_pp": 40.0
-        }
-      }
-    },
-    "S052": {
-      "subject_id": "S052",
-      "subject_num": 52,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-052_epochs.npz",
-      "cache_sha256": "a989cc5f8ecd287ef7b043ac23e09ea666d083325b8abea42f9473bd0ad1be7d",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.6711,
-          "delta_pp": -4.0
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.6678,
-          "delta_pp": -4.33
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.7111,
-          "acc_leaky": 0.8667,
-          "delta_pp": 15.56
-        }
-      }
-    },
-    "S053": {
-      "subject_id": "S053",
-      "subject_num": 53,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-053_epochs.npz",
-      "cache_sha256": "c47baaaab737209d7dc720fd27da5e30f1c620cf8cac821cdcacbec5d8f6ac88",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.8222,
-          "acc_leaky": 0.8178,
-          "delta_pp": -0.44
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.8222,
-          "acc_leaky": 0.8222,
-          "delta_pp": 0.0
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.8222,
-          "acc_leaky": 0.9556,
-          "delta_pp": 13.33
-        }
-      }
-    },
-    "S054": {
-      "subject_id": "S054",
-      "subject_num": 54,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-054_epochs.npz",
-      "cache_sha256": "a464f721520b70178917d0943f899617c19d37450e635fb96e61f6d914837eed",
+      "cache_path": "physionet_repaired_sub-041",
+      "cache_sha256": "49b49bc0c12f98e7391fb1f0c31226eecc55c21347c0007f8adcde5a6e211f7f",
       "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
@@ -1955,67 +1507,31 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.8409,
-          "acc_leaky": 0.7273,
-          "delta_pp": -11.36
+          "acc_ref": 0.3864,
+          "acc_leaky": 0.4318,
+          "delta_pp": 4.55
         },
         "D1s_size_matched": {
-          "acc_ref": 0.8409,
-          "acc_leaky": 0.7352,
-          "delta_pp": -10.57
+          "acc_ref": 0.3864,
+          "acc_leaky": 0.4693,
+          "delta_pp": 8.3
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.8409,
-          "acc_leaky": 0.8409,
-          "delta_pp": 0.0
+          "acc_ref": 0.3864,
+          "acc_leaky": 0.7727,
+          "delta_pp": 38.64
         }
       }
     },
-    "S055": {
-      "subject_id": "S055",
-      "subject_num": 55,
+    "S042": {
+      "subject_id": "S042",
+      "subject_num": 42,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-055_epochs.npz",
-      "cache_sha256": "c2dfc57ac9d150ba848a7d1e3d9403579a9914ca3c1ff40ebd02612b80d9ce0e",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.7556,
-          "acc_leaky": 0.7022,
-          "delta_pp": -5.33
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.7556,
-          "acc_leaky": 0.7511,
-          "delta_pp": -0.44
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.7556,
-          "acc_leaky": 0.7778,
-          "delta_pp": 2.22
-        }
-      }
-    },
-    "S056": {
-      "subject_id": "S056",
-      "subject_num": 56,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-056_epochs.npz",
-      "cache_sha256": "63f07a65b0b674914c363cd90c71c23a16b90de8cbf7ec61d31170a376f39471",
+      "cache_path": "physionet_repaired_sub-042",
+      "cache_sha256": "e07955ae442ad99d9b53f8a578b459af367ac214fbc6f2a288a296888005532a",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -2028,138 +1544,118 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.8,
-          "acc_leaky": 0.8089,
-          "delta_pp": 0.89
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.8,
-          "acc_leaky": 0.8844,
-          "delta_pp": 8.44
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.8,
-          "acc_leaky": 0.9778,
-          "delta_pp": 17.78
-        }
-      }
-    },
-    "S057": {
-      "subject_id": "S057",
-      "subject_num": 57,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-057_epochs.npz",
-      "cache_sha256": "fb732f42cec448128a7ec718dc32e8c254fbf30ab8f122bf66af6340f6dc04de",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4267,
+          "acc_leaky": 0.76,
           "delta_pp": -4.0
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4689,
-          "delta_pp": 0.22
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.9333,
-          "delta_pp": 46.67
-        }
-      }
-    },
-    "S058": {
-      "subject_id": "S058",
-      "subject_num": 58,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-058_epochs.npz",
-      "cache_sha256": "79dc303dbe204bd23609ebfa6c3d636cb0c395ce398d11ab68d82e16f6de7d5a",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4889,
-          "delta_pp": -6.67
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.5022,
-          "delta_pp": -5.33
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.6889,
-          "delta_pp": 13.33
-        }
-      }
-    },
-    "S059": {
-      "subject_id": "S059",
-      "subject_num": 59,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-059_epochs.npz",
-      "cache_sha256": "ac51b5ca401b3616e6433760583f319ec2727fc36078e923d63622b5fdf4ca67",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.4444,
-          "acc_leaky": 0.4089,
-          "delta_pp": -3.56
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.4444,
-          "acc_leaky": 0.4422,
+          "acc_ref": 0.8,
+          "acc_leaky": 0.7978,
           "delta_pp": -0.22
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4444,
-          "acc_leaky": 0.6667,
-          "delta_pp": 22.22
+          "acc_ref": 0.8,
+          "acc_leaky": 0.9111,
+          "delta_pp": 11.11
         }
       }
     },
-    "S060": {
-      "subject_id": "S060",
-      "subject_num": 60,
+    "S043": {
+      "subject_id": "S043",
+      "subject_num": 43,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-060_epochs.npz",
-      "cache_sha256": "022627c1db643d099631b4957308dcb1f32451bbf9634a58eac3b28985ddef12",
+      "cache_path": "physionet_repaired_sub-043",
+      "cache_sha256": "cc33d607e36b9441e48bbffaadc15ba21b85fa9dc68abd7e94bace2bea124e59",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        13,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5581,
+          "acc_leaky": 0.507,
+          "delta_pp": -5.12
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5581,
+          "acc_leaky": 0.5465,
+          "delta_pp": -1.16
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5581,
+          "acc_leaky": 0.7907,
+          "delta_pp": 23.26
+        }
+      }
+    },
+    "S044": {
+      "subject_id": "S044",
+      "subject_num": 44,
+      "status": "EXCLUDED",
+      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+      "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 0,
+      "n_runs": 3,
+      "trials_per_run": [],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S045": {
+      "subject_id": "S045",
+      "subject_num": 45,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-045",
+      "cache_sha256": "80b2f6f70ded581f7b5748b87376ed8bbe22f8e41de7b4fa73580256eea5b4b8",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5116,
+          "acc_leaky": 0.3907,
+          "delta_pp": -12.09
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5116,
+          "acc_leaky": 0.4651,
+          "delta_pp": -4.65
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5116,
+          "acc_leaky": 0.8605,
+          "delta_pp": 34.88
+        }
+      }
+    },
+    "S046": {
+      "subject_id": "S046",
+      "subject_num": 46,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-046",
+      "cache_sha256": "60cce17fd5842639022fcb7eb5627d43d2f7edc010774748e14f5ee621e2f0f0",
       "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
@@ -2171,31 +1667,103 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.75,
-          "acc_leaky": 0.7727,
-          "delta_pp": 2.27
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.4409,
+          "delta_pp": -10.45
         },
         "D1s_size_matched": {
-          "acc_ref": 0.75,
-          "acc_leaky": 0.808,
-          "delta_pp": 5.8
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.4455,
+          "delta_pp": -10.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.75,
-          "acc_leaky": 0.8864,
-          "delta_pp": 13.64
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.8182,
+          "delta_pp": 27.27
         }
       }
     },
-    "S061": {
-      "subject_id": "S061",
-      "subject_num": 61,
+    "S047": {
+      "subject_id": "S047",
+      "subject_num": 47,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-061_epochs.npz",
-      "cache_sha256": "7676983a9a9dfe861cf3f44fee233cdaa82983e47887e36040b0e05aa1b60f9c",
+      "cache_path": "physionet_repaired_sub-047",
+      "cache_sha256": "5c8bf58a039f873cebe99668d473098b46121ec83074cadc2007658777909839",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.3556,
+          "acc_leaky": 0.4844,
+          "delta_pp": 12.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.3556,
+          "acc_leaky": 0.5,
+          "delta_pp": 14.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.3556,
+          "acc_leaky": 0.6667,
+          "delta_pp": 31.11
+        }
+      }
+    },
+    "S048": {
+      "subject_id": "S048",
+      "subject_num": 48,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-048",
+      "cache_sha256": "804efb9d2389de32819a32128605027d1c7b49588e44ca245aa1015d6d8bd27f",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.5956,
+          "delta_pp": -0.44
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.63,
+          "delta_pp": 3.0
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.9111,
+          "delta_pp": 31.11
+        }
+      }
+    },
+    "S049": {
+      "subject_id": "S049",
+      "subject_num": 49,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-049",
+      "cache_sha256": "b152648df249929d6638cf264284363b65473375da343a155bd9179982273bcb",
       "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
@@ -2213,169 +1781,25 @@
         },
         "D1s_size_matched": {
           "acc_ref": 0.7045,
-          "acc_leaky": 0.5477,
-          "delta_pp": -15.68
+          "acc_leaky": 0.6159,
+          "delta_pp": -8.86
         },
         "P1_csp_on_all": {
           "acc_ref": 0.7045,
-          "acc_leaky": 1.0,
-          "delta_pp": 29.55
+          "acc_leaky": 0.7955,
+          "delta_pp": 9.09
         }
       }
     },
-    "S062": {
-      "subject_id": "S062",
-      "subject_num": 62,
+    "S050": {
+      "subject_id": "S050",
+      "subject_num": 50,
       "status": "INCLUDED",
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-062_epochs.npz",
-      "cache_sha256": "e7d201a37fc5e42510258f69c0d0c3d4fea0d5acaaa07e24cb3ef23d4c4230b4",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.9111,
-          "acc_leaky": 0.8267,
-          "delta_pp": -8.44
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.9111,
-          "acc_leaky": 0.8722,
-          "delta_pp": -3.89
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.9111,
-          "acc_leaky": 1.0,
-          "delta_pp": 8.89
-        }
-      }
-    },
-    "S063": {
-      "subject_id": "S063",
-      "subject_num": 63,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-063_epochs.npz",
-      "cache_sha256": "b7e0da0cd3016f4a0a2556a8469540562026dfab42abd11b37752a62ceb52007",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.4622,
-          "delta_pp": -2.67
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.5178,
-          "delta_pp": 2.89
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.4889,
-          "acc_leaky": 0.8667,
-          "delta_pp": 37.78
-        }
-      }
-    },
-    "S064": {
-      "subject_id": "S064",
-      "subject_num": 64,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-064_epochs.npz",
-      "cache_sha256": "ac25e9b96117b6302e729fb002131c863f5ee0d144fa15a13f03cd5fe854a9fa",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        14
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5455,
-          "acc_leaky": 0.5227,
-          "delta_pp": -2.27
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5455,
-          "acc_leaky": 0.4841,
-          "delta_pp": -6.14
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5455,
-          "acc_leaky": 0.9091,
-          "delta_pp": 36.36
-        }
-      }
-    },
-    "S065": {
-      "subject_id": "S065",
-      "subject_num": 65,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-065_epochs.npz",
-      "cache_sha256": "49c5c04395e174d5434e4681d2848fb3467a31933006740e3b832905acc34296",
-      "n_trials": 43,
-      "n_runs": 3,
-      "trials_per_run": [
-        14,
-        15,
-        14
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5814,
-          "acc_leaky": 0.5023,
-          "delta_pp": -7.91
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5814,
-          "acc_leaky": 0.5558,
-          "delta_pp": -2.56
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5814,
-          "acc_leaky": 0.9767,
-          "delta_pp": 39.53
-        }
-      }
-    },
-    "S066": {
-      "subject_id": "S066",
-      "subject_num": 66,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-066_epochs.npz",
-      "cache_sha256": "624e2424c768e953ae432a3e96f2cf7a98fa4db28730d28f97a5e0e14d33410f",
+      "cache_path": "physionet_repaired_sub-050",
+      "cache_sha256": "0d45bc7c43afb4231b23b08c6fcf42b1fb6c829bff86f4a9ad4011cf877f8c7c",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -2393,13 +1817,589 @@
         },
         "D1s_size_matched": {
           "acc_ref": 0.4444,
-          "acc_leaky": 0.4656,
-          "delta_pp": 2.11
+          "acc_leaky": 0.5011,
+          "delta_pp": 5.67
         },
         "P1_csp_on_all": {
           "acc_ref": 0.4444,
+          "acc_leaky": 0.8667,
+          "delta_pp": 42.22
+        }
+      }
+    },
+    "S051": {
+      "subject_id": "S051",
+      "subject_num": 51,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-051",
+      "cache_sha256": "97957cf5d59f878a70660700924fc7d1a59debb2ac6877599fdaf694bcbf2250",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.4,
+          "delta_pp": -20.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.4356,
+          "delta_pp": -16.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6,
+          "acc_leaky": 0.8222,
+          "delta_pp": 22.22
+        }
+      }
+    },
+    "S052": {
+      "subject_id": "S052",
+      "subject_num": 52,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-052",
+      "cache_sha256": "6ec6d96b1e2d4dd19edaba93d3756861f37bbe7a2f256e6a9f355fb58455efbe",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6533,
+          "delta_pp": -8.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6311,
+          "delta_pp": -10.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.8,
+          "delta_pp": 6.67
+        }
+      }
+    },
+    "S053": {
+      "subject_id": "S053",
+      "subject_num": 53,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-053",
+      "cache_sha256": "6ebb152e566366ed3d181b4197578bc479bdb243b9f68fbae975f11c6514ba19",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7244,
+          "delta_pp": -9.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7789,
+          "delta_pp": -4.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8222,
           "acc_leaky": 0.8889,
-          "delta_pp": 44.44
+          "delta_pp": 6.67
+        }
+      }
+    },
+    "S054": {
+      "subject_id": "S054",
+      "subject_num": 54,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-054",
+      "cache_sha256": "9d71a3a5ddd5a802e100d7a0b63039b2219c1d2b261670b39ad8a7f90579662e",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6591,
+          "acc_leaky": 0.6591,
+          "delta_pp": 0.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6591,
+          "acc_leaky": 0.6875,
+          "delta_pp": 2.84
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6591,
+          "acc_leaky": 0.8864,
+          "delta_pp": 22.73
+        }
+      }
+    },
+    "S055": {
+      "subject_id": "S055",
+      "subject_num": 55,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-055",
+      "cache_sha256": "1536b6aaaeee4e2fc594104b1830ae90adb4c782b306a823a1ec2ed6d8b5159c",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6133,
+          "delta_pp": -12.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.6744,
+          "delta_pp": -5.89
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7333,
+          "acc_leaky": 0.8667,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S056": {
+      "subject_id": "S056",
+      "subject_num": 56,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-056",
+      "cache_sha256": "21d92bee029a7c5bd0d99813bc11f98933749502499b23b2b60924057db6abce",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.9318,
+          "acc_leaky": 0.8273,
+          "delta_pp": -10.45
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.9318,
+          "acc_leaky": 0.8545,
+          "delta_pp": -7.73
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.9318,
+          "acc_leaky": 0.9773,
+          "delta_pp": 4.55
+        }
+      }
+    },
+    "S057": {
+      "subject_id": "S057",
+      "subject_num": 57,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-057",
+      "cache_sha256": "dce9d26ea5b3dc2c8e8e1688d46201ac628c3c6dde1e7c4248fd1921c2d6012f",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        13,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4884,
+          "acc_leaky": 0.4419,
+          "delta_pp": -4.65
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4884,
+          "acc_leaky": 0.4256,
+          "delta_pp": -6.28
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4884,
+          "acc_leaky": 0.7209,
+          "delta_pp": 23.26
+        }
+      }
+    },
+    "S058": {
+      "subject_id": "S058",
+      "subject_num": 58,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-058",
+      "cache_sha256": "ec134f89d433a29763aa76e3b0f4a90443b4df25e2ab1efb62d7abfc6fae1465",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.48,
+          "delta_pp": 5.78
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4856,
+          "delta_pp": 6.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.6667,
+          "delta_pp": 24.44
+        }
+      }
+    },
+    "S059": {
+      "subject_id": "S059",
+      "subject_num": 59,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-059",
+      "cache_sha256": "a41c7a5962972bc7d85a01788ee4d73fd52e985994ba8d09ca2cfa164438a3d0",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.3911,
+          "delta_pp": -7.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4233,
+          "delta_pp": -4.33
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.6667,
+          "delta_pp": 20.0
+        }
+      }
+    },
+    "S060": {
+      "subject_id": "S060",
+      "subject_num": 60,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-060",
+      "cache_sha256": "8b0967139063124e84c5b10f4c668fb235fa2a2a75b6d58e2c526dce7dc5f345",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8409,
+          "acc_leaky": 0.8182,
+          "delta_pp": -2.27
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8409,
+          "acc_leaky": 0.808,
+          "delta_pp": -3.3
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8409,
+          "acc_leaky": 0.9091,
+          "delta_pp": 6.82
+        }
+      }
+    },
+    "S061": {
+      "subject_id": "S061",
+      "subject_num": 61,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-061",
+      "cache_sha256": "d10cdca0c6fc0bd83f6a34916a8ed3c43f98db37f941b23298a92723b18960f4",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.4711,
+          "delta_pp": -24.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.5433,
+          "delta_pp": -16.78
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7111,
+          "acc_leaky": 0.8444,
+          "delta_pp": 13.33
+        }
+      }
+    },
+    "S062": {
+      "subject_id": "S062",
+      "subject_num": 62,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-062",
+      "cache_sha256": "d4a2ae0a83daf468f70df0eb28fcbb27969e9705525b65d48b56fe1b7e0921f5",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.9333,
+          "acc_leaky": 0.8089,
+          "delta_pp": -12.44
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.9333,
+          "acc_leaky": 0.8578,
+          "delta_pp": -7.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.9333,
+          "acc_leaky": 1.0,
+          "delta_pp": 6.67
+        }
+      }
+    },
+    "S063": {
+      "subject_id": "S063",
+      "subject_num": 63,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-063",
+      "cache_sha256": "867d696a3b5e27f263f50f8f6a6b1f055d2e222c0e4b5896f82a0cec2c01281d",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4756,
+          "delta_pp": -14.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.5267,
+          "delta_pp": -9.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.8,
+          "delta_pp": 17.78
+        }
+      }
+    },
+    "S064": {
+      "subject_id": "S064",
+      "subject_num": 64,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-064",
+      "cache_sha256": "d0a80625650df738c587404000be5b7431fac4ce3ab38a35e17ecddfd38689ea",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4545,
+          "acc_leaky": 0.3955,
+          "delta_pp": -5.91
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4545,
+          "acc_leaky": 0.4705,
+          "delta_pp": 1.59
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4545,
+          "acc_leaky": 0.9091,
+          "delta_pp": 45.45
+        }
+      }
+    },
+    "S065": {
+      "subject_id": "S065",
+      "subject_num": 65,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-065",
+      "cache_sha256": "e022555d3b87d03a5a98ed7b10560f548c8ada9b44a2adb23161a1fc3b658b23",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4667,
+          "delta_pp": -15.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.4444,
+          "delta_pp": -17.78
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.8889,
+          "delta_pp": 26.67
+        }
+      }
+    },
+    "S066": {
+      "subject_id": "S066",
+      "subject_num": 66,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-066",
+      "cache_sha256": "bd0743a5466ba11e3133c549c76129fa360c5a2d259a4f08c7ae364e32cf8af7",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.44,
+          "delta_pp": -11.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.44,
+          "delta_pp": -11.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
         }
       }
     },
@@ -2410,32 +2410,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-067_epochs.npz",
-      "cache_sha256": "36034b548f37c507e15af379909dcff755a91ec95a1475ef3070503465b1a9b7",
-      "n_trials": 44,
+      "cache_path": "physionet_repaired_sub-067",
+      "cache_sha256": "7fd7351a4e10076b0f75487866bda1b10641fbbeb5a8c6be88ec485566a7787c",
+      "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
         15,
-        14,
+        15,
         15
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.4591,
-          "delta_pp": -1.82
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4044,
+          "delta_pp": -6.22
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.4773,
-          "delta_pp": 0.0
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4967,
+          "delta_pp": 3.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.5909,
-          "delta_pp": 11.36
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.6,
+          "delta_pp": 13.33
         }
       }
     },
@@ -2446,32 +2446,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-068_epochs.npz",
-      "cache_sha256": "390b26bbb333f92a23ceb6c31ababe1669e4dcd10275b93eb12197f36d1e9368",
-      "n_trials": 44,
+      "cache_path": "physionet_repaired_sub-068",
+      "cache_sha256": "16fa259688a8c22d009d0394c56a8fac0185ab07127cfcb80998ab23892fef8c",
+      "n_trials": 43,
       "n_runs": 3,
       "trials_per_run": [
         15,
         14,
-        15
+        14
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5227,
-          "acc_leaky": 0.4455,
-          "delta_pp": -7.73
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.4465,
+          "delta_pp": -13.49
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5227,
-          "acc_leaky": 0.4489,
-          "delta_pp": -7.39
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.4698,
+          "delta_pp": -11.16
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5227,
-          "acc_leaky": 0.9318,
-          "delta_pp": 40.91
+          "acc_ref": 0.5814,
+          "acc_leaky": 0.9302,
+          "delta_pp": 34.88
         }
       }
     },
@@ -2482,10 +2482,10 @@
       "rejection_category": "AUTOMATED_PREPROCESSING_QC",
       "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
       "cache_exists": false,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-069_epochs.npz",
+      "cache_path": null,
       "cache_sha256": null,
       "n_trials": 0,
-      "n_runs": 0,
+      "n_runs": 3,
       "trials_per_run": [],
       "sfreq": 160.0,
       "n_channels": 64,
@@ -2498,32 +2498,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-070_epochs.npz",
-      "cache_sha256": "eddaeff463568f373a2d4c196bd6649c314e9aafc70fef52f840cae73ba6b9d8",
-      "n_trials": 44,
+      "cache_path": "physionet_repaired_sub-070",
+      "cache_sha256": "c98dbd937cc30dd72a0a65273c8510f0ea9eb2c7257627ee50731c42fe473bd4",
+      "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
         15,
         15,
-        14
+        15
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6364,
-          "acc_leaky": 0.6682,
-          "delta_pp": 3.18
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.6756,
+          "delta_pp": 12.0
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6364,
-          "acc_leaky": 0.7011,
-          "delta_pp": 6.48
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.6878,
+          "delta_pp": 13.22
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6364,
-          "acc_leaky": 0.75,
-          "delta_pp": 11.36
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
         }
       }
     },
@@ -2534,32 +2534,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-071_epochs.npz",
-      "cache_sha256": "406b8bbc09baa404fe81661045f16e737bad75da0be7b6d4fe141c3944390d17",
-      "n_trials": 45,
+      "cache_path": "physionet_repaired_sub-071",
+      "cache_sha256": "d63e3803570b29aeba59b75a2140e5c0ab306cb7966443a5a67116238c53fe4c",
+      "n_trials": 41,
       "n_runs": 3,
       "trials_per_run": [
         15,
         15,
-        15
+        11
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.6844,
-          "delta_pp": -0.44
+          "acc_ref": 0.7317,
+          "acc_leaky": 0.639,
+          "delta_pp": -9.27
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.7433,
-          "delta_pp": 5.44
+          "acc_ref": 0.7317,
+          "acc_leaky": 0.5878,
+          "delta_pp": -14.39
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.9111,
-          "delta_pp": 22.22
+          "acc_ref": 0.7317,
+          "acc_leaky": 0.8537,
+          "delta_pp": 12.2
         }
       }
     },
@@ -2570,8 +2570,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-072_epochs.npz",
-      "cache_sha256": "6c11209aae02c341c1885fe263cdb349a85ee9c19c2278a4ca72aa46add3b843",
+      "cache_path": "physionet_repaired_sub-072",
+      "cache_sha256": "555ecec12f66567beb4d98327528a2d7ddaa74f4e1a4aeaca9fa56c7da20944b",
       "n_trials": 43,
       "n_runs": 3,
       "trials_per_run": [
@@ -2583,19 +2583,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.8372,
-          "acc_leaky": 0.8558,
-          "delta_pp": 1.86
+          "acc_ref": 0.8605,
+          "acc_leaky": 0.8419,
+          "delta_pp": -1.86
         },
         "D1s_size_matched": {
-          "acc_ref": 0.8372,
-          "acc_leaky": 0.857,
-          "delta_pp": 1.98
+          "acc_ref": 0.8605,
+          "acc_leaky": 0.8616,
+          "delta_pp": 0.12
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.8372,
-          "acc_leaky": 0.9302,
-          "delta_pp": 9.3
+          "acc_ref": 0.8605,
+          "acc_leaky": 0.8605,
+          "delta_pp": 0.0
         }
       }
     },
@@ -2606,8 +2606,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-073_epochs.npz",
-      "cache_sha256": "266db836d6307451c119b2fbc08797cb87f13d2311a3f4875ff7ba7a42f880e0",
+      "cache_path": "physionet_repaired_sub-073",
+      "cache_sha256": "b2977af1332294ae4cfd38923849c3db85a64f7290989921e496123b4814f8c5",
       "n_trials": 42,
       "n_runs": 3,
       "trials_per_run": [
@@ -2619,19 +2619,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4762,
-          "acc_leaky": 0.4,
-          "delta_pp": -7.62
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4143,
+          "delta_pp": -3.81
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4762,
-          "acc_leaky": 0.431,
-          "delta_pp": -4.52
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4155,
+          "delta_pp": -3.69
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4762,
-          "acc_leaky": 0.7857,
-          "delta_pp": 30.95
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.8333,
+          "delta_pp": 38.1
         }
       }
     },
@@ -2642,8 +2642,188 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-074_epochs.npz",
-      "cache_sha256": "567440d64bb68b1eb392fe781b53beadd6f4945939acc6207c98146fe0a2494c",
+      "cache_path": "physionet_repaired_sub-074",
+      "cache_sha256": "386ae849755079ee7d56bfa68bdec976f0eb60fa8cc5da77a04dab2467629aa3",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6512,
+          "acc_leaky": 0.4698,
+          "delta_pp": -18.14
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6512,
+          "acc_leaky": 0.4535,
+          "delta_pp": -19.77
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6512,
+          "acc_leaky": 0.7442,
+          "delta_pp": 9.3
+        }
+      }
+    },
+    "S075": {
+      "subject_id": "S075",
+      "subject_num": 75,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-075",
+      "cache_sha256": "98345cd62875e0bc64f51da284e089a0a986d638768102e85461af4eeea44e5a",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.5778,
+          "delta_pp": -6.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.5589,
+          "delta_pp": -8.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6444,
+          "acc_leaky": 0.9333,
+          "delta_pp": 28.89
+        }
+      }
+    },
+    "S076": {
+      "subject_id": "S076",
+      "subject_num": 76,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-076",
+      "cache_sha256": "aa0f09dc34db7bd8222172cb3e8980922fa1829030868cd5fd8db09d771d940e",
+      "n_trials": 42,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        14,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4429,
+          "delta_pp": -0.95
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.4369,
+          "delta_pp": -1.55
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4524,
+          "acc_leaky": 0.7381,
+          "delta_pp": 28.57
+        }
+      }
+    },
+    "S077": {
+      "subject_id": "S077",
+      "subject_num": 77,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-077",
+      "cache_sha256": "9a235e2aef9a33cabe14a3e5314b8e7611c676a4a924d9b5281d8de699e5f3d5",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.3556,
+          "delta_pp": -6.67
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4,
+          "delta_pp": -2.22
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.8,
+          "delta_pp": 37.78
+        }
+      }
+    },
+    "S078": {
+      "subject_id": "S078",
+      "subject_num": 78,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-078",
+      "cache_sha256": "f06286434d8d49b7c751e82e76c88525fbb7ee2708b961137c25577ab700ce66",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.3778,
+          "delta_pp": -8.89
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4256,
+          "delta_pp": -4.11
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.8444,
+          "delta_pp": 37.78
+        }
+      }
+    },
+    "S079": {
+      "subject_id": "S079",
+      "subject_num": 79,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-079",
+      "cache_sha256": "652f63d7ec6d1d4f2fa406e6cc8b1b2a0ba943a7b9d685854c4547877305f571",
       "n_trials": 43,
       "n_runs": 3,
       "trials_per_run": [
@@ -2656,198 +2836,18 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.4419,
-          "acc_leaky": 0.5023,
-          "delta_pp": 6.05
+          "acc_leaky": 0.5349,
+          "delta_pp": 9.3
         },
         "D1s_size_matched": {
           "acc_ref": 0.4419,
-          "acc_leaky": 0.5,
-          "delta_pp": 5.81
+          "acc_leaky": 0.557,
+          "delta_pp": 11.51
         },
         "P1_csp_on_all": {
           "acc_ref": 0.4419,
-          "acc_leaky": 0.7442,
-          "delta_pp": 30.23
-        }
-      }
-    },
-    "S075": {
-      "subject_id": "S075",
-      "subject_num": 75,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-075_epochs.npz",
-      "cache_sha256": "df547a57bd6999db644c790bc360c856d5af8199f655d764ff844c1ad944c2be",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.6356,
-          "delta_pp": -0.89
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.5833,
-          "delta_pp": -6.11
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.6444,
-          "acc_leaky": 0.9111,
-          "delta_pp": 26.67
-        }
-      }
-    },
-    "S076": {
-      "subject_id": "S076",
-      "subject_num": 76,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-076_epochs.npz",
-      "cache_sha256": "dc594c5e90636630d92a57585b07e6efe955118ab485b41b4a7f4d44035a8243",
-      "n_trials": 42,
-      "n_runs": 3,
-      "trials_per_run": [
-        14,
-        14,
-        14
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.381,
-          "acc_leaky": 0.4524,
-          "delta_pp": 7.14
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.381,
-          "acc_leaky": 0.4429,
-          "delta_pp": 6.19
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.381,
-          "acc_leaky": 0.8333,
-          "delta_pp": 45.24
-        }
-      }
-    },
-    "S077": {
-      "subject_id": "S077",
-      "subject_num": 77,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-077_epochs.npz",
-      "cache_sha256": "d4263dbd7b3a2df862282d00cc9178b5795f32928f4e034082f492166efe4378",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.4,
-          "acc_leaky": 0.4044,
-          "delta_pp": 0.44
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.4,
-          "acc_leaky": 0.4011,
-          "delta_pp": 0.11
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.4,
-          "acc_leaky": 0.8667,
-          "delta_pp": 46.67
-        }
-      }
-    },
-    "S078": {
-      "subject_id": "S078",
-      "subject_num": 78,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-078_epochs.npz",
-      "cache_sha256": "9fe6c64f2e77132c44dd79c0b5319c62139fa01958fd6be25b683c2c649be5d3",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4311,
-          "delta_pp": -12.44
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4544,
-          "delta_pp": -10.11
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.7778,
-          "delta_pp": 22.22
-        }
-      }
-    },
-    "S079": {
-      "subject_id": "S079",
-      "subject_num": 79,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-079_epochs.npz",
-      "cache_sha256": "cf3b852b4fdd13f14f12fd77ac06df799ca3317f27c2810af228285e7ce7a570",
-      "n_trials": 42,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        14,
-        13
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.6667,
-          "acc_leaky": 0.5286,
-          "delta_pp": -13.81
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.6667,
-          "acc_leaky": 0.5286,
-          "delta_pp": -13.81
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.6667,
-          "acc_leaky": 0.8571,
-          "delta_pp": 19.05
+          "acc_leaky": 0.907,
+          "delta_pp": 46.51
         }
       }
     },
@@ -2858,31 +2858,31 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-080_epochs.npz",
-      "cache_sha256": "88feaba6c1604b747305b87bfead80ab2253e5c69b91df61e96b3bda272cc1f4",
-      "n_trials": 45,
+      "cache_path": "physionet_repaired_sub-080",
+      "cache_sha256": "d19067402621d722b7c7686c4be43fca6e99e595cad671faa9c875ef831c1a59",
+      "n_trials": 42,
       "n_runs": 3,
       "trials_per_run": [
         15,
         15,
-        15
+        12
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.4978,
-          "delta_pp": -10.22
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.4524,
+          "delta_pp": -14.29
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.5289,
-          "delta_pp": -7.11
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.4143,
+          "delta_pp": -18.1
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.9333,
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.9286,
           "delta_pp": 33.33
         }
       }
@@ -2894,8 +2894,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-081_epochs.npz",
-      "cache_sha256": "7fbb430605550b874cddb4ac75e6e4de9ca11fb2685265e6a1aa28eaa07b894d",
+      "cache_path": "physionet_repaired_sub-081",
+      "cache_sha256": "cb12de8b2770b041e324d276dcd798824ff1b2a18b703e2e5de59a1e4f2eed1f",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -2907,19 +2907,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4978,
-          "delta_pp": 3.11
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.44,
+          "delta_pp": -11.56
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4911,
-          "delta_pp": 2.44
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4744,
+          "delta_pp": -8.11
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.9333,
-          "delta_pp": 46.67
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8889,
+          "delta_pp": 33.33
         }
       }
     },
@@ -2930,8 +2930,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-082_epochs.npz",
-      "cache_sha256": "724eabff95c2ff4429b4df90059a7ef83fc2cc0ebd810c9dc14e7f82d2480c9d",
+      "cache_path": "physionet_repaired_sub-082",
+      "cache_sha256": "5150dcdbec8d9eb9623fc3ef45efe7d19a5daea813e24da41a00f4131d071fed",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -2943,19 +2943,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.5111,
-          "delta_pp": -6.67
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.48,
+          "delta_pp": -20.89
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.5633,
-          "delta_pp": -1.44
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.5344,
+          "delta_pp": -15.44
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.8222,
-          "delta_pp": 24.44
+          "acc_ref": 0.6889,
+          "acc_leaky": 0.8,
+          "delta_pp": 11.11
         }
       }
     },
@@ -2966,32 +2966,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-083_epochs.npz",
-      "cache_sha256": "9d2b0fdca284cc24d2143d9f3a500685f9aeb0be4b7a3cf20446887bc8dc02b7",
-      "n_trials": 43,
+      "cache_path": "physionet_repaired_sub-083",
+      "cache_sha256": "53c330e431c16a252305eb63f4542766f00fd5bd0fb7bb4979fd738ddddcf6fc",
+      "n_trials": 44,
       "n_runs": 3,
       "trials_per_run": [
         15,
         15,
-        13
+        14
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5116,
-          "acc_leaky": 0.4791,
-          "delta_pp": -3.26
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.4591,
+          "delta_pp": -15.45
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5116,
-          "acc_leaky": 0.5395,
-          "delta_pp": 2.79
+          "acc_ref": 0.6136,
+          "acc_leaky": 0.4909,
+          "delta_pp": -12.27
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5116,
-          "acc_leaky": 0.9535,
-          "delta_pp": 44.19
+          "acc_ref": 0.6136,
+          "acc_leaky": 1.0,
+          "delta_pp": 38.64
         }
       }
     },
@@ -3002,8 +3002,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-084_epochs.npz",
-      "cache_sha256": "16651bdde2426080410cdb90a8582044f448c786e0a97109dfcb8a1937c67d5d",
+      "cache_path": "physionet_repaired_sub-084",
+      "cache_sha256": "bf6babfe550c6361d15077b4097118595801ae94e998532d3d66497352bc83d4",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3015,19 +3015,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5778,
+          "acc_ref": 0.6222,
           "acc_leaky": 0.5511,
-          "delta_pp": -2.67
+          "delta_pp": -7.11
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.4956,
-          "delta_pp": -8.22
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.5067,
+          "delta_pp": -11.56
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.9556,
-          "delta_pp": 37.78
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.7556,
+          "delta_pp": 13.33
         }
       }
     },
@@ -3038,8 +3038,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-085_epochs.npz",
-      "cache_sha256": "a85c4a18b9e92f5d1d1a9ab3691cbf2035796c94b5394f50ccb70916ab13ef0c",
+      "cache_path": "physionet_repaired_sub-085",
+      "cache_sha256": "183a841ac5e1eba02ebfe87430124ad1cf28129fa0d3d7bfca18bfd85faa370b",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3051,19 +3051,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.7733,
-          "delta_pp": 4.0
+          "acc_ref": 0.7556,
+          "acc_leaky": 0.7778,
+          "delta_pp": 2.22
         },
         "D1s_size_matched": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.8011,
-          "delta_pp": 6.78
+          "acc_ref": 0.7556,
+          "acc_leaky": 0.7811,
+          "delta_pp": 2.56
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.7333,
-          "acc_leaky": 0.9778,
-          "delta_pp": 24.44
+          "acc_ref": 0.7556,
+          "acc_leaky": 0.8889,
+          "delta_pp": 13.33
         }
       }
     },
@@ -3072,10 +3072,10 @@
       "subject_num": 86,
       "status": "EXCLUDED",
       "rejection_category": "MINIMUM_TRIAL_THRESHOLD_VIOLATION",
-      "rejection_rationale": "Sample size threshold violation: 24 trials < minimum 30 threshold (min_trials=30 in settings.json)",
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-086_epochs.npz",
-      "cache_sha256": "d7cce11552458d778b68f1f3a317895f890aed746ff71b4d1e997febea4da2dd",
+      "rejection_rationale": "Sample size threshold violation: 24 trials < minimum 30 threshold (< 30; min_trials=30 in settings.json)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
       "n_trials": 24,
       "n_runs": 3,
       "trials_per_run": [
@@ -3094,8 +3094,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-087_epochs.npz",
-      "cache_sha256": "97989abb38f7feae41ea56e57456d5d67da4843a133d7f5c50fda0ee83a8a2af",
+      "cache_path": "physionet_repaired_sub-087",
+      "cache_sha256": "8e5d6b76fc8304e12af9ba1d2657376c68c7a250f050fb9eba7d41a72f22f068",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3107,19 +3107,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.5244,
-          "delta_pp": 1.33
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4844,
+          "delta_pp": -7.11
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.4578,
-          "delta_pp": -5.33
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4733,
+          "delta_pp": -8.22
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.8667,
-          "delta_pp": 35.56
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8222,
+          "delta_pp": 26.67
         }
       }
     },
@@ -3130,32 +3130,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-088_epochs.npz",
-      "cache_sha256": "492e788063fe84255965f0622124a246087d56ed083ea23f28fc27c93bd5b0a5",
-      "n_trials": 56,
+      "cache_path": "physionet_repaired_sub-088",
+      "cache_sha256": "2c30c5ae178fecc214611a25865c87e0e2c477b82914e09bc6eb225713d513fe",
+      "n_trials": 53,
       "n_runs": 3,
       "trials_per_run": [
         19,
-        18,
+        15,
         19
       ],
       "sfreq": 128.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5179,
-          "acc_leaky": 0.4607,
-          "delta_pp": -5.71
+          "acc_ref": 0.566,
+          "acc_leaky": 0.4604,
+          "delta_pp": -10.57
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5179,
-          "acc_leaky": 0.4598,
-          "delta_pp": -5.8
+          "acc_ref": 0.566,
+          "acc_leaky": 0.4774,
+          "delta_pp": -8.87
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5179,
-          "acc_leaky": 0.6429,
-          "delta_pp": 12.5
+          "acc_ref": 0.566,
+          "acc_leaky": 0.717,
+          "delta_pp": 15.09
         }
       }
     },
@@ -3166,8 +3166,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-089_epochs.npz",
-      "cache_sha256": "efd250475a6e9bbdd48ed9b909480a2b8fcf07ce2ae488e91d274d765c994cde",
+      "cache_path": "physionet_repaired_sub-089",
+      "cache_sha256": "f178d0bb7e51562bff10d1f0f9f529b2b2fc35f9ac4bbc00dd795f089fd0697c",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3179,19 +3179,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.4356,
-          "delta_pp": -16.44
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.3867,
+          "delta_pp": -14.67
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.4911,
-          "delta_pp": -10.89
+          "acc_ref": 0.5333,
+          "acc_leaky": 0.4267,
+          "delta_pp": -10.67
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6,
+          "acc_ref": 0.5333,
           "acc_leaky": 0.6667,
-          "delta_pp": 6.67
+          "delta_pp": 13.33
         }
       }
     },
@@ -3202,8 +3202,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-090_epochs.npz",
-      "cache_sha256": "f165e2942145c3d95167eb9d1b23e8f33d3dadb0d457d4e0570c70160e588584",
+      "cache_path": "physionet_repaired_sub-090",
+      "cache_sha256": "993a0ea8c2db1b16dc8a772f45352a62215bf80d4949c1f9ea44811e77947a54",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3215,19 +3215,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4133,
-          "delta_pp": -5.33
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4222,
+          "delta_pp": -13.33
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.45,
-          "delta_pp": -1.67
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.4667,
+          "delta_pp": -8.89
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.8222,
-          "delta_pp": 35.56
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
         }
       }
     },
@@ -3238,10 +3238,10 @@
       "rejection_category": "AUTOMATED_PREPROCESSING_QC",
       "rejection_rationale": "100% trials rejected by adaptive peak-to-peak thresholding (all 45 epochs dropped)",
       "cache_exists": false,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-091_epochs.npz",
+      "cache_path": null,
       "cache_sha256": null,
       "n_trials": 0,
-      "n_runs": 0,
+      "n_runs": 3,
       "trials_per_run": [],
       "sfreq": 160.0,
       "n_channels": 64,
@@ -3254,8 +3254,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-092_epochs.npz",
-      "cache_sha256": "400e56a89217969a9d91508aa9e6d96e2f8550a830221f0dd3aaef82b49dd438",
+      "cache_path": "physionet_repaired_sub-092",
+      "cache_sha256": "210c5e375d987f6bfc0c1756319d50306d05e691a0e2bf41db2940bedabc4055",
       "n_trials": 57,
       "n_runs": 3,
       "trials_per_run": [
@@ -3268,18 +3268,18 @@
       "accuracies": {
         "D1m_matched_k": {
           "acc_ref": 0.614,
-          "acc_leaky": 0.6,
-          "delta_pp": -1.4
+          "acc_leaky": 0.5965,
+          "delta_pp": -1.75
         },
         "D1s_size_matched": {
           "acc_ref": 0.614,
-          "acc_leaky": 0.6474,
-          "delta_pp": 3.33
+          "acc_leaky": 0.6079,
+          "delta_pp": -0.61
         },
         "P1_csp_on_all": {
           "acc_ref": 0.614,
-          "acc_leaky": 0.8596,
-          "delta_pp": 24.56
+          "acc_leaky": 0.807,
+          "delta_pp": 19.3
         }
       }
     },
@@ -3290,8 +3290,44 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-093_epochs.npz",
-      "cache_sha256": "b8c118c5d2c3724889172978825cf6f5ac6dafe102a8d9c0ecd057e8c986ef8f",
+      "cache_path": "physionet_repaired_sub-093",
+      "cache_sha256": "3b0e432202702860bb8f975428640a627a25c9894a2501ff102719a7de29f757",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.7727,
+          "acc_leaky": 0.7136,
+          "delta_pp": -5.91
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.7727,
+          "acc_leaky": 0.7193,
+          "delta_pp": -5.34
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.7727,
+          "acc_leaky": 0.8409,
+          "delta_pp": 6.82
+        }
+      }
+    },
+    "S094": {
+      "subject_id": "S094",
+      "subject_num": 94,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-094",
+      "cache_sha256": "6ddd086dc40e81af515fa40730e9aa50a2113b0a9144e1836adf59e188709697",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3303,55 +3339,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6667,
-          "acc_leaky": 0.6667,
-          "delta_pp": 0.0
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7156,
+          "delta_pp": -10.67
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6667,
-          "acc_leaky": 0.7144,
-          "delta_pp": 4.78
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7756,
+          "delta_pp": -4.67
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6667,
-          "acc_leaky": 0.9556,
-          "delta_pp": 28.89
-        }
-      }
-    },
-    "S094": {
-      "subject_id": "S094",
-      "subject_num": 94,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-094_epochs.npz",
-      "cache_sha256": "7275c411b60f8ad7aa6f76c4660bf4f1c962df5ad2661a186f1ceb3dae04d5df",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        14,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.8409,
-          "acc_leaky": 0.8091,
-          "delta_pp": -3.18
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.8409,
-          "acc_leaky": 0.8148,
-          "delta_pp": -2.61
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.8409,
-          "acc_leaky": 0.9773,
-          "delta_pp": 13.64
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.8444,
+          "delta_pp": 2.22
         }
       }
     },
@@ -3362,8 +3362,80 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-095_epochs.npz",
-      "cache_sha256": "1541b29d65fde7ad2e1e5e7b03f04282a670b67437a8f37ae1ed27a5d5b066d8",
+      "cache_path": "physionet_repaired_sub-095",
+      "cache_sha256": "80b262f16a64ea899bfad01aeee59049ab48196ed000e5820ef8f03d3fe545fd",
+      "n_trials": 43,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        13
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6279,
+          "acc_leaky": 0.4186,
+          "delta_pp": -20.93
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6279,
+          "acc_leaky": 0.4686,
+          "delta_pp": -15.93
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6279,
+          "acc_leaky": 0.6977,
+          "delta_pp": 6.98
+        }
+      }
+    },
+    "S096": {
+      "subject_id": "S096",
+      "subject_num": 96,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-096",
+      "cache_sha256": "24429df39c06a22fb22441197b7b5ca8de9d1953b919d9e8a44f2abcde1cfa09",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5682,
+          "acc_leaky": 0.4818,
+          "delta_pp": -8.64
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5682,
+          "acc_leaky": 0.5295,
+          "delta_pp": -3.86
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5682,
+          "acc_leaky": 0.6818,
+          "delta_pp": 11.36
+        }
+      }
+    },
+    "S097": {
+      "subject_id": "S097",
+      "subject_num": 97,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-097",
+      "cache_sha256": "7185b6d7b5db81975ad8301edbc91656a7e53a3b45dc9ba6c4e64b66c075378d",
       "n_trials": 43,
       "n_runs": 3,
       "trials_per_run": [
@@ -3375,91 +3447,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6279,
-          "acc_leaky": 0.4791,
-          "delta_pp": -14.88
+          "acc_ref": 0.4651,
+          "acc_leaky": 0.4884,
+          "delta_pp": 2.33
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6279,
-          "acc_leaky": 0.536,
-          "delta_pp": -9.19
+          "acc_ref": 0.4651,
+          "acc_leaky": 0.5116,
+          "delta_pp": 4.65
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6279,
-          "acc_leaky": 0.8605,
-          "delta_pp": 23.26
-        }
-      }
-    },
-    "S096": {
-      "subject_id": "S096",
-      "subject_num": 96,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-096_epochs.npz",
-      "cache_sha256": "6cda530e4a2201e5747ab4c63aa8e0b972020896da35208c5200ce2e185ab3d5",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        14
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5,
-          "acc_leaky": 0.5409,
-          "delta_pp": 4.09
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5,
-          "acc_leaky": 0.5409,
-          "delta_pp": 4.09
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5,
-          "acc_leaky": 0.6591,
-          "delta_pp": 15.91
-        }
-      }
-    },
-    "S097": {
-      "subject_id": "S097",
-      "subject_num": 97,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-097_epochs.npz",
-      "cache_sha256": "fbef2433d4b4a98ed8e34a738100faa251667dd5d5cba5402c9c296a807d013d",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        14,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.55,
-          "delta_pp": 7.27
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.5659,
-          "delta_pp": 8.86
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.4773,
-          "acc_leaky": 0.9091,
-          "delta_pp": 43.18
+          "acc_ref": 0.4651,
+          "acc_leaky": 0.814,
+          "delta_pp": 34.88
         }
       }
     },
@@ -3470,8 +3470,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-098_epochs.npz",
-      "cache_sha256": "704c6e638c0ba3b817709b7ac27004f070fbffead41d0cf8fc395141d8c2f80c",
+      "cache_path": "physionet_repaired_sub-098",
+      "cache_sha256": "67e5e056322a37d2af35e5f8acfca4ffa7321121901d941cb6e248b5f4a5019a",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3483,19 +3483,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6889,
+          "acc_ref": 0.5556,
           "acc_leaky": 0.6133,
-          "delta_pp": -7.56
+          "delta_pp": 5.78
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.5944,
-          "delta_pp": -9.44
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.5878,
+          "delta_pp": 3.22
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.8667,
-          "delta_pp": 17.78
+          "acc_ref": 0.5556,
+          "acc_leaky": 0.8444,
+          "delta_pp": 28.89
         }
       }
     },
@@ -3506,80 +3506,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-099_epochs.npz",
-      "cache_sha256": "97ff6dbb317cdf271b8e3f74e8a5ab7cfcc81ff83cb8112b8e23a6ac629031bd",
-      "n_trials": 44,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        14
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5455,
-          "acc_leaky": 0.4591,
-          "delta_pp": -8.64
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5455,
-          "acc_leaky": 0.4716,
-          "delta_pp": -7.39
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5455,
-          "acc_leaky": 0.5682,
-          "delta_pp": 2.27
-        }
-      }
-    },
-    "S100": {
-      "subject_id": "S100",
-      "subject_num": 100,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-100_epochs.npz",
-      "cache_sha256": "ab5d547bd26bbada7ca9405b429a8814c46337943a8f9c05a12d36b2e80e2ce8",
-      "n_trials": 36,
-      "n_runs": 3,
-      "trials_per_run": [
-        12,
-        12,
-        12
-      ],
-      "sfreq": 128.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.6111,
-          "acc_leaky": 0.6611,
-          "delta_pp": 5.0
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.6111,
-          "acc_leaky": 0.6653,
-          "delta_pp": 5.42
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.6111,
-          "acc_leaky": 0.8611,
-          "delta_pp": 25.0
-        }
-      }
-    },
-    "S101": {
-      "subject_id": "S101",
-      "subject_num": 101,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-101_epochs.npz",
-      "cache_sha256": "bc66ad412cc4f37d72ebc883175b47350473c587290373393e0012976ec27d5d",
+      "cache_path": "physionet_repaired_sub-099",
+      "cache_sha256": "44effa7acf5b335f89d22ce1285ade14462c634e6cb0f6bc34dc726a283d3fba",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3591,19 +3519,91 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.4133,
-          "delta_pp": -14.22
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4489,
+          "delta_pp": -1.78
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.46,
-          "delta_pp": -9.56
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.4767,
+          "delta_pp": 1.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5556,
-          "acc_leaky": 0.9778,
-          "delta_pp": 42.22
+          "acc_ref": 0.4667,
+          "acc_leaky": 0.5778,
+          "delta_pp": 11.11
+        }
+      }
+    },
+    "S100": {
+      "subject_id": "S100",
+      "subject_num": 100,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-100",
+      "cache_sha256": "46b5f4c09f684d923adcd0b337bb89c4a2b94254d4de88500c788378c240767d",
+      "n_trials": 34,
+      "n_runs": 3,
+      "trials_per_run": [
+        10,
+        12,
+        12
+      ],
+      "sfreq": 128.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.6176,
+          "acc_leaky": 0.6471,
+          "delta_pp": 2.94
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.6176,
+          "acc_leaky": 0.6529,
+          "delta_pp": 3.53
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.6176,
+          "acc_leaky": 0.8824,
+          "delta_pp": 26.47
+        }
+      }
+    },
+    "S101": {
+      "subject_id": "S101",
+      "subject_num": 101,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-101",
+      "cache_sha256": "2bdc9a391b77ececeb1a5514bd2faad208e63f6556f589a5959ee5160ffd71ed",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4622,
+          "delta_pp": 4.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.4567,
+          "delta_pp": 3.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.4222,
+          "acc_leaky": 0.9556,
+          "delta_pp": 53.33
         }
       }
     },
@@ -3614,14 +3614,86 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-102_epochs.npz",
-      "cache_sha256": "ccb282fd97741d2bae2706be34e9e607821ebca1b8359f6f1ce767bb3201f434",
+      "cache_path": "physionet_repaired_sub-102",
+      "cache_sha256": "24e5ea3c39cc4124974d87fab71f9e57e4282ba16d808e6a9a43184f66a38af2",
       "n_trials": 42,
       "n_runs": 3,
       "trials_per_run": [
         14,
         14,
         14
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.4952,
+          "delta_pp": -10.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.456,
+          "delta_pp": -13.93
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5952,
+          "acc_leaky": 0.9286,
+          "delta_pp": 33.33
+        }
+      }
+    },
+    "S103": {
+      "subject_id": "S103",
+      "subject_num": 103,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-103",
+      "cache_sha256": "fa4449c57869187406e5e4f8bfb5aa627fb18975bfb559e0344cdbb7b4c4e894",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4311,
+          "delta_pp": -8.0
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.5067,
+          "delta_pp": -0.44
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.7111,
+          "delta_pp": 20.0
+        }
+      }
+    },
+    "S104": {
+      "subject_id": "S104",
+      "subject_num": 104,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-104",
+      "cache_sha256": "44ae14172839eb2dbe54b05c189264048a5e6425293daa95aa542f8086678c2a",
+      "n_trials": 42,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        12,
+        15
       ],
       "sfreq": 160.0,
       "n_channels": 64,
@@ -3633,84 +3705,12 @@
         },
         "D1s_size_matched": {
           "acc_ref": 0.5238,
-          "acc_leaky": 0.5024,
-          "delta_pp": -2.14
+          "acc_leaky": 0.5571,
+          "delta_pp": 3.33
         },
         "P1_csp_on_all": {
           "acc_ref": 0.5238,
           "acc_leaky": 0.9286,
-          "delta_pp": 40.48
-        }
-      }
-    },
-    "S103": {
-      "subject_id": "S103",
-      "subject_num": 103,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-103_epochs.npz",
-      "cache_sha256": "f8d1c24cce0e8d677ee20aa720699925ded9f51fea565ca4728d140e306e45fb",
-      "n_trials": 45,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        15,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.4133,
-          "delta_pp": -9.78
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.5322,
-          "delta_pp": 2.11
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5111,
-          "acc_leaky": 0.8444,
-          "delta_pp": 33.33
-        }
-      }
-    },
-    "S104": {
-      "subject_id": "S104",
-      "subject_num": 104,
-      "status": "INCLUDED",
-      "rejection_category": null,
-      "rejection_rationale": null,
-      "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-104_epochs.npz",
-      "cache_sha256": "68d9d8d051a1f25f6f0177bb9972fb98e5180986c5c91eaa682e8f34f45846e9",
-      "n_trials": 42,
-      "n_runs": 3,
-      "trials_per_run": [
-        15,
-        12,
-        15
-      ],
-      "sfreq": 160.0,
-      "n_channels": 64,
-      "accuracies": {
-        "D1m_matched_k": {
-          "acc_ref": 0.5476,
-          "acc_leaky": 0.5571,
-          "delta_pp": 0.95
-        },
-        "D1s_size_matched": {
-          "acc_ref": 0.5476,
-          "acc_leaky": 0.575,
-          "delta_pp": 2.74
-        },
-        "P1_csp_on_all": {
-          "acc_ref": 0.5476,
-          "acc_leaky": 0.9524,
           "delta_pp": 40.48
         }
       }
@@ -3722,8 +3722,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-105_epochs.npz",
-      "cache_sha256": "d2380f47b6d9457ca7a59f0e748c158df72a380677ee070af800a9a293ae25e9",
+      "cache_path": "physionet_repaired_sub-105",
+      "cache_sha256": "43d86f127e5671d91825a10675b03645dc16020c9d0f8eb49b94c98179643b97",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3735,18 +3735,18 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.4978,
-          "delta_pp": -8.0
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.4844,
+          "delta_pp": -2.67
         },
         "D1s_size_matched": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.5311,
-          "delta_pp": -4.67
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.5144,
+          "delta_pp": 0.33
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.5778,
-          "acc_leaky": 0.7778,
+          "acc_ref": 0.5111,
+          "acc_leaky": 0.7111,
           "delta_pp": 20.0
         }
       }
@@ -3758,8 +3758,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-106_epochs.npz",
-      "cache_sha256": "301a2533f1f5bb7eb310cc91cca3c681f021c8bc86dfd5cd5a70fd84372738d9",
+      "cache_path": "physionet_repaired_sub-106",
+      "cache_sha256": "bf6c5cd5a7cf9f0d678dde829cf5d84385b374cb39b37409d420140a9f20f315",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3771,19 +3771,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.5156,
-          "delta_pp": -8.44
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.4622,
+          "delta_pp": -11.56
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.52,
-          "delta_pp": -8.0
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.5078,
+          "delta_pp": -7.0
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6,
-          "acc_leaky": 0.8667,
-          "delta_pp": 26.67
+          "acc_ref": 0.5778,
+          "acc_leaky": 0.9111,
+          "delta_pp": 33.33
         }
       }
     },
@@ -3794,32 +3794,32 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-107_epochs.npz",
-      "cache_sha256": "96b82f21c043c0b4f56fd222461c5ef70609f1bc42fa91676cec9686324561bb",
-      "n_trials": 45,
+      "cache_path": "physionet_repaired_sub-107",
+      "cache_sha256": "6d48aab74e89d81c78e30e9d34569aeda6fe785376c407877928f48a97299c76",
+      "n_trials": 43,
       "n_runs": 3,
       "trials_per_run": [
         15,
-        15,
-        15
+        14,
+        14
       ],
       "sfreq": 160.0,
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4,
-          "acc_leaky": 0.4489,
-          "delta_pp": 4.89
+          "acc_ref": 0.6047,
+          "acc_leaky": 0.4605,
+          "delta_pp": -14.42
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4,
-          "acc_leaky": 0.4622,
-          "delta_pp": 6.22
+          "acc_ref": 0.6047,
+          "acc_leaky": 0.4767,
+          "delta_pp": -12.79
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4,
-          "acc_leaky": 0.8889,
-          "delta_pp": 48.89
+          "acc_ref": 0.6047,
+          "acc_leaky": 0.8372,
+          "delta_pp": 23.26
         }
       }
     },
@@ -3830,8 +3830,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-108_epochs.npz",
-      "cache_sha256": "7b04a460dbd29d2d745d8a2ba6099850999c8cc3bd257235f09000499d4d84bf",
+      "cache_path": "physionet_repaired_sub-108",
+      "cache_sha256": "d53fa531f1955b30164d5bbdba0ca550601982051bb427127a444b4fae2012bc",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3843,19 +3843,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.6222,
-          "delta_pp": -6.67
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.5689,
+          "delta_pp": -5.33
         },
         "D1s_size_matched": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.6444,
-          "delta_pp": -4.44
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.6233,
+          "delta_pp": 0.11
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.6889,
-          "acc_leaky": 0.9333,
-          "delta_pp": 24.44
+          "acc_ref": 0.6222,
+          "acc_leaky": 0.8889,
+          "delta_pp": 26.67
         }
       }
     },
@@ -3866,8 +3866,8 @@
       "rejection_category": null,
       "rejection_rationale": null,
       "cache_exists": true,
-      "cache_path": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-109_epochs.npz",
-      "cache_sha256": "8c1ee1eda1ef0fd0e5d8d9b4f0b94da152c6982b32e8e646ec9967171a185dbc",
+      "cache_path": "physionet_repaired_sub-109",
+      "cache_sha256": "4e56bfb3014a4322131589676c4dccf4cca1bdb082d0bd1ba6729dfa21b218dd",
       "n_trials": 45,
       "n_runs": 3,
       "trials_per_run": [
@@ -3879,19 +3879,19 @@
       "n_channels": 64,
       "accuracies": {
         "D1m_matched_k": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.4756,
-          "delta_pp": 0.89
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.4667,
+          "delta_pp": -2.22
         },
         "D1s_size_matched": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.5044,
-          "delta_pp": 3.78
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.47,
+          "delta_pp": -1.89
         },
         "P1_csp_on_all": {
-          "acc_ref": 0.4667,
-          "acc_leaky": 0.9333,
-          "delta_pp": 46.67
+          "acc_ref": 0.4889,
+          "acc_leaky": 0.7111,
+          "delta_pp": 22.22
         }
       }
     }

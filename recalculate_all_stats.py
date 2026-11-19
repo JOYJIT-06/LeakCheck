@@ -171,7 +171,7 @@ def tost_paired_mean(d: np.ndarray, margin: float = 2.0, alpha: float = 0.05):
     se_d = sd_d / np.sqrt(n)
     df_t = n - 1
     t_low = (mean_d - (-margin)) / se_d
-    p_low = float(1.0 - stats.t.cdf(t_low, df=df_t))
+    p_low = float(stats.t.sf(t_low, df=df_t))
     t_high = (mean_d - margin) / se_d
     p_high = float(stats.t.cdf(t_high, df=df_t))
     p_tost = max(p_low, p_high)

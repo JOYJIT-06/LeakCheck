@@ -19,8 +19,10 @@
 `delta_pp` = 100 x (acc_leaky - acc_ref) for the same subject, decoder and dataset. `kind` names the contrast.
 
 ## inflation_table.csv
-`hl_pp` Hodges-Lehmann estimate and `hl_ci_*` BCa interval over subjects; `wilcoxon_p`, `wilcoxon_p_holm` (Holm within
-dataset x decoder), `t_logit_p`, `rank_biserial`, `cohens_dz`, `tost_p`/`equivalent` (equivalence within +-`tost_margin_pp`).
+`hl_pp` Hodges-Lehmann estimate and `hl_ci_*` BCa interval over subjects;
+`wilcoxon_p`, `wilcoxon_p_holm` (Holm within dataset x decoder from standard Wilcoxon);
+`wilcoxon_pratt_w`, `wilcoxon_pratt_z`, `wilcoxon_pratt_p`, `wilcoxon_pratt_p_holm` (Pratt signed-rank test statistics, exact p-value via norm.sf, and Holm-adjusted p-value);
+`t_logit_p`, `rank_biserial`, `cohens_dz`, `tost_p`/`equivalent` (equivalence within +-`tost_margin_pp`).
 
 ## null_table.csv
 `null_mean_acc`, `optimism_pp` (null mean minus 50%), `false_positive_rate` (share of null datasets reaching the binomial threshold).

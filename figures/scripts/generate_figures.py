@@ -41,7 +41,7 @@ from matplotlib.lines import Line2D
 
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-BENCHMARK_DIR = os.path.join(BASE_DIR, "benchmark_results", "physionet_v1_1_repaired")
+BENCHMARK_DIR = os.path.join(BASE_DIR, "benchmark_results", "physionet_v1_1")
 FIGURES_DIR = os.path.join(BASE_DIR, "figures")
 EVIDENCE_DIR = os.path.join(BASE_DIR, "evidence")
 
@@ -363,9 +363,10 @@ def generate_fig04(data):
     hl_estimates = [hl_d1s["hl_pp"], hl_d1m["hl_pp"], hl_p1["hl_pp"]]
     bca_low = [hl_d1s["hl_ci_low_pp"], hl_d1m["hl_ci_low_pp"], hl_p1["hl_ci_low_pp"]]
     bca_high = [hl_d1s["hl_ci_high_pp"], hl_d1m["hl_ci_high_pp"], hl_p1["hl_ci_high_pp"]]
-    p_holm = [f"p = {hl_d1s['wilcoxon_p_holm']:.2e}",
-              f"p = {hl_d1m['wilcoxon_p_holm']:.2e}",
-              f"p = {hl_p1['wilcoxon_p_holm']:.2e}" if hl_p1['wilcoxon_p_holm'] > 0 else "p < 1e-17"]
+    p_holm_col = 'wilcoxon_pratt_p_holm' if 'wilcoxon_pratt_p_holm' in hl_d1s else 'wilcoxon_p_holm'
+    p_holm = [f"p = {hl_d1s[p_holm_col]:.2e}",
+              f"p = {hl_d1m[p_holm_col]:.2e}",
+              f"p = {hl_p1[p_holm_col]:.2e}"]
 
     vp2 = ax2.violinplot(deltas, positions=[1, 2, 3], showmeans=False, showmedians=False, showextrema=False)
     diff_colors = [TEAL, GOLD, CRIMSON]
@@ -431,7 +432,8 @@ def generate_fig05(data):
                     ecolor=col, elinewidth=2.2, capsize=6, capthick=2.0, markersize=8, zorder=4)
 
         # Value annotation
-        p_str = f"{row['wilcoxon_p_holm']:.2e}" if row['wilcoxon_p_holm'] > 0 else "< 1e-17"
+        p_col = "wilcoxon_pratt_p_holm" if "wilcoxon_pratt_p_holm" in row else "wilcoxon_p_holm"
+        p_str = f"{row[p_col]:.2e}"
         stat_text = (f"HL = {hl:+.2f} pp [95% BCa: {ci_l:+.2f}, {ci_h:+.2f}]\n"
                      f"r_rb = {row['rank_biserial']:+.3f} | dz = {row['cohens_dz']:+.3f} | p_adj = {p_str}")
         ax.text(hl, y + 0.28, stat_text, ha="center", va="bottom", fontsize=8.2, fontweight="bold", color=DARK_GRAY)
@@ -1050,7 +1052,7 @@ def generate_figure_index():
         "# LeakCheck V1.1 Evidence Package: Scientific Figure Index",
         "",
         "**Benchmark Cohort**: PhysioNet EEGMMIDB Motor Imagery ($N = 105$ analyzed participants, $N = 4$ screened exclusions)  ",
-        "**Repaired Benchmark Directory**: `benchmark_results/physionet_v1_1_repaired/`  ",
+        "**Authoritative Benchmark Directory**: `benchmark_results/physionet_v1_1/`  ",
         "**Generated Formats**: High-Resolution Raster (`.png` at 300 DPI) and Publication Vector (`.pdf`, `.svg`)  ",
         "**Generation Script**: `figures/scripts/generate_figures.py`  ",
         "**Figure Standards Compliance**: Colorblind-safe palettes, explicit uncertainty intervals, no truncated axes, full provenance  ",
@@ -1074,7 +1076,7 @@ def generate_figure_index():
         png_hash = sha256_file(png_full) if os.path.isfile(png_full) else "PENDING"
         pdf_hash = sha256_file(pdf_full) if os.path.isfile(pdf_full) else "PENDING"
 
-        lines.append(f"| **{fig_id}** | {title} | [`{base_fn}.png`](../{png_file})<br>`{png_hash[:16]}...` | [`{base_fn}.pdf`](../{pdf_file})<br>[`{base_fn}.svg`](../{svg_file}) | `benchmark_results/physionet_v1_1_repaired/` | **VERIFIED** |")
+        lines.append(f"| **{fig_id}** | {title} | [`{base_fn}.png`](../{png_file})<br>`{png_hash[:16]}...` | [`{base_fn}.pdf`](../{pdf_file})<br>[`{base_fn}.svg`](../{svg_file}) | `benchmark_results/physionet_v1_1/` | **VERIFIED** |")
 
     lines.extend([
         "",

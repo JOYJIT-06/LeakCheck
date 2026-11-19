@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 
 from emi.leakstats import wilcoxon_pratt, hodges_lehmann, bca_ci
 
-BENCHMARK_DIR = os.path.join(BASE_DIR, "benchmark_results", "physionet_v1_1_repaired")
+BENCHMARK_DIR = os.path.join(BASE_DIR, "benchmark_results", "physionet_v1_1")
 TABLES_DIR = os.path.join(BASE_DIR, "tables")
 FIGURES_DIR = os.path.join(BASE_DIR, "figures")
 EVIDENCE_DIR = os.path.join(BASE_DIR, "evidence")
@@ -137,7 +137,7 @@ def test_raw_benchmark_statistics():
         # 5. TOST equivalence test with margin +/- 2.0 pp
         se_d = sd_d / np.sqrt(N)
         t_low = (mean_calc - (-2.0)) / se_d
-        p_low = float(1.0 - stats.t.cdf(t_low, df=N-1))
+        p_low = float(stats.t.sf(t_low, df=N-1))
         t_high = (mean_calc - 2.0) / se_d
         p_high = float(stats.t.cdf(t_high, df=N-1))
         tost_p_calc = max(p_low, p_high)

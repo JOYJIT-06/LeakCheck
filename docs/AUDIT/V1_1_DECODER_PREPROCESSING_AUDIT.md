@@ -122,6 +122,13 @@ for tr, te in folds:
 ```
 Because `build_model()` creates a new `sklearn.pipeline.Pipeline([("csp", ...), ("clf", ...)])`, no spatial filter weights, whitening matrices, or class means from previous folds persist across iterations.
 
+### 4.1 Preprocessing Design Boundary Alignment
+To prevent confounding validation partitioning effects with continuous signal filtering artifacts:
+- **Design Boundary Definition**: Continuous preprocessing (run-independent zero-phase bandpass filtering, spherical spline bad-channel interpolation, common average reference, FastICA ocular component rejection, and peak-to-peak amplitude trial rejection) is executed strictly at the continuous run boundary to produce a standardized, label-blind trial pool $(X, y, \text{runs})$.
+- **Mathematical & Physical Rationale**: Randomly partitioned splits ($D_{1m}$ and $D_{1s}$) sample non-contiguous trials across runs. Splicing disjoint 2-second trial segments into an artificial continuous buffer to re-run filtering or FastICA would introduce severe voltage step-discontinuities, filter ringing artifacts, and violate stationarity assumptions.
+- **Experimental Integrity**: All continuous preprocessing is strictly label-blind (unsupervised). Evaluating all validation designs ($D_3$, $D_{1m}$, $D_{1s}$, and $P_1$) on the identical standardized epoch pool isolates the experimental effect solely to trial partitioning and validation structure.
+- **Supervised Decoder Isolation**: For clean designs ($D_3$, $D_{1m}$, $D_{1s}$), supervised operations (CSP spatial covariance estimation and LDA classifier training) are 100% strictly fold-isolated, fitted exclusively on training trials $\mathcal{S}_g$.
+
 ---
 
 ## 5. Verification Protocol
