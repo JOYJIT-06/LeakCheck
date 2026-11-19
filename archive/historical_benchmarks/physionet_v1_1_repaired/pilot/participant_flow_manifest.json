@@ -1,0 +1,206 @@
+{
+  "dataset_name": "PhysioNet EEG Motor Movement/Imagery Database (EEGMMIDB)",
+  "protocol_version": "LeakCheck V1.1 Repaired",
+  "benchmark_id": "physionet_v1_1_repaired",
+  "requested_subjects_total": 7,
+  "included_subjects_total": 3,
+  "excluded_subjects_total": 4,
+  "inclusion_rate_percent": 42.86,
+  "excluded_subject_ids": [
+    "S044",
+    "S069",
+    "S086",
+    "S091"
+  ],
+  "historical_draft_line_95_refutation": {
+    "refuted_claim": "Historical manuscript draft line 95 claimed S088, S092, S100, S104 were excluded for corrupted sampling rates or technical failure.",
+    "verdict": "FALSE (HISTORICAL DRAFT CLAIM FORMALLY REFUTED)",
+    "empirical_evidence": {
+      "S088": {
+        "status": "INCLUDED",
+        "n_trials": 53,
+        "sfreq_hz": 128.0,
+        "delta_p1_pp": 11.32,
+        "delta_d1s_pp": -10.09
+      }
+    }
+  },
+  "subjects": {
+    "S001": {
+      "subject_id": "S001",
+      "subject_num": 1,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-001",
+      "cache_sha256": "7c9b0e2def6b810febb062c87f788c65ae62a3ae732e486133b5cee7f9ec6082",
+      "n_trials": 44,
+      "n_runs": 3,
+      "trials_per_run": [
+        14,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.6091,
+          "delta_pp": 6.36
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.5716,
+          "delta_pp": 2.61
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.5455,
+          "acc_leaky": 0.8864,
+          "delta_pp": 34.09
+        }
+      }
+    },
+    "S002": {
+      "subject_id": "S002",
+      "subject_num": 2,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-002",
+      "cache_sha256": "2c8a8a7be68d5aad1f665e6bb688ede2c2d00ec1a41061f2bfd800ac91236e9b",
+      "n_trials": 45,
+      "n_runs": 3,
+      "trials_per_run": [
+        15,
+        15,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.6267,
+          "delta_pp": -19.56
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.7067,
+          "delta_pp": -11.56
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.8222,
+          "acc_leaky": 0.8667,
+          "delta_pp": 4.44
+        }
+      }
+    },
+    "S088": {
+      "subject_id": "S088",
+      "subject_num": 88,
+      "status": "INCLUDED",
+      "rejection_category": null,
+      "rejection_rationale": null,
+      "cache_exists": true,
+      "cache_path": "physionet_repaired_sub-088",
+      "cache_sha256": "6fc4c85acca25bf8c02fda1ee368846b9189f4840f95d92a31deb41bae5dfca6",
+      "n_trials": 53,
+      "n_runs": 3,
+      "trials_per_run": [
+        19,
+        15,
+        19
+      ],
+      "sfreq": 128.0,
+      "n_channels": 64,
+      "accuracies": {
+        "D1m_matched_k": {
+          "acc_ref": 0.566,
+          "acc_leaky": 0.4792,
+          "delta_pp": -8.68
+        },
+        "D1s_size_matched": {
+          "acc_ref": 0.566,
+          "acc_leaky": 0.4651,
+          "delta_pp": -10.09
+        },
+        "P1_csp_on_all": {
+          "acc_ref": 0.566,
+          "acc_leaky": 0.6792,
+          "delta_pp": 11.32
+        }
+      }
+    },
+    "S044": {
+      "subject_id": "S044",
+      "subject_num": 44,
+      "status": "EXCLUDED",
+      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+      "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 0,
+      "n_runs": 3,
+      "trials_per_run": [],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S069": {
+      "subject_id": "S069",
+      "subject_num": 69,
+      "status": "EXCLUDED",
+      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+      "rejection_rationale": "Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 0,
+      "n_runs": 3,
+      "trials_per_run": [],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S086": {
+      "subject_id": "S086",
+      "subject_num": 86,
+      "status": "EXCLUDED",
+      "rejection_category": "MINIMUM_TRIAL_THRESHOLD_VIOLATION",
+      "rejection_rationale": "Sample size threshold violation: 24 trials < minimum 30 threshold (min_trials=30 in settings.json)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 24,
+      "n_runs": 3,
+      "trials_per_run": [
+        5,
+        4,
+        15
+      ],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    },
+    "S091": {
+      "subject_id": "S091",
+      "subject_num": 91,
+      "status": "EXCLUDED",
+      "rejection_category": "AUTOMATED_PREPROCESSING_QC",
+      "rejection_rationale": "100% trials rejected by adaptive peak-to-peak thresholding (all 45 epochs dropped)",
+      "cache_exists": false,
+      "cache_path": null,
+      "cache_sha256": null,
+      "n_trials": 0,
+      "n_runs": 3,
+      "trials_per_run": [],
+      "sfreq": 160.0,
+      "n_channels": 64,
+      "accuracies": {}
+    }
+  }
+}

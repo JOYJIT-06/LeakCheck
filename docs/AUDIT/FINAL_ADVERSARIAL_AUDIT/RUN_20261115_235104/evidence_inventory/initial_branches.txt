@@ -1,0 +1,4 @@
+﻿  fix/v1.1-stabilization    d35afa6 release: LeakCheck v1.1.0 ΓÇö Stabilized PhysioNet EEG Leakage Auditing Benchmark
+  main                      d35afa6 [origin/main: behind 9] release: LeakCheck v1.1.0 ΓÇö Stabilized PhysioNet EEG Leakage Auditing Benchmark
+* research/v1.1-final-audit 2774aa9 [origin/research/v1.1-final-audit: ahead 1] docs(audit): add independent scientific validation audit report (18 sections, 60 KB)
+  v2-dev                    d5891db [origin/v2-dev: behind 6] fix(benchmark): robust real-data path resolution and small-cohort contrast statistics

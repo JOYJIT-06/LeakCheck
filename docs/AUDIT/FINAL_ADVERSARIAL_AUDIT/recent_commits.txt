@@ -1,0 +1,5 @@
+﻿2774aa9 docs(audit): add independent scientific validation audit report (18 sections, 60 KB)
+4c63b27 docs(audit): harmonize quality gates and scope compliance reports with verified package hashes and archive isolation
+dd4427e chore(release): isolate V1.1 release package, archive V2 multi-dataset modules, and update checksums
+0a7a7f2 chore(scope): purge all OpenBMI artifacts, figures, benchmarks, and references from V1.1 branch
+969721b docs(audit): enforce strict single-dataset PhysioNet-only scope compliance and purge OpenBMI results from V1.1 audit

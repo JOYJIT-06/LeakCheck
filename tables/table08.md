@@ -1,0 +1,8 @@
+# Table 8: Parametric and Nonparametric Effect Size Estimates and Location Shifts
+
+| Contrast                           | Parametric Mean Diff (pp) | Parametric SD (pp) | Nonparametric Median Diff (pp) | Interquartile Range IQR (pp) | Hodges-Lehmann Estimate (pp) | Rank-Biserial Correlation r_rb | Paired Cohen's dz | Logit-Transformed Paired t p-val |
+| ---------------------------------- | ------------------------- | ------------------ | ------------------------------ | ---------------------------- | ---------------------------- | ------------------------------ | ----------------- | -------------------------------- |
+| D1s − D3 (Size-Matched Random)     | -4.66                     | 8.72               | -4.65                          | 11.22                        | -4.78                        | -0.572                         | -0.535            | 6.54e-07                         |
+| D1m − D3 (k-Matched Random)        | -7.33                     | 9.02               | -7.56                          | 11.71                        | -7.59                        | -0.747                         | -0.813            | 4.87e-12                         |
+| P1 − D3 (Positive Control Leakage) | +22.31                    | 13.49              | +23.26                         | 21.97                        | +22.22                       | +0.991                         | +1.653            | 4.10e-26                         |
+

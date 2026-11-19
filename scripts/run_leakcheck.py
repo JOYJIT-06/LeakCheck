@@ -547,6 +547,8 @@ def main():
             "hl_pp",
             "hl_ci_low_pp",
             "hl_ci_high_pp",
+            "wilcoxon_pratt_p",
+            "wilcoxon_pratt_p_holm",
             "wilcoxon_p_holm",
         )
         if c in infl.columns

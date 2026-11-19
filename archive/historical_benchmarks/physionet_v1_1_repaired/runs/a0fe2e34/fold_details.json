@@ -1,0 +1,5055 @@
+{
+  "S001": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 247.0648504560612,
+      "bad_channels": [
+        "Fp1",
+        "FT8",
+        "T8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 406.1504322567181,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "FT8",
+        "T8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 400.54274783290623,
+      "bad_channels": [
+        "Fp1",
+        "FT8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S002": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "AF7",
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 242.2592145819121,
+      "bad_channels": [
+        "TP8"
+      ],
+      "ica_excluded": [
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S003": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7"
+      ],
+      "ica_excluded": []
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8",
+        "F6"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 214.951537365901,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S004": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "FC1",
+        "FT8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "FT8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "FT8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S005": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 232.59701765185582,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 311.2266329274296,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 228.55712156679422,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S006": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 302.07721766573377,
+      "bad_channels": [
+        "Fp1"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 338.9443156523754,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 251.01363290649076,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S007": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 259.36807549062723,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 251.6432206869623,
+      "bad_channels": [
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 308.209824007008,
+      "bad_channels": [
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S008": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S009": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 576.9355007145334,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 519.5621738050281,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 547.4620136252155,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S010": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 588.4859235461147,
+      "bad_channels": [
+        "C6"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7142857142857143,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 420.97175547638165,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6428571428571429,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 369.21020153067343,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        4
+      ]
+    }
+  ],
+  "S011": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S012": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 257.8843853604702,
+      "bad_channels": [
+        "O2",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 268.8374776821206,
+      "bad_channels": [
+        "Fp1",
+        "T9",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5714285714285714,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 200.96574060110402,
+      "bad_channels": [
+        "Fp1",
+        "T9",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S013": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF3",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S014": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 218.06631935218667,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "T8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 259.0025125218121,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 219.41261715905483,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S015": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 260.75036400573515,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8",
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 381.77437242659033,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8",
+        "F7",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 340.5215363117168,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S016": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S017": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 674.4829845320586,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S018": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 226.86545730404436,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": []
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 292.656670537962,
+      "bad_channels": [],
+      "ica_excluded": []
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 282.1161854109485,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S019": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 427.70682673870954,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 539.6486453456671,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 506.79313572930255,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S020": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S021": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "C5",
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "F1",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "C5",
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "F1",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "C5",
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "F1",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S022": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6428571428571429,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 309.48988904870043,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 487.48212415957846,
+      "bad_channels": [
+        "Fp1",
+        "Fp2"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 13,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [],
+      "ica_excluded": []
+    }
+  ],
+  "S023": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 799.0713095814789,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 791.0216291650917,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 27,
+      "n_test": 15,
+      "threshold_uv": 335.58187976758285,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S024": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        6
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 648.2031997734962,
+      "bad_channels": [],
+      "ica_excluded": [
+        4
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        5
+      ]
+    }
+  ],
+  "S025": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S026": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S027": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5384615384615384,
+      "n_train": 30,
+      "n_test": 13,
+      "threshold_uv": 339.9244828103318,
+      "bad_channels": [
+        "Fp2",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 28,
+      "n_test": 15,
+      "threshold_uv": 308.3421606733891,
+      "bad_channels": [
+        "Fp2",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 28,
+      "n_test": 15,
+      "threshold_uv": 324.2604248643821,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S028": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.2,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 525.014108105498,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.3333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 467.62256800733286,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 479.6158238396479,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "AF7"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S029": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 217.51844952793408,
+      "bad_channels": [],
+      "ica_excluded": [
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        1
+      ]
+    }
+  ],
+  "S030": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp2"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S031": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 399.3578227855912,
+      "bad_channels": [
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 391.76446559598054,
+      "bad_channels": [
+        "T8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.9333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 272.82311843049115,
+      "bad_channels": [
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S032": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 325.06575705381323,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 525.4121141219603,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF4",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 562.295563400361,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF4",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S033": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S034": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 28,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7857142857142857,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.8571428571428571,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S035": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S036": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 477.7965310337104,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF8"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 559.2239658485794,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 396.6812814947779,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S037": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 28,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        16
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7142857142857143,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        17
+      ]
+    }
+  ],
+  "S038": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 220.74862189273375,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        3
+      ]
+    }
+  ],
+  "S039": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 636.4644297888394,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 660.2951426483376,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 603.2672720107208,
+      "bad_channels": [
+        "Fp1",
+        "Fp2"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S040": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5714285714285714,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 244.7188279198087,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 231.2256628081073,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S041": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.3333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.42857142857142855,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S042": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S043": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 573.8595929515611,
+      "bad_channels": [
+        "T9"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6153846153846154,
+      "n_train": 29,
+      "n_test": 13,
+      "threshold_uv": 388.65517557318424,
+      "bad_channels": [
+        "T9"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 27,
+      "n_test": 15,
+      "threshold_uv": 341.2397581170058,
+      "bad_channels": [
+        "T9"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    }
+  ],
+  "S045": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 724.4711302333345,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.42857142857142855,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 273.5381170711304,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 267.9431950613035,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S046": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 213.22546940886937,
+      "bad_channels": [
+        "Fp2",
+        "AF8",
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 217.5253862409567,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6428571428571429,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S047": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        5
+      ]
+    }
+  ],
+  "S048": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 698.1843017978867,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 675.7247309239656,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 520.0931990560301,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    }
+  ],
+  "S049": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 659.4228827306738,
+      "bad_channels": [
+        "Fp1",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 568.6111523369011,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7142857142857143,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 378.0072251676522,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S050": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S051": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T9"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S052": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 676.7455539690711,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 512.9504699106205,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 469.6629053148032,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S053": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 514.8230371659927,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 405.08267282593636,
+      "bad_channels": [
+        "Fp2"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 583.4204690306772,
+      "bad_channels": [
+        "Fp2"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S054": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 406.6910125761236,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 301.58159182183425,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.9333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 292.2054837222105,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S055": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "PO8",
+        "O2",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "PO8",
+        "O2",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "PO8",
+        "O2",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S056": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.9333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 482.2080011594917,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AFz",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 525.7536057157304,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 396.2312265667524,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S057": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 481.01150798604067,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8,
+      "n_train": 25,
+      "n_test": 10,
+      "threshold_uv": 291.07793461943106,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        3
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 698.9264197884286,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S058": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 404.03262924578667,
+      "bad_channels": [
+        "Fp2",
+        "AF8"
+      ],
+      "ica_excluded": [
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 253.64675826998374,
+      "bad_channels": [
+        "Fp2",
+        "AF4",
+        "AF8"
+      ],
+      "ica_excluded": [
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 454.2953608344287,
+      "bad_channels": [
+        "Fp2",
+        "AF8"
+      ],
+      "ica_excluded": [
+        1
+      ]
+    }
+  ],
+  "S059": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 333.76728069239834,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 330.650087540296,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 327.4140521849081,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S060": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 374.7006525425411,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8571428571428571,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 300.46713178342776,
+      "bad_channels": [
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.8666666666666667,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 300.317579323014,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S061": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 527.849881347659,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 443.61164794937304,
+      "bad_channels": [
+        "AF8",
+        "T9"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 411.78578171407776,
+      "bad_channels": [
+        "T9"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S062": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.9333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 1.0,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S063": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 240.54240951567718,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 268.68918824588815,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 280.26355295755934,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S064": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.35714285714285715,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S065": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 282.3476819559171,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 254.5184507483438,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 248.18851464530303,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S066": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.9553495769876,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 261.13053082222643,
+      "bad_channels": [
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 283.98773419121545,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S067": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "AF7",
+        "AF3",
+        "AF8"
+      ],
+      "ica_excluded": [
+        1,
+        14
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "AF7"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S068": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 28,
+      "n_test": 15,
+      "threshold_uv": 240.80123020711738,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6428571428571429,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 236.5554153152632,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 218.77659541461549,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S070": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 272.1845826679344,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 308.67442873597133,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 247.2069900278335,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S071": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 426.28226562227724,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "AF8",
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 342.43693171977,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6363636363636364,
+      "n_train": 30,
+      "n_test": 11,
+      "threshold_uv": 204.7323494548191,
+      "bad_channels": [
+        "Fp1",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S072": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7142857142857143,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "AF8",
+        "F8",
+        "T10"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 1.0,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "F8",
+        "T10"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.8,
+      "n_train": 28,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "F8",
+        "T10"
+      ],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    }
+  ],
+  "S073": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.35714285714285715,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8",
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S074": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 28,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        1,
+        2
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.35714285714285715,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7857142857142857,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S075": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 762.942986972234,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 727.7104384422287,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.8666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 664.1597392954985,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S076": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.35714285714285715,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S077": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.2,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 427.14991858932945,
+      "bad_channels": [
+        "Fp1",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.3333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 312.8798010766804,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 347.06129331299167,
+      "bad_channels": [
+        "Fp1"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S078": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 215.64522588100886,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S079": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 494.4651358201,
+      "bad_channels": [
+        "Fp1",
+        "F5",
+        "T10",
+        "P1"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 413.57526614136066,
+      "bad_channels": [
+        "Fp1",
+        "F5",
+        "T10",
+        "P1"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.35714285714285715,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 334.87502228145735,
+      "bad_channels": [
+        "Fp1",
+        "T10",
+        "P1"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S080": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.75,
+      "n_train": 29,
+      "n_test": 12,
+      "threshold_uv": 205.87060892152158,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S081": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 349.7516736607342,
+      "bad_channels": [],
+      "ica_excluded": []
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 520.6863832480959,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": []
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 302.2343613469422,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": []
+    }
+  ],
+  "S082": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 223.63861072738672,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 216.41029224843706,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 248.99829590971027,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S083": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 366.32215359505324,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 418.6647515064741,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 280.77355240223966,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S084": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 325.55998027998794,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 455.01714682716977,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 408.84879751947085,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S085": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "AF7",
+        "T10",
+        "O1"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S087": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 385.3144237789252,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 314.4183427945122,
+      "bad_channels": [
+        "AF8",
+        "T10",
+        "TP8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 353.81903861598624,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S088": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6842105263157895,
+      "n_train": 37,
+      "n_test": 19,
+      "threshold_uv": 390.19054035697684,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 38,
+      "n_test": 15,
+      "threshold_uv": 286.21024225613337,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5263157894736842,
+      "n_train": 37,
+      "n_test": 19,
+      "threshold_uv": 358.5162808087109,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8",
+        "F7"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S089": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S090": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 337.53705595170464,
+      "bad_channels": [],
+      "ica_excluded": [
+        1,
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 29,
+      "n_test": 10,
+      "threshold_uv": 800.0,
+      "bad_channels": [],
+      "ica_excluded": []
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 302.1589318103754,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S092": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5789473684210527,
+      "n_train": 38,
+      "n_test": 19,
+      "threshold_uv": 459.9881496324634,
+      "bad_channels": [
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6842105263157895,
+      "n_train": 38,
+      "n_test": 19,
+      "threshold_uv": 411.85222982668654,
+      "bad_channels": [
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.5789473684210527,
+      "n_train": 38,
+      "n_test": 19,
+      "threshold_uv": 370.06561686068267,
+      "bad_channels": [
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S093": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6428571428571429,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 219.15262038592786,
+      "bad_channels": [
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": []
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.9333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S094": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 374.648722884959,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8",
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 426.33054731149247,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.9333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 315.8584378340007,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S095": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 481.3316815556552,
+      "bad_channels": [
+        "AF4"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 485.0955268348595,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3076923076923077,
+      "n_train": 29,
+      "n_test": 13,
+      "threshold_uv": 309.7967925574247,
+      "bad_channels": [
+        "C5",
+        "C2"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S096": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 634.8264813899593,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7142857142857143,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "T10",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S097": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5,
+      "n_train": 30,
+      "n_test": 14,
+      "threshold_uv": 258.7502860941886,
+      "bad_channels": [
+        "AF7",
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 27,
+      "n_test": 15,
+      "threshold_uv": 212.60159184199694,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.35714285714285715,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S098": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        2
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        2
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.7333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        3
+      ]
+    }
+  ],
+  "S099": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [
+        "Fp1",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 740.6670855956095,
+      "bad_channels": [
+        "Fp1",
+        "Fp2",
+        "AF7",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 710.9304535843701,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S100": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 24,
+      "n_test": 10,
+      "threshold_uv": 272.87007899428244,
+      "bad_channels": [
+        "FC5"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5,
+      "n_train": 24,
+      "n_test": 12,
+      "threshold_uv": 368.496987164752,
+      "bad_channels": [
+        "FC5"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.75,
+      "n_train": 24,
+      "n_test": 12,
+      "threshold_uv": 455.70225473740607,
+      "bad_channels": [
+        "FC5"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S101": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 244.06682393837082,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 276.5855359747152,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.3333333333333333,
+      "n_train": 29,
+      "n_test": 15,
+      "threshold_uv": 240.53595989532462,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S102": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5714285714285714,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5714285714285714,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6428571428571429,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S103": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 594.8521822295942,
+      "bad_channels": [
+        "T8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 505.8695661145105,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 485.5899380015365,
+      "bad_channels": [
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S104": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 27,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4166666666666667,
+      "n_train": 30,
+      "n_test": 12,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 27,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "AF7",
+        "AF3",
+        "AFz",
+        "AF4",
+        "AF8",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S105": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "FC5",
+        "FC1",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        10
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "FC5",
+        "FC1",
+        "Fp1",
+        "Fpz",
+        "Fp2",
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 200.0,
+      "bad_channels": [
+        "FC5",
+        "FC1",
+        "Fp2",
+        "T9",
+        "T10"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ],
+  "S106": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 352.49295535789975,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 287.0189162465454,
+      "bad_channels": [
+        "AF7",
+        "T10"
+      ],
+      "ica_excluded": [
+        0,
+        3
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 309.8049735754803,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    }
+  ],
+  "S107": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 581.6079859217783,
+      "bad_channels": [
+        "AF8",
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": []
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.7142857142857143,
+      "n_train": 29,
+      "n_test": 14,
+      "threshold_uv": 461.0086911575368,
+      "bad_channels": [
+        "AF7",
+        "AF8",
+        "T8",
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": []
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6428571428571429,
+      "n_train": 28,
+      "n_test": 14,
+      "threshold_uv": 418.95944214959115,
+      "bad_channels": [
+        "AF7",
+        "AF8",
+        "T10",
+        "TP8",
+        "P8"
+      ],
+      "ica_excluded": []
+    }
+  ],
+  "S108": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.8,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 724.5206156915635,
+      "bad_channels": [
+        "Iz"
+      ],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.6666666666666666,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.6,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 800.0,
+      "bad_channels": [],
+      "ica_excluded": [
+        0,
+        1
+      ]
+    }
+  ],
+  "S109": [
+    {
+      "fold": 0,
+      "test_run": 0,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 228.95342735460395,
+      "bad_channels": [
+        "FC1",
+        "C4",
+        "Fp1",
+        "AF7",
+        "AF3",
+        "F6"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    },
+    {
+      "fold": 1,
+      "test_run": 1,
+      "acc": 0.5333333333333333,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 320.5075751778664,
+      "bad_channels": [
+        "FC1",
+        "C4",
+        "F6"
+      ],
+      "ica_excluded": [
+        0,
+        2
+      ]
+    },
+    {
+      "fold": 2,
+      "test_run": 2,
+      "acc": 0.4666666666666667,
+      "n_train": 30,
+      "n_test": 15,
+      "threshold_uv": 287.2261412526171,
+      "bad_channels": [
+        "FC1",
+        "C4",
+        "F6"
+      ],
+      "ica_excluded": [
+        0
+      ]
+    }
+  ]
+}

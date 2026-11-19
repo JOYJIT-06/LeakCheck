@@ -77,8 +77,8 @@ def tost_paired(d, margin, alpha=0.05):
     if n < 3 or d.std(ddof=1) == 0:
         return {"tost_p": np.nan, "equivalent": False}
     se = d.std(ddof=1) / np.sqrt(n)
-    p_lower = 1 - stats.t.cdf((d.mean() + margin) / se, n - 1)   # H0: mean <= -margin
-    p_upper = stats.t.cdf((d.mean() - margin) / se, n - 1)       # H0: mean >= +margin
+    p_lower = float(stats.t.sf((d.mean() + margin) / se, n - 1)) # H0: mean <= -margin
+    p_upper = float(stats.t.cdf((d.mean() - margin) / se, n - 1)) # H0: mean >= +margin
     p = float(max(p_lower, p_upper))
     return {"tost_p": p, "equivalent": bool(p < alpha)}
 
@@ -86,6 +86,45 @@ def tost_paired(d, margin, alpha=0.05):
 def _logit(a, eps):
     a = np.clip(np.asarray(a, float), eps, 1 - eps)
     return np.log(a / (1 - a))
+
+
+def wilcoxon_pratt(d, zero_tol=1e-9):
+    """Pratt (1959) signed-rank test with Cureton (1967) tie correction.
+    
+    Zeros (|d| <= zero_tol) receive absolute ranks but are excluded from the positive rank sum.
+    The tie correction strictly excludes zero ties to avoid double-subtraction.
+    Returns (w_stat, z_stat, p_value).
+    """
+    d = np.asarray(d, float)
+    d = d[np.isfinite(d)]
+    n = len(d)
+    if n == 0:
+        return np.nan, np.nan, np.nan
+    d = np.where(np.abs(d) <= zero_tol, 0.0, d)
+    if np.all(d == 0.0):
+        return 0.0, 0.0, 1.0
+    
+    t0 = int(np.sum(d == 0.0))
+    abs_d = np.abs(d)
+    ranks = stats.rankdata(abs_d)
+    w_plus = float(np.sum(ranks[d > 0.0]))
+    w_minus = float(np.sum(ranks[d < 0.0]))
+    
+    mu = (n * (n + 1) - t0 * (t0 + 1)) / 4.0
+    
+    # Non-zero ties
+    nonzero_d = abs_d[d != 0.0]
+    unique, counts = np.unique(nonzero_d, return_counts=True)
+    tie_term = np.sum(counts**3 - counts)
+    
+    var = (n * (n + 1) * (2 * n + 1) - t0 * (t0 + 1) * (2 * t0 + 1) - 0.5 * tie_term) / 24.0
+    sd = np.sqrt(var)
+    
+    diff = w_plus - mu
+    cc = 0.5 * np.sign(diff) if diff != 0 else 0.0
+    z = (diff - cc) / sd if sd > 0 else 0.0
+    p = float(2.0 * stats.norm.sf(np.abs(z)))
+    return float(min(w_plus, w_minus)), float(z), float(p)
 
 
 def paired_summary(acc_leaky, acc_ref, n_test=None, margin_pp=2.0, n_boot=10000, seed=0):
@@ -102,6 +141,10 @@ def paired_summary(acc_leaky, acc_ref, n_test=None, margin_pp=2.0, n_boot=10000,
     out["hl_pp"] = hodges_lehmann(d)
     out["hl_ci_low_pp"], out["hl_ci_high_pp"], out["hl_ci_method"] = bca_ci(d, n_resamples=n_boot, seed=seed, return_method=True)
     out["wilcoxon_p"] = 1.0 if np.allclose(d, 0) else float(stats.wilcoxon(d).pvalue)
+    w_pratt, z_pratt, p_pratt = wilcoxon_pratt(d)
+    out["wilcoxon_pratt_w"] = w_pratt
+    out["wilcoxon_pratt_z"] = z_pratt
+    out["wilcoxon_pratt_p"] = p_pratt
     eps = 0.5 / max(float(n_test) if n_test else 45.0, 2.0)
     la, lb = _logit(a, eps), _logit(b, eps)
     out["t_logit_p"] = 1.0 if np.allclose(la, lb) else float(stats.ttest_rel(la, lb).pvalue)
@@ -156,7 +199,7 @@ def required_subjects(sd, effect, alpha=0.05, power=0.80, n_max=5000):
         df = n - 1
         nc = effect / sd * np.sqrt(n)
         tcrit = stats.t.ppf(1 - alpha / 2, df)
-        pw = 1 - stats.nct.cdf(tcrit, df, nc) + stats.nct.cdf(-tcrit, df, nc)
+        pw = float(stats.nct.sf(tcrit, df, nc) + stats.nct.cdf(-tcrit, df, nc))
         if pw >= power:
             return n
     return None

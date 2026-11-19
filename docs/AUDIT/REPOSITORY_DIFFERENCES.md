@@ -13,7 +13,6 @@
 |---|---|---|
 | **Identical Tracked Files** | 52 | Scripts, core algorithms (`leakcheck.py`, `leakstats.py`, etc.), configs |
 | **Modified / Differing Files** | 44 | Includes 3 core source modules, 2 test files, docs, and build bytecode |
-| **Files Only in `LeakCheck`** | 16 | Backups (`cache.py.bak`, `run_leakcheck.py.bak`), OpenBMI raw data |
 | **Files Only in `LeakCheck_remote`** | 40 | `test_cache.py`, `CLAUDE_HANDOFF_V11.txt`, `V11_current_working.patch`, benchmark results |
 | **Test Count (Historical Baseline)** | 87 | 87 passed in 38.72s in `LeakCheck` |
 | **Test Count (Remote Working Copy)** | 165 | 165 passed in 34.12s in `LeakCheck_remote` (+78 new tests) |

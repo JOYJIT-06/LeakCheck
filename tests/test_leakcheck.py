@@ -195,3 +195,26 @@ def test_audit_records_provenance_columns_and_pairs_fold_seeds():
     assert (df["csp_impl"] == "rank_safe").all() and (df["n_channels"] == X.shape[1]).all()
     assert df.loc[df.label_type == "real", "label_agreement"].eq(1.0).all()
     assert df["label_hash"].nunique() == 3 and df["base_window"].iloc[0] == "1-3"
+
+
+def test_inflation_table_includes_pratt_holm():
+    """Verify inflation_table populates wilcoxon_pratt_p_holm alongside wilcoxon_p_holm."""
+    frames = []
+    for s in range(4):
+        X, y, runs, times = make_data(seed=s)
+        frames.append(lc.audit_subject(X, y, runs, times, s, csp_factory,
+                                       designs=["D1s_size_matched", "D1m_matched_k", "D3_loro"],
+                                       n_null=0, n_repeats=2, n_repeats_matched=2))
+    raw = pd.concat(frames, ignore_index=True)
+    by_subj = lc.inflation_by_subject(raw)
+    tab = lc.inflation_table(by_subj, n_boot=50)
+    assert "wilcoxon_pratt_p" in tab.columns
+    assert "wilcoxon_pratt_p_holm" in tab.columns
+    assert "wilcoxon_p_holm" in tab.columns
+    # Check that Pratt Holm adjusted p-values are >= raw Pratt p-values
+    for _, idx in tab.groupby(["dataset", "decoder"]).groups.items():
+        raw_p = tab.loc[idx, "wilcoxon_pratt_p"].to_numpy(float)
+        adj_p = tab.loc[idx, "wilcoxon_pratt_p_holm"].to_numpy(float)
+        valid = np.isfinite(raw_p) & np.isfinite(adj_p)
+        assert np.all(adj_p[valid] >= raw_p[valid] - 1e-12)
+

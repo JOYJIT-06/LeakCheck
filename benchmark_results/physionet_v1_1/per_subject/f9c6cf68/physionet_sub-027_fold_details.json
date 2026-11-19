@@ -1,0 +1,52 @@
+[
+  {
+    "fold": 0,
+    "test_run": 0,
+    "acc": 0.5,
+    "n_train": 30,
+    "n_test": 14,
+    "threshold_uv": 367.31453219608056,
+    "bad_channels": [
+      "Fp2",
+      "AF8"
+    ],
+    "ica_excluded": [
+      0,
+      1
+    ]
+  },
+  {
+    "fold": 1,
+    "test_run": 1,
+    "acc": 0.4666666666666667,
+    "n_train": 28,
+    "n_test": 15,
+    "threshold_uv": 304.38571219630103,
+    "bad_channels": [
+      "Fp2",
+      "AF8"
+    ],
+    "ica_excluded": [
+      0,
+      1
+    ]
+  },
+  {
+    "fold": 2,
+    "test_run": 2,
+    "acc": 0.3333333333333333,
+    "n_train": 28,
+    "n_test": 15,
+    "threshold_uv": 316.8931999306706,
+    "bad_channels": [
+      "Fp1",
+      "Fpz",
+      "Fp2",
+      "AF8"
+    ],
+    "ica_excluded": [
+      0,
+      1
+    ]
+  }
+]

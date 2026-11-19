@@ -8,7 +8,7 @@
 
 ## 1. Storage Architecture Overview
 
-EEG datasets across multi-subject motor imagery cohorts can exceed tens or hundreds of gigabytes (e.g., OpenBMI raw continuous data $\approx 45$ GB; Cho et al. 2017 $\approx 15$ GB; PhysioNet EEGMMIDB cache $\approx 8$ GB). A dual-tier storage strategy decouples high-bandwidth binary data from version-controlled scientific code:
+EEG datasets across multi-subject motor imagery cohorts can exceed tens or hundreds of gigabytes (e.g., Multi-Datasetraw continuous data $\approx 45$ GB; Cho et al. 2017 $\approx 15$ GB; PhysioNet EEGMMIDB cache $\approx 8$ GB). A dual-tier storage strategy decouples high-bandwidth binary data from version-controlled scientific code:
 
 ```mermaid
 flowchart TD
@@ -65,13 +65,13 @@ flowchart TD
   ├── manifests/                         # Cryptographic checksums & execution manifests
   │   ├── SHA256SUMS.txt                # Release wheel and sdist sha256 sums
   │   ├── physionet_v1_1_summary.json   # PhysioNet N=105 benchmark execution parameters
-  │   └── openbmi_v2_manifest.json      # OpenBMI N=34 benchmark execution parameters
+  │   └── _manifest.json      # Multi-DatasetN=34 benchmark execution parameters
   ├── benchmark_results/                 # Primary comparative metric tables
   │   ├── physionet_v1_1_inflation_table.csv
-  │   └── openbmi_v2_design_comparisons.csv
+  │   └── _design_comparisons.csv
   └── datasets/                          # Remote mirrors for large EEG binaries
       ├── physionet/
-      └── openbmi/
+      └── Multi-Dataset/
   ```
 
 ### 2.2 Google Drive Integration
@@ -102,9 +102,9 @@ When executing compute-intensive benchmarks on cohorts exceeding local machine c
 3. Mount Google Drive or download target dataset slice via MOABB:
    ```python
    import mne
-   from emi.datasets_adapters import OpenBMIDatasetAdapter
+   from emi.datasets_adapters import Multi-DatasetDatasetAdapter
    # Run benchmark script with sealed output
-   !python scripts/run_openbmi_benchmark.py --data-dir /content/data --subjects 1-10 --outdir /content/results
+   !python scripts/run_Multi-Dataset_benchmark.py --data-dir /content/data --subjects 1-10 --outdir /content/results
    ```
 4. Export results back to Google Drive or sync to Dropbox via API.
 

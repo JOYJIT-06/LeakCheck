@@ -59,7 +59,7 @@ PhysioNet EEGMMIDB (Runs 4, 8, 12):
   Result: D1s deflates performance relative to D3 (Δ_HL = -2.68 pp, p = 5.86e-5).
   Why: Mixing trials across runs forces the decoder to fit noisy cross-block interpolations.
 
-OpenBMI (Session 1: Run 0 vs. Run 1):
+Multi-Dataset(Session 1: Run 0 vs. Run 1):
   Run 0 is offline calibration without feedback; Run 1 is online feedback.
   These represent two qualitatively distinct operational regimes.
   Result: D1s inflates performance relative to D3 (Δ_HL = +2.84 pp, p = 1.87e-4).

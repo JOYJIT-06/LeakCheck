@@ -1,0 +1,5 @@
+Subject ID,Native Sfreq,Total Channels,Flagged Bad Channels,Bad Channel Ratio (%),Retained Epochs,Primary Exclusion Rule,Exclusion Rationale
+S044,160.0 Hz,64,"12 (Fp1, Fpz, Fp2, AF7, AF3, AFz, AF4, AF8, F7, F5, F3, F1)",18.75% (> 15% threshold),N/A (Excluded in QC),AUTOMATED_PREPROCESSING_QC,Excessive frontal montage impedance failure
+S069,160.0 Hz,64,"12 (O1, Oz, O2, PO7, PO3, POz, PO4, PO8, P7, P5, P3, P1)",18.75% (> 15% threshold),N/A (Excluded in QC),AUTOMATED_PREPROCESSING_QC,Excessive occipital/parietal lead detachment
+S086,160.0 Hz,64,"3 (Fp1, T9, T10)",4.69% (<= 15% threshold),24 trials (< 30 minimum),MINIMUM_TRIAL_THRESHOLD_VIOLATION,Severe high-amplitude epochs dropped; 24 < min_trials=30
+S091,160.0 Hz,64,"5 (Fp1, Fp2, T9, T10, Iz)",7.81% (<= 15% threshold),0 trials (100% dropped),AUTOMATED_PREPROCESSING_QC,Extreme movement artifact; all 45 epochs exceeded 800 µV threshold

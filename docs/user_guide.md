@@ -94,24 +94,21 @@ python scripts/run_leakcheck.py \
 
 ---
 
-## 3. CLI Tool: `scripts/run_openbmi_benchmark.py`
+## 3. CLI Tool: `scripts/run_Multi-Dataset_benchmark.py`
 
-`scripts/run_openbmi_benchmark.py` audits the 62-channel OpenBMI dataset (Lee et al. 2019) across both Shrinkage CSP-LDA and Riemannian Tangent Space Logistic Regression (`ts_lr`).
+`scripts/run_Multi-Dataset_benchmark.py` audits the 62-channel Multi-Datasetdataset (Lee et al. 2019) across both Shrinkage CSP-LDA and Riemannian Tangent Space Logistic Regression (`ts_lr`).
 
 ### Synopsis
 ```bash
-python scripts/run_openbmi_benchmark.py \
-    --data-dir data/OpenBMI \
+python scripts/run_Multi-Dataset_benchmark.py \
     --subjects 1-54 \
     --decoders csp_lda,ts_lr \
     --designs D3_loro,D1s_size_matched,P1_csp_on_all \
     --target-fs 160.0 \
     --n-repeats-matched 5 \
-    --outdir benchmark_results/openbmi_v2
 ```
 
 ### Options Reference
-- `--data-dir`: Path to the directory holding unpacked OpenBMI `.mat` session files (e.g., `sess01_subj01_EEG_MI.mat`).
 - `--subjects`: Participants to evaluate (1–54).
 - `--target-fs`: Decimation target sampling rate (default `160.0` Hz, downsampling from raw `1000.0` Hz).
 - `--decoders`: Decoders to audit (default `csp_lda,ts_lr`).

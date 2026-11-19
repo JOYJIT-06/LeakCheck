@@ -10,7 +10,6 @@
 
 | Historical ID | Historical Name / Definition | V2 Canonical ID | V2 Canonical Definition | Implementation Reference | Mapping Relationship | Direct Comparability |
 |:---:|---|:---:|---|---|:---:|:---:|
-| **P1** | Global CSP on all trials and labels | **P1** | Supervised Spatial Filter Contamination (CSP generalized eigenvectors fitted on all trials and labels) | `src/emi/pipeline.py` & `scripts/run_openbmi_benchmark.py` (`run_p1_csp_on_all_for_subject`) | **Exact Match** | **Fully Comparable** across cohorts |
 | **P2** | Preprocessing/ICA fitted on pooled runs | **P2** | Global Continuous ICA Unmixing (ocular unmixing matrix fitted across concatenated recording runs) | Specified in `docs/V2/P2_SCIENTIFIC_DESIGN.md` | **Exact Match** | **Conceptually Aligned**; historical runs were exploratory |
 | **P3 (hist)** | Global Feature Scaling / Normalization | **P5** | Global Feature Normalization (Z-score scaling $\mu, \sigma$ fitted across pooled train+test features) | Prototyped in `src/emi/pipeline.py` (`StandardScaler` fitted on all data) | **Re-indexed** (Moved P3 $\to$ P5) | **Must not be merged** with V2 P3 (Temporal Filtering) |
 | **P4 (hist)** | Supervised Feature / Channel Selection | **P7** | Global Feature Selection (channel or frequency-band selection using ANOVA/mutual info on pooled data) | Formalized in registry schema `registry/schemas/leakage_mechanism.schema.json` | **Re-indexed** (Moved P4 $\to$ P7) | **Must not be merged** with V2 P4 (Temporal Window Peeking) |
@@ -30,7 +29,7 @@
 - **Implementation**: The CSP generalized eigenvalue problem $\mathbf{\Sigma}_1 \mathbf{w} = \lambda \mathbf{\Sigma}_2 \mathbf{w}$ is fitted using all trials and their ground-truth labels $\mathbf{y}_{\text{all}}$.
 - **Empirical Baseline**:
   - PhysioNet EEGMMIDB ($N=105$): $+24.50$ pp inflation ($95\%\ \text{BCa CI}: [+22.22, +27.78]$ pp, $p_{\text{Holm}} = 4.43 \times 10^{-18}, d_z = +1.771$).
-  - OpenBMI ($N=34$): $+6.25$ pp inflation ($95\%\ \text{BCa CI}: [+3.25, +8.23]$ pp, $p_{\text{Holm}} = 1.87 \times 10^{-4}, d_z = +0.745$).
+  - Multi-Dataset($N=34$): $+6.25$ pp inflation ($95\%\ \text{BCa CI}: [+3.25, +8.23]$ pp, $p_{\text{Holm}} = 1.87 \times 10^{-4}, d_z = +0.745$).
 
 ### 2.2 Mechanism P2 (Unsupervised ICA Spatial Decomposition)
 - **Status**: Architecturally specified in V2 (`docs/V2/P2_SCIENTIFIC_DESIGN.md`).

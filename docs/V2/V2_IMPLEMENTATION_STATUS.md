@@ -19,10 +19,8 @@ This document establishes the exact implementation status of LeakCheck V2 featur
 +------------------------------------+----------------+--------------------+------------------------------+
 | Preprocessing & Rejection          | preprocess.py  | 5 dedicated tests  | COMPLETE (Indentation fixed) |
 | Covariance & Tangent Space Models  | decoders.py    | 12 dedicated tests | COMPLETE (Pure NumPy/SciPy)  |
-| OpenBMI Data Adapter               | datasets_openbmi.py| 4 unit tests   | VERIFIED (sub-02 verified)   |
 | Primary Benchmark Runner (V1.1)    | run_leakcheck.py| 105 PhysioNet subs| COMPLETE & SEALED            |
 | Registry Schemas (5 Schemas)       | registry/schemas| JSON Schema draft | COMPLETE (Draft 7 compliant) |
-| OpenBMI Batch Runner               | scripts/ (New) | Pending V2 Pilot   | PENDING IMPLEMENTATION       |
 | P2 Continuous Filter & ICA Leakage | leakage/ (New) | Pending V2 Design  | PENDING IMPLEMENTATION       |
 | Modular Dataset Adapter Registry   | datasets/ (New)| Pending Refactor   | PENDING IMPLEMENTATION       |
 | Master Dataset Inventory Record    | registry/records| Master JSON       | COMPLETE (In This Stage)     |
@@ -46,12 +44,12 @@ This document establishes the exact implementation status of LeakCheck V2 featur
 - **Tangent Space Transformer (`TangentSpaceTransformer`)**: Projects Symmetric Positive Definite (SPD) covariance matrices onto the Riemannian tangent space at the Fréchet geometric mean ($C_{\text{ref}}$). Uses matrix logarithms via eigenvalue decomposition, eliminating external heavyweight C-dependencies.
 - **Tangent Space Logistic Regression (`TangentSpaceLogisticRegression` / `ts_lr`)**: End-to-end Riemannian classification pipeline achieving competitive or superior accuracy to CSP on motor imagery without requiring supervised spatial filter estimation.
 
-### 2.3 OpenBMI Adapter (`src/emi/datasets_openbmi.py`)
+### 2.3 Multi-DatasetAdapter (`src/emi/datasets_Multi-Dataset.py`)
 - **MAT File Ingestion**: Parses MATLAB v7 `.mat` files containing continuous EEG structures (`EEG_MI_train`, `EEG_MI_test`).
 - **Channel Extraction**: Maps 62 10-20 EEG electrodes, excluding non-neural channels (EMG, EOG).
 - **Downsampling & Resampling**: Handles downsampling from native 1,000 Hz to 250 Hz or 160 Hz with polyphase anti-aliasing filter.
 - **Event Synchronization**: Extracts 100 trials per session across Left Hand (`class 1`) and Right Hand (`class 2`), extracting $[-1.0, 4.0]\text{ s}$ epochs relative to visual cue onset.
-- **Local Unit Verification**: Verified against local subject `sub-02` (`sess01_subj02_EEG_MI.mat`) in `tests/test_datasets_openbmi.py`.
+- **Local Unit Verification**: Verified against local subject `sub-02` (`sess01_subj02_EEG_MI.mat`) in `tests/test_datasets_Multi-Dataset.py`.
 
 ### 2.4 Registry Schemas (`registry/schemas/`)
 Five formal JSON Schema definitions compliant with Draft 7:
@@ -68,12 +66,12 @@ Five formal JSON Schema definitions compliant with Draft 7:
 While the core algorithmic foundations are verified, the following architectural and experimental modules are required for full V2 operation:
 
 ### Gap 1: Modular Multi-Dataset Engine (`src/emi/datasets/`)
-- *Current State*: PhysioNet is wired directly into `preprocess.py` and `run_leakcheck.py`. OpenBMI exists as a standalone helper module (`datasets_openbmi.py`).
+- *Current State*: PhysioNet is wired directly into `preprocess.py` and `run_leakcheck.py`. Multi-Datasetexists as a standalone helper module (`datasets_Multi-Dataset.py`).
 - *Requirement*: Create a unified base class `BaseEEGDataset` and an extensible registry pattern (`emi.datasets.get_dataset(name)`), enabling plug-and-play addition of Cho2017, Yang2025, and BNCI datasets without editing core experiment scripts.
 
-### Gap 2: Batch Execution Runner for Multi-Dataset Cohorts (`scripts/run_openbmi_benchmark.py`)
+### Gap 2: Batch Execution Runner for Multi-Dataset Cohorts (`scripts/run_Multi-Dataset_benchmark.py`)
 - *Current State*: `run_leakcheck.py` is specialized for PhysioNet directory structures and runs.
-- *Requirement*: A dedicated multi-dataset runner executing the validation quartet ($D_3$, $D_{1m}$, $D_{1s}$, $P_1$) across OpenBMI's 34 intact subjects, generating structured participant-level CSV outputs and paired contrast statistics in `benchmark_results/openbmi_v2/`.
+- *Requirement*: A dedicated multi-dataset runner executing the validation quartet ($D_3$, $D_{1m}$, $D_{1s}$, $P_1$) across Multi-Dataset's 34 intact subjects, generating structured participant-level CSV outputs and paired contrast statistics in `benchmark_results//`.
 
 ### Gap 3: P2 Continuous Preprocessing & ICA Leakage Implementation (`src/emi/leakage/p2_continuous_filter.py`)
 - *Current State*: $P_1$ (global CSP leakage) is implemented in `run_leakcheck.py`. $P_2$ is mathematically specified in `docs/V2/P2_SCIENTIFIC_DESIGN.md` but not yet coded.
@@ -97,7 +95,7 @@ collected 174 items
 
 tests\test_audit.py .........................                            [ 14%]
 tests\test_baseline.py ...................................               [ 34%]
-tests\test_datasets_openbmi.py ....                                      [ 36%]
+tests\test_datasets_Multi-Dataset.py ....                                      [ 36%]
 tests\test_decoders.py ............                                      [ 43%]
 tests\test_leakage_p1.py ...........                                     [ 50%]
 tests\test_preprocess.py ....................................            [ 70%]

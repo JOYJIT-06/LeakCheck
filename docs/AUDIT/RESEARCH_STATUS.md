@@ -19,7 +19,7 @@
 - **RQ5 (Temporal Dependence & Epoch Overlap):** **PARTIALLY VERIFIED (Code Implemented)**. Diagnostic functions (`lag1_label_autocorr`, `runs_test_p`, `run_decodability`) verified in `tests/test_diagnostics.py`.
 - **RQ6 (ICA & Channel Interpolation):** **PROPOSED / PARTIALLY IMPLEMENTED**. Stubbed in `leakcheck.py::p2_ica_on_all`.
 - **RQ7 (Decoder Family Dependence):** **PROPOSED**. Historical benchmark evaluated only CSP-LDA.
-- **RQ8 (Independent Multi-Dataset Replication):** **PARTIALLY VERIFIED**. PhysioNet complete (105 subjects). OpenBMI partially downloaded (39 session-1 subjects). Other datasets proposed.
+- **RQ8 (Independent Multi-Dataset Replication):** **PARTIALLY VERIFIED**. PhysioNet complete (105 subjects). Multi-Datasetpartially downloaded (39 session-1 subjects). Other datasets proposed.
 - **RQ9 (Negative Controls & Permutation Testing):** **VERIFIED**. LORO clean pipeline showed $49.99\%$ mean null accuracy and $3.23\%$ false positive rate at $\alpha=0.05$. P1 leak detected in $91.3\%$ of subjects under permutation.
 - **RQ10 (Automated Audits):** **VERIFIED**. Command-line pipeline `run_leakcheck.py` and diagnostic reporting operational.
 
@@ -37,7 +37,6 @@
 | **H6** | Test-set hyperparameter tuning inflates performance | **CODE READY** | Unit test positive controls pass; benchmark pending |
 | **H7** | Overlapping windows create artificial optimism | **CODE READY** | Unit test positive controls pass; benchmark pending |
 | **H8** | Leakage effects are decoder-dependent | **PROPOSED** | Framework extensibility ready; multi-decoder run pending |
-| **H9** | Leakage effects vary across dataset acquisition structures | **PROPOSED** | OpenBMI integration in progress |
 | **H10** | Clean pipelines preserve nominal false-positive rates; audits detect leaks | **CONFIRMED** | Clean LORO FPR $= 3.2\%$ ($< 5\%$); P1 leak detection rate $= 91.3\%$ |
 
 ---

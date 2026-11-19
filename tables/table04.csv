@@ -1,0 +1,4 @@
+Native Sampling Rate (Hz),Participant Count,Percentage of Cohort,Subject Identifiers,Total Epochs Analyzed,Samples per 4.0s Epoch,Channel Count,Spatial Covariance Dimension,SVD Rank Post-CAR,Scientific Validation Status
+160.0 Hz,102,97.14%,S001–S109 (n=102),4528,640,64,64 × 64,63,100% Fully Evaluated (Dynamic Windowing)
+128.0 Hz,3,2.86%,"S088, S092, S100",144,512,64,64 × 64,63,100% Fully Evaluated (Dynamic Windowing)
+Total Cohort,105,100.00%,"S001–S109 (excluding S044, S069, S086, S091)",4672,Variable (640 / 512),64,64 × 64,63,Zero Crashes; Covariance Invariance Confirmed

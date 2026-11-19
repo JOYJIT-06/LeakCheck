@@ -15,7 +15,7 @@ The objective of this research program is to establish the first comprehensive, 
 
 ### Specific Aim 1: Formalize and Empirically Quantify the EEG Leakage Taxonomy (Months 1–18)
 - Characterize 9 distinct data leakage pathways (P1–P9) spanning spatial filter contamination, continuous temporal filtering, overlapping epoch segmentation, test-fold hyperparameter selection, and pre-split data augmentation.
-- Empirically evaluate these mechanisms across 5 diverse, multi-session BCI datasets ($>300$ participants total: PhysioNet, OpenBMI, Cho2017, BNCI2014, and High-Gamma).
+- Empirically evaluate these mechanisms across 5 diverse, multi-session BCI datasets ($>300$ participants total: PhysioNet, Multi-Dataset, Cho2017, BNCI2014, and High-Gamma).
 - Quantify effect sizes using non-parametric Hodges-Lehmann paired estimators, BCa bootstrap confidence intervals, and Two One-Sided Tests (TOST) for equivalence.
 
 ### Specific Aim 2: Develop a Standalone, Automated Auditing Engine (LeakCheck V2) (Months 12–28)
@@ -53,7 +53,6 @@ The proposed framework will systematically audit four distinct decoding paradigm
 
 | Year | Period | Focus Area | Key Deliverables |
 |---|---|---|---|
-| **Year 1** | Q1–Q2 | Leakage Taxonomy & Multi-Dataset Harmonization | OpenBMI ($N=54$) and Cho2017 ($N=52$) dataset adapters, schema harmonization. |
 | | Q3–Q4 | Continuous Preprocessing Audits | Fold-nested continuous filtering/ICA modules; empirical evaluation of mechanism P2. |
 | **Year 2** | Q1–Q2 | Dynamic Auditing Engine (LeakCheck V2) | Automated AST static analyzer and runtime hook detecting data leakage in arbitrary Python BCI code. |
 | | Q3–Q4 | Deep Learning & Riemannian Auditing | Comprehensive comparison across CSP-LDA, Riemannian Tangent Space, and EEGNet. |

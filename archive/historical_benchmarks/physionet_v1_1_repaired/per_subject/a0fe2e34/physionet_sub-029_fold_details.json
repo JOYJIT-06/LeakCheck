@@ -1,0 +1,40 @@
+[
+  {
+    "fold": 0,
+    "test_run": 0,
+    "acc": 1.0,
+    "n_train": 30,
+    "n_test": 15,
+    "threshold_uv": 217.51844952793408,
+    "bad_channels": [],
+    "ica_excluded": [
+      1
+    ]
+  },
+  {
+    "fold": 1,
+    "test_run": 1,
+    "acc": 1.0,
+    "n_train": 30,
+    "n_test": 15,
+    "threshold_uv": 200.0,
+    "bad_channels": [
+      "T10"
+    ],
+    "ica_excluded": [
+      1
+    ]
+  },
+  {
+    "fold": 2,
+    "test_run": 2,
+    "acc": 1.0,
+    "n_train": 30,
+    "n_test": 15,
+    "threshold_uv": 200.0,
+    "bad_channels": [],
+    "ica_excluded": [
+      1
+    ]
+  }
+]

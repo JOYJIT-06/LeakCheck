@@ -20,7 +20,7 @@ LeakCheck is built on five core scientific software engineering principles:
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                       CLI & Script Runners Layer                            │
-│   scripts/run_leakcheck.py              scripts/run_openbmi_benchmark.py    │
+│   scripts/run_leakcheck.py              scripts/run_Multi-Dataset_benchmark.py    │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        │
 ┌──────────────────────────────────────▼──────────────────────────────────────┐
@@ -32,12 +32,12 @@ LeakCheck is built on five core scientific software engineering principles:
 └──────────────────┬───────────────────────────────────────────┬──────────────┘
                    │                                           │
 ┌──────────────────▼──────────────────────┐ ┌──────────────────▼──────────────┐
-│         Decoders & Transformers         │ │       Datasets & Adapters       │
-│   src/emi/decoders.py                   │ │   src/emi/datasets_base.py      │
-│   - mne_csp_factory()                   │ │   src/emi/datasets_adapters.py  │
-│   - CovarianceTransformer (NumPy)       │ │   - BaseEEGDataset              │
-│   - TangentSpaceTransformer (NumPy)     │ │   - PhysioNet, OpenBMI          │
-│   - DecoderSpec registry                │ │   - BNCI2014-001, Cho2017       │
+│         Decoders & Transformers         │ │       Datasets & Ingestion          │
+│   src/emi/decoders.py                   │ │   src/emi/data.py               │
+│   - mne_csp_factory()                   │ │   src/emi/preprocess.py         │
+│   - CovarianceTransformer (NumPy)       │ │   - PhysioNet EEGMMIDB          │
+│   - TangentSpaceTransformer (NumPy)     │ │   - (Multi-dataset in archive/) │
+│   - DecoderSpec registry                │ │   - Epoch Caching (data/cache)  │
 └──────────────────┬──────────────────────┘ └──────────────────┬──────────────┘
                    │                                           │
 ┌──────────────────▼───────────────────────────────────────────▼──────────────┐
@@ -54,11 +54,11 @@ LeakCheck is built on five core scientific software engineering principles:
 
 ## 3. Core Subsystems
 
-### 3.1 Datasets and Ingestion (`src/emi/datasets_base.py`)
-Decouples dataset-specific I/O from the benchmarking core.
-- **`SubjectRecord`**: Immutable dataclass containing `(subject, X, y, runs, times, fs, metadata)`.
-- **`BaseEEGDataset`**: Abstract base class requiring `load_subject(subject_id, target_fs)` and `get_eligible_subjects()`.
-- **`DatasetMetadata`**: Typed specification capturing electrode layout, sampling rate, paradigm, and reference literature.
+### 3.1 Datasets and Ingestion (`src/emi/data.py`, `src/emi/preprocess.py`)
+Provides deterministic ingestion, filtering, and epoching for PhysioNet EEGMMIDB recordings.
+- **`src/emi/data.py`**: Fetches and parses PhysioNet BCI2000 EDF files, handles channel layout, and verifies subject eligibility.
+- **`src/emi/preprocess.py`**: Label-blind 5th-order Butterworth bandpass filtering (8.0–30.0 Hz), epoch windowing ([+1.0, +3.0] s), and peak-to-peak artifact rejection.
+- **`branch 
 
 ### 3.2 Splitting Engine (`src/emi/splitters.py`)
 Deterministic, index-safe partitioning functions:
@@ -113,8 +113,5 @@ To support open science and reproducible meta-benchmarks, LeakCheck introduces s
    )
    ```
 
-### Adding a New Dataset Adapter
-1. Subclass `BaseEEGDataset` in `src/emi/datasets_adapters.py`.
-2. Implement `load_subject(self, subject: int, target_fs: float) -> SubjectRecord`.
-3. Provide dataset metadata via `metadata = DatasetMetadata(...)`.
-4. Add unit test in `tests/test_dataset_adapters.py`.
+### Multi-Dataset Research Scope
+Pluggable multi-dataset adapters and cross-dataset benchmarks are maintained in Git history on branch `v2-dev` to ensure strict release isolation for the standalone V1.1 PhysioNet study.

@@ -1,0 +1,31 @@
+{
+  "dataset": "physionet",
+  "subject": 64,
+  "cache_file": "D:\\my lab\\LeakCheck_Cache\\physionet\\sub-064_epochs.npz",
+  "cache_sha256": "ac25e9b96117b6302e729fb002131c863f5ee0d144fa15a13f03cd5fe854a9fa",
+  "n_trials": 44,
+  "n_sessions": 1,
+  "sfreq": 160.0,
+  "label_lag1_autocorr": -0.6666839197215381,
+  "runs_test_p_min": 0.004662004662004662,
+  "runs_test_p_min_adj": 0.013920912448957656,
+  "class_balance_per_run": [
+    0.4666666666666667,
+    0.4666666666666667,
+    0.5
+  ],
+  "trials_per_run": [
+    15,
+    15,
+    14
+  ],
+  "run_decode_acc": 0.845,
+  "run_decode_chance": 0.3333333333333333,
+  "run_decode_null_mean": 0.3555,
+  "run_decode_p": 0.0196078431372549,
+  "dep_lag1": 0.3354340910496209,
+  "dep_lag2": 0.11221741727902479,
+  "dep_lag3": -0.02809423962729936,
+  "dep_lag4": -0.08399391757272223,
+  "dep_lag5": 0.12549709118923982
+}

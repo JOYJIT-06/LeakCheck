@@ -1,0 +1,27 @@
+Stage,Day,Task ID,Task Name,Assigned Agent,Dependencies,Target Deliverables,Status,Verification
+1,DAY 1,T-DAY1-001,Sprint Setup & Hour Logging,LEAD,None,progress/AGENT_HOUR_LOG.csv;progress/TEAM_CAPACITY_REPORT.md,COMPLETED,VERIFIED
+1,DAY 1,T-DAY1-002,Git Provenance & Backup Verification,AGENT_1,None,progress/REPOSITORY_PROVENANCE.md;progress/FILE_HASH_MANIFEST.csv,COMPLETED,VERIFIED
+1,DAY 1,T-DAY1-003,Initial Codebase & Test Baseline Audit,AGENT_6,None,progress/INITIAL_TEST_REPORT.md,COMPLETED,VERIFIED
+1,DAY 1,T-DAY1-004,Day 1 Synthesis & Discovery Report,LEAD,T-DAY1-001;T-DAY1-002;T-DAY1-003,progress/DAY_1_REPORT.md;progress/INITIAL_REPOSITORY_AUDIT.md,COMPLETED,VERIFIED
+2,DAY 2,T-DAY2-001,Statistical Methods Deep Audit,AGENT_2,T-DAY1-004,evidence/STATISTICAL_AUDIT.md,COMPLETED,VERIFIED
+2,DAY 2,T-DAY2-002,Preprocessing & Filter Overlap Deep Audit,AGENT_3,T-DAY1-004,evidence/PREPROCESSING_AUDIT.md,COMPLETED,VERIFIED
+2,DAY 2,T-DAY2-003,Numerical Rank SVD & EDF Sampling Audit,AGENT_4,T-DAY1-004,evidence/DATASET_AUDIT.md,COMPLETED,VERIFIED
+2,DAY 2,T-DAY2-004,Participant Flow & Event Pair Reconciliation,AGENT_5,T-DAY1-004,evidence/DATASET_AUDIT.md;evidence/ISSUE_REGISTER.csv,COMPLETED,VERIFIED
+2,DAY 2,T-DAY2-005,Day 2 Synthesis & Issue Classification,LEAD,T-DAY2-001;T-DAY2-002;T-DAY2-003;T-DAY2-004,progress/DAY_2_REPORT.md;evidence/SCIENTIFIC_AUDIT.md,COMPLETED,VERIFIED
+3,DAY 3,T-DAY3-001,Pratt Wilcoxon Variance Formula Repair,AGENT_2,T-DAY2-005,src/emi/leakstats.py;tests/test_pratt_wilcoxon.py,COMPLETED,VERIFIED
+3,DAY 3,T-DAY3-002,Deterministic Shared Bootstrap Index Matrix,AGENT_2,T-DAY3-001,docs/STATISTICS/bootstrap_resample_indices_b10000_n105.csv,COMPLETED,VERIFIED
+3,DAY 3,T-DAY3-003,Python/R Statistical Numerical Parity,AGENT_2;AGENT_6,T-DAY3-002,analysis/R_validation/reproduce_statistics.R;recalculate_all_stats.py,COMPLETED,VERIFIED
+3,DAY 3,T-DAY3-004,Day 3 Statistical Verification Report,LEAD,T-DAY3-001;T-DAY3-002;T-DAY3-003,progress/DAY_3_REPORT.md,COMPLETED,VERIFIED
+4,DAY 4,T-DAY4-001,Run-Independent FIR Filtering Implementation,AGENT_3,T-DAY3-004,src/emi/preprocess.py;tests/test_run_boundary_filtering.py,COMPLETED,VERIFIED
+4,DAY 4,T-DAY4-002,Fold-Isolated Preprocessor Implementation,AGENT_3;AGENT_6,T-DAY4-001,src/emi/preprocess.py;tests/test_fold_isolation.py,COMPLETED,VERIFIED
+4,DAY 4,T-DAY4-003,Adversarial Gate 2 Fold-Isolation Verification,LEAD;AGENT_4,T-DAY4-002,tests/test_fold_isolation.py,COMPLETED,VERIFIED
+4,DAY 4,T-DAY4-004,Day 4 Preprocessing Repair Report,LEAD,T-DAY4-003,progress/DAY_4_REPORT.md,COMPLETED,VERIFIED
+5,DAY 5,T-DAY5-001,Controlled Gate 3 Pilot Cohort Execution,AGENT_5;AGENT_6,T-DAY4-004,benchmark_results/physionet_v1_1_repaired/pilot/,COMPLETED,VERIFIED
+5,DAY 5,T-DAY5-002,Dependency-Gated Benchmark Execution ($N=105$),LEAD;AGENT_5,T-DAY5-001,benchmark_results/physionet_v1_1_repaired/,COMPLETED,VERIFIED
+5,DAY 5,T-DAY5-003,Benchmark Execution Logging & Hashes,AGENT_1,T-DAY5-002,evidence/REPRODUCIBILITY_MANIFEST.json;progress/DAY_5_REPORT.md,COMPLETED,VERIFIED
+6,DAY 6,T-DAY6-001,Statistical Summary Tables Generation,AGENT_7,T-DAY5-003,tables/;evidence/TABLE_INDEX.md,COMPLETED,VERIFIED
+6,DAY 6,T-DAY6-002,Publication-Quality Scientific Figure Generation,AGENT_7,T-DAY6-001,figures/;figures/scripts/;evidence/FIGURE_INDEX.md,COMPLETED,VERIFIED
+6,DAY 6,T-DAY6-003,Day 6 Evidence Package Assembly,LEAD,T-DAY6-002,progress/DAY_6_REPORT.md;evidence/RESULTS_SUMMARY.md,COMPLETED,VERIFIED
+7,DAY 7,T-DAY7-001,Complete Automated Software QA & Regression,AGENT_6,T-DAY6-003,evidence/FINAL_TEST_REPORT.md;progress/FINAL_SOURCE_AUDIT.md;progress/FINAL_STATISTICAL_VALIDATION.md,COMPLETED,VERIFIED
+7,DAY 7,T-DAY7-002,Claim-Evidence Matrix & Limitations Audit,LEAD;AGENT_7,T-DAY7-001,evidence/FINAL_SCIENTIFIC_RESULTS.md;progress/FINAL_REMEDIATION_REPORT.md;progress/FINAL_ACCEPTANCE_MATRIX.md,COMPLETED,VERIFIED
+7,DAY 7,T-DAY7-003,Release Readiness Checklist & Packaging,AGENT_1;LEAD,T-DAY7-002,evidence/FINAL_REPRODUCIBILITY_MANIFEST.json;evidence/FINAL_CHANGELOG.md;progress/DAY_7_REPORT.md,COMPLETED,VERIFIED

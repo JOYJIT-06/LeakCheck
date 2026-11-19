@@ -11,7 +11,7 @@ This guide details how to install and verify **LeakCheck** (Python package: `emi
   - Windows 10 / Windows 11 (tested on Windows 11 AMD64)
   - Ubuntu Linux 20.04 LTS / 22.04 LTS / Debian 11+
   - macOS 12+ (Intel or Apple Silicon)
-- **Memory**: Minimum 4 GB RAM (8 GB recommended for full-cohort parallel execution). Full PhysioNet ($N=105$) and OpenBMI ($N=34$) benchmarks operate in $<1.5\text{ GB}$ peak resident set size when executing sequentially or under 4 worker threads.
+- **Memory**: Minimum 4 GB RAM (8 GB recommended for full-cohort parallel execution). Full PhysioNet ($N=105$) and Multi-Dataset($N=34$) benchmarks operate in $<1.5\text{ GB}$ peak resident set size when executing sequentially or under 4 worker threads.
 - **Acceleration**: CPU-only; no GPU or CUDA required. All filters and covariance algorithms utilize vectorised NumPy/SciPy linear algebra.
 
 ---

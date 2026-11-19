@@ -1,19 +1,41 @@
+# Bytecode and runtime caches
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+
+# Distribution and packaging
+build/
+dist/
 *.egg-info/
+*.egg
+
+# Virtual environments
 .venv/
-.ipynb_checkpoints/
+venv/
+env/
+ENV/
+
+# Test, lint, and type-checker caches
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.hypothesis/
+pytest_tmp/
+
+# Coverage artifacts
 .coverage
+.coverage.*
 htmlcov/
-build/
-dist/
-data/
+coverage.xml
+*.cover
+.tox/
+.nox/
+
+# Raw EEG datasets, intermediate caches, and EEG format binaries
+data/*
+!data/manifests/
 mne_data/
-results/
-*.npz
 *.edf
 *.bdf
 *.fif
@@ -22,13 +44,57 @@ results/
 *.eeg
 *.set
 *.fdt
+*.npz
+
+# Local archives and compressed files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.rar
+*.7z
+
+# Credentials, tokens, and environment secrets
+.env
+.env.*
+*.key
+*.pem
+*.secret
+credentials.json
+
+# Operating system and editor artifacts
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Temporary patches, backups, and debug logs
+*.patch
 *.bak
 *.backup
 *.pre_csp_backup
 *.validation_backup
-
-# Temporary patches, zips, and handoff notes
-*.patch
-*.zip
+*.log
+FINAL_DIAGNOSTIC.txt
 CLAUDE_HANDOFF_*.txt
-benchmark_results/openbmi_v2_smoke/
+
+# Diagnostic scratch directories and intermediate review evidence
+results/
+LeakCheck_paper_evidence/
+benchmark_results/physionet_rebuilt/
+paper_evidence/
+
+# Private manuscript drafts and local crosscheck scripts (preserved locally)
+manuscript/
+manuscript/**
+analysis/recompute_and_crosscheck.py

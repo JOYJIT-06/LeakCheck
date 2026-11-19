@@ -89,7 +89,6 @@ To prevent experimental V2 adapters or transient files from polluting the V1.1 r
 | **Exclude from V1.1 via .gitignore**| *.patch, *.zip             | Add *.patch, *.zip to .gitignore      |
 |                                    | CLAUDE_HANDOFF_*.txt       | Add CLAUDE_HANDOFF_*.txt to .gitignore|
 +------------------------------------+----------------------------+---------------------------------------+
-| **V2 Development Track**           | src/emi/datasets_openbmi.py| Retain on fix/v1.1 or branch to v2-dev|
 |                                    | docs/AUDIT/*               | Retain in repository audit archive    |
 |                                    | docs/V2/*                  | Retain in repository v2 design archive|
 |                                    | registry/*                 | Retain in repository registry archive |
@@ -107,5 +106,5 @@ In strict agreement with the Consolidated Review:
    - Evaluates code stability, test coverage (174/174 passing), package installation, wheel building, and documentation clarity.
    - **Status**: **READY FOR V1.1 RELEASE UPON USER AUTHORIZATION**.
 2. **Scientific Publication Readiness**:
-   - Evaluates theoretical grounding, multiplicity control, protocol definitions, and independent multi-dataset replication.
-   - **Status**: Paper 1 will report the PhysioNet baseline alongside the independent OpenBMI replication once the OpenBMI benchmark has been executed under the corrected protocol.
+   - Evaluates theoretical grounding, multiplicity control, protocol definitions, and strict single-dataset isolation.
+   - **Status**: Paper 1 (LeakCheck V1.1) reports strictly and exclusively the PhysioNet EEGMMIDB benchmark ($N=105$). Independent multi-dataset replications (including Multi-Dataset) are deferred to the separate LeakCheck V2 development roadmap.

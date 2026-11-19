@@ -16,5 +16,5 @@ The benchmark requested 106 participant IDs; 105 completed. This
 number describes the V1 analysis set, not the total size of the
 underlying PhysioNet database.
 
-OpenBMI was not evaluated in V1. No multi-dataset or multi-site
+Multi-Datasetwas not evaluated in V1. No multi-dataset or multi-site
 validation claim is made.

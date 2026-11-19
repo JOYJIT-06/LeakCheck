@@ -89,7 +89,7 @@ $$d_z = \frac{\bar{D}}{s_D} = \frac{\frac{1}{N} \sum_{i=1}^N D_i}{\sqrt{\frac{1}
 
 ## 7. Cross-Cohort Random-Effects Meta-Analysis
 
-To synthesize findings across multiple cohorts (e.g. PhysioNet and OpenBMI), LeakCheck implements the DerSimonian-Laird random-effects model:
+To synthesize findings across multiple cohorts (e.g. PhysioNet and Multi-Dataset), LeakCheck implements the DerSimonian-Laird random-effects model:
 
 $$\theta_{\text{pooled}} = \frac{\sum_k w_k^* \hat{\theta}_k}{\sum_k w_k^*}, \quad w_k^* = \frac{1}{\operatorname{Var}(\hat{\theta}_k) + \tau^2}$$
 

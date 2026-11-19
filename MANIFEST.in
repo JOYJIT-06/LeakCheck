@@ -1,0 +1,17 @@
+include README.md LICENSE pyproject.toml
+recursive-include src/emi *.py
+recursive-include tests *.py
+recursive-include docs/real_eeg_checks *.csv
+prune docs/AUDIT
+prune benchmark_results
+prune figures
+prune analysis
+prune data
+prune registry
+prune LeakCheck_paper_evidence
+prune paper_evidence
+prune scripts
+prune .agents
+prune .github
+global-exclude *.py[cod] __pycache__ *.so *.dylib *.edf *.fif *.mat *.bdf *.gdf *.dat *.bin *.npy *.npz
+global-exclude .git*

@@ -1,0 +1,5 @@
+dataset,subject,category,reason
+physionet,44,AUTOMATED_PREPROCESSING_QC,Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)
+physionet,69,AUTOMATED_PREPROCESSING_QC,Quality-control channel rejection >15% bad channels (12 of 64 channels flagged bad)
+physionet,86,MINIMUM_TRIAL_THRESHOLD_VIOLATION,Sample size threshold violation: 24 trials < minimum 30 threshold (< 30; min_trials=30 in settings.json)
+physionet,91,AUTOMATED_PREPROCESSING_QC,100% trials rejected by adaptive peak-to-peak thresholding (all 45 epochs dropped)

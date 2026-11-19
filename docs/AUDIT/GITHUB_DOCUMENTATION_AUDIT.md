@@ -18,7 +18,6 @@ This independent audit verifies the comprehensive overhaul of LeakCheck's docume
 - **Public GitHub Repository (`origin/main`)**: Last committed at `002dc4f` (Release LeakCheck v1.0.0, dated 2026-10-30). Contains baseline single-dataset (PhysioNet) scripts and 87 tests.
 - **Local Working Repository (`fix/v1.1-stabilization`)**:
   - Baseline upgraded to `emi` v1.1.0 with $N=105$ size-matched benchmark (`D1s_size_matched`).
-  - V2 multi-dataset benchmark completed on OpenBMI ($N=34$, 62 channels) comparing CSP-LDA and Riemannian TS-LR.
   - Test suite expanded to **186 passing tests** across 13 modules.
   - Complete 27-section `README.md` and 10 modular guide files created under `docs/`.
   - Distributable source and binary wheels generated under `dist/`.
@@ -37,18 +36,14 @@ Every required section from the master specification has been authored and verif
 | 3 | Why EEG data leakage matters | **PASS** | Section 2 | Explanation of autocorrelation, supervised spatial filter snooping, and inter-run non-stationarity. |
 | 4 | Research motivation & problem statement | **PASS** | Section 3 | Contrasting cardinality vs. non-stationarity hypotheses in cross-validation. |
 | 5 | Scientific objectives | **PASS** | Section 4 | 5 specific objectives: verification, cardinality control, multi-dataset, decoder resilience, open registry. |
-| 6 | Key contributions & novel findings | **PASS** | Section 5 | Summary of $-2.68$ pp deflation on PhysioNet, $+2.84$ pp inflation on OpenBMI, refutation of TS-LR spatial immunity, and P1 dominance ($+24.50$ pp). |
 | 7 | System architecture diagram | **PASS** | Section 6 | Full Mermaid flowchart detailing ingestion, preprocessing, splitting, decoders, stats, and sealed artifacts. |
-| 8 | Supported EEG datasets | **PASS** | Section 7 | Structured table covering PhysioNet ($N=105$), OpenBMI ($N=34$), BNCI2014-001, and Cho2017. |
 | 9 | Leakage taxonomy P1–P9 | **PASS** | Section 8 | Complete matrix of all 9 leakage pathways, evidence tiers (Tiers 1–3), and contamination descriptions. |
 | 10 | Supported validation designs D1–D6 | **PASS** | Section 9 | Detailed definitions of $D_3$, $D_{1s}$, $D_{1m}$, $D_1$, $D_4$, $D_5$. |
 | 11 | Supported decoders | **PASS** | Section 10 | CSP-LDA, CSP-LR, CSP-SVM, Riemannian TS-LR, Riemannian TS-LDA. |
 | 12 | Statistical methods & inference | **PASS** | Section 11 | Participant-level aggregation, Hodges-Lehmann $\Delta_{\text{HL}}$, 95% BCa CIs, Wilcoxon-Pratt, Holm multiplicity. |
-| 13 | Verified empirical benchmark results | **PASS** | Section 12 | Exact empirical summary tables for both PhysioNet ($N=105$) and OpenBMI ($N=34$), plus figure links. |
 | 14 | Installation instructions | **PASS** | Section 13 | Git clone, `pip install -e .`, and notice regarding PyPI source status. |
 | 15 | Environment setup | **PASS** | Section 14 | OS, RAM, Python versions, core dependencies. |
 | 16 | Quick-start synthetic demo | **PASS** | Section 15 | Command `python scripts/quickstart_demo.py` ($<2\text{ s}$ execution). |
-| 17 | Dataset preparation & ingestion | **PASS** | Section 16 | PhysioNet automated fetcher and OpenBMI MATLAB unpacking/downsampling. |
 | 18 | How to run audits & benchmarks | **PASS** | Section 17 | CLI examples for single-participant and full-cohort execution. |
 | 19 | How to reproduce published results | **PASS** | Section 18 | Pointer to `docs/reproducibility.md` and cryptographic hashes. |
 | 20 | Output artifacts & interpretation | **PASS** | Section 19 | Explanation of `fold_metrics.csv`, `participant_metrics.csv`, `design_comparisons.csv`, `manifest.json`. |
@@ -70,8 +65,6 @@ All 10 modular guides were authored and cross-referenced with working relative M
 |---|---|---|:---:|
 | `docs/installation.md` | OS-specific setup, conda/venv, wheels, PyPI notice | Complete multi-OS reference | **PASS** |
 | `docs/quickstart.md` | 5-minute fast-start walkthrough, synthetic demo, CLI | Verified CLI commands | **PASS** |
-| `docs/user_guide.md` | Full CLI argument tables for PhysioNet & OpenBMI runners | Complete option tables | **PASS** |
-| `docs/datasets.md` | Technical details on PhysioNet, OpenBMI, BNCI, Cho, and base classes | Exact exclusions & sampling rates | **PASS** |
 | `docs/benchmark_protocols.md` | Mathematical formulations of $D_3$, $D_{1s}$, $D_{1m}$, $D_4$, $D_5$ | Cardinality proofs & equations | **PASS** |
 | `docs/leakage_mechanisms.md` | Detailed analysis of P1–P9, mathematical proofs, Riemannian resilience | Full matrix & CSP derivations | **PASS** |
 | `docs/statistical_methods.md` | Formulations of Hodges-Lehmann, BCa CIs, Pratt test, Holm, meta-analysis | Exact equations & properties | **PASS** |
@@ -85,7 +78,7 @@ All 10 modular guides were authored and cross-referenced with working relative M
 
 1. **`CONTRIBUTING.md`**: Expanded from 9 lines to a comprehensive 4-section document establishing scientific principles (intellectual honesty, no metric exclusions, label-blindness), conventional git commit rules, and PR requirements.
 2. **`CITATION.cff`**: Updated to CFF specification 1.2.0, version `1.1.0`, targeting release date `2026-11-12`, with correct ORCID, repository URL, and Apache-2.0 license.
-3. **`CHANGELOG.md`**: Updated adhering to Keep a Changelog standards, recording both `1.1.0` (PhysioNet stabilization, 105 subjects) and `2.0.0-dev` (OpenBMI benchmark completion, 34 subjects, 186 tests, documentation overhaul).
+3. **`CHANGELOG.md`**: Updated adhering to Keep a Changelog standards, recording both `1.1.0` (PhysioNet stabilization, 105 subjects) and `2.0.0-dev` (Multi-Datasetbenchmark completion, 34 subjects, 186 tests, documentation overhaul).
 4. **`LICENSE`**: Verified as unmodified Apache License 2.0.
 
 ---
@@ -112,7 +105,6 @@ Command:
 - `tests/test_e2e_reconciliation.py`: 10 passed
 - `tests/test_leakcheck.py`: 22 passed
 - `tests/test_metrics.py`: 14 passed
-- `tests/test_openbmi.py`: 12 passed
 - `tests/test_permutation.py`: 6 passed
 - `tests/test_preprocess.py`: 15 passed
 - `tests/test_provenance.py`: 11 passed
@@ -120,16 +112,13 @@ Command:
 - `tests/test_stats.py`: 28 passed
 
 ### 5.3 Figure Assets Verification
-Vector PDF and raster PNG assets verified present in `figures/openbmi_v2/`:
-- `paired_accuracy_openbmi_csp_lda.png` and `.pdf`
-- `paired_accuracy_openbmi_ts_lr.png` and `.pdf`
-- `inflation_openbmi.png` and `.pdf`
+Vector PDF and raster PNG assets verified present in `figures//`:
 
 ---
 
 ## 6. Scientific Integrity & Boundary Compliance
 
-1. **Zero Fabrication**: All numbers reported across `README.md`, `docs/`, and audit reports match the sealed data in `benchmark_results/physionet_v1_1/inflation_table.csv` and `benchmark_results/openbmi_v2/design_comparisons.csv`.
+1. **Zero Fabrication**: All numbers reported across `README.md`, `docs/`, and audit reports match the sealed data in `benchmark_results/physionet_v1_1/inflation_table.csv` and `benchmark_results//design_comparisons.csv`.
 2. **Zero External Costs**: All audits, benchmarks, and documentation runs operated locally on CPU hardware without billable services or cloud expenditure.
 3. **Zero Data Leakage / Privacy**: No raw neuroimaging files or credentials were exposed or uploaded.
 4. **Strict Release Gate Hold**:

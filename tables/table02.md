@@ -1,0 +1,8 @@
+# Table 2: Primary Benchmark Comparison Matrix Across Validation Schemes
+
+| Contrast                     | Comparison Role         | N   | Mean Diff (pp) | Median Diff (pp) | Hodges-Lehmann (pp) | 95% BCa CI (pp)  | Pratt W | Pratt Z | Pratt p-val | Holm Adj p | Rank-Biserial r | Cohen's dz | TOST p (±2pp) | Equivalent          |
+| ---------------------------- | ----------------------- | --- | -------------- | ---------------- | ------------------- | ---------------- | ------- | ------- | ----------- | ---------- | --------------- | ---------- | ------------- | ------------------- |
+| D1m_matched_k vs. D3_loro    | k-matched               | 105 | -7.33          | -7.56            | -7.59               | [-9.24, -5.79]   | 705.5   | -6.629  | 3.38e-11    | 6.77e-11   | -0.747          | -0.813     | 1.00000       | REJECTED (p > 0.05) |
+| D1s_size_matched vs. D3_loro | size-matched (headline) | 105 | -4.66          | -4.65            | -4.78               | [-6.44, -3.06]   | 1191.0  | -5.086  | 3.65e-07    | 3.65e-07   | -0.572          | -0.535     | 0.99887       | REJECTED (p > 0.05) |
+| P1_csp_on_all vs. D3_loro    | P1 CSP on all data      | 105 | +22.31         | +23.26           | +22.22              | [+19.65, +25.00] | 31.0    | +8.779  | 1.64e-18    | 4.93e-18   | +0.991          | +1.653     | 1.00000       | REJECTED (p > 0.05) |
+

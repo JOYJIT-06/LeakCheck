@@ -144,3 +144,21 @@ def trial_dependence(X, runs, max_lag=5, y=None):
                 vals.append(np.mean([np.corrcoef(a[:, i], b[:, i])[0, 1] for i in np.where(ok)[0]]))
         out[f"dep_lag{lag}"] = float(np.mean(vals)) if vals else float("nan")
     return out
+
+
+def numerical_rank_svd(X, tol=None):
+    """Compute numerical SVD rank using dimension-aware tolerance.
+    
+    tol = sigma_max * max(M, N) * eps if tol is None.
+    Returns (rank, tol, singular_values).
+    """
+    X = np.asarray(X, float)
+    if X.ndim != 2:
+        raise ValueError(f"Expected 2D array, got {X.ndim}D")
+    M, N = X.shape
+    s = np.linalg.svd(X, compute_uv=False)
+    if tol is None:
+        eps = np.finfo(float).eps
+        tol = float(s[0] * max(M, N) * eps)
+    rank = int(np.sum(s > tol))
+    return rank, tol, s

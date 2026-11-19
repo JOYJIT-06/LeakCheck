@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "emi"
-version = "2.0.0.dev0"
-description = "LeakCheck V2: Multi-dataset EEG validation and data leakage benchmarking"
+version = "1.1.0"
+description = "LeakCheck: reproducible EEG validation and data leakage benchmarking"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
@@ -45,8 +45,23 @@ Repository = "https://github.com/JOYJIT-06/LeakCheck.git"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["emi*"]
+exclude = ["*v2*"]
+
+[tool.setuptools.package-data]
+emi = []
+
+[tool.setuptools.exclude-package-data]
+"*" = [
+    "*.edf",
+    "*.fif",
+    "*.bdf",
+    "*.gdf",
+    "*.mat",
+    "*.npy",
+    "*.npz"
+]
 
 [tool.pytest.ini_options]
-markers = [
-    "v2: marks tests as part of the expanded V2 development framework (deselect with '-m \"not v2\"')"
-]
+testpaths = ["tests"]
+addopts = "-q"

@@ -128,7 +128,7 @@ def main():
     print("  * D1s vs D3    : Random trial pooling alters cross-run non-stationarity exposure.")
     print("  * Decoder Diff : Riemannian TS-LR is less vulnerable to global CSP-style contamination.")
     print("\nDemo completed successfully in {:.2f} seconds!".format(time.time() - t0))
-    print("To run on real empirical benchmarks (PhysioNet/OpenBMI), see docs/quickstart.md.")
+    print("To run on real empirical benchmarks (PhysioNet), see docs/quickstart.md.")
     print("================================================================================")
 
 

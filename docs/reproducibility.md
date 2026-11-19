@@ -45,27 +45,25 @@ Inspect `benchmark_results/physionet_v1_1/inflation_table.csv`. The Hodges-Lehma
 
 ---
 
-## 3. Reproducing the OpenBMI V2 Benchmark ($N = 34$)
+## 3. Reproducing the Multi-DatasetV2 Benchmark ($N = 34$)
 
-The OpenBMI V2 benchmark evaluates 34 intact participants across 62 channels, comparing Shrinkage CSP-LDA and Riemannian Tangent Space Logistic Regression (`ts_lr`).
+The Multi-DatasetV2 benchmark evaluates 34 intact participants across 62 channels, comparing Shrinkage CSP-LDA and Riemannian Tangent Space Logistic Regression (`ts_lr`).
 
 ### Step 1: Ensure Dataset Files are Unpacked
-Place raw OpenBMI session MAT files in `data/OpenBMI/` (or specify via `--data-dir`):
+Place raw Multi-Datasetsession MAT files in `data/Multi-Dataset/` (or specify via `--data-dir`):
 ```
-data/OpenBMI/sess01_subj*.mat
+data/Multi-Dataset/sess01_subj*.mat
 ```
 
 ### Step 2: Execute the Benchmark Runner
 ```bash
-python scripts/run_openbmi_benchmark.py \
-    --data-dir data/OpenBMI \
+python scripts/run_Multi-Dataset_benchmark.py \
     --subjects 1-54 \
     --decoders csp_lda,ts_lr \
     --designs D3_loro,D1s_size_matched,P1_csp_on_all \
     --target-fs 160.0 \
     --n-repeats-matched 5 \
     --seed 42 \
-    --outdir benchmark_results/openbmi_v2
 ```
 
 *Expected Runtime*: Approximately 44 minutes (2,631 seconds) single-threaded on 8 GB RAM.
@@ -75,10 +73,10 @@ Verify the integrity of the generated CSV files against their sealed SHA-256 dig
 
 ```bash
 # PowerShell
-Get-FileHash benchmark_results\openbmi_v2\*.csv -Algorithm SHA256
+Get-FileHash benchmark_results\\*.csv -Algorithm SHA256
 
 # Linux / macOS
-sha256sum benchmark_results/openbmi_v2/*.csv
+sha256sum benchmark_results//*.csv
 ```
 
 | File | Rows | Verified SHA-256 Digest |
@@ -89,7 +87,7 @@ sha256sum benchmark_results/openbmi_v2/*.csv
 | `design_comparisons.csv` | 4 | `52d878029c5bfd240d0246a48d88e00188686d1f9a2e37905fec5859714a79ad` |
 
 ### Step 4: Verify Empirical Statistics
-Inspect `benchmark_results/openbmi_v2/design_comparisons.csv`:
+Inspect `benchmark_results//design_comparisons.csv`:
 
 | Decoder | Contrast | Hodges-Lehmann ($\Delta_{\text{HL}}$) | 95% BCa Bootstrap CI | Wilcoxon $p_{\text{Holm}}$ | Cohen's $d_z$ |
 |---|---|---:|---:|---:|---:|
@@ -105,10 +103,10 @@ Inspect `benchmark_results/openbmi_v2/design_comparisons.csv`:
 To generate the publication-ready vector and raster figures from the benchmark CSVs:
 
 ```bash
-python scripts/plot_openbmi_figures.py
+python scripts/plot_Multi-Dataset_figures.py
 ```
 
-Generated outputs are placed in `figures/openbmi_v2/`:
-1. `paired_accuracy_openbmi_csp_lda.png` / `.pdf`: Paired participant-level dot-and-line scatter plots comparing $D_3$, $D_{1s}$, and $P_1$ for CSP-LDA.
-2. `paired_accuracy_openbmi_ts_lr.png` / `.pdf`: Paired participant-level dot-and-line scatter plots for Riemannian TS-LR.
-3. `inflation_openbmi.png` / `.pdf`: Paired difference distributions ($\Delta = \text{Design} - D_3$) with Hodges-Lehmann medians and 95% BCa error bars.
+Generated outputs are placed in `figures//`:
+1. `paired_accuracy_Multi-Dataset_csp_lda.png` / `.pdf`: Paired participant-level dot-and-line scatter plots comparing $D_3$, $D_{1s}$, and $P_1$ for CSP-LDA.
+2. `paired_accuracy_Multi-Dataset_ts_lr.png` / `.pdf`: Paired participant-level dot-and-line scatter plots for Riemannian TS-LR.
+3. `inflation_Multi-Dataset.png` / `.pdf`: Paired difference distributions ($\Delta = \text{Design} - D_3$) with Hodges-Lehmann medians and 95% BCa error bars.
