@@ -29,12 +29,38 @@ In electroencephalography (EEG) and brain-computer interface (BCI) machine learn
 | Leakage ID | Mechanism | Correct Comparator | Leaky Pipeline Failure Mode |
 |---|---|---|---|
 | **P1** | Global Spatial Filtering | `D3_loro` | Fitting Common Spatial Patterns (CSP) across all runs before cross-validation. Spatial filters learn test labels. |
-| **P2** | Global Artifact Removal | Clean fold-nested ICA | Fitting ICA or continuous temporal filters across test epochs. |
+| **P2** | Global Artifact Removal | A raw-data fold-nested preprocessing comparator (not implemented in this module) | The current PhysioNet preprocessing fits ICA and estimates bad-channel handling across all selected runs before CV. The dedicated P2 contaminated-versus-clean experiment is marked TODO in `src/emi/leakcheck.py`; it must not be reported as completed. |
 | **P3** | Global Channel Scaling | `P3_scale_inside` | Normalizing channels using mean/variance computed across all trials. |
 | **P4** | Global Channel Selection | `P4_select_inside` | Selecting $K$ most informative channels using mutual information / ANOVA on all trials before CV. |
 | **P5** | Test-Fold Hyperparameter Tuning | `P5_tune_nested` | Choosing optimal time window or regularizer by inspecting test-fold accuracy. |
 | **P6** | Overlapping Window Splitting | `P6_overlap_loro` | Generating overlapping sub-windows from continuous trials and randomly partitioning them into train and test. |
 | **P7** | Pre-Split Data Augmentation | `P7_aug_train_only` | Augmenting trials (jitter, noise injection) before partitioning, allowing augmented pairs into both train and test. |
+
+---
+
+## 3.1 Preprocessing Boundary and Interpretation of Validation Designs
+
+For the PhysioNet pipeline represented by `src/emi/pipeline.py`, raw subject data are loaded and passed through `preprocess.clean_raw` and `preprocess.build_epochs_full` **before** the validation functions are called. These preprocessing operations are therefore performed once at subject level using all selected runs.
+
+The current subject-level preprocessing includes:
+
+- Band-pass filtering for the ICA/broadband representation.
+- Bad-channel detection and, where indicated, interpolation.
+- Average EEG reference.
+- ICA fitting and component exclusion.
+- Label-blind trial rejection, including estimation of the adaptive rejection threshold.
+- Construction of the decoding-band epochs.
+
+The held-out D3 run is consequently present during these preprocessing operations. The operations are label-blind, but they are not training-fold-only. The same preprocessed feature array is supplied to the run-held-out and random-trial validation designs.
+
+Within each decoding fold, the CSP transformation and classifier are fitted on the training partition and applied to the test partition. This distinction must be stated precisely:
+
+- **Supported claim:** CSP and the classifier are fold-fitted for the clean D3, D1m, and D1s decoding evaluations.
+- **Unsupported claim:** The complete raw-to-prediction pipeline is nested inside each validation fold.
+- **Interpretation:** The validation-design comparison is conditional on a shared, subject-level preprocessed representation. It does not independently estimate the effect of refitting filtering, bad-channel handling, ICA, or adaptive rejection using training data only.
+- **P1:** The deliberate positive control differs by fitting supervised CSP using all trials and labels before the run-held-out split. This is a separate, label-informed contamination mechanism.
+
+The P2 entry in the mechanism taxonomy is a planned experiment, not evidence that a fold-nested ICA comparator has already been evaluated. `src/emi/leakcheck.py` explicitly identifies P2 as requiring raw recordings and as outside that module.
 
 ---
 
@@ -67,10 +93,10 @@ Equivalence is declared only when both one-sided null hypotheses are rejected ($
 
 ## 5. Negative Control Null Framework
 
-Every decoding pipeline must be evaluated under label permutations:
+Where null evaluations are run, the protocol uses label permutations:
 1. **Within-Run Permutation (`perm`)**: Labels are permuted independently within each run, preserving per-run class ratios while breaking brain-behavior relationships.
 2. **Circular Shift (`shift`)**: Labels are shifted circularly within each run, preserving autocorrelation and sequence transitions while misaligning trials.
 
-A methodologically sound negative control must satisfy:
+These are design targets, not a claim that every frozen benchmark artifact contains null results. In particular, the README identifies the frozen PhysioNet V1.1 settings record as `n_null: 0`; no null-model result should be inferred from that frozen record unless supported by separate output files.\n\nA methodologically sound negative control must satisfy:
 - Mean null accuracy: $50.0\% \pm \epsilon$.
 - False positive rate (FPR) at nominal $\alpha = 0.05$: $\le 5\%$.
