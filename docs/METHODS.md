@@ -75,7 +75,7 @@ Rather than assuming normality, the central location of $\Delta$ is estimated vi
 $$\widehat{\Delta}_{\text{HL}} = \text{median}\left\{ \frac{\Delta_i + \Delta_j}{2} \;\middle|\; 1 \le i \le j \le N \right\}$$
 
 ### 4.3 Bias-Corrected and Accelerated (BCa) Bootstrap Confidence Interval
-Confidence intervals ($95\%$) for $\widehat{\Delta}_{\text{HL}}$ are computed via $B = 2,000$ BCa bootstrap resamples, correcting for both distribution asymmetry and acceleration.
+Confidence intervals ($95\%$) for $\widehat{\Delta}_{\text{HL}}$ are computed via $B = 10,000$ BCa bootstrap resamples, correcting for both distribution asymmetry and acceleration.
 
 ### 4.4 Non-Parametric Significance
 - **Wilcoxon Signed-Rank Test**: Tests null hypothesis $H_0: \Delta = 0$.
@@ -97,6 +97,8 @@ Where null evaluations are run, the protocol uses label permutations:
 1. **Within-Run Permutation (`perm`)**: Labels are permuted independently within each run, preserving per-run class ratios while breaking brain-behavior relationships.
 2. **Circular Shift (`shift`)**: Labels are shifted circularly within each run, preserving autocorrelation and sequence transitions while misaligning trials.
 
-These are design targets, not a claim that every frozen benchmark artifact contains null results. In particular, the README identifies the frozen PhysioNet V1.1 settings record as `n_null: 0`; no null-model result should be inferred from that frozen record unless supported by separate output files.\n\nA methodologically sound negative control must satisfy:
+These are design targets, not a claim that every frozen benchmark artifact contains null results. In particular, the README identifies the frozen PhysioNet V1.1 settings record as `n_null: 0`; no null-model result should be inferred from that frozen record unless supported by separate output files.
+
+A methodologically sound negative control must satisfy:
 - Mean null accuracy: $50.0\% \pm \epsilon$.
 - False positive rate (FPR) at nominal $\alpha = 0.05$: $\le 5\%$.
