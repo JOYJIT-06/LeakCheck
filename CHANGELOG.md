@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Documentation
+- Clarified that PhysioNet V1.1 preprocessing is performed at subject level before validation splitting; CSP and the classifier are fold-fitted, but the complete raw-to-prediction pipeline is not fully fold-nested.
+- Corrected the P2 status: the global-ICA preprocessing path exists, but the dedicated fold-nested P2 comparison is not implemented in `src/emi/leakcheck.py`.
+- Added a versioned limitations note. Existing frozen benchmark outputs and accuracy values are unchanged.
+
+
 All notable changes to the LeakCheck package (`emi`) are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
